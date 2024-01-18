@@ -1,0 +1,37 @@
+- type: entity
+  parent: PowerCellSmall
+  id: PowerCellSmallUnstable
+  suffix: Unstable
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaserSmallUnstable
+    fireCost: 360
+
+- type: entity
+  parent: PowerCellMedium
+  id: PowerCellMediumUnstable
+  suffix: Unstable
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaserMediumUnstable
+    fireCost: 720
+
+- type: entity
+  parent: PowerCellHigh
+  id: PowerCellHighUnstable
+  suffix: Unstable
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaserHighUnstable
+    fireCost: 1080
+
+- type: entity
+  parent: PowerCellHyper
+  id: PowerCellHyperUnstable
+  suffix: Unstable
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaserHyperUnstable
+    fireCost: 1800
+
+

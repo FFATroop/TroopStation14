@@ -42,6 +42,8 @@
     sprite: TS/Structures/Walls/reinf_shuttle.rsi
   - type: Icon
     sprite: TS/Structures/Walls/reinf_shuttle.rsi
+  - type: Reflect
+    reflectProb: 0.85
   - type: Destructible
     thresholds:
     - trigger:
@@ -78,6 +80,8 @@
   - type: Icon
     sprite: TS/Structures/Walls/reinf_shuttle_diagonal.rsi
     state: state0
+  - type: Reflect
+    reflectProb: 0.85
   - type: Destructible
     thresholds:
     - trigger:
@@ -109,6 +113,8 @@
     sprite: TS/Structures/Walls/light_shuttle.rsi
   - type: Icon
     sprite: TS/Structures/Walls/light_shuttle.rsi
+  - type: Reflect
+    reflectProb: 0.5
   - type: Destructible
     thresholds:
     - trigger:
@@ -145,6 +151,8 @@
   - type: Icon
     sprite: TS/Structures/Walls/light_shuttle_diagonal.rsi
     state: state0
+  - type: Reflect
+    reflectProb: 0.5
   - type: Destructible
     thresholds:
     - trigger:
