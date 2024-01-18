@@ -1,0 +1,64 @@
+# Used to animate the hitscan effects because effectsystem doesn't support it
+- type: hitscan
+  id: RedLightLaserSmallUnstable
+  maxLength: 100
+  damage:
+    types:
+      Heat: 140
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_heavy
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser
+
+- type: hitscan
+  id: RedLightLaserMediumUnstable
+  maxLength: 100
+  damage:
+    types:
+      Heat: 380
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_mega_heavy
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser
+
+- type: hitscan
+  id: RedLightLaserHighUnstable
+  maxLength: 100
+  damage:
+    types:
+      Heat: 420
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_ultra_heavy
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser
+
+- type: hitscan
+  id: RedLightLaserHyperUnstable
+  maxLength: 100
+  damage:
+    types:
+      Heat: 720
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_lastchance_heavy
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser
