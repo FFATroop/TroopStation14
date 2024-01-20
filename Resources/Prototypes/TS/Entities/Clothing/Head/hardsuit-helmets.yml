@@ -1,0 +1,81 @@
+# OBH-1
+- type: entity
+  noSpawn: true
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitOBH1
+  name: OBH-1
+  description: Modern armor helmet, version 1
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-1f.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-1f.rsi
+  - type: PointLight
+    color: "#39ff14"
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.95
+
+# OBH-2
+- type: entity
+  noSpawn: true
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitOBH2
+  name: OBH-2
+  description: Modern armor helmet, version 2
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-2f.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-2f.rsi
+  - type: PointLight
+    color: "#39ff14"
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.9
+        Cold: 0.9
+        Radiation: 0.85
+        Caustic: 0.85
+
+# LEH
+- type: entity
+  noSpawn: true
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetLightsuitExpedition
+  name: expedition lightsuit helmet
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/leh.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/leh.rsi
+  - type: PointLight
+    color: "#39ff14"
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 7000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Radiation: 0.95
