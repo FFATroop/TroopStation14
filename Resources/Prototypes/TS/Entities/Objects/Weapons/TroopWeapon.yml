@@ -70,12 +70,15 @@
     magState: mag
     steps: 4
     zeroVisible: false
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
   - type: Gun
     availableModes:
     - FullAuto
     selectedMode: FullAuto
     angleIncrease: 4
-    angleDecay: 10
     minAngle: 25
     maxAngle: 50
     fireRate: 7
