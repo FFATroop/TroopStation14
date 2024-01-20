@@ -1,11 +1,11 @@
 - type: entity
-  name: pulse rifle
+  name: ALR-01
   parent: BaseWeaponBattery
   id: TSWeaponLaserRifle
-  description: A weapon that is almost as infamous as its users.
+  description: Combat automatic laser rifle, version 1.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+    sprite: TS/Objects/Weapons/Guns/Rifles/alr_01.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -17,7 +17,7 @@
     minAngle: -20
     maxAngle: -35
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+    sprite: TS/Objects/Weapons/Guns/Rifles/alr_01.rsi
     quickEquip: false
     slots:
     - Back
@@ -43,37 +43,53 @@
     price: 1500
 
 - type: entity
-  name: pulse rifle
-  parent: BaseWeaponPowerCell
-  id: TSWeaponCellLaserRifle
-  description: A weapon that is almost as infamous as its users.
+  name: LMGP
+  parent: BaseWeaponBattery
+  id: TSWeaponLaserMachineGunP
+  description: Laser machine gun Perusheva
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+    sprite: TS/Objects/Weapons/Guns/Rifles/lmgp.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
+    - state: mag-unshaded-3
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -60
-    maxAngle: -60
+    minAngle: -20
+    maxAngle: -20
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+    sprite: TS/Objects/Weapons/Guns/Rifles/lmgp.rsi
     quickEquip: false
     slots:
     - Back
     - suitStorage
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
   - type: Gun
     availableModes:
-    - SemiAuto
-    selectedMode: SemiAuto
-    minAngle: 60
-    maxAngle: 60
-    fireRate: 0.5
+    - FullAuto
+    selectedMode: FullAuto
+    angleIncrease: 4
+    minAngle: 25
+    maxAngle: 50
+    fireRate: 7
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 50
+  - type: Battery
+    maxCharge: 30000
+    startingCharge: 30000
   - type: StaticPrice
-    price: 1500
+    price: 2500
+
