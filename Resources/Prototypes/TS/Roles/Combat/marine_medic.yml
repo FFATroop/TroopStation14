@@ -1,0 +1,34 @@
+- type: job
+  id: MarineMedic
+  name: job-name-marine-medic
+  description: job-description-marine-medic
+  playTimeTracker: JobMarineMedic
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Combat
+    time: 7200 #2 hrs
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 7200 #2 hrs
+  startingGear: MarineMedicGear
+  icon: "JobIconMedicalDoctor"
+  supervisors: job-supervisors-hos
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  - Chemistry
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: MarineMedicGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombat
+    id: SecurityPDA
+    ears: ClothingHeadsetSecurity
+    neck: ClothingNeckIDMarksMedic

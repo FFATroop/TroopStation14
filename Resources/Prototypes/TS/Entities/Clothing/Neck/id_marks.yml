@@ -1,0 +1,36 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckIDMarksMedic
+  name: Medic identification marks
+  description: Kit with identification marks for marine medic
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Neck/IDMarks/field-medic.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckIDMarksEngineer
+  name: Engineer identification marks
+  description: Kit with identification marks for marine engineer
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Neck/IDMarks/field-engineer.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckIDMarksPartCommander
+  name: Part-commander identification marks
+  description: Kit with identification marks for part-commander
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Neck/IDMarks/field-sergeant.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckIDMarksPlatoonCommander
+  name: Platoon commander identification marks
+  description: Kit with identification marks for platoon commander
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Neck/IDMarks/field-commander.rsi
+    
