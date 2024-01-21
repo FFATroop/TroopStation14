@@ -11,7 +11,7 @@
     department: Engineering
     time: 7200 #2 hrs
   startingGear: MarineEngineerGear
-  icon: "JobIconStationEngineer"
+  icon: "JobIconMarineEngineer"
   supervisors: job-supervisors-part-pc
   access:
   - Security

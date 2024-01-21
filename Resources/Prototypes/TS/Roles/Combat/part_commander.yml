@@ -8,7 +8,7 @@
     department: Combat
     time: 36000 #10 hrs
   startingGear: PartCommanderGear
-  icon: "JobIconSecurityOfficer"
+  icon: "JobIconPartCommander"
   supervisors: job-supervisors-platoon
   canBeAntag: false
   access:

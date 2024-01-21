@@ -11,7 +11,7 @@
     department: Medical
     time: 7200 #2 hrs
   startingGear: MarineMedicGear
-  icon: "JobIconMedicalDoctor"
+  icon: "JobIconJobMarineMedic"
   supervisors: job-supervisors-part-pc
   access:
   - Security

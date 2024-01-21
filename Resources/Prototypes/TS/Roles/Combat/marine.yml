@@ -7,7 +7,7 @@
   - !type:OverallPlaytimeRequirement
     time: 7200 #2 hrs
   startingGear: MarineBaseGear
-  icon: "JobIconSecurityOfficer"
+  icon: "JobIconMarine"
   supervisors: job-supervisors-part-pc
   canBeAntag: false
   access:
