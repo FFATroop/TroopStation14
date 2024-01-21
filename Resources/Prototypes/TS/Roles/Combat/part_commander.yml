@@ -9,7 +9,7 @@
     time: 36000 #10 hrs
   startingGear: PartCommanderGear
   icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-hos
+  supervisors: job-supervisors-platoon
   canBeAntag: false
   access:
   - Security

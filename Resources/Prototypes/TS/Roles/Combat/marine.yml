@@ -8,7 +8,7 @@
     time: 7200 #2 hrs
   startingGear: MarineBaseGear
   icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-hos
+  supervisors: job-supervisors-part-pc
   canBeAntag: false
   access:
   - Security

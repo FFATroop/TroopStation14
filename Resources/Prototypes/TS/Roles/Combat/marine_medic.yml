@@ -12,7 +12,7 @@
     time: 7200 #2 hrs
   startingGear: MarineMedicGear
   icon: "JobIconMedicalDoctor"
-  supervisors: job-supervisors-hos
+  supervisors: job-supervisors-part-pc
   access:
   - Security
   - Brig

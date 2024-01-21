@@ -15,7 +15,7 @@
     time: 7200 #2 hrs
   startingGear: PlatoonCommanderGear
   icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-hos
+  supervisors: job-supervisors-captain
   canBeAntag: false
   access:
   - Security
