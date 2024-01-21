@@ -11,7 +11,6 @@
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/obh-1f.rsi
   - type: PointLight
-    radius: 6.5
     color: "#39ff14"
   - type: PressureProtection
     highPressureMultiplier: 0.525
@@ -40,7 +39,6 @@
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/obh-2f.rsi
   - type: PointLight
-    radius: 6.5
     color: "#39ff14"
   - type: PressureProtection
     highPressureMultiplier: 0.525
@@ -71,7 +69,7 @@
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/obh-3s.rsi
   - type: PointLight
-    radius: 8
+    radius: 6
     color: "#fff2cc"
   - type: PressureProtection
     highPressureMultiplier: 0.525
@@ -101,7 +99,6 @@
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/leh.rsi
   - type: PointLight
-    radius: 5.5
     color: "#39ff14"
   - type: PressureProtection
     highPressureMultiplier: 0.3
