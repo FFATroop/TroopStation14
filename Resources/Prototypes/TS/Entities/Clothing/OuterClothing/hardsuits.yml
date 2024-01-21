@@ -1,9 +1,9 @@
 # OBS-1
 - type: entity
   parent: ClothingOuterHardsuitBase
-  id: ClothingOuterHardsuitOBS1
-  name: OBS-1
-  description: Modern armor suit, version 1
+  id: ClothingOuterHardsuitOBS1F
+  name: OBS-1F
+  description: Modern armor suit, version 1, forest edition
   components:
   - type: Sprite
     sprite: TS/Clothing/OuterClothing/Hardsuits/obs-1f.rsi
@@ -18,7 +18,7 @@
     walkModifier: 0.78
     sprintModifier: 0.78
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitOBH1
+    clothingPrototype: ClothingHeadHelmetHardsuitOBH1F
   - type: Armor
     modifiers:
       coefficients:
@@ -31,9 +31,9 @@
 # OBS-2
 - type: entity
   parent: ClothingOuterHardsuitBase
-  id: ClothingOuterHardsuitOBS2
-  name: OBS-2
-  description: Modern armor suit, version 2
+  id: ClothingOuterHardsuitOBS2F
+  name: OBS-2F
+  description: Modern armor suit, version 2, forest edition
   components:
   - type: Sprite
     sprite: TS/Clothing/OuterClothing/Hardsuits/obs-2f.rsi
@@ -48,7 +48,39 @@
     walkModifier: 0.7
     sprintModifier: 0.7
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitOBH2
+    clothingPrototype: ClothingHeadHelmetHardsuitOBH2F
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.58
+        Piercing: 0.5
+        Heat: 0.8
+        Cold: 0.8
+        Radiation: 0.6
+        Caustic: 0.6
+
+# OBS-3
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitOBS2S
+  name: OBS-3S
+  description: Modern armor suit, version 3, space edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-3s.rsi
+  - type: Clothing
+    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-3s.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 10000
+  - type: ExplosionResistance
+    damageCoefficient: 0.55
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitOBH3S
   - type: Armor
     modifiers:
       coefficients:

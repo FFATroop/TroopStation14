@@ -2,15 +2,16 @@
 - type: entity
   noSpawn: true
   parent: ClothingHeadHardsuitWithLightBase
-  id: ClothingHeadHelmetHardsuitOBH1
-  name: OBH-1
-  description: Modern armor helmet, version 1
+  id: ClothingHeadHelmetHardsuitOBH1F
+  name: OBH-1F
+  description: Modern armor helmet, version 1, forest edition
   components:
   - type: Sprite
     sprite: TS/Clothing/Head/Hardsuits/obh-1f.rsi
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/obh-1f.rsi
   - type: PointLight
+    radius: 6.5
     color: "#39ff14"
   - type: PressureProtection
     highPressureMultiplier: 0.525
@@ -30,16 +31,48 @@
 - type: entity
   noSpawn: true
   parent: ClothingHeadHardsuitWithLightBase
-  id: ClothingHeadHelmetHardsuitOBH2
-  name: OBH-2
-  description: Modern armor helmet, version 2
+  id: ClothingHeadHelmetHardsuitOBH2F
+  name: OBH-2F
+  description: Modern armor helmet, version 2, forest edition
   components:
   - type: Sprite
     sprite: TS/Clothing/Head/Hardsuits/obh-2f.rsi
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/obh-2f.rsi
   - type: PointLight
+    radius: 6.5
     color: "#39ff14"
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.9
+        Cold: 0.9
+        Radiation: 0.85
+        Caustic: 0.85
+
+# OBH-3
+- type: entity
+  noSpawn: true
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitOBH3S
+  name: OBH-3S
+  description: Modern armor helmet, version 3, space edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-3s.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-3s.rsi
+  - type: PointLight
+    radius: 8
+    color: "#fff2cc"
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
@@ -68,6 +101,7 @@
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/leh.rsi
   - type: PointLight
+    radius: 5.5
     color: "#39ff14"
   - type: PressureProtection
     highPressureMultiplier: 0.3
