@@ -1,0 +1,38 @@
+- type: job
+  id: PlatoonCommander
+  name: job-name-platoon-commander
+  description: job-description-combat
+  playTimeTracker: JobPlatoonCommander
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Combat
+    time: 72000 #20 hrs
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 7200 #2 hrs
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 7200 #2 hrs
+  startingGear: PlatoonCommanderGear
+  icon: "JobIconSecurityOfficer"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  - Command
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: PlatoonCommanderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombat
+    id: SecurityPDA
+    ears: ClothingHeadsetSecurity
+    neck: ClothingNeckIDMarksPlatoonCommander

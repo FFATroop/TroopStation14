@@ -1,0 +1,30 @@
+# Department
+- type: department
+  id: Combat
+  description: department-Combat-description
+  color: "#C3C3BD"
+  roles:
+  - CargoTechnician
+  - Quartermaster
+  - SalvageSpecialist
+
+
+# Jobs
+- type: playTimeTracker
+  id: JobMarine
+  
+- type: playTimeTracker
+  id: JobMarineMedic
+  
+- type: playTimeTracker
+  id: JobMarineEngineer
+  
+- type: playTimeTracker
+  id: JobPartCommander
+  
+- type: playTimeTracker
+  id: JobPlatoonCommander
+  
+- type: playTimeTracker
+  id: JobMarinePilot
+

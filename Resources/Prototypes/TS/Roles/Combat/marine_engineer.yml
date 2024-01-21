@@ -1,0 +1,36 @@
+- type: job
+  id: MarineEngineer
+  name: job-name-marine-engineer
+  description: job-description-combat
+  playTimeTracker: JobMarineEngineer
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Combat
+    time: 7200 #2 hrs
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 7200 #2 hrs
+  startingGear: MarineEngineerGear
+  icon: "JobIconStationEngineer"
+  supervisors: job-supervisors-hos
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  - Engineering
+  - Atmospherics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: MarineEngineerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombat
+    id: SecurityPDA
+    ears: ClothingHeadsetSecurity
+    neck: ClothingNeckIDMarksEngineer
+    

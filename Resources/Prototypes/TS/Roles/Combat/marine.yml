@@ -1,0 +1,29 @@
+- type: job
+  id: Marine
+  name: job-name-marine
+  description: job-description-combat
+  playTimeTracker: JobMarine
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 7200 #2 hrs
+  startingGear: MarineBaseGear
+  icon: "JobIconSecurityOfficer"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: MarineBaseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombat
+    id: SecurityPDA
+    ears: ClothingHeadsetSecurity
