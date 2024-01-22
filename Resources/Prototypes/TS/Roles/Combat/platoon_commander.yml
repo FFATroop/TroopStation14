@@ -14,8 +14,8 @@
     department: Engineering
     time: 7200 #2 hrs
   startingGear: PlatoonCommanderGear
-  icon: "JobIconSecurityOfficer"
-  supervisors: job-supervisors-hos
+  icon: "JobIconPlatoonCommander"
+  supervisors: job-supervisors-captain
   canBeAntag: false
   access:
   - Security

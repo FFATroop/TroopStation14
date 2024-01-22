@@ -1,30 +1,143 @@
 # Department
 - type: department
   id: Combat
-  description: department-Combat-description
+  description: department-combat-description
   color: "#C3C3BD"
   roles:
-  - CargoTechnician
-  - Quartermaster
-  - SalvageSpecialist
+  - JobMarine
+  - JobMarineMedic
+  - JobMarineEngineer
+  - JobMarinePilot
+  - JobPartCommander
+  - JobPlatoonCommander
 
 
 # Jobs
 - type: playTimeTracker
   id: JobMarine
-  
+
 - type: playTimeTracker
   id: JobMarineMedic
-  
+
 - type: playTimeTracker
   id: JobMarineEngineer
-  
+
 - type: playTimeTracker
   id: JobPartCommander
-  
+
 - type: playTimeTracker
   id: JobPlatoonCommander
-  
+
 - type: playTimeTracker
   id: JobMarinePilot
 
+
+# Job Icons
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconMarine
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: Marine
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconJobMarineMedic
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: JobMarineMedic
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconMarineEngineer
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: MarineEngineer
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconMarinePilot
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: MarinePilot
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPartCommander
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: PartCommander
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPlatoonCommander
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: PlatoonCommander
+
+
+# Spawn points
+- type: entity
+  id: SpawnPointMarine
+  parent: SpawnPointJobBase
+  name: marine
+  components:
+  - type: SpawnPoint
+    job_id: Marine
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine
+
+- type: entity
+  id: SpawnPointMarineEngineer
+  parent: SpawnPointJobBase
+  name: marine engineer
+  components:
+  - type: SpawnPoint
+    job_id: MarineEngineer
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine-eng
+
+- type: entity
+  id: SpawnPointMarineMedic
+  parent: SpawnPointJobBase
+  name: marine medic
+  components:
+  - type: SpawnPoint
+    job_id: MarineMedic
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine-med
+
+- type: entity
+  id: SpawnPointPartCommander
+  parent: SpawnPointJobBase
+  name: part commander
+  components:
+  - type: SpawnPoint
+    job_id: PartCommander
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine-part
+
+- type: entity
+  id: SpawnPointPlatoonCommander
+  parent: SpawnPointJobBase
+  name: plat commander
+  components:
+  - type: SpawnPoint
+    job_id: PlatoonCommander
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine-plat

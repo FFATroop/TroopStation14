@@ -11,8 +11,8 @@
     department: Engineering
     time: 7200 #2 hrs
   startingGear: MarineEngineerGear
-  icon: "JobIconStationEngineer"
-  supervisors: job-supervisors-hos
+  icon: "JobIconMarineEngineer"
+  supervisors: job-supervisors-part-pc
   access:
   - Security
   - Brig
@@ -33,4 +33,3 @@
     id: SecurityPDA
     ears: ClothingHeadsetSecurity
     neck: ClothingNeckIDMarksEngineer
-    

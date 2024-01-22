@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by 778b for https://github.com/FFATroop/TroopStation14",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "PlatoonCommander"
+        },
+		{
+            "name": "PartCommander"
+        },
+        {
+            "name": "Marine"
+        },
+		{
+            "name": "MarineMedic"
+        },
+		{
+            "name": "MarineEngineer"
+        },
+		{
+            "name": "MarinePilot"
+        }
+    ]
+}
