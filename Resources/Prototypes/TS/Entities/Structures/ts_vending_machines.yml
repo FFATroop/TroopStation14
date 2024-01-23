@@ -1,0 +1,86 @@
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMarineEng
+  name: BattleEnginner
+  description: 
+  components:
+  - type: VendingMachine
+    pack: MarineEngineerInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: TS/Structures/Machines/VendingMachines/battle_engineer.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1
+    energy: 1.3
+    color: "#ffb0b0"
+  - type: AccessReader
+    access: [["Engineering"],["Security"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMarineMed
+  name: BattleMedic
+  description: 
+  components:
+  - type: VendingMachine
+    pack: MarineMedicInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: TS/Structures/Machines/VendingMachines/battle_medic.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1
+    energy: 1.3
+    color: "#ffb0b0"
+  - type: AccessReader
+    access: [["Medical"],["Security"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMarineDrobe
+  name: MarineDrobe
+  description: 
+  components:
+  - type: VendingMachine
+    pack: MarineDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: TS/Structures/Machines/VendingMachines/marine_drobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1
+    energy: 1.3
+    color: "#ffb0b0"
+  - type: AccessReader
+    access: [["Security"]]

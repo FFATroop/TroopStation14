@@ -19,6 +19,7 @@
   - Maintenance
   - Service
   - External
+  - Medical
   - Chemistry
   special:
   - !type:AddImplantSpecial
