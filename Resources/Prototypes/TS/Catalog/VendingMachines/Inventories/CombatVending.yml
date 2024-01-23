@@ -5,19 +5,32 @@
     ClothingEyesGlassesMeson: 3
     ClothingHandsGlovesColorYellow: 3
     ClothingBeltChiefEngineerFilled: 3
+    CableApcStack: 3
+    CableMVStack: 3
+    CableHVStack: 3
     
 - type: vendingMachineInventory
   id: MarineMedicInventory
   startingInventory:
-    PillCanister: 18
-    Syringe: 18
+    PillCanister: 9
+    Syringe: 9
     ClothingEyesHudMedical: 3
     HandheldHealthAnalyzer: 3
     ClothingHandsGlovesLatex: 3
     ClothingBeltMedicalFilled: 3
-    MedkitRadiationFilled: 2
-    MedkitAdvancedFilled: 2
-    MedkitOxygenFilled: 2
-    MedkitBurnFilled: 2
-    MedkitToxinFilled: 2
-    MedkitBruteFilled: 2
+    MedkitRadiationFilled: 3
+    MedkitAdvancedFilled: 3
+    MedkitOxygenFilled: 3
+    MedkitBurnFilled: 3
+    MedkitToxinFilled: 3
+    MedkitBruteFilled: 3
+    
+- type: vendingMachineInventory
+  id: MarineDrobeInventory
+  startingInventory:
+    ClothingUniformJumpsuitOperative: 5
+    ClothingShoesBootsCombat: 5
+    ClothingHandsGlovesCombat: 5
+    ClothingBeltMilitaryWebbing: 5
+    CombatKnife: 5
+    FlashlightSeclite: 5
