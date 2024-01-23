@@ -1,0 +1,23 @@
+- type: vendingMachineInventory
+  id: MarineEngineerInventory
+  startingInventory:
+    GeigerCounter: 3
+    ClothingEyesGlassesMeson: 3
+    ClothingHandsGlovesColorYellow: 3
+    ClothingBeltChiefEngineerFilled: 3
+    
+- type: vendingMachineInventory
+  id: MarineMedicInventory
+  startingInventory:
+    PillCanister: 18
+    Syringe: 18
+    ClothingEyesHudMedical: 3
+    HandheldHealthAnalyzer: 3
+    ClothingHandsGlovesLatex: 3
+    ClothingBeltMedicalFilled: 3
+    MedkitRadiationFilled: 2
+    MedkitAdvancedFilled: 2
+    MedkitOxygenFilled: 2
+    MedkitBurnFilled: 2
+    MedkitToxinFilled: 2
+    MedkitBruteFilled: 2
