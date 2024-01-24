@@ -69,15 +69,12 @@ internal sealed class HandChargerSystem : EntitySystem
             var tempEntity = _itemSlots.GetItemOrNull(uid, $"charger_slot_{i}", itemSlots);
             if (tempEntity == null) continue;
 
-            if (_powerCell.HasCharge(tempEntity.Value, charger.ChargeRate))
-            {
-                if (!TryComp(tempEntity, out BatteryComponent? batteryComponent))
-                {
-                    if (!_powerCell.TryGetBatteryFromSlot(tempEntity.Value, out batteryComponent)) return null;
-                }
-
-                return batteryComponent.CurrentCharge > 0 ? batteryComponent : null;
+            if (!TryComp(tempEntity, out BatteryComponent? batteryComponent)) {
+                if (!_powerCell.TryGetBatteryFromSlot(tempEntity.Value, out batteryComponent)) return null;
             }
+
+            return batteryComponent.CurrentCharge > 0 ? batteryComponent : null;
+            
         }
 
         return null;
