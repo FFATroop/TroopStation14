@@ -4,12 +4,12 @@
   description: department-combat-description
   color: "#C3C3BD"
   roles:
-  - JobMarine
-  - JobMarineMedic
-  - JobMarineEngineer
-  - JobMarinePilot
-  - JobPartCommander
-  - JobPlatoonCommander
+  - Marine
+  - MarineMedic
+  - MarineEngineer
+# - MarinePilot   # Until it is added
+  - PartCommander
+  - PlatoonCommander
 
 
 # Jobs
@@ -45,7 +45,7 @@
   id: JobIconJobMarineMedic
   icon:
     sprite: TS/Interface/job_icons.rsi
-    state: JobMarineMedic
+    state: MarineMedic
 
 - type: statusIcon
   parent: JobIcon

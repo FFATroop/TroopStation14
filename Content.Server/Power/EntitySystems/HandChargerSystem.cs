@@ -14,17 +14,6 @@ internal sealed class HandChargerSystem : EntitySystem
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<HandChargerComponent, ComponentStartup>(OnStartup);
-    }
-
-    private void OnStartup(EntityUid uid, HandChargerComponent component, ComponentStartup args)
-    {
-    }
-
 
     public override void Update(float frameTime)
     {
@@ -74,7 +63,6 @@ internal sealed class HandChargerSystem : EntitySystem
             }
 
             return batteryComponent.CurrentCharge > 0 ? batteryComponent : null;
-            
         }
 
         return null;

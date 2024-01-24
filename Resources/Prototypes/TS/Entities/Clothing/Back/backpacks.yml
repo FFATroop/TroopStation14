@@ -5,19 +5,27 @@
   description: A backpack specially designed to repel stains and hazardous liquids.
   components:
   - type: Sprite
-    sprite: TS/Clothing/Back/Backpacks/marine.rsi    
+    sprite: TS/Clothing/Back/Backpacks/marine.rsi
 
 
 - type: entity
   id: ClothingBatpack
   parent: Clothing
-  name: Batpack
+  name: Batpack 3x2
   components:
   - type: Item
     size: Huge
   - type: Sprite
     state: icon
-    sprite: TS/Clothing/Back/Backpacks/batpack.rsi    
+    sprite: TS/Clothing/Back/Backpacks/batpack.rsi
+  - type: ContainerContainer
+    containers:
+      charger_slot_0: !type:ContainerSlot
+      charger_slot_1: !type:ContainerSlot
+      charger_slot_2: !type:ContainerSlot
+      charger_slot_3: !type:ContainerSlot
+      charger_slot_4: !type:ContainerSlot
+      charger_slot_5: !type:ContainerSlot
   - type: Clothing
     quickEquip: false
     slots:
