@@ -45,7 +45,7 @@
   id: JobIconJobMarineMedic
   icon:
     sprite: TS/Interface/job_icons.rsi
-    state: JobMarineMedic
+    state: MarineMedic
 
 - type: statusIcon
   parent: JobIcon
