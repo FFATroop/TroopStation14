@@ -1,17 +1,9 @@
 using Content.Server.Power.Components;
 using Content.Server.PowerCell;
-using Content.Shared.Examine;
-using Content.Shared.Power;
-using Content.Shared.PowerCell.Components;
 using JetBrains.Annotations;
-using Robust.Shared.Containers;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.PowerCell;
-using Content.Shared.Storage.Components;
 using Robust.Server.Containers;
 
 namespace Content.Server.Power.EntitySystems;
@@ -54,7 +46,9 @@ internal sealed class HandChargerSystem : EntitySystem
                 if (tempHand.HeldEntity == null) continue;
 
                 if (!TryComp(tempHand.HeldEntity.Value, out BatteryComponent? heldBattery))
-                        continue;
+                    continue;
+
+                if (heldBattery.CurrentCharge == heldBattery.MaxCharge) continue;
 
                 batteryToCharge.Add(heldBattery);
             }
@@ -79,13 +73,10 @@ internal sealed class HandChargerSystem : EntitySystem
             {
                 if (!TryComp(tempEntity, out BatteryComponent? batteryComponent))
                 {
-                    if (_powerCell.TryGetBatteryFromSlot(tempEntity.Value, out batteryComponent))
-                        return batteryComponent;
-                    else
-                        return null;
+                    if (!_powerCell.TryGetBatteryFromSlot(tempEntity.Value, out batteryComponent)) return null;
                 }
-                else
-                    return batteryComponent;
+
+                return batteryComponent.CurrentCharge > 0 ? batteryComponent : null;
             }
         }
 
@@ -94,14 +85,23 @@ internal sealed class HandChargerSystem : EntitySystem
 
     private void TransferPower(EntityUid uid, BatteryComponent batteryToDischarge, List<BatteryComponent> batteryToCharge, HandChargerComponent component, float frameTime)
     {
-        float chargeRate = component.ChargeRate / batteryToCharge.Count * frameTime;
+        float deltaChargeRate = component.ChargeRate * frameTime;
+
+        float chargeRate = deltaChargeRate / batteryToCharge.Count;
+
+        if (batteryToDischarge.CurrentCharge < deltaChargeRate)
+        {
+            chargeRate = batteryToDischarge.CurrentCharge / batteryToCharge.Count * frameTime;
+            batteryToDischarge.CurrentCharge = 0;
+        }
+        else
+            batteryToDischarge.CurrentCharge -= deltaChargeRate;
 
         foreach (var tempBattery in batteryToCharge)
         {
             tempBattery.CurrentCharge += chargeRate;
-            batteryToDischarge.CurrentCharge -= component.ChargeRate * frameTime;
             // Just so the sprite won't be set to 99.99999% visibility
-            if (tempBattery.MaxCharge - tempBattery.CurrentCharge < 0.01)
+            if (tempBattery.MaxCharge - tempBattery.CurrentCharge < 0.01 || tempBattery.CurrentCharge > tempBattery.MaxCharge)
             {
                 tempBattery.CurrentCharge = tempBattery.MaxCharge;
             }

@@ -1,5 +1,4 @@
-using Content.Shared.Power;
-using Content.Shared.Whitelist;
+
 
 namespace Content.Server.Power.Components
 {

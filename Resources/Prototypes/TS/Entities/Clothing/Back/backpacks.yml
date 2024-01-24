@@ -22,6 +22,8 @@
     quickEquip: false
     slots:
     - back
+  - type: HandCharger
+    chargeRate: 50
   - type: ItemSlots
     slots:
       charger_slot_0:
