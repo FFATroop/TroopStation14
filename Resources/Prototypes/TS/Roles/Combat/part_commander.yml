@@ -17,6 +17,7 @@
   - Maintenance
   - Service
   - External
+  - Armory
   - Command
   special:
   - !type:AddImplantSpecial

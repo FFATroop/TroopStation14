@@ -23,7 +23,7 @@
   - Maintenance
   - Service
   - External
-  - Command
+  - Armory
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
