@@ -1,13 +1,14 @@
 #SOFTSUITS
 - type: entity
   id: SuitStorageMarine
+  suffix: OBS-2S
   parent: SuitStorageBase
   components:
   - type: StorageFill
     contents:
     - id: NitrogenTankFilled
     - id: OxygenTankFilled
-    - id: ClothingOuterHardsuitOBS2S
+    - id: ClothingOuterHardsuitOBS3S
     - id: ClothingMaskGas
   - type: AccessReader
     access: [["Security"]]

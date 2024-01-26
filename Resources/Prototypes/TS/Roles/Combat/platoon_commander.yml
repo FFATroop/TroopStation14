@@ -21,9 +21,8 @@
   - Security
   - Brig
   - Maintenance
-  - Service
   - External
-  - Command
+  - Armory
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -33,6 +32,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
-    id: SecurityPDA
+    id: SecurityIDCard
     ears: ClothingHeadsetSecurity
     neck: ClothingNeckIDMarksPlatoonCommander
