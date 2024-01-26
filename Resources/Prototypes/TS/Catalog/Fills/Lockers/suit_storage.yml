@@ -1,6 +1,7 @@
 #SOFTSUITS
 - type: entity
   id: SuitStorageMarine
+  suffix: OBS-2S
   parent: SuitStorageBase
   components:
   - type: StorageFill
