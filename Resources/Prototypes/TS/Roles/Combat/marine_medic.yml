@@ -17,7 +17,6 @@
   - Security
   - Brig
   - Maintenance
-  - Service
   - External
   - Medical
   - Chemistry
@@ -30,6 +29,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
-    id: SecurityPDA
+    id: SecurityIDCard
     ears: ClothingHeadsetSecurity
     neck: ClothingNeckIDMarksMedic

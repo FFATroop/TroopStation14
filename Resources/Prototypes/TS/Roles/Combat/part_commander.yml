@@ -15,8 +15,8 @@
   - Security
   - Brig
   - Maintenance
-  - Service
   - External
+  - Armory
   - Command
   special:
   - !type:AddImplantSpecial
@@ -27,6 +27,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
-    id: SecurityPDA
+    id: SecurityIDCard
     ears: ClothingHeadsetSecurity
     neck: ClothingNeckIDMarksPartCommander

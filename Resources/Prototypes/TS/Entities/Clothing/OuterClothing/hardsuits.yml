@@ -63,7 +63,7 @@
 # OBS-3
 - type: entity
   parent: ClothingOuterHardsuitBase
-  id: ClothingOuterHardsuitOBS2S
+  id: ClothingOuterHardsuitOBS3S
   name: OBS-3S
   description: Modern armor suit, version 3, space edition
   components:
