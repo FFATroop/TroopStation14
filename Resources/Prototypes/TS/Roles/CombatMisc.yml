@@ -7,7 +7,7 @@
   - Marine
   - MarineMedic
   - MarineEngineer
-# - MarinePilot   # Until it is added
+  - MarinePilot
   - PartCommander
   - PlatoonCommander
 
@@ -15,6 +15,9 @@
 # Jobs
 - type: playTimeTracker
   id: JobMarine
+
+- type: playTimeTracker
+  id: JobMarinePilot
 
 - type: playTimeTracker
   id: JobMarineMedic
@@ -27,9 +30,6 @@
 
 - type: playTimeTracker
   id: JobPlatoonCommander
-
-- type: playTimeTracker
-  id: JobMarinePilot
 
 
 # Job Icons
@@ -89,6 +89,19 @@
     layers:
       - state: bracket
       - state: marine
+
+- type: entity
+  id: SpawnPointMarinePilot
+  parent: SpawnPointJobBase
+  name: marine pilot
+  components:
+  - type: SpawnPoint
+    job_id: MarinePilot
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine-pilot
 
 - type: entity
   id: SpawnPointMarineEngineer
