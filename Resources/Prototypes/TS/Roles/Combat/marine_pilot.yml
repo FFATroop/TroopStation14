@@ -28,5 +28,5 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
-    id: SecurityPDA
+    id: SecurityIDCard
     ears: ClothingHeadsetSecurity

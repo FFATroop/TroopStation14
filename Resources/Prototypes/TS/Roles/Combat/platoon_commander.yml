@@ -21,7 +21,6 @@
   - Security
   - Brig
   - Maintenance
-  - Service
   - External
   - Armory
   special:
@@ -33,6 +32,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
-    id: SecurityPDA
+    id: SecurityIDCard
     ears: ClothingHeadsetSecurity
     neck: ClothingNeckIDMarksPlatoonCommander
