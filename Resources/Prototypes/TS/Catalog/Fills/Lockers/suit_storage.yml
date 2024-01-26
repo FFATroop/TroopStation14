@@ -8,7 +8,7 @@
     contents:
     - id: NitrogenTankFilled
     - id: OxygenTankFilled
-    - id: ClothingOuterHardsuitOBS2S
+    - id: ClothingOuterHardsuitOBS3S
     - id: ClothingMaskGas
   - type: AccessReader
     access: [["Security"]]
