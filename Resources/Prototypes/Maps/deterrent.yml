@@ -1,0 +1,23 @@
+- type: gameMap
+  id: Deterrent
+  mapName: 'Deterrent'
+  mapPath: /Maps/deterrent.yml
+  minPlayers: 25
+  maxPlayers: 55
+  stations:
+    Deterrent:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Deterrent {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/Shuttles/emergency_courser.yml
+        - type: StationJobs
+          overflowJobs:
+            - Passenger
+          availableJobs:
+            Passenger: [ -1, -1 ]
+
