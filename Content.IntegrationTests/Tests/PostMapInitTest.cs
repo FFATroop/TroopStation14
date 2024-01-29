@@ -43,6 +43,8 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] GameMaps =
         {
+            // TroopStation
+            "Deterrent",
             // Corvax-Start
             "CorvaxAvrite",
             "CorvaxDelta",
@@ -72,7 +74,7 @@ namespace Content.IntegrationTests.Tests
             "Gemini",
             "MeteorArena",
             "Atlas",
-            "Reach"    
+            "Reach"
         };
 
         /// <summary>
