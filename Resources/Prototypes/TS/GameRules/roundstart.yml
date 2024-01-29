@@ -1,0 +1,6 @@
+- type: entity
+  id: MasterResearchOperation
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: MasterRORule
