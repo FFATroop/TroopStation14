@@ -153,7 +153,7 @@ namespace Content.Shared.CCVar
         ///     Controls the default game preset.
         /// </summary>
         public static readonly CVarDef<string>
-            GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "secret", CVar.ARCHIVE);
+            GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "MasterResearchOperation", CVar.ARCHIVE);
 
         /// <summary>
         ///     Controls if the game can force a different preset if the current preset's criteria are not met.
@@ -165,7 +165,7 @@ namespace Content.Shared.CCVar
         ///     The preset for the game to fall back to if the selected preset could not be used, and fallback is enabled.
         /// </summary>
         public static readonly CVarDef<string>
-            GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Traitor,Extended", CVar.ARCHIVE);
+            GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "MasterResearchOperation", CVar.ARCHIVE);
 
         /// <summary>
         ///     Controls if people can win the game in Suspicion or Deathmatch.
@@ -177,13 +177,13 @@ namespace Content.Shared.CCVar
         ///     Controls the maximum number of character slots a player is allowed to have.
         /// </summary>
         public static readonly CVarDef<int>
-            GameMaxCharacterSlots = CVarDef.Create("game.maxcharacterslots", 10, CVar.ARCHIVE | CVar.SERVERONLY);
+            GameMaxCharacterSlots = CVarDef.Create("game.maxcharacterslots", 70, CVar.ARCHIVE | CVar.SERVERONLY);
 
         /// <summary>
         ///     Controls the game map prototype to load. SS14 stores these prototypes in Prototypes/Maps.
         /// </summary>
         public static readonly CVarDef<string>
-            GameMap = CVarDef.Create("game.map", string.Empty, CVar.SERVERONLY);
+            GameMap = CVarDef.Create("game.map", "Deterrent", CVar.SERVERONLY);
 
         /// <summary>
         ///     Controls whether to use world persistence or not.
@@ -1359,13 +1359,13 @@ namespace Content.Shared.CCVar
         /// Whether the arrivals terminal should be on a planet map.
         /// </summary>
         public static readonly CVarDef<bool> ArrivalsPlanet =
-            CVarDef.Create("shuttle.arrivals_planet", true, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.arrivals_planet", false, CVar.SERVERONLY);
 
         /// <summary>
         /// Whether the arrivals shuttle is enabled.
         /// </summary>
         public static readonly CVarDef<bool> ArrivalsShuttles =
-            CVarDef.Create("shuttle.arrivals", true, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.arrivals", false, CVar.SERVERONLY);
 
         /// <summary>
         /// The map to use for the arrivals station.
