@@ -1,8 +1,8 @@
 - type: gamePreset
   id: ResearchMission
   alias:
-    - ts
-    - troops
+    - ResearchMission
+    - MasterResearchOperation
     - war
   name: ResearchMission-title
   description: ResearchMission-description
