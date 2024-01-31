@@ -1,7 +1,7 @@
 - type: job
   id: PlatoonCommander
   name: job-name-platoon-commander
-  description: job-description-combat
+  description: job-description-platoon-commander
   playTimeTracker: JobPlatoonCommander
   requirements:
   - !type:DepartmentTimeRequirement

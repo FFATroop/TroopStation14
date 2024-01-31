@@ -1,7 +1,7 @@
 - type: job
   id: Marine
   name: job-name-marine
-  description: job-description-combat
+  description: job-description-marine
   playTimeTracker: JobMarine
   requirements:
   - !type:OverallPlaytimeRequirement

@@ -1,7 +1,7 @@
 - type: job
   id: MarinePilot
-  name: job-name-marine
-  description: job-description-combat
+  name: job-name-marine-pilot
+  description: job-description-marine-pilot
   playTimeTracker: JobMarinePilot
   requirements:
   - !type:DepartmentTimeRequirement
