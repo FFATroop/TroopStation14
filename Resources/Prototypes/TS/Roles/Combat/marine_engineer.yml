@@ -1,7 +1,7 @@
 - type: job
   id: MarineEngineer
   name: job-name-marine-engineer
-  description: job-description-combat
+  description: job-description-marine-engineer
   playTimeTracker: JobMarineEngineer
   requirements:
   - !type:DepartmentTimeRequirement

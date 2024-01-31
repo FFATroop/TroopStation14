@@ -13,5 +13,4 @@ job-supervisors-security = security officers, the warden, and the head of securi
 job-supervisors-science = scientists, and the research director
 job-supervisors-hire = whoever hires you
 job-supervisors-everyone = absolutely everyone
-job-supervisors-platoon = the platoon and part commander
-job-supervisors-part-pc = the platoon commander
+

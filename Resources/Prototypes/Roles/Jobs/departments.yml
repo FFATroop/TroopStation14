@@ -5,7 +5,6 @@
   roles:
   - CargoTechnician
   - Quartermaster
-  - SalvageSpecialist
 
 - type: department
   id: Civilian
@@ -16,19 +15,12 @@
   - Bartender
   - Borg
   - Botanist
-  - Boxer
   - Chaplain
   - Chef
-  - Clown
   - HeadOfPersonnel
   - Janitor
-  - Lawyer
-  - Librarian
-  - Mime
   - Musician
   - Passenger
-  - Reporter
-  - Zookeeper
   - ServiceWorker
 
 - type: department
@@ -37,7 +29,6 @@
   color: "#334E6D"
   roles:
   - Captain
-  - IAA # Corvax-IAA
   - CentralCommandOfficial
   - ChiefEngineer
   - ChiefMedicalOfficer
@@ -53,7 +44,6 @@
   description: department-Engineering-description
   color: "#EFB341"
   roles:
-  - AtmosphericTechnician
   - ChiefEngineer
   - StationEngineer
   - TechnicalAssistant
@@ -67,8 +57,6 @@
   - ChiefMedicalOfficer
   - MedicalDoctor
   - MedicalIntern
-  - Psychologist
-  - Paramedic
 
 - type: department
   id: Security
@@ -77,10 +65,7 @@
   weight: 20
   roles:
   - HeadOfSecurity
-  - SecurityCadet
   - SecurityOfficer
-  - Detective
-  - Warden
 
 - type: department
   id: Science
@@ -91,14 +76,3 @@
   - Scientist
   - ResearchAssistant
 
-- type: department
-  id: Specific
-  description: department-Specific-description
-  color: "#9FED58"
-  weight: 10
-  roles:
-  - Boxer
-  - Reporter
-  - Zookeeper
-  - Psychologist
-  primary: false

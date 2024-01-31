@@ -3,7 +3,6 @@
   alias:
     - ResearchMission
     - MasterResearchOperation
-    - war
   name: ResearchMission-title
   description: ResearchMission-description
   showInVote: true

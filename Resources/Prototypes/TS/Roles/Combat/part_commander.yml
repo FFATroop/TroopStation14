@@ -1,7 +1,7 @@
 - type: job
   id: PartCommander
   name: job-name-part-commander
-  description: job-description-combat
+  description: job-description-part-commander
   playTimeTracker: JobPartCommander
   requirements:
   - !type:DepartmentTimeRequirement
