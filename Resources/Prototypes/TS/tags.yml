@@ -1,2 +1,5 @@
 - type: Tag
-  id: MagazineGas
+  id: LightPlasmaMagazine
+  
+- type: Tag
+  id: HeavyPlasmaMagazine

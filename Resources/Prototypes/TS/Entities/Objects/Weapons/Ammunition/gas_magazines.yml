@@ -1,22 +1,45 @@
 - type: entity
   id: MagazinePlasmaRed
   parent: BaseItem
-  name: gas mag
+  name: light plasma mag
   suffix: Red
   components:
   - type: Tag
     tags:
-      - MagazineGas
+      - LightPlasmaMagazine
   - type: Item
     size: Small
-    sprite: Objects/Tanks/emergency_red.rsi
+    sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/light_plasma_mag.rsi
   - type: Sprite
-    sprite: Objects/Tanks/emergency_red.rsi
-    state: icon
+    sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/light_plasma_mag.rsi
+    state: base
   - type: ProjectileBatteryAmmoProvider
     proto: RedPlasmaBullet
     fireCost: 1
   - type: Battery
-    maxCharge: 100
-    startingCharge: 100
+    maxCharge: 80
+    startingCharge: 80
+  - type: Appearance
+
+- type: entity
+  id: HeavyMagazinePlasmaRed
+  parent: BaseItem
+  name: heavy plasma mag
+  suffix: Red
+  components:
+  - type: Tag
+    tags:
+      - HeavyPlasmaMagazine
+  - type: Item
+    size: Large
+    sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/heavy_plasma_mag.rsi
+  - type: Sprite
+    sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/heavy_plasma_mag.rsi
+    state: base
+  - type: ProjectileBatteryAmmoProvider
+    proto: RedPlasmaBullet
+    fireCost: 1
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
   - type: Appearance

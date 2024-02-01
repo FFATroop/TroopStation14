@@ -97,7 +97,7 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
-            - MagazineGas
+            - HeavyPlasmaMagazine
       power_magazine:
         name: Power
         startingItem: PowerCellSmall

@@ -4,9 +4,9 @@
   noSpawn: true
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
     layers:
-    - state: practice
+    - state: red
   - type: Projectile
     damage:
       types:
@@ -18,9 +18,9 @@
   noSpawn: true
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
     layers:
-    - state: practice
+    - state: red
   - type: Projectile
     damage:
       types:
@@ -32,9 +32,9 @@
   noSpawn: true
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
     layers:
-    - state: practice
+    - state: red
   - type: Projectile
     damage:
       types:
