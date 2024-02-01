@@ -107,7 +107,8 @@
         blacklist:
           tags:
           - PotatoBattery
-          
+          - PlasmaMagazine
+
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
   id: PowerCageRecharger
@@ -167,6 +168,9 @@
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
           - Stunbaton
+        blacklist:
+          tags:
+          - PlasmaMagazine
 
 - type: entity
   parent: BaseItemRecharger
@@ -193,6 +197,7 @@
         blacklist:
           tags:
           - PotatoBattery
+          - PlasmaMagazine
 
 - type: entity
   parent: BaseItemRecharger
@@ -219,6 +224,9 @@
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
           - Stunbaton
+        blacklist:
+          tags:
+          - PlasmaMagazine
 
 - type: entity
   parent: BaseRecharger

@@ -42,7 +42,7 @@
   - type: MagazineVisuals
     magState: mag
     steps: 4
-    zeroVisible: true
+    zeroVisible: false
   - type: ItemSlots
     slots:
       gun_magazine:

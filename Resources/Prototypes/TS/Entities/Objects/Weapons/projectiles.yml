@@ -10,7 +10,8 @@
   - type: Projectile
     damage:
       types:
-        Heat: 19
+        Heat: 12
+        Brute: 7
 
 - type: entity
   id: GreenPlasmaBullet
@@ -24,7 +25,8 @@
   - type: Projectile
     damage:
       types:
-        Heat: 29
+        Heat: 19
+        Brute: 11
         
 - type: entity
   id: RedPlasmaBullet
@@ -38,4 +40,5 @@
   - type: Projectile
     damage:
       types:
-        Heat: 9
+        Heat: 5
+        Brute: 4
