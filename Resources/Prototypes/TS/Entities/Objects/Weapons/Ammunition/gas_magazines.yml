@@ -6,7 +6,8 @@
   components:
   - type: Tag
     tags:
-      - LightPlasmaMagazine
+    - PotatoBattery     # For ignore chargers
+    - LightPlasmaMagazine
   - type: Item
     size: Small
     sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/light_plasma_mag.rsi
@@ -17,10 +18,36 @@
     proto: RedPlasmaBullet
     fireCost: 1
   - type: Battery
-    maxCharge: 80
-    startingCharge: 80
+    maxCharge: 100
+    startingCharge: 100
   - type: Appearance
 
+- type: entity
+  id: MagazinePlasmaBlue
+  parent: MagazinePlasmaRed
+  name: light plasma mag
+  suffix: Blue
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: BluePlasmaBullet
+    fireCost: 1
+  - type: Battery
+    maxCharge: 75
+    startingCharge: 75
+  
+- type: entity
+  id: MagazinePlasmaGreen
+  parent: MagazinePlasmaRed
+  name: light plasma mag
+  suffix: Green
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: GreenPlasmaBullet
+    fireCost: 1
+  - type: Battery
+    maxCharge: 50
+    startingCharge: 50
+  
 - type: entity
   id: HeavyMagazinePlasmaRed
   parent: BaseItem
@@ -29,7 +56,8 @@
   components:
   - type: Tag
     tags:
-      - HeavyPlasmaMagazine
+    - PotatoBattery     # For ignore chargers
+    - HeavyPlasmaMagazine
   - type: Item
     size: Large
     sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/heavy_plasma_mag.rsi
@@ -40,6 +68,32 @@
     proto: RedPlasmaBullet
     fireCost: 1
   - type: Battery
-    maxCharge: 300
-    startingCharge: 300
+    maxCharge: 350
+    startingCharge: 350
   - type: Appearance
+
+- type: entity
+  id: HeavyMagazinePlasmaBlue
+  parent: HeavyMagazinePlasmaRed
+  name: heavy plasma mag
+  suffix: Blue
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: BluePlasmaBullet
+    fireCost: 1
+  - type: Battery
+    maxCharge: 240
+    startingCharge: 240
+    
+- type: entity
+  id: HeavyMagazinePlasmaGreen
+  parent: HeavyMagazinePlasmaRed
+  name: heavy plasma mag
+  suffix: Green
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: GreenPlasmaBullet
+    fireCost: 1
+  - type: Battery
+    maxCharge: 160
+    startingCharge: 160
