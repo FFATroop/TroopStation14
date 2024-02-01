@@ -1,0 +1,22 @@
+- type: entity
+  id: MagazinePlasmaRed
+  parent: BaseItem
+  name: gas mag
+  suffix: Red
+  components:
+  - type: Tag
+    tags:
+      - MagazineGas
+  - type: Item
+    size: Small
+    sprite: Objects/Tanks/emergency_red.rsi
+  - type: Sprite
+    sprite: Objects/Tanks/emergency_red.rsi
+    state: icon
+  - type: ProjectileBatteryAmmoProvider
+    proto: RedPlasmaBullet
+    fireCost: 1
+  - type: Battery
+    maxCharge: 100
+    startingCharge: 100
+  - type: Appearance

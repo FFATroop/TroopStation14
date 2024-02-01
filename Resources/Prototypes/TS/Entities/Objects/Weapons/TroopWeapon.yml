@@ -84,12 +84,28 @@
     fireRate: 7
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLightLaser
-    fireCost: 25
-  - type: Battery
-    maxCharge: 15000
-    startingCharge: 15000
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      power_magazine: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - MagazineGas
+      power_magazine:
+        name: Power
+        startingItem: PowerCellSmall
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          components:
+          - PowerCell
   - type: StaticPrice
     price: 2500
 
