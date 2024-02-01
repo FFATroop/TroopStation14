@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by 778b for https://github.com/FFATroop/TroopStation14",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "red",
+      "delays": [
+        [
+          0.05,
+          0.05
+        ]
+      ]
+    },
+	{
+      "name": "blue",
+      "delays": [
+        [
+          0.05,
+          0.05
+        ]
+      ]
+    },
+	{
+      "name": "green",
+      "delays": [
+        [
+          0.05,
+          0.05
+        ]
+      ]
+    }
+  ]
+}

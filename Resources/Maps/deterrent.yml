@@ -42417,7 +42417,7 @@ entities:
     - type: Transform
       pos: 0.4962628,0.63428205
       parent: 2
-- proto: TSWeaponLaserMachineGunP
+- proto: TSWeaponPlasmaMachineGun
   entities:
   - uid: 2158
     components:
@@ -42429,7 +42429,7 @@ entities:
     - type: Transform
       pos: 18.52543,13.541773
       parent: 2
-- proto: TSWeaponLaserRifle
+- proto: WeaponPlasmaRifle
   entities:
   - uid: 2140
     components:

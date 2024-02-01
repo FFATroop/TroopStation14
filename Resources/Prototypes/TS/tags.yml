@@ -1,0 +1,8 @@
+- type: Tag
+  id: LightPlasmaMagazine
+  
+- type: Tag
+  id: HeavyPlasmaMagazine
+
+- type: Tag
+  id: PlasmaMagazine
