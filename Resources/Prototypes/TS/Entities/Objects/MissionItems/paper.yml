@@ -41,7 +41,7 @@
         prob: 0.1
 
 - type: entity
-  id: BoxFolderGreyMission2
+  id: BoxFolderGreenMission
   parent: BoxFolderGreen
   components:
   - type: StorageFill
