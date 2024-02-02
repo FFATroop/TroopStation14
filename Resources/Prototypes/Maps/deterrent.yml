@@ -9,7 +9,7 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'GS Deterrent {1}'
+          mapNameTemplate: 'GSN Deterrent {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
