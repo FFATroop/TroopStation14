@@ -241,85 +241,85 @@ entities:
             148: 4,31
             149: 5,31
             150: -5,31
-            163: -10,-33
-            164: -9,-33
-            165: -8,-33
-            166: -7,-33
-            167: -6,-33
-            174: -10,-35
-            175: -9,-35
-            176: -8,-35
-            177: -7,-35
-            178: -6,-35
-            179: -10,-31
-            180: -9,-31
-            181: -8,-31
-            182: -7,-31
-            183: -6,-31
+            159: -10,-33
+            160: -9,-33
+            161: -8,-33
+            162: -7,-33
+            163: -6,-33
+            170: -10,-35
+            171: -9,-35
+            172: -8,-35
+            173: -7,-35
+            174: -6,-35
+            175: -10,-31
+            176: -9,-31
+            177: -8,-31
+            178: -7,-31
+            179: -6,-31
         - node:
             color: '#FFFFFFFF'
             id: BotLeft
           decals:
-            168: -10,-37
-            169: -9,-37
-            170: -8,-37
+            164: -10,-37
+            165: -9,-37
+            166: -8,-37
         - node:
             color: '#FFFFFFFF'
             id: Box
           decals:
-            155: -17,-13
-            156: -16,-13
-            157: -15,-13
-            158: -14,-13
-            159: -13,-13
-            160: -14,-11
-            161: -15,-11
-            162: -16,-11
-            171: -6,-38
-            172: -5,-38
-            173: -4,-38
+            151: -17,-13
+            152: -16,-13
+            153: -15,-13
+            154: -14,-13
+            155: -13,-13
+            156: -14,-11
+            157: -15,-11
+            158: -16,-11
+            167: -6,-38
+            168: -5,-38
+            169: -4,-38
         - node:
             color: '#FFFFFFFF'
             id: DeliveryGreyscale
           decals:
-            184: -2,-38
-            185: -1,-38
-            186: 0,-38
+            180: -2,-38
+            181: -1,-38
+            182: 0,-38
         - node:
             color: '#FFFFFFFF'
             id: SpaceStationSign1
           decals:
-            187: -3,-29
+            183: -3,-29
         - node:
             color: '#FFFFFFFF'
             id: SpaceStationSign2
           decals:
-            188: -2,-29
+            184: -2,-29
         - node:
             color: '#FFFFFFFF'
             id: SpaceStationSign3
           decals:
-            189: -1,-29
+            185: -1,-29
         - node:
             color: '#FFFFFFFF'
             id: SpaceStationSign4
           decals:
-            190: 0,-29
+            186: 0,-29
         - node:
             color: '#FFFFFFFF'
             id: SpaceStationSign5
           decals:
-            191: 1,-29
+            187: 1,-29
         - node:
             color: '#FFFFFFFF'
             id: SpaceStationSign6
           decals:
-            192: 2,-29
+            188: 2,-29
         - node:
             color: '#FFFFFFFF'
             id: SpaceStationSign7
           decals:
-            193: 3,-29
+            189: 3,-29
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerNE
@@ -425,14 +425,14 @@ entities:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleE
           decals:
-            201: 11,21
-            202: 11,20
+            197: 11,21
+            198: 11,20
         - node:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleW
           decals:
-            199: 9,26
-            200: 9,25
+            195: 9,26
+            196: 9,25
         - node:
             color: '#FFFFFFFF'
             id: WarnLineN
@@ -521,11 +521,11 @@ entities:
             color: '#FFFFFFFF'
             id: WoodTrimThinLineS
           decals:
-            194: 4,18
-            195: 5,18
-            196: 6,18
-            197: -4,19
-            198: -5,19
+            190: 4,18
+            191: 5,18
+            192: 6,18
+            193: -4,19
+            194: -5,19
     - type: GridAtmosphere
       version: 2
       data:
@@ -1645,8 +1645,6 @@ entities:
       pos: 45.5,6.5
       parent: 2
     - type: DeviceList
-      configurators:
-      - invalid
       devices:
       - 7556
     - type: AtmosDevice
@@ -3292,7 +3290,7 @@ entities:
       pos: -11.5,22.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -1660.6772
+      secondsUntilStateChange: -1728.3593
       state: Opening
   - uid: 1400
     components:
@@ -3531,8 +3529,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7771
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 850
     components:
     - type: Transform
@@ -3569,8 +3565,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7804
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7555
     components:
     - type: Transform
@@ -3604,8 +3598,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7761
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7661
     components:
     - type: Transform
@@ -3614,8 +3606,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7759
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7662
     components:
     - type: Transform
@@ -3624,8 +3614,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7787
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7663
     components:
     - type: Transform
@@ -3634,8 +3622,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7787
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7664
     components:
     - type: Transform
@@ -3644,8 +3630,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7787
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7665
     components:
     - type: Transform
@@ -3654,8 +3638,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7787
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7666
     components:
     - type: Transform
@@ -3664,8 +3646,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7757
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7667
     components:
     - type: Transform
@@ -3674,15 +3654,11 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7757
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7668
     components:
     - type: Transform
       pos: 6.5,20.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7669
     components:
     - type: Transform
@@ -3691,8 +3667,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7753
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7670
     components:
     - type: Transform
@@ -3701,8 +3675,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7753
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7671
     components:
     - type: Transform
@@ -3711,8 +3683,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7753
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7681
     components:
     - type: Transform
@@ -3722,8 +3692,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7747
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7682
     components:
     - type: Transform
@@ -3733,8 +3701,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7747
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7683
     components:
     - type: Transform
@@ -3744,8 +3710,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7749
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7684
     components:
     - type: Transform
@@ -3755,8 +3719,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7749
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7685
     components:
     - type: Transform
@@ -3766,8 +3728,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7748
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7686
     components:
     - type: Transform
@@ -3777,8 +3737,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7748
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7687
     components:
     - type: Transform
@@ -3788,8 +3746,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7750
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7688
     components:
     - type: Transform
@@ -3799,8 +3755,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7750
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7689
     components:
     - type: Transform
@@ -3810,8 +3764,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7751
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7690
     components:
     - type: Transform
@@ -3821,8 +3773,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7751
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7691
     components:
     - type: Transform
@@ -3832,8 +3782,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7755
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7692
     components:
     - type: Transform
@@ -3843,8 +3791,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7755
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7696
     components:
     - type: Transform
@@ -3854,8 +3800,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7752
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7700
     components:
     - type: Transform
@@ -3865,8 +3809,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7804
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7705
     components:
     - type: Transform
@@ -3876,8 +3818,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7805
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7706
     components:
     - type: Transform
@@ -3887,8 +3827,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7804
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7707
     components:
     - type: Transform
@@ -3898,8 +3836,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7805
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7708
     components:
     - type: Transform
@@ -3909,8 +3845,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7805
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7709
     components:
     - type: Transform
@@ -3921,8 +3855,6 @@ entities:
       deviceLists:
       - 7756
       - 7752
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7710
     components:
     - type: Transform
@@ -3933,8 +3865,6 @@ entities:
       deviceLists:
       - 7756
       - 7752
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7711
     components:
     - type: Transform
@@ -3944,8 +3874,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7781
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7712
     components:
     - type: Transform
@@ -3955,8 +3883,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7781
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7715
     components:
     - type: Transform
@@ -3965,8 +3891,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7781
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7716
     components:
     - type: Transform
@@ -3975,8 +3899,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7781
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7717
     components:
     - type: Transform
@@ -3985,8 +3907,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7784
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7718
     components:
     - type: Transform
@@ -3995,8 +3915,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7784
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7719
     components:
     - type: Transform
@@ -4005,8 +3923,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7758
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7720
     components:
     - type: Transform
@@ -4015,8 +3931,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7758
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7721
     components:
     - type: Transform
@@ -4025,8 +3939,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7754
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7722
     components:
     - type: Transform
@@ -4035,8 +3947,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7754
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7725
     components:
     - type: Transform
@@ -4046,8 +3956,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7887
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7726
     components:
     - type: Transform
@@ -4057,16 +3965,12 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7887
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7727
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 16.5,15.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7728
     components:
     - type: Transform
@@ -4076,8 +3980,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7865
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7729
     components:
     - type: Transform
@@ -4087,8 +3989,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7771
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7730
     components:
     - type: Transform
@@ -4098,8 +3998,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7865
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7731
     components:
     - type: Transform
@@ -4109,8 +4007,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7865
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7732
     components:
     - type: Transform
@@ -4120,8 +4016,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7780
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7734
     components:
     - type: Transform
@@ -4130,8 +4024,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7771
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7735
     components:
     - type: Transform
@@ -4140,8 +4032,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7760
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7736
     components:
     - type: Transform
@@ -4150,8 +4040,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7765
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7737
     components:
     - type: Transform
@@ -4160,8 +4048,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7765
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7738
     components:
     - type: Transform
@@ -4170,8 +4056,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7769
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7739
     components:
     - type: Transform
@@ -4180,8 +4064,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7769
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7740
     components:
     - type: Transform
@@ -4190,8 +4072,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7768
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7741
     components:
     - type: Transform
@@ -4200,8 +4080,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7764
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7742
     components:
     - type: Transform
@@ -4210,8 +4088,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7763
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7743
     components:
     - type: Transform
@@ -4220,8 +4096,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7767
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7744
     components:
     - type: Transform
@@ -4230,8 +4104,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7766
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 7745
     components:
     - type: Transform
@@ -4240,8 +4112,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 7762
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: AlertsComputerCircuitboard
   entities:
   - uid: 3761
@@ -42429,98 +42299,6 @@ entities:
     - type: Transform
       pos: 18.52543,13.541773
       parent: 2
-- proto: WeaponPlasmaRifle
-  entities:
-  - uid: 2140
-    components:
-    - type: Transform
-      pos: 14.447306,16.776148
-      parent: 2
-  - uid: 2141
-    components:
-    - type: Transform
-      pos: 14.447306,16.666773
-      parent: 2
-  - uid: 2142
-    components:
-    - type: Transform
-      pos: 14.494181,16.526148
-      parent: 2
-  - uid: 2143
-    components:
-    - type: Transform
-      pos: 14.447306,15.713648
-      parent: 2
-  - uid: 2144
-    components:
-    - type: Transform
-      pos: 14.447306,15.635523
-      parent: 2
-  - uid: 2145
-    components:
-    - type: Transform
-      pos: 14.447306,15.510523
-      parent: 2
-  - uid: 2146
-    components:
-    - type: Transform
-      pos: 14.494181,14.729273
-      parent: 2
-  - uid: 2147
-    components:
-    - type: Transform
-      pos: 14.494181,14.635523
-      parent: 2
-  - uid: 2148
-    components:
-    - type: Transform
-      pos: 14.462931,14.479273
-      parent: 2
-  - uid: 2149
-    components:
-    - type: Transform
-      pos: 14.478556,13.744898
-      parent: 2
-  - uid: 2150
-    components:
-    - type: Transform
-      pos: 14.478556,13.604273
-      parent: 2
-  - uid: 2151
-    components:
-    - type: Transform
-      pos: 14.478556,13.463648
-      parent: 2
-  - uid: 2152
-    components:
-    - type: Transform
-      pos: 18.478556,16.776148
-      parent: 2
-  - uid: 2153
-    components:
-    - type: Transform
-      pos: 18.478556,16.666773
-      parent: 2
-  - uid: 2154
-    components:
-    - type: Transform
-      pos: 18.46293,16.526148
-      parent: 2
-  - uid: 2155
-    components:
-    - type: Transform
-      pos: 18.478556,15.760523
-      parent: 2
-  - uid: 2156
-    components:
-    - type: Transform
-      pos: 18.478556,15.651148
-      parent: 2
-  - uid: 2157
-    components:
-    - type: Transform
-      pos: 18.478556,15.479273
-      parent: 2
 - proto: TurboItemRecharger
   entities:
   - uid: 2228
@@ -53584,6 +53362,98 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-4.5
+      parent: 2
+- proto: WeaponPlasmaRifle
+  entities:
+  - uid: 2140
+    components:
+    - type: Transform
+      pos: 14.447306,16.776148
+      parent: 2
+  - uid: 2141
+    components:
+    - type: Transform
+      pos: 14.447306,16.666773
+      parent: 2
+  - uid: 2142
+    components:
+    - type: Transform
+      pos: 14.494181,16.526148
+      parent: 2
+  - uid: 2143
+    components:
+    - type: Transform
+      pos: 14.447306,15.713648
+      parent: 2
+  - uid: 2144
+    components:
+    - type: Transform
+      pos: 14.447306,15.635523
+      parent: 2
+  - uid: 2145
+    components:
+    - type: Transform
+      pos: 14.447306,15.510523
+      parent: 2
+  - uid: 2146
+    components:
+    - type: Transform
+      pos: 14.494181,14.729273
+      parent: 2
+  - uid: 2147
+    components:
+    - type: Transform
+      pos: 14.494181,14.635523
+      parent: 2
+  - uid: 2148
+    components:
+    - type: Transform
+      pos: 14.462931,14.479273
+      parent: 2
+  - uid: 2149
+    components:
+    - type: Transform
+      pos: 14.478556,13.744898
+      parent: 2
+  - uid: 2150
+    components:
+    - type: Transform
+      pos: 14.478556,13.604273
+      parent: 2
+  - uid: 2151
+    components:
+    - type: Transform
+      pos: 14.478556,13.463648
+      parent: 2
+  - uid: 2152
+    components:
+    - type: Transform
+      pos: 18.478556,16.776148
+      parent: 2
+  - uid: 2153
+    components:
+    - type: Transform
+      pos: 18.478556,16.666773
+      parent: 2
+  - uid: 2154
+    components:
+    - type: Transform
+      pos: 18.46293,16.526148
+      parent: 2
+  - uid: 2155
+    components:
+    - type: Transform
+      pos: 18.478556,15.760523
+      parent: 2
+  - uid: 2156
+    components:
+    - type: Transform
+      pos: 18.478556,15.651148
+      parent: 2
+  - uid: 2157
+    components:
+    - type: Transform
+      pos: 18.478556,15.479273
       parent: 2
 - proto: WeldingFuelTankFull
   entities:
