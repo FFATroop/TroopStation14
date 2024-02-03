@@ -1,6 +1,7 @@
 - type: entity
   id: PaperWrittenSecret1
   parent: Paper
+  suffix: mission
   components:
   - type: Paper
     content: book-text-mission-paper-1
@@ -8,6 +9,7 @@
 - type: entity
   id: PaperWrittenSecret2
   parent: Paper
+  suffix: mission
   components:
   - type: Paper
     content: book-text-mission-paper-2
@@ -16,6 +18,7 @@
 - type: entity
   id: BoxFolderGreyMission1
   parent: BoxFolderGrey
+  suffix: mission
   components:
   - type: StorageFill
     contents:
@@ -43,6 +46,7 @@
 - type: entity
   id: BoxFolderGreenMission
   parent: BoxFolderGreen
+  suffix: mission
   components:
   - type: StorageFill
     contents:
