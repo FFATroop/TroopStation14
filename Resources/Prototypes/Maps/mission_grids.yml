@@ -1,0 +1,27 @@
+- type: missionMapGrid
+  id: MissionAspidBroken
+  mapPath: /Maps/Mission/broken-aspid.yml
+  
+- type: missionMapGrid
+  id: MissionVanillaMediumVault1
+  mapPath: /Maps/Mission/medium-vault-1.yml
+  
+- type: missionMapGrid
+  id: MissionVanillaRuinCargoSalvage
+  mapPath: /Maps/Mission/ruin-cargo-salvage.yml
+  
+- type: missionMapGrid
+  id: MissionVanillaSmallChapel
+  mapPath: /Maps/Mission/small-chapel.yml
+  
+- type: missionMapGrid
+  id: MissionVanillaSmallShip1
+  mapPath: /Maps/Mission/small-ship-1.yml
+  
+- type: missionMapGrid
+  id: MissionVanillaSmallSyndicate
+  mapPath: /Maps/Mission/small-syndicate.yml
+  
+- type: missionMapGrid
+  id: MissionVanillaTickColony
+  mapPath: /Maps/Mission/tick-colony.yml

@@ -1,0 +1,15 @@
+# Пустой ентити который использует gamemode для генерации предметов
+- type: entity
+  id: MissionItemSpawn
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Transform
+  - type: Marker
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: Overdoors
+    sprite: TS/Markers/mission.rsi
+    layers:
+    - state: secret
