@@ -16,7 +16,7 @@
 
 
 - type: entity
-  id: BoxFolderGreyMission1
+  id: BoxFolderGreyMission
   parent: BoxFolderGrey
   suffix: mission
   components:
