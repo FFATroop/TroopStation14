@@ -3,13 +3,13 @@
   name: job-name-marine-medic
   description: job-description-marine-medic
   playTimeTracker: JobMarineMedic
-  requirements:
-  - !type:DepartmentTimeRequirement
-    department: Combat
-    time: 7200 #2 hrs
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 7200 #2 hrs
+#  requirements:        # First Playtest time
+#  - !type:DepartmentTimeRequirement
+#    department: Combat
+#    time: 7200 #2 hrs
+#  - !type:DepartmentTimeRequirement
+#    department: Medical
+#    time: 7200 #2 hrs
   startingGear: MarineMedicGear
   icon: "JobIconJobMarineMedic"
   supervisors: job-supervisors-part-pc

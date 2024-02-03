@@ -3,16 +3,19 @@
   name: job-name-platoon-commander
   description: job-description-platoon-commander
   playTimeTracker: JobPlatoonCommander
-  requirements:
+  requirements:            # First Playtest time
   - !type:DepartmentTimeRequirement
     department: Combat
-    time: 72000 #20 hrs
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 7200 #2 hrs
-  - !type:DepartmentTimeRequirement
-    department: Engineering
-    time: 7200 #2 hrs
+    time: 7200 #2 hrs       
+#  - !type:DepartmentTimeRequirement
+#    department: Combat
+#    time: 72000 #20 hrs
+#  - !type:DepartmentTimeRequirement
+#    department: Medical
+#    time: 7200 #2 hrs
+#  - !type:DepartmentTimeRequirement
+#    department: Engineering
+#    time: 7200 #2 hrs
   startingGear: PlatoonCommanderGear
   icon: "JobIconPlatoonCommander"
   supervisors: job-supervisors-captain

@@ -3,13 +3,13 @@
   name: job-name-marine-engineer
   description: job-description-marine-engineer
   playTimeTracker: JobMarineEngineer
-  requirements:
-  - !type:DepartmentTimeRequirement
-    department: Combat
-    time: 7200 #2 hrs
-  - !type:DepartmentTimeRequirement
-    department: Engineering
-    time: 7200 #2 hrs
+#  requirements:        # First Playtest time
+#  - !type:DepartmentTimeRequirement
+#    department: Combat
+#    time: 7200 #2 hrs
+#  - !type:DepartmentTimeRequirement
+#    department: Engineering
+#    time: 7200 #2 hrs
   startingGear: MarineEngineerGear
   icon: "JobIconMarineEngineer"
   supervisors: job-supervisors-part-pc
