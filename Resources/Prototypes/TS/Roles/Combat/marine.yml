@@ -3,9 +3,9 @@
   name: job-name-marine
   description: job-description-marine
   playTimeTracker: JobMarine
-  requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 7200 #2 hrs
+#  requirements:        # First Playtest time
+#  - !type:OverallPlaytimeRequirement
+#    time: 7200 #2 hrs
   startingGear: MarineBaseGear
   icon: "JobIconMarine"
   supervisors: job-supervisors-part-pc

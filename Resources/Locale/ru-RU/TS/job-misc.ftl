@@ -25,3 +25,7 @@ JobPlatoonCommander = Командир взвода
 # Supervisors
 job-supervisors-platoon = Командиру взвода и Командиру отделения
 job-supervisors-part-pc = Командиру взвода
+
+# Departments
+department-Combat = Военный гарнизон
+department-combat-description = Сотрудники военное гарнизона выполняют разведовательные миссии за пределами станции, в других секторах. Не самые сильные во вселенной, но стрелять умеют.

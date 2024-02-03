@@ -3,13 +3,13 @@
   name: job-name-marine-pilot
   description: job-description-marine-pilot
   playTimeTracker: JobMarinePilot
-  requirements:
-  - !type:DepartmentTimeRequirement
-    department: Combat
-    time: 7200 #2 hrs
-  - !type:DepartmentTimeRequirement
-    department: Engineering
-    time: 7200 #2 hrs
+#  requirements:            # First Playtest time
+#  - !type:DepartmentTimeRequirement
+#    department: Combat
+#    time: 7200 #2 hrs
+#  - !type:DepartmentTimeRequirement
+#    department: Engineering
+#    time: 7200 #2 hrs
   startingGear: MarinePilotGear
   icon: "JobIconMarinePilot"
   supervisors: job-supervisors-platoon
