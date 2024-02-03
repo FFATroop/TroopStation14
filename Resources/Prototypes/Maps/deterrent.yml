@@ -1,13 +1,13 @@
 - type: gameMap
   id: Deterrent
-  mapName: 'Deterrent'
+  mapName: 'GSN Deterrent'
   mapPath: /Maps/deterrent.yml
   minPlayers: 0
   maxPlayers: 55
   fallback: true
   stations:
     Deterrent:
-      stationProto: StandardNanotrasenStation
+      stationProto: MilitaryNanotrasenStation
       components:
         - type: StationNameSetup
           mapNameTemplate: 'GSN Deterrent {1}'
@@ -26,9 +26,7 @@
             Bartender: [ 1, 1 ]
             Botanist: [ 2, 2 ]
             Chef: [ 1, 1 ]
-            Janitor: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
-            Librarian: [ 1, 1 ]
             ServiceWorker: [ 1, 1 ]
 # combat
             PlatoonCommander: [ 1, 1 ]
@@ -51,7 +49,7 @@
             Borg: [ 4, 4 ]
 # security
             HeadOfSecurity: [ 1, 1 ]
-            SecurityOfficer: [ 3, 3 ]
+            SecurityOfficer: [ 2, 2 ]
 # supply
             Quartermaster: [ 1, 1 ]
             CargoTechnician: [ 2, 2 ]
