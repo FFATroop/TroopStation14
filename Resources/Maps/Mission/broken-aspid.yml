@@ -57,7 +57,6 @@ entities:
     - type: MetaData
     - type: Transform
       pos: 0.13793182,0.57805127
-      parent: invalid
     - type: MapGrid
       chunks:
         -1,-1:
@@ -8397,13 +8396,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,48.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 99
-    - type: DeviceLinkSource
-      linkedPorts:
-        invalid:
-        - DoorStatus: Close
   - uid: 99
     components:
     - type: Transform
@@ -58976,10 +58968,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,-37.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        invalid:
-        - Pressed: Toggle
   - uid: 8753
     components:
     - type: Transform
