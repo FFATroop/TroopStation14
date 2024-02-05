@@ -7,6 +7,7 @@ using Content.Server.TS;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -26,13 +27,9 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
     [Dependency] private readonly ITimerManager _timerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
+    private static MapId _currentMissionMapId;
+    private static Vector2 _currentCenterMissionMap;
     protected override void Started(EntityUid uid, MasterRORuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
-    {
-        var randDelay = 60000; //_random.Next(400000, 600000);
-        _timerManager.AddTimer(new Timer(randDelay, false, startEvent));
-    }
-
-    private void startEvent()
     {
         var smallestValue = 1;
         for (; smallestValue < 25; ++smallestValue)             // 25 is magic number
@@ -47,7 +44,7 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
             _logManager.GetSawmill("RORule").Error("Event cant spawn map, because maps already more than 24");
             return;
         }
-        var mapId = new MapId(smallestValue);
+        _currentMissionMapId = new MapId(smallestValue);
 
         var allFoundMaps = _prototypeManager.EnumeratePrototypes<MissionMapPrototype>().ToList();
 
@@ -58,30 +55,28 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         }
 
         var allFoundGrids = _prototypeManager.EnumeratePrototypes<MissionGridPrototype>().ToList();
-
-        _chat.DispatchGlobalAnnouncement("research-mission-message", "research-mission-sender", true, null, Color.Blue);
-
         var indexMap = _random.Next(allFoundMaps.Count() - 1);
 
-        if (!_mapLoader.TryLoad(mapId, allFoundMaps[indexMap].MapPath.ToString(), out var entityList))
+        if (!_mapLoader.TryLoad(_currentMissionMapId, allFoundMaps[indexMap].MapPath.ToString(), out var entityList))
         {
             return;
         }
 
-        var grids = _mapManager.GetAllMapGrids(mapId);
+        var grids = _mapManager.GetAllMapGrids(_currentMissionMapId);
+        var mainGrid = grids.First();
 
         if (!grids.Any())
         {
             _logManager.GetSawmill("RORule").Error("Event cant found main grid!");
             return;
         }
-        var entityMap = _mapManager.GetMapEntityId(mapId);
+        var entityMap = _mapManager.GetMapEntityId(_currentMissionMapId);
 
-        var centerMap = _mapSystem.LocalToWorld(entityMap, grids.First(), Vector2.Zero);
+        _currentCenterMissionMap = _mapSystem.LocalToWorld(entityMap, mainGrid, Vector2.Zero);
 
-        var ftlPoint = _entMan.SpawnEntity("FTLPointUnknown", new MapCoordinates(centerMap, mapId));
+        int objectCount = _random.Next(5, 9);
+        _logManager.GetSawmill("RORule").Info("Side grid count = {0}", objectCount);
 
-        int objectCount = _random.Next(6);
         float angleDelta = 360 / objectCount;
         var xDelta = _random.NextFloat(0.5f, 1);
         var startVector = new Vector2(xDelta, 1 - (xDelta * xDelta));   // hard math of point on normalized circle, Y found by Pifagor's theorem
@@ -91,14 +86,115 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
             float currentAngle = angleDelta * i;
             var tempOptions = new MapLoadOptions();
             tempOptions.Offset = new Vector2(
-                (startVector.X * Single.Cos(currentAngle) - startVector.Y * Single.Sin(currentAngle) ),
-                (startVector.X * Single.Sin(currentAngle) + startVector.Y * Single.Cos(currentAngle) )
-                ) * _random.NextFloat(140f, 220f) + centerMap;
+                (startVector.X * Single.Cos(currentAngle) - startVector.Y * Single.Sin(currentAngle)),
+                (startVector.X * Single.Sin(currentAngle) + startVector.Y * Single.Cos(currentAngle))
+                ) * _random.NextFloat(140f, 220f) + _currentCenterMissionMap;
             tempOptions.Rotation = _random.NextAngle(0, 360);
 
-            if (!_mapLoader.TryLoad(mapId, allFoundGrids[indexGrid].GridPath.ToString(), out  _, tempOptions)) continue;
+            _mapLoader.TryLoad(_currentMissionMapId, allFoundGrids[indexGrid].GridPath.ToString(), out _, tempOptions);
         }
-        _mapManager.DoMapInitialize(mapId);
+        _mapManager.DoMapInitialize(_currentMissionMapId);
+
+        var allSecretPools = _prototypeManager.EnumeratePrototypes<SecretPoolPrototype>().ToList();
+
+        if (!allSecretPools.Any())
+        {
+            _logManager.GetSawmill("RORule").Error("No one secretPoolPrototype found!");
+            return;
+        }
+
+        var missionItemSpawners = new List<EntityUid>();
+
+        foreach (var tempEnt in entityList)     // there is no other way to get entity by ID in current map
+        {
+            if (_entMan.TryGetComponent<MetaDataComponent>(tempEnt, out var tempMeta))
+            {
+                if (tempMeta.EntityPrototype == null)
+                    continue;
+                _logManager.GetSawmill("RORule").Info("EntityName = {0}, EntityID = {1}", tempMeta.EntityName, tempMeta.EntityPrototype.ID);
+                if (tempMeta.EntityPrototype.ID.Equals("MissionItemSpawn"))
+                {
+                    missionItemSpawners.Add(tempEnt);
+                }
+            }
+        }
+
+        if (missionItemSpawners.Any())
+        {
+            _logManager.GetSawmill("RORule").Error("No one MissionItemPrototype found!");
+            return;
+        }
+        else
+            _logManager.GetSawmill("RORule").Info("Found {0} mission item's spawners on RO map", missionItemSpawners.Count());
+
+        // @todo antag player system balance
+        var guaranteedPointsCount = 3;
+        var sidePointsCount = 2;
+        int debugCountItems = 0;
+
+        var tempPoolIndex = _random.Next(allSecretPools.Count() - 1);
+
+        var tempTupleSpawnerList = new List<Tuple<EntityUid, bool>>();
+        foreach (var tempMissionItem in missionItemSpawners)
+        {
+            tempTupleSpawnerList.Add(new Tuple<EntityUid, bool>(tempMissionItem, false));
+        }
+
+        if (missionItemSpawners.Count() <= guaranteedPointsCount)
+        {
+            foreach (var tempMissionItem in missionItemSpawners)
+            {
+                if (spawnMissionItem(allSecretPools[tempPoolIndex], tempMissionItem, entityMap, mainGrid))
+                    ++debugCountItems;
+            }
+        }
+        else
+        {
+            for (var i = 0; i < guaranteedPointsCount; ++i)
+            {
+                var tempRandMissionIndex = _random.Next(missionItemSpawners.Count());
+
+                if (spawnMissionItem(allSecretPools[tempPoolIndex], missionItemSpawners[tempRandMissionIndex],
+                        entityMap, mainGrid))
+                {
+                    missionItemSpawners.Remove(missionItemSpawners[tempRandMissionIndex]);
+                    ++debugCountItems;
+                }
+            }
+
+            if (missionItemSpawners.Any())
+            {
+                if (missionItemSpawners.Count() <= sidePointsCount)
+                {
+                    foreach (var tempMissionItem in missionItemSpawners)
+                    {
+                        if (_random.Next(100) > 60)
+                            continue; // 40% chance
+
+                        if (spawnMissionItem(allSecretPools[tempPoolIndex], tempMissionItem, entityMap, mainGrid))
+                            ++debugCountItems;
+                    }
+                }
+                else
+                {
+                    for (var i = 0; i < sidePointsCount; ++i)
+                    {
+                        var tempRandMissionIndex = _random.Next(missionItemSpawners.Count());
+                        if (spawnMissionItem(allSecretPools[tempPoolIndex], missionItemSpawners[tempRandMissionIndex],
+                                entityMap, mainGrid))
+                        {
+                            missionItemSpawners.Remove(missionItemSpawners[tempRandMissionIndex]);
+                            ++debugCountItems;
+                        }
+                    }
+                }
+            }
+        }
+
+        _logManager.GetSawmill("RORule").Info("Spawned {0} mission items on RO map", debugCountItems);
+
+        var randDelay = 60000; // 1 min //_random.Next(400000, 600000); // 5-10 min
+        _timerManager.AddTimer(new Timer(randDelay, false, startEvent));
     }
 
 
@@ -106,4 +202,36 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
     {
         //_chat.DispatchGlobalAnnouncement("Added gamerule", "SpecialForces", true, null, Color.BetterViolet);
     }
+
+
+    private void startEvent()
+    {
+        var ftlPoint = _entMan.SpawnEntity("FTLPointUnknown", new MapCoordinates(_currentCenterMissionMap, _currentMissionMapId));
+
+        _chat.DispatchGlobalAnnouncement("research-mission-message", "research-mission-sender", true, null, Color.Blue);
+    }
+
+
+    private bool spawnMissionItem(SecretPoolPrototype secretPool, EntityUid missionItemSpawner, EntityUid entityMap, MapGridComponent mainGrid)
+    {
+        if (!TryComp(missionItemSpawner, out TransformComponent? xComp))
+        {
+            _logManager.GetSawmill("RORule")
+                .Error(
+                    "Item {0} has no transform component, cant spawn random guaranteed mission item!", missionItemSpawner.Id);
+            return false;
+        }
+
+        var tempItemPoolIndex = _random.Next(secretPool.PoolItems.Count() - 1);
+        _entMan.Spawn(
+            secretPool.PoolItems[tempItemPoolIndex],
+            new MapCoordinates(_mapSystem.LocalToWorld(entityMap, mainGrid, xComp.LocalPosition),
+                _currentMissionMapId)
+        );
+        return true;
+    }
+
+
+
+
 }
