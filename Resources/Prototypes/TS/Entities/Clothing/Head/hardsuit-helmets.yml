@@ -65,9 +65,9 @@
   description: Modern armor helmet, version 3, space edition
   components:
   - type: Sprite
-    sprite: TS/Clothing/Head/Hardsuits/obh-3s.rsi
+    sprite: TS/Clothing/Head/Hardsuits/obh-3.rsi
   - type: Clothing
-    sprite: TS/Clothing/Head/Hardsuits/obh-3s.rsi
+    sprite: TS/Clothing/Head/Hardsuits/obh-3.rsi
   - type: PointLight
     radius: 6
     color: "#fff2cc"
