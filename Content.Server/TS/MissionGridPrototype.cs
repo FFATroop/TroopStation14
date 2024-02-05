@@ -10,11 +10,11 @@ namespace Content.Server.TS;
 /// These results are then run through the considerations.
 /// </summary>
 [Prototype]
-public sealed partial class MissionMapGridPrototype : IPrototype
+public sealed partial class MissionGridPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
-    public ResPath MapPath;
+    public ResPath GridPath;
 }
