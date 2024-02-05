@@ -26,6 +26,7 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly ITimerManager _timerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ILocalizationManager _localizationManager = default!;
 
     private static MapId _currentMissionMapId;
     private static Vector2 _currentCenterMissionMap;
@@ -104,22 +105,28 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         }
 
         var missionItemSpawners = new List<EntityUid>();
+        var tempEntities = _entMan.GetEntities();
 
-        foreach (var tempEnt in entityList)     // there is no other way to get entity by ID in current map
+        foreach (var tempEnt in tempEntities)     // there is no other way to get entity by ID in current map
         {
+            if (_entMan.TryGetComponent<TransformComponent>(tempEnt, out var tempTransform))
+            {
+                if (tempTransform.MapID != _currentMissionMapId) continue;
+            }
+
             if (_entMan.TryGetComponent<MetaDataComponent>(tempEnt, out var tempMeta))
             {
                 if (tempMeta.EntityPrototype == null)
                     continue;
-                _logManager.GetSawmill("RORule").Info("EntityName = {0}, EntityID = {1}", tempMeta.EntityName, tempMeta.EntityPrototype.ID);
-                if (tempMeta.EntityPrototype.ID.Equals("MissionItemSpawn"))
+
+                if (tempMeta.EntityPrototype.ID == "MissionItemSpawn")
                 {
                     missionItemSpawners.Add(tempEnt);
                 }
             }
         }
 
-        if (missionItemSpawners.Any())
+        if (!missionItemSpawners.Any())
         {
             _logManager.GetSawmill("RORule").Error("No one MissionItemPrototype found!");
             return;
@@ -208,7 +215,10 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
     {
         var ftlPoint = _entMan.SpawnEntity("FTLPointUnknown", new MapCoordinates(_currentCenterMissionMap, _currentMissionMapId));
 
-        _chat.DispatchGlobalAnnouncement("research-mission-message", "research-mission-sender", true, null, Color.Blue);
+        var senderLocale = _localizationManager.GetString("research-mission-sender");
+        var messageLocale = _localizationManager.GetString("research-mission-message");
+
+        _chat.DispatchGlobalAnnouncement(messageLocale, senderLocale, true, null, Color.GreenYellow);
     }
 
 
