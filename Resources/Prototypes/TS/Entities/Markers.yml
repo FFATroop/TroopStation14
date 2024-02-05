@@ -1,0 +1,4 @@
+- type: entity
+  id: FTLPointUnknown
+  parent: FTLPoint
+  name: Unknown point

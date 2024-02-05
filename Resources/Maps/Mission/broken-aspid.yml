@@ -57,7 +57,6 @@ entities:
     - type: MetaData
     - type: Transform
       pos: 0.13793182,0.57805127
-      parent: invalid
     - type: MapGrid
       chunks:
         -1,-1:
@@ -8397,13 +8396,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,48.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 99
-    - type: DeviceLinkSource
-      linkedPorts:
-        invalid:
-        - DoorStatus: Close
   - uid: 99
     components:
     - type: Transform
@@ -40219,80 +40211,6 @@ entities:
     - type: Transform
       pos: -28.5,58.5
       parent: 1
-- proto: DeployableBarrier
-  entities:
-  - uid: 3438
-    components:
-    - type: Transform
-      anchored: True
-      pos: 7.5,13.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-    - type: Lock
-      locked: True
-    - type: PointLight
-      enabled: True
-  - uid: 6158
-    components:
-    - type: Transform
-      anchored: True
-      pos: 7.5,15.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-    - type: Lock
-      locked: True
-    - type: PointLight
-      enabled: True
-  - uid: 6161
-    components:
-    - type: Transform
-      anchored: True
-      pos: 10.5,15.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-    - type: Lock
-      locked: True
-    - type: PointLight
-      enabled: True
-  - uid: 8387
-    components:
-    - type: Transform
-      anchored: True
-      pos: -28.5,37.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-    - type: Lock
-      locked: True
-    - type: PointLight
-      enabled: True
-  - uid: 9502
-    components:
-    - type: Transform
-      anchored: True
-      pos: 10.5,14.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-    - type: Lock
-      locked: True
-    - type: PointLight
-      enabled: True
-  - uid: 9533
-    components:
-    - type: Transform
-      anchored: True
-      pos: -28.5,38.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-    - type: Lock
-      locked: True
-    - type: PointLight
-      enabled: True
 - proto: DeskBell
   entities:
   - uid: 5855
@@ -59050,10 +58968,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,-37.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        invalid:
-        - Pressed: Toggle
   - uid: 8753
     components:
     - type: Transform
