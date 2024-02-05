@@ -406,10 +406,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         name = FormattedMessage.EscapeText(name);
-        // Corvax-SpeakerColor-Start
-        if (TryComp<HumanoidAppearanceComponent>(source, out var comp))
-            name = $"[color={comp.SpeakerColor.ToHex()}]{name}[/color]";
-        // Corvax-SpeakerColor-End
+        // TroopStation-char-color
+        name = $"[color=#acb5af]{name}[/color]";
+
         var speech = GetSpeechVerb(source, message);
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
             ("entityName", name),
@@ -480,10 +479,8 @@ public sealed partial class ChatSystem : SharedChatSystem
             name = nameEv.Name;
         }
         name = FormattedMessage.EscapeText(name);
-        // Corvax-SpeakerColor-Start
-        if (TryComp<HumanoidAppearanceComponent>(source, out var comp))
-            name = $"[color={comp.SpeakerColor.ToHex()}]{name}[/color]";
-        // Corvax-SpeakerColor-End
+        // TroopStation-char-color
+        name = $"[color=#acb5af]{name}[/color]";
 
         var wrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
             ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
