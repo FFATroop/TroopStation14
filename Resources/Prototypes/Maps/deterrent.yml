@@ -27,7 +27,6 @@
             Botanist: [ 2, 2 ]
             Chef: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
-            ServiceWorker: [ 1, 1 ]
 # combat
             PlatoonCommander: [ 1, 1 ]
             PartCommander: [ 3, 3 ]
