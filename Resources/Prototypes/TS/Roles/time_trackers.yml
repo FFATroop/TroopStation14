@@ -1,0 +1,23 @@
+# Jobs
+- type: playTimeTracker
+  id: JobMarine
+
+- type: playTimeTracker
+  id: JobMarinePilot
+
+- type: playTimeTracker
+  id: JobMarineMedic
+
+- type: playTimeTracker
+  id: JobMarineEngineer
+
+- type: playTimeTracker
+  id: JobPartCommander
+
+- type: playTimeTracker
+  id: JobPlatoonCommander
+  
+  
+# GhostRoles
+- type: playTimeTracker
+  id: JobXenoRole

@@ -10,27 +10,6 @@
   - MarineMedic
   - MarineEngineer
   - MarinePilot
-  
-
-
-# Jobs
-- type: playTimeTracker
-  id: JobMarine
-
-- type: playTimeTracker
-  id: JobMarinePilot
-
-- type: playTimeTracker
-  id: JobMarineMedic
-
-- type: playTimeTracker
-  id: JobMarineEngineer
-
-- type: playTimeTracker
-  id: JobPartCommander
-
-- type: playTimeTracker
-  id: JobPlatoonCommander
 
 
 # Job Icons
@@ -75,6 +54,17 @@
   icon:
     sprite: TS/Interface/job_icons.rsi
     state: PlatoonCommander
+
+- type: job
+  id: XenoJob
+  name: XenoJob
+  playTimeTracker: JobXenoRole
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 3600 # 1 hrs
+  canBeAntag: false
+  icon: JobIconBorg
+  jobEntity: MobXenoCombat
 
 
 # Spawn points
