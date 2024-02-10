@@ -40,11 +40,9 @@
 # medical
             ChiefMedicalOfficer: [ 1, 1 ]
             MedicalDoctor: [ 3, 3 ]
-            MedicalIntern: [ 1, 3 ]
 # science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 2, 2 ]
-            ResearchAssistant: [ 1, 3 ]
+            Scientist: [ 3, 3 ]
             Borg: [ 4, 4 ]
 # security
             HeadOfSecurity: [ 1, 1 ]
