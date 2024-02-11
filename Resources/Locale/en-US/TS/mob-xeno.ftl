@@ -1,0 +1,14 @@
+ent-MobXenoCombat = { ent-MobXeno }
+    .desc = { ent-MobXeno.desc }
+ent-MobXenoPraetorianCombat = { ent-MobXenoPraetorian }
+    .desc = { ent-MobXeno.desc }
+ent-MobXenoDroneCombat = { ent-MobXenoQueen }
+    .desc = { ent-MobXeno.desc }
+ent-MobXenoQueenCombat = { ent-MobXenoQueen }
+    .desc = { ent-MobXeno.desc }
+ent-MobXenoRavagerCombat = { ent-MobXenoRavager }
+    .desc = { ent-MobXeno.desc }
+ent-MobXenoRunnerCombat = { ent-MobXenoRunner }
+    .desc = { ent-MobXeno.desc }
+ent-MobXenoSpitterCombat = { ent-MobXenoSpitter }
+    .desc = { ent-MobXeno.desc }

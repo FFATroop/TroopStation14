@@ -25,8 +25,8 @@
     allowMovement: true
     allowSpeech: true
     makeSentient: true
-    name: ghost-role-information-xeno-name-base
-    description: ghost-role-information-xeno-description-base
+    name: job-name-xeno-base
+    description: job-description-xeno-base
     rules: ghost-role-information-xeno-rules-base
     requirements:
     - !type:OverallPlaytimeRequirement
@@ -55,8 +55,8 @@
         Brute: 35
   - type: GhostRole
     jobProto: JobXenoPraetorian
-    name: ghost-role-information-xeno-name-praetorian
-    description: ghost-role-information-xeno-description-praetorian
+    name: job-name-xeno-praetorian
+    description: job-description-xeno-praetorian
     rules: ghost-role-information-xeno-rules-praetorian
     requirements:
     - !type:RoleTimeRequirement
@@ -139,8 +139,8 @@
         - MobLayer
   - type: GhostRole
     jobProto: JobXenoQueen
-    name: ghost-role-information-xeno-name-queen
-    description: ghost-role-information-xeno-description-queen
+    name: job-name-xeno-queen
+    description: job-description-xeno-queen
     rules: ghost-role-information-xeno-rules-queen
     requirements:
     - !type:RoleTimeRequirement
