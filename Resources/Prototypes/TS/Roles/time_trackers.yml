@@ -1,4 +1,4 @@
-# Jobs
+# Jobs Marine
 - type: playTimeTracker
   id: JobMarine
 
@@ -18,6 +18,12 @@
   id: JobPlatoonCommander
   
   
-# GhostRoles
+# Ghost jobs Xeno
 - type: playTimeTracker
-  id: JobXenoRole
+  id: JobXenoRoleBase
+  
+- type: playTimeTracker
+  id: JobXenoRolePraetorian
+  
+- type: playTimeTracker
+  id: JobXenoRoleQueen

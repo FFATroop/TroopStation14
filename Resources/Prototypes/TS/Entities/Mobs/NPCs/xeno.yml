@@ -30,7 +30,7 @@
     rules: ghost-role-information-xeno-rules
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 3600 #1 hrs
+      time: 1800 #30 min
 
 - type: entity
   name: Praetorian
@@ -56,8 +56,8 @@
   - type: GhostRole
     requirements:
     - !type:RoleTimeRequirement
-      role: JobXenoRole
-      time: 3600 #1 hrs
+      role: JobXenoBase
+      time: 1800 #30 min
   - type: Fixtures
     fixtures:
       fix1:
@@ -133,6 +133,11 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Ghost
+    requirements:
+    - !type:RoleTimeRequirement
+      role: JobXenoBase
+      time: 3600 #1 hrs
   - type: Tag
     tags:
     - CannotSuicide

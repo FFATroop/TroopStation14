@@ -1,0 +1,33 @@
+#############################################################
+# Job requirements described in ghost role component        #
+# There decribed time tracker which calculate job time      #
+# Like base xeno add time to "JobXenoBase"                  #
+# Queen add time only to "JobXenoRoleQueen" timer tracker   #
+#############################################################
+- type: job
+  id: JobXenoBase
+  name: job-name-xeno-base
+  description: job-description-xeno-base
+  supervisors: job-supervisors-xeno-queen
+  playTimeTracker: JobXenoRoleBase
+  canBeAntag: false
+  jobEntity: MobXenoCombat
+  
+- type: job
+  id: JobXenoPraetorian
+  name: job-name-xeno-praetorian
+  description: job-description-xeno-praetorian
+  supervisors: job-supervisors-xeno-queen
+  playTimeTracker: JobXenoRolePraetorian
+  canBeAntag: false
+  jobEntity: MobXenoPraetorianCombat
+  
+- type: job
+  id: JobXenoQueen
+  name: job-name-xeno-queen
+  description: job-description-xeno-queen
+  supervisors: job-supervisors-nobody
+  playTimeTracker: JobXenoRoleQueen
+  canBeAntag: false
+  jobEntity: MobXenoQueenCombat
+  
