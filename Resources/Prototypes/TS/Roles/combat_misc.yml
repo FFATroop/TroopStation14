@@ -1,0 +1,13 @@
+# Department
+- type: department
+  id: Combat
+  description: department-combat-description
+  color: "#C3C3BD"
+  roles:
+  - PlatoonCommander
+  - PartCommander
+  - Marine
+  - MarineMedic
+  - MarineEngineer
+  - MarinePilot
+

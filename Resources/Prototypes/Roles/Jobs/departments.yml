@@ -18,10 +18,7 @@
   - Chaplain
   - Chef
   - HeadOfPersonnel
-  - Janitor
-  - Musician
   - Passenger
-  - ServiceWorker
 
 - type: department
   id: Command
@@ -46,17 +43,14 @@
   roles:
   - ChiefEngineer
   - StationEngineer
-  - TechnicalAssistant
 
 - type: department
   id: Medical
   description: department-Medical-description
   color: "#52B4E9"
   roles:
-  - Chemist
   - ChiefMedicalOfficer
   - MedicalDoctor
-  - MedicalIntern
 
 - type: department
   id: Security
@@ -74,5 +68,4 @@
   roles:
   - ResearchDirector
   - Scientist
-  - ResearchAssistant
 

@@ -1,0 +1,42 @@
+# Job Icons
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconMarine
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: Marine
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconJobMarineMedic
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: MarineMedic
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconMarineEngineer
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: MarineEngineer
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconMarinePilot
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: MarinePilot
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPartCommander
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: PartCommander
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPlatoonCommander
+  icon:
+    sprite: TS/Interface/job_icons.rsi
+    state: PlatoonCommander

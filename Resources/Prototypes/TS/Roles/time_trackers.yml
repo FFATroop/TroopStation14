@@ -1,0 +1,29 @@
+# Jobs Marine
+- type: playTimeTracker
+  id: JobMarine
+
+- type: playTimeTracker
+  id: JobMarinePilot
+
+- type: playTimeTracker
+  id: JobMarineMedic
+
+- type: playTimeTracker
+  id: JobMarineEngineer
+
+- type: playTimeTracker
+  id: JobPartCommander
+
+- type: playTimeTracker
+  id: JobPlatoonCommander
+  
+  
+# Ghost jobs Xeno
+- type: playTimeTracker
+  id: JobXenoRoleBase
+  
+- type: playTimeTracker
+  id: JobXenoRolePraetorian
+  
+- type: playTimeTracker
+  id: JobXenoRoleQueen

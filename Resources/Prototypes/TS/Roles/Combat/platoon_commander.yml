@@ -16,6 +16,7 @@
 #  - !type:DepartmentTimeRequirement
 #    department: Engineering
 #    time: 7200 #2 hrs
+  weight: 10
   startingGear: PlatoonCommanderGear
   icon: "JobIconPlatoonCommander"
   supervisors: job-supervisors-captain
