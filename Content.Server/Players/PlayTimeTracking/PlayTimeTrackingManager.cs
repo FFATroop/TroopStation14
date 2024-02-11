@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -188,7 +188,7 @@ public sealed class PlayTimeTrackingManager
 
         FlushSingleTracker(data, time);
     }
-
+    
     private static void FlushSingleTracker(PlayTimeData data, TimeSpan time)
     {
         var delta = time - data.LastUpdate;

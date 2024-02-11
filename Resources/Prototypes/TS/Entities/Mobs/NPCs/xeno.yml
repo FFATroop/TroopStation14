@@ -21,6 +21,7 @@
       groups:
         Brute: 20
   - type: GhostRole
+    jobProto: XenoJob
     allowMovement: true
     allowSpeech: true
     makeSentient: true

@@ -1,4 +1,4 @@
-﻿using Content.Server.Mind.Commands;
+using Content.Server.Mind.Commands;
 using Content.Shared.Roles;
 
 namespace Content.Server.Ghost.Roles.Components
@@ -15,6 +15,9 @@ namespace Content.Server.Ghost.Roles.Components
 
         [DataField("requirements")]
         public HashSet<JobRequirement>? Requirements;
+
+        [DataField("jobProto")]
+        public string? JobPrototype = null;
 
         /// <summary>
         /// Whether the <see cref="MakeSentientCommand"/> should run on the mob.

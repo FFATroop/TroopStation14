@@ -4,6 +4,7 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Ghost.Roles.UI;
 using Content.Server.Mind.Commands;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Follower;
@@ -15,6 +16,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Players;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Jobs;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -37,6 +39,8 @@ namespace Content.Server.Ghost.Roles
         [Dependency] private readonly TransformSystem _transform = default!;
         [Dependency] private readonly SharedMindSystem _mindSystem = default!;
         [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
+        [Dependency] private readonly PlayTimeTrackingSystem _playTimeTrackings = default!;
+        [Dependency] private readonly SharedJobSystem _jobs = default!;
 
         private uint _nextRoleIdentifier;
         private bool _needsUpdateGhostRoleCount = true;
@@ -233,10 +237,19 @@ namespace Content.Server.Ghost.Roles
 
             var newMind = _mindSystem.CreateMind(player.UserId,
                 EntityManager.GetComponent<MetaDataComponent>(mob).EntityName);
-            _roleSystem.MindAddRole(newMind, new GhostRoleMarkerRoleComponent { Name = role.RoleName });
+            if (role.JobPrototype == null)
+            {
+                _roleSystem.MindAddRole(newMind, new GhostRoleMarkerRoleComponent { Name = role.RoleName });
+                _mindSystem.SetUserId(newMind, player.UserId);
+                _mindSystem.TransferTo(newMind, mob);
+                return;
+            }
 
             _mindSystem.SetUserId(newMind, player.UserId);
             _mindSystem.TransferTo(newMind, mob);
+
+            _roleSystem.MindAddRole(newMind, new JobComponent { Prototype = role.JobPrototype });
+            _playTimeTrackings.PlayerRolesChanged(player);
         }
 
         public GhostRoleInfo[] GetGhostRolesInfo()
