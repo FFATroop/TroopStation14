@@ -21,13 +21,13 @@
       groups:
         Brute: 20
   - type: GhostRole
-    jobProto: XenoJob
+    jobProto: JobXenoBase
     allowMovement: true
     allowSpeech: true
     makeSentient: true
-    name: ghost-role-information-xeno-name
-    description: ghost-role-information-xeno-description
-    rules: ghost-role-information-xeno-rules
+    name: ghost-role-information-xeno-name-base
+    description: ghost-role-information-xeno-description-base
+    rules: ghost-role-information-xeno-rules-base
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 1800 #30 min
@@ -54,6 +54,10 @@
       groups:
         Brute: 35
   - type: GhostRole
+    jobProto: JobXenoPraetorian
+    name: ghost-role-information-xeno-name-praetorian
+    description: ghost-role-information-xeno-description-praetorian
+    rules: ghost-role-information-xeno-rules-praetorian
     requirements:
     - !type:RoleTimeRequirement
       role: JobXenoRoleBase
@@ -133,7 +137,11 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Ghost
+  - type: GhostRole
+    jobProto: JobXenoQueen
+    name: ghost-role-information-xeno-name-queen
+    description: ghost-role-information-xeno-description-queen
+    rules: ghost-role-information-xeno-rules-queen
     requirements:
     - !type:RoleTimeRequirement
       role: JobXenoRoleBase
