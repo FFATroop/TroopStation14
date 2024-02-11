@@ -1,0 +1,78 @@
+# Spawn points
+- type: entity
+  id: SpawnPointMarine
+  parent: SpawnPointJobBase
+  name: marine
+  components:
+  - type: SpawnPoint
+    job_id: Marine
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine
+
+- type: entity
+  id: SpawnPointMarinePilot
+  parent: SpawnPointJobBase
+  name: marine pilot
+  components:
+  - type: SpawnPoint
+    job_id: MarinePilot
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine-pilot
+
+- type: entity
+  id: SpawnPointMarineEngineer
+  parent: SpawnPointJobBase
+  name: marine engineer
+  components:
+  - type: SpawnPoint
+    job_id: MarineEngineer
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine-eng
+
+- type: entity
+  id: SpawnPointMarineMedic
+  parent: SpawnPointJobBase
+  name: marine medic
+  components:
+  - type: SpawnPoint
+    job_id: MarineMedic
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine-med
+
+- type: entity
+  id: SpawnPointPartCommander
+  parent: SpawnPointJobBase
+  name: part commander
+  components:
+  - type: SpawnPoint
+    job_id: PartCommander
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine-part
+
+- type: entity
+  id: SpawnPointPlatoonCommander
+  parent: SpawnPointJobBase
+  name: plat commander
+  components:
+  - type: SpawnPoint
+    job_id: PlatoonCommander
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: marine-plat
