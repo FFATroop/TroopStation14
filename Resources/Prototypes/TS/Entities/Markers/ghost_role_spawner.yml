@@ -1,0 +1,28 @@
+# Spawn points
+- type: entity
+  id: SpawnPointGhostAntag
+  parent: MarkerBase
+  name: GhostAntagSpawner
+  suffix: 100%
+  components:
+  - type: GhostAntagSpawner
+  - type: Sprite
+    sprite: TS/Markers/mission.rsi
+    layers:
+      - state: antag_spawner
+
+- type: entity
+  id: SpawnPointGhostAntagHalf
+  parent: SpawnPointGhostAntag
+  suffix: 50%
+  components:
+  - type: GhostAntagSpawner
+    chance: 0.5
+    
+- type: entity
+  id: SpawnPointGhostAntagQuarter
+  parent: SpawnPointGhostAntag
+  suffix: 25%
+  components:
+  - type: GhostAntagSpawner
+    chance: 0.25

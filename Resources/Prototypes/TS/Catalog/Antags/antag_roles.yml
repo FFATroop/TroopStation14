@@ -1,0 +1,12 @@
+- type: antagRolesPool
+  id: XenoAntagPool
+  poolDefaultEntities:
+  - MobXenoRunnerCombat
+  - MobXenoSpitterCombat
+  - MobXenoRavagerCombat
+  - MobXenoDroneCombat
+  - MobXenoPraetorianCombat
+  bossPools:
+  - MobXenoQueenCombat
+  antagPerPlayer: 1
+  

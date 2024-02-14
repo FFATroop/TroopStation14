@@ -21,12 +21,8 @@ namespace Content.Server.Spawners.EntitySystems
     public sealed class MissionAntagSpawnerSystem : EntitySystem
     {
         [Dependency] private readonly IRobustRandom _robustRandom = default!;
-        [Dependency] private readonly GameTicker _ticker = default!;
         [Dependency] private readonly ITimerManager _timerManager = default!;
-        [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
-        [Dependency] private readonly MindSystem _mindSystem = default!;
-        [Dependency] private readonly IEntityManager _entManager = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
