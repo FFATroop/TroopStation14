@@ -1,0 +1,4 @@
+- type: antagPools
+  id: DefaultAntagPool
+  pools:
+  - XenoAntagPool

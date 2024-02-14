@@ -15,6 +15,8 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.GameTicking.Rules;
 
+public sealed class MissionMapInitEventArgs : EventArgs { }
+
 public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
 {
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -197,7 +199,7 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
                 }
             }
         }
-
+        RaiseLocalEvent(new MissionMapInitEventArgs());
         _logManager.GetSawmill("RORule").Info("Spawned {0} mission items on RO map", debugCountItems);
 
         var randDelay = 60000; // 1 min //_random.Next(400000, 600000); // 5-10 min
