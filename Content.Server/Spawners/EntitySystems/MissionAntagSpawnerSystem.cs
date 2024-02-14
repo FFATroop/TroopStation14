@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Spawners.Components;
@@ -11,6 +12,7 @@ using Content.Shared.Roles;
 using FastAccessors;
 using JetBrains.Annotations;
 using Robust.Server.Player;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -35,10 +37,10 @@ namespace Content.Server.Spawners.EntitySystems
         {
             base.Initialize();
 
-            SubscribeLocalEvent<MapInitEvent>(OnSpawnMapInit);
+            SubscribeLocalEvent<MissionMapInitEventArgs>(OnMissionMapInit);
         }
 
-        private void OnSpawnMapInit(MapInitEvent args)
+        private void OnMissionMapInit(MissionMapInitEventArgs args)
         {
             // over 1 min after map init
             _timerManager.AddTimer(new Timer(60000,false, DelayedCalculationRoleBalance));
@@ -53,9 +55,19 @@ namespace Content.Server.Spawners.EntitySystems
                 ++_playersRoundstartCount;
             }
             var possibleAntagPools = _prototypeManager.EnumeratePrototypes<AntagPoolsPrototype>().ToList();
-            if (!possibleAntagPools.Any()) return;
+            if (!possibleAntagPools.Any())
+            {
+                _logManager.GetSawmill("MissionAntagSpawner")
+                    .Error("Not presented any AntagPoolsPrototype!");
+                return;
+            }
             var currentAntagPool = possibleAntagPools[_random.Next(possibleAntagPools.Count() - 1)];
-
+            if (!currentAntagPool.Pools.Any())
+            {
+                _logManager.GetSawmill("MissionAntagSpawner")
+                    .Error("{0} has not any AntagRolesPoolPrototype in pool!", currentAntagPool.ID);
+                return;
+            }
             var currentPool = _prototypeManager.Index<AntagRolesPoolPrototype>(currentAntagPool.Pools[currentAntagPool.Pools.Count() - 1]);
 
             _logManager.GetSawmill("MissionAntagSpawner")
@@ -96,7 +108,7 @@ namespace Content.Server.Spawners.EntitySystems
                 return;
             }
 
-            while (tempAntags < _balancedAntagsCount && tempBoss < _balancedBossAntagsCount)
+            while (tempAntags < _balancedAntagsCount || tempBoss < _balancedBossAntagsCount)
             {
                 var tempEntity = spawnerEntities[_random.Next(spawnerEntities.Count() - 1)];
 
@@ -121,10 +133,11 @@ namespace Content.Server.Spawners.EntitySystems
                         ++tempBoss;
                 }
 
-                foreach (var tempSpawner in spawnerEntities)
+                // MissionMapInitEventArgs called once
+                /*foreach (var tempSpawner in spawnerEntities)
                 {
                     QueueDel(tempSpawner.Owner);
-                }
+                }*/
             }
 
         }
