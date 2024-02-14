@@ -68,9 +68,9 @@
   description: Modern armor suit, version 3, space edition
   components:
   - type: Sprite
-    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-3s.rsi
+    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-3.rsi
   - type: Clothing
-    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-3s.rsi
+    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-3.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 10000
