@@ -8,6 +8,7 @@ using Content.Server.TS;
 using Content.Shared.Ghost;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
+using FastAccessors;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
@@ -25,11 +26,13 @@ namespace Content.Server.Spawners.EntitySystems
         [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly MindSystem _mindSystem = default!;
+        [Dependency] private readonly IEntityManager _entManager = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
         private int _balancedAntagsCount = 0;
+        private int _balancedBossAntagsCount = 0;
         private int _playersRoundstartCount = 0;
 
         public override void Initialize()
@@ -53,31 +56,82 @@ namespace Content.Server.Spawners.EntitySystems
                 if (!TryComp<GhostComponent>(player.AttachedEntity, out _)) continue;
                 ++_playersRoundstartCount;
             }
-            _balancedAntagsCount = (int)(_playersRoundstartCount * 1.5f);
-
             var possibleAntagPools = _prototypeManager.EnumeratePrototypes<AntagPoolsPrototype>().ToList();
-
             if (!possibleAntagPools.Any()) return;
+            var currentAntagPool = possibleAntagPools[_random.Next(possibleAntagPools.Count() - 1)];
 
-            SpawnAllGhostedRoles(possibleAntagPools[_random.Next(possibleAntagPools.Count() - 1)]);
+            var currentPool = _prototypeManager.Index<AntagRolesPoolPrototype>(currentAntagPool.Pools[currentAntagPool.Pools.Count() - 1]);
+
+            _logManager.GetSawmill("MissionAntagSpawner")
+                .Info("Selected antag pool to {0}", currentPool.ID);
+
+            _balancedAntagsCount = (int) (_playersRoundstartCount * currentPool.AntagsPerPlayer);
+
+            if (currentPool.MinBossCount == currentPool.MaxBossCount || currentPool.MinBossCount > currentPool.MaxBossCount)
+                _balancedBossAntagsCount = currentPool.MaxBossCount;
+
+            var bossCount = (int)Math.Ceiling(currentPool.BossPerPlayer * _playersRoundstartCount);
+            if (bossCount >= currentPool.MaxBossCount) _balancedBossAntagsCount = currentPool.MaxBossCount;
+            else if (bossCount <= currentPool.MinBossCount) _balancedBossAntagsCount = currentPool.MinBossCount;
+            else _balancedBossAntagsCount = bossCount;
+
+            _logManager.GetSawmill("MissionAntagSpawner")
+                .Info("Calculating balance is over, active player count = {0}, antags count = {1}, boss count = {2}",
+                    _playersRoundstartCount, _balancedAntagsCount, _balancedBossAntagsCount);
+
+            SpawnAllGhostedRoles(currentPool);
         }
 
-        private void SpawnAllGhostedRoles(AntagPoolsPrototype antagPools)
+        private void SpawnAllGhostedRoles(AntagRolesPoolPrototype antagPools)
         {
             var query = EntityQueryEnumerator<GhostAntagSpawnerComponent>();
+            int tempAntags = 0;
+            int tempBoss = 0;
+            var spawnerEntities = new List<Entity<GhostAntagSpawnerComponent>>();
             while (query.MoveNext(out var uid, out var spawner))
             {
-
+                spawnerEntities.Add(new Entity<GhostAntagSpawnerComponent>(uid, spawner));
             }
-        }
 
-        private void Spawn(EntityUid uid, GhostAntagSpawnerComponent component)
-        {
-            if (component.Chance != 1.0f && !_robustRandom.Prob(component.Chance))
+            if (!spawnerEntities.Any())
+            {
+                _logManager.GetSawmill("MissionAntagSpawner")
+                    .Error("Not presented any GhostAntagSpawner!");
                 return;
+            }
 
-            if (!Deleted(uid))
-                EntityManager.SpawnEntity(_robustRandom.Pick(component.Prototypes), Transform(uid).Coordinates);
+            while (tempAntags < _balancedAntagsCount && tempBoss < _balancedBossAntagsCount)
+            {
+                var tempEntity = spawnerEntities[_random.Next(spawnerEntities.Count() - 1)];
+
+                if (tempEntity.Comp.Chance != 1.0f && !_robustRandom.Prob(tempEntity.Comp.Chance))
+                    return;
+
+                if (Deleted(tempEntity.Owner))
+                    return;
+
+                if (tempAntags < _balancedAntagsCount)
+                {
+                    var antagEntity = EntityManager.SpawnEntity(_robustRandom.Pick(antagPools.PoolDefaultEntities),
+                        Transform(tempEntity.Owner).Coordinates);
+                    if (antagEntity.IsValid())
+                        ++tempAntags;
+                }
+                else if (tempBoss < _balancedBossAntagsCount)
+                {
+                    var bossEntity = EntityManager.SpawnEntity(_robustRandom.Pick(antagPools.BossPools),
+                        Transform(tempEntity.Owner).Coordinates);
+                    if (bossEntity.IsValid())
+                        ++tempBoss;
+                }
+
+                foreach (var tempSpawner in spawnerEntities)
+                {
+                    QueueDel(tempSpawner.Owner);
+                }
+            }
+
         }
+
     }
 }

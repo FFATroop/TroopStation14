@@ -6,7 +6,6 @@ namespace Content.Server.Spawners.Components
     [Virtual]
     public partial class GhostAntagSpawnerComponent : Component
     {
-        [ViewVariables(VVAccess.ReadWrite)]
         [DataField]
         public float Chance { get; set; } = 1.0f;
     }

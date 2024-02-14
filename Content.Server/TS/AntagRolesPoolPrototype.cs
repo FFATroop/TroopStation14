@@ -15,5 +15,21 @@ public sealed partial class AntagRolesPoolPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
-    public List<String> PoolEntities = new();
+    public List<String> PoolDefaultEntities = new();
+
+    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
+    public List<String> BossPools = new();
+
+    [DataField]
+    public float AntagsPerPlayer = 1.5f;
+
+    [DataField]
+    public int MinBossCount = 1;
+
+    [DataField]
+    public int MaxBossCount = 1;
+
+    // Coefficient used to calc boss count from MinBossCount to MaxBossCount
+    [DataField]
+    public float BossPerPlayer = 0.1f;
 }
