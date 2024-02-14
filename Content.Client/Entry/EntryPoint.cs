@@ -123,6 +123,8 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("alertLevels");
             _prototypeManager.RegisterIgnore("nukeopsRole");
             _prototypeManager.RegisterIgnore("secretPool");
+            _prototypeManager.RegisterIgnore("antagPools");
+            _prototypeManager.RegisterIgnore("antagRolesPool");
 			_prototypeManager.RegisterIgnore("missionGrid");
             _prototypeManager.RegisterIgnore("missionMap");
             _prototypeManager.RegisterIgnore("stationGoal"); // Corvax-StationGoal
