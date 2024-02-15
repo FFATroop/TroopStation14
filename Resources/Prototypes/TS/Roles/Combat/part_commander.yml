@@ -6,10 +6,10 @@
   requirements:
 #  - !type:DepartmentTimeRequirement
 #    department: Combat
-#    time: 36000 #10 hrs            
+#    time: 36000 #10 hrs
   - !type:DepartmentTimeRequirement     # First Playtest time
     department: Combat
-    time: 1800 #30 min 
+    time: 1800 #30 min
   weight: 5
   startingGear: PartCommanderGear
   icon: "JobIconPartCommander"
@@ -31,6 +31,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
-    id: SecurityIDCard
+    id: PartCommanderIDCard
     ears: ClothingHeadsetSecurity
     neck: ClothingNeckIDMarksPartCommander

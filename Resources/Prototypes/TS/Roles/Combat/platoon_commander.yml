@@ -6,7 +6,7 @@
   requirements:            # First Playtest time
   - !type:DepartmentTimeRequirement
     department: Combat
-    time: 7200 #2 hrs       
+    time: 7200 #2 hrs
 #  - !type:DepartmentTimeRequirement
 #    department: Combat
 #    time: 72000 #20 hrs
@@ -36,6 +36,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
-    id: SecurityIDCard
+    id: PlatoonCommanderIDCard
     ears: ClothingHeadsetSecurity
     neck: ClothingNeckIDMarksPlatoonCommander
