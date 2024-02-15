@@ -1,0 +1,77 @@
+- type: entity
+  parent: IDCardStandard
+  id: MarineIDCard
+  name: Marines ID card
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idmarine
+  - type: PresetIdCard
+    job: Marine
+    
+- type: entity
+  parent: IDCardStandard
+  id: MarinePilotIDCard
+  name: Marine pilot ID card
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idmarine-pilot
+  - type: PresetIdCard
+    job: MarinePilot
+    
+- type: entity
+  parent: IDCardStandard
+  id: MarineMedicIDCard
+  name: Marine medic ID card
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idmarine-medic
+  - type: PresetIdCard
+    job: MarineMedic
+    
+- type: entity
+  parent: IDCardStandard
+  id: MarineEngineerIDCard
+  name: Marine engineer ID card
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idmarine-engineer
+  - type: PresetIdCard
+    job: MarineEngineer
+    
+- type: entity
+  parent: IDCardStandard
+  id: PartCommanderIDCard
+  name: Part commander ID card
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idpart-commander
+  - type: PresetIdCard
+    job: PartCommander
+    
+- type: entity
+  parent: IDCardStandard
+  id: PlatoonCommanderIDCard
+  name: Platoon commander ID card
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idplatoon-commander
+  - type: PresetIdCard
+    job: PlatoonCommander

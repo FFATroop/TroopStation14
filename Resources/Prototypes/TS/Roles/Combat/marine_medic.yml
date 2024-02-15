@@ -29,6 +29,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
-    id: SecurityIDCard
+    id: MarineMedicIDCard
     ears: ClothingHeadsetSecurity
     neck: ClothingNeckIDMarksMedic

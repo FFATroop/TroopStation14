@@ -19,22 +19,22 @@
       "directions": 4
     },
     {
-      "name": "idfield-medic"
+      "name": "idmarine"
     },
     {
-      "name": "idfield-trooper"
+      "name": "idmarine-engineer"
     },
     {
-      "name": "idfield-scientist"
+      "name": "idmarine-medic"
     },
     {
-      "name": "idfield-engineer"
+      "name": "idmarine-pilot"
     },
     {
-      "name": "idfield-commander"
+      "name": "idpart-commander"
     },
     {
-      "name": "idfield-recrut"
+      "name": "idplatoon-commander"
     }
   ]
 }
