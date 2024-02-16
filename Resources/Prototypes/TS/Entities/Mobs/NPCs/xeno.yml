@@ -20,6 +20,11 @@
     damage:
       groups:
         Brute: 20
+  - type: DarkVision
+    layerColor: "#920016"
+    shaderTexture: "GreyscaleFullscreen"
+    mustDrawLight: false
+    toggle: true
   - type: GhostRole
     jobProto: JobXenoBase
     allowMovement: true
