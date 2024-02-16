@@ -1,3 +1,4 @@
+using Content.Shared.Actions;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
@@ -26,3 +27,5 @@ public abstract class DarkVisionSharedSystem : EntitySystem
 {
     // Maybe must be deleted
 }
+
+public sealed partial class ToggleGogglesEvent : InstantActionEvent { }
