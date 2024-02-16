@@ -21,7 +21,7 @@
       groups:
         Brute: 20
   - type: DarkVision
-    layerColor: "#920016"
+    layerColor: "#5D3439"
     shaderTexture: "GreyscaleFullscreen"
     mustDrawLight: false
     toggle: true
