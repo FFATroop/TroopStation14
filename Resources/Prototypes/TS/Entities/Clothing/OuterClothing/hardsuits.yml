@@ -77,8 +77,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.55
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitOBH3S
   - type: Armor

@@ -1,4 +1,3 @@
-
 using System.Linq;
 using System.Numerics;
 using Content.Server.Chat.Systems;
@@ -11,7 +10,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -149,37 +147,35 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
             tempTupleSpawnerList.Add(new Tuple<EntityUid, bool>(tempMissionItem, false));
         }
 
-        if (missionItemSpawners.Count() <= guaranteedPointsCount)
+        if (missionItemSpawners.Any())
         {
-            foreach (var tempMissionItem in missionItemSpawners)
+            if (missionItemSpawners.Count() <= guaranteedPointsCount)
             {
-                if (spawnMissionItem(allSecretPools[tempPoolIndex], tempMissionItem, entityMap, mainGrid))
-                    ++debugCountItems;
-            }
-        }
-        else
-        {
-            for (var i = 0; i < guaranteedPointsCount; ++i)
-            {
-                var tempRandMissionIndex = _random.Next(missionItemSpawners.Count());
-
-                if (spawnMissionItem(allSecretPools[tempPoolIndex], missionItemSpawners[tempRandMissionIndex],
-                        entityMap, mainGrid))
+                foreach (var tempMissionItem in missionItemSpawners)
                 {
-                    missionItemSpawners.Remove(missionItemSpawners[tempRandMissionIndex]);
-                    ++debugCountItems;
+                    if (spawnMissionItem(allSecretPools[tempPoolIndex], tempMissionItem, entityMap, mainGrid))
+                        ++debugCountItems;
                 }
             }
-
-            if (missionItemSpawners.Any())
+            else
             {
+                for (var i = 0; i < guaranteedPointsCount; ++i)
+                {
+                    var tempRandMissionIndex = _random.Next(missionItemSpawners.Count());
+
+                    if (spawnMissionItem(allSecretPools[tempPoolIndex], missionItemSpawners[tempRandMissionIndex],
+                            entityMap, mainGrid))
+                    {
+                        missionItemSpawners.Remove(missionItemSpawners[tempRandMissionIndex]);
+                        ++debugCountItems;
+                    }
+                }
+
+
                 if (missionItemSpawners.Count() <= sidePointsCount)
                 {
                     foreach (var tempMissionItem in missionItemSpawners)
                     {
-                        if (_random.Next(100) > 60)
-                            continue; // 40% chance
-
                         if (spawnMissionItem(allSecretPools[tempPoolIndex], tempMissionItem, entityMap, mainGrid))
                             ++debugCountItems;
                     }
@@ -199,10 +195,11 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
                 }
             }
         }
+
         RaiseLocalEvent(new MissionMapInitEventArgs());
         _logManager.GetSawmill("RORule").Info("Spawned {0} mission items on RO map", debugCountItems);
 
-        var randDelay = 60000; // 1 min //_random.Next(400000, 600000); // 5-10 min
+        var randDelay = _random.Next(300000, 500000); // 5 - 8.33 min
         _timerManager.AddTimer(new Timer(randDelay, false, startEvent));
     }
 

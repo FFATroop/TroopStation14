@@ -6,7 +6,7 @@ using Robust.Shared.Player;
 
 namespace Content.Client.Eye;
 
-public sealed class DarkVisionSystem : DarkVisionSharedSystem
+public sealed class DarkVisionSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
 
@@ -14,8 +14,6 @@ public sealed class DarkVisionSystem : DarkVisionSharedSystem
     [Dependency] private readonly ILightManager _lightManager = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
 
-
-    private DarkVisionOverlay _darkOverlay = default!;
 
     public override void Initialize()
     {
@@ -27,11 +25,10 @@ public sealed class DarkVisionSystem : DarkVisionSharedSystem
         SubscribeLocalEvent<DarkVisionComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<DarkVisionComponent, PlayerDetachedEvent>(OnPlayerDetached);
 
-        SubscribeNetworkEvent<RequestUpdateOverlayMessage>(OnRequestOverlay);
-
-        _darkOverlay = new DarkVisionOverlay();
+        //SubscribeNetworkEvent<RequestUpdateOverlayMessage>(OnRequestOverlay);
     }
 
+    /*
     private void OnRequestOverlay(RequestUpdateOverlayMessage message, EntitySessionEventArgs args)
     {
         if (_player.LocalPlayer?.UserId == message.Id)
@@ -40,7 +37,7 @@ public sealed class DarkVisionSystem : DarkVisionSharedSystem
             if (TryComp<DarkVisionComponent>(_player.LocalPlayer?.ControlledEntity, out var vision))
             {
                 vision.IsEnable = message.On;
-                vision.DrawLight = vision.IsEnable ? message.DrawLight : true;
+                vision.DrawLight = vision.IsEnable && message.DrawLight;
                 vision.LayerColor = message.LayerColor;
                 vision.ShaderTexturePrototype = message.ShaderTexturePrototype;
 
@@ -61,6 +58,7 @@ public sealed class DarkVisionSystem : DarkVisionSharedSystem
             }
         }
     }
+    */
 
     private void OnPlayerAttached(EntityUid uid, DarkVisionComponent component, PlayerAttachedEvent args)
     {
@@ -69,9 +67,11 @@ public sealed class DarkVisionSystem : DarkVisionSharedSystem
 
         if (component.ShaderTexturePrototype != null)
         {
-            _darkOverlay.SetShaderProto(component.ShaderTexturePrototype);
+            if (component.darkOverlay == null)
+                component.darkOverlay = new DarkVisionOverlay();
+            component.darkOverlay.SetShaderProto(component.ShaderTexturePrototype);
             _lightManager.DrawLighting = component.DrawLight;
-            _overlayMan.AddOverlay(_darkOverlay);
+            _overlayMan.AddOverlay(component.darkOverlay);
         }
     }
 
@@ -80,7 +80,12 @@ public sealed class DarkVisionSystem : DarkVisionSharedSystem
         if (!component.IsEnable)
             return;
 
-        _overlayMan.RemoveOverlay(_darkOverlay);
+        if (component.darkOverlay == null)
+        {
+            component.darkOverlay = new DarkVisionOverlay();
+        }
+        else _overlayMan.RemoveOverlay(component.darkOverlay);
+
         _lightManager.DrawLighting = true;
     }
 
@@ -89,7 +94,9 @@ public sealed class DarkVisionSystem : DarkVisionSharedSystem
         if (_player.LocalPlayer?.ControlledEntity == uid)
         {
             _lightManager.DrawLighting = component.DrawLight;
-            _overlayMan.AddOverlay(_darkOverlay);
+            if (component.darkOverlay == null)
+                component.darkOverlay = new DarkVisionOverlay();
+            _overlayMan.AddOverlay(component.darkOverlay);
         }
     }
 
@@ -101,7 +108,8 @@ public sealed class DarkVisionSystem : DarkVisionSharedSystem
         if (_player.LocalPlayer?.ControlledEntity == uid)
         {
             _lightManager.DrawLighting = true;
-            _overlayMan.RemoveOverlay(_darkOverlay);
+            if (component.darkOverlay != null)
+                _overlayMan.RemoveOverlay(component.darkOverlay);
         }
     }
 }

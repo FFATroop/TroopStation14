@@ -5,6 +5,10 @@
   suffix: Combat
   description: They mostly come at night. Mostly.
   components:
+  - type: FlashImmunity
+  - type: MovementIgnoreGravity
+  - type: MovedByPressure
+    enabled: false
   - type: MobThresholds
     thresholds:
       0: Alive

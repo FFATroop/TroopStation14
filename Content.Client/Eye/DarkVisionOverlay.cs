@@ -13,7 +13,6 @@ public sealed class DarkVisionOverlay : Overlay
     [Dependency] IEntityManager _entityManager = default!;
     [Dependency] ILightManager _lightManager = default!;
 
-
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
@@ -27,7 +26,7 @@ public sealed class DarkVisionOverlay : Overlay
 
         if (_darkVisionComponent?.ShaderTexturePrototype == null)
         {
-            _darkShader = _prototypeManager.Index<ShaderPrototype>("NightVisionRoboto").InstanceUnique();
+            _darkShader = _prototypeManager.Index<ShaderPrototype>("GreyscaleFullscreen").InstanceUnique();
             return;
         }
 
