@@ -114,8 +114,16 @@ namespace Content.Server.Spawners.EntitySystems
             {
                 var tempEntity = spawnerEntities[_random.Next(spawnerEntities.Count() - 1)];
 
-                if (tempEntity.Comp.Chance != 1.0f && !_robustRandom.Prob(tempEntity.Comp.Chance))
+                if (tempEntity.Comp.Chance < 0.999f && !_robustRandom.Prob(tempEntity.Comp.Chance))
+                {
+                    // Every chance misses, adding 0.3f value to next chance check
+                    // it means we will get 100% chance on every component in last check
+                    // and never get infinity loop, also we save percentage chance to first loop
+                    // if we had only 2 50% chances spawners and must place only 2 entities
+                    // we must use all spawners without probability, and we guarantied to loss probability in next loops after first
+                    tempEntity.Comp.Chance += 0.3f;
                     return;
+                }
 
                 if (Deleted(tempEntity.Owner))
                     return;
