@@ -20,7 +20,7 @@ void fragment() {
 
     float fLine = yCoord - mod(time * 200.0, yCoord);
     float sLine = mod(time * 500.0, yCoord);
-    float zLine = mod(time * 500.0, xCoord) * 3;
+    float zLine = mod(time * 500.0, xCoord) * 3.0;
 	float gLine = xCoord - mod(time * 1500.0, xCoord);
 	float xLine = mod(time * 1500.0, yCoord);
 

@@ -1,10 +1,10 @@
-- type: entity
-  id: ActionToggleGoggles
-  name: Toggle Goggles
-  description: Turn the goggles on and off.
-  noSpawn: true
-  components:
-  - type: InstantAction
-    icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
-    iconOn: Objects/Tools/flashlight.rsi/flashlight-on.png
-    event: !type:ToggleGogglesEvent
+#- type: entity
+#  id: ActionToggleGoggles
+#  name: Toggle Goggles
+#  description: Turn the goggles on and off.
+#  noSpawn: true
+#  components:
+#  - type: InstantAction
+#    icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
+#    iconOn: Objects/Tools/flashlight.rsi/flashlight-on.png
+#    event: !type:ToggleGogglesEvent

@@ -2,9 +2,8 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Eye
 {
-    [RegisterComponent]
     [NetworkedComponent]
-    public sealed partial class DarkVisionComponent : Component
+    public abstract partial class SharedDarkVisionComponent : Component
     {
         [DataField("shaderTexture")]
         public String? ShaderTexturePrototype;
