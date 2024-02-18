@@ -48,10 +48,20 @@ namespace Content.Server.Spawners.EntitySystems
 
         private void DelayedCalculationRoleBalance()
         {
+            var playerWhithoutEntityCount = 0;
+            var playerGhostCount = 0;
             foreach (var player in _playerManager.Sessions)
             {
-                if (player.AttachedEntity == null) continue;
-                if (!TryComp<GhostComponent>(player.AttachedEntity, out _)) continue;
+                if (player.AttachedEntity == null)
+                {
+                    ++playerWhithoutEntityCount;
+                    continue;
+                }
+                if (!TryComp<GhostComponent>(player.AttachedEntity, out _))
+                {
+                    ++playerGhostCount;
+                    continue;
+                }
                 ++_playersRoundstartCount;
             }
             var possibleAntagPools = _prototypeManager.EnumeratePrototypes<AntagPoolsPrototype>().ToList();
@@ -83,9 +93,9 @@ namespace Content.Server.Spawners.EntitySystems
             else if (bossCount <= currentPool.MinBossCount) _balancedBossAntagsCount = currentPool.MinBossCount;
             else _balancedBossAntagsCount = bossCount;
 
-            _logManager.GetSawmill("MissionAntagSpawner")
-                .Info("Calculating balance is over, active player count = {0}, antags count = {1}, boss count = {2}",
-                    _playersRoundstartCount, _balancedAntagsCount, _balancedBossAntagsCount);
+            _logManager.GetSawmill("MissionAntagSpawner").Info(
+                    "Calculating balance is over, active player count = {0}, antags count = {1}, boss count = {2}, ghost count = {3}, player without entity = {4}",
+                    _playersRoundstartCount, _balancedAntagsCount, _balancedBossAntagsCount, playerGhostCount, playerWhithoutEntityCount);
 
             SpawnAllGhostedRoles(currentPool);
         }
