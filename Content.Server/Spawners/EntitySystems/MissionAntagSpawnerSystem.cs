@@ -57,7 +57,7 @@ namespace Content.Server.Spawners.EntitySystems
                     ++playerWhithoutEntityCount;
                     continue;
                 }
-                if (!TryComp<GhostComponent>(player.AttachedEntity, out _))
+                if (TryComp<GhostComponent>(player.AttachedEntity, out _))
                 {
                     ++playerGhostCount;
                     continue;
