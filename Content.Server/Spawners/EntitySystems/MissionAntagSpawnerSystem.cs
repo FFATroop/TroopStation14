@@ -1,18 +1,10 @@
 using System.Linq;
-using System.Numerics;
-using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Mind;
 using Content.Server.Spawners.Components;
 using Content.Server.TS;
 using Content.Shared.Ghost;
-using Content.Shared.Random.Helpers;
-using Content.Shared.Roles;
-using FastAccessors;
 using JetBrains.Annotations;
 using Robust.Server.Player;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -42,8 +34,8 @@ namespace Content.Server.Spawners.EntitySystems
 
         private void OnMissionMapInit(MissionMapInitEventArgs args)
         {
-            // over 1 min after map init
-            _timerManager.AddTimer(new Timer(60000,false, DelayedCalculationRoleBalance));
+            // over 3 min after map init
+            _timerManager.AddTimer(new Timer(180000,false, DelayedCalculationRoleBalance));
         }
 
         private void DelayedCalculationRoleBalance()
@@ -142,15 +134,7 @@ namespace Content.Server.Spawners.EntitySystems
                     if (bossEntity.IsValid())
                         ++tempBoss;
                 }
-
-                // MissionMapInitEventArgs called once
-                /*foreach (var tempSpawner in spawnerEntities)
-                {
-                    QueueDel(tempSpawner.Owner);
-                }*/
             }
-
         }
-
     }
 }
