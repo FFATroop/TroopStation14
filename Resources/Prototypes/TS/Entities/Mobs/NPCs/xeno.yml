@@ -13,6 +13,9 @@
     thresholds:
       0: Alive
       300: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      300: 1
   - type: Bloodstream
     bloodReagent: FluorosulfuricAcid
   - type: MeleeWeapon
