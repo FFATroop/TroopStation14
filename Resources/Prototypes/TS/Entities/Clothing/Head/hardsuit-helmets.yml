@@ -84,10 +84,9 @@
         Piercing: 0.85
         Heat: 0.9
         Cold: 0.9
-        Radiation: 0.85
-        Caustic: 0.85
+        Radiation: 0.9
   - type: ShowSecurityIcons
-  - type: FlashImmunity 
+  - type: FlashImmunity
 
 
 # LEH
