@@ -27,6 +27,10 @@
   - Maintenance
   - External
   - Armory
+  - Marines
+  - MarinesPilot
+  - PartCommander
+  - PlatoonCommander
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

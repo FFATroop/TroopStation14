@@ -1,0 +1,15 @@
+- type: accessLevel
+  id: Marines
+  name: id-card-access-level-marines
+  
+- type: accessLevel
+  id: MarinesPilot
+  name: id-card-access-level-marines-pilot
+  
+- type: accessLevel
+  id: PartCommander
+  name: id-card-access-level-part-commander
+  
+ - type: accessLevel
+  id: PlatoonCommander
+  name: id-card-access-level-platoon-commander

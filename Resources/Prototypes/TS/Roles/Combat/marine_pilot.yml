@@ -19,6 +19,8 @@
   - Brig
   - Maintenance
   - External
+  - MarinePilot
+  - Marine
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
