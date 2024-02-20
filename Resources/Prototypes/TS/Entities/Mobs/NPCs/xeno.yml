@@ -12,10 +12,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Dead
+      200: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      300: 1
+      1: 1
   - type: Bloodstream
     bloodReagent: FluorosulfuricAcid
   - type: MeleeWeapon
@@ -60,7 +60,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      500: Dead
+      450: Dead
   - type: MeleeWeapon
     damage:
       groups:
@@ -133,7 +133,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      1000: Dead
+      600: Dead
   - type: MeleeWeapon
     damage:
      groups:
@@ -178,7 +178,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      450: Dead
+      400: Dead
   - type: MovementSpeedModifier
     baseSprintSpeed: 4
   - type: MeleeWeapon
