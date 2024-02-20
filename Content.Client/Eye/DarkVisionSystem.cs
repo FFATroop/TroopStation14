@@ -9,11 +9,8 @@ namespace Content.Client.Eye;
 public sealed class DarkVisionSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
-
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly ILightManager _lightManager = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-
 
     public override void Initialize()
     {
@@ -21,48 +18,18 @@ public sealed class DarkVisionSystem : EntitySystem
 
         SubscribeLocalEvent<DarkVisionComponent, ComponentInit>(OnVisionInit);
         SubscribeLocalEvent<DarkVisionComponent, ComponentShutdown>(OnVisionShutdown);
-
         SubscribeLocalEvent<DarkVisionComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<DarkVisionComponent, PlayerDetachedEvent>(OnPlayerDetached);
-
-        //SubscribeNetworkEvent<RequestUpdateOverlayMessage>(OnRequestOverlay);
     }
-
-    /*
-    private void OnRequestOverlay(RequestUpdateOverlayMessage message, EntitySessionEventArgs args)
-    {
-        if (_player.LocalPlayer?.UserId == message.Id)
-        {
-
-            if (TryComp<DarkVisionComponent>(_player.LocalPlayer?.ControlledEntity, out var vision))
-            {
-                vision.IsEnable = message.On;
-                vision.DrawLight = vision.IsEnable && message.DrawLight;
-                vision.LayerColor = message.LayerColor;
-                vision.ShaderTexturePrototype = message.ShaderTexturePrototype;
-
-                if (vision.IsEnable)
-                {
-                    if (vision.ShaderTexturePrototype != null)
-                    {
-                        _darkOverlay.SetShaderProto(vision.ShaderTexturePrototype);
-                        _lightManager.DrawLighting = vision.DrawLight;
-                        _overlayMan.AddOverlay(_darkOverlay);
-                    }
-                }
-                else
-                {
-                    _overlayMan.RemoveOverlay(_darkOverlay);
-                    _lightManager.DrawLighting = true;
-                }
-            }
-        }
-    }
-    */
 
     private void OnPlayerAttached(EntityUid uid, DarkVisionComponent component, PlayerAttachedEvent args)
     {
         if (!component.IsEnable)
+            return;
+
+        if (_player.LocalSession == null)
+            return;
+        if (_player.LocalSession.AttachedEntity != uid)
             return;
 
         if (component.ShaderTexturePrototype != null)
@@ -80,6 +47,11 @@ public sealed class DarkVisionSystem : EntitySystem
         if (!component.IsEnable)
             return;
 
+        if (_player.LocalSession == null)
+            return;
+        if (_player.LocalSession.AttachedEntity != uid)
+            return;
+
         if (component.darkOverlay == null)
         {
             component.darkOverlay = new DarkVisionOverlay();
@@ -87,17 +59,20 @@ public sealed class DarkVisionSystem : EntitySystem
         else _overlayMan.RemoveOverlay(component.darkOverlay);
 
         _lightManager.DrawLighting = true;
+
     }
 
     private void OnVisionInit(EntityUid uid, DarkVisionComponent component, ComponentInit args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
-        {
-            _lightManager.DrawLighting = component.DrawLight;
-            if (component.darkOverlay == null)
-                component.darkOverlay = new DarkVisionOverlay();
-            _overlayMan.AddOverlay(component.darkOverlay);
-        }
+        if (_player.LocalSession == null)
+            return;
+        if (_player.LocalSession.AttachedEntity != uid)
+            return;
+
+        _lightManager.DrawLighting = component.DrawLight;
+        if (component.darkOverlay == null)
+            component.darkOverlay = new DarkVisionOverlay();
+        _overlayMan.AddOverlay(component.darkOverlay);
     }
 
     private void OnVisionShutdown(EntityUid uid, DarkVisionComponent component, ComponentShutdown args)
@@ -105,11 +80,14 @@ public sealed class DarkVisionSystem : EntitySystem
         if (!component.IsEnable)
             return;
 
-        if (_player.LocalPlayer?.ControlledEntity == uid)
-        {
-            _lightManager.DrawLighting = true;
-            if (component.darkOverlay != null)
-                _overlayMan.RemoveOverlay(component.darkOverlay);
-        }
+        if (_player.LocalSession == null)
+            return;
+        if (_player.LocalSession.AttachedEntity != uid)
+            return;
+
+        _lightManager.DrawLighting = true;
+        if (component.darkOverlay != null)
+            _overlayMan.RemoveOverlay(component.darkOverlay);
+        
     }
 }
