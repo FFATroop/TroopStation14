@@ -22,6 +22,8 @@
   - External
   - Armory
   - Command
+  - Marines
+  - MarinesPilot
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
