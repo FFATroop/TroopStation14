@@ -52,14 +52,13 @@ public sealed class DarkVisionSystem : EntitySystem
         if (_player.LocalSession.AttachedEntity != uid)
             return;
 
-        if (component.darkOverlay == null)
+        if (component.darkOverlay != null)
         {
-            component.darkOverlay = new DarkVisionOverlay();
+            _overlayMan.RemoveOverlay(component.darkOverlay);
+            component.darkOverlay = null;
         }
-        else _overlayMan.RemoveOverlay(component.darkOverlay);
 
         _lightManager.DrawLighting = true;
-
     }
 
     private void OnVisionInit(EntityUid uid, DarkVisionComponent component, ComponentInit args)
