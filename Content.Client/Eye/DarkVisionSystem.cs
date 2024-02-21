@@ -1,3 +1,4 @@
+using Content.Client.Movement.Systems;
 using Content.Shared.Eye;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -11,6 +12,8 @@ public sealed class DarkVisionSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly ILightManager _lightManager = default!;
+    [Dependency] private readonly ContentEyeSystem _contentEye = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
 
     public override void Initialize()
     {
@@ -29,16 +32,23 @@ public sealed class DarkVisionSystem : EntitySystem
 
         if (_player.LocalSession == null)
             return;
-        if (_player.LocalSession.AttachedEntity != uid)
+        if (args.Entity != uid)
             return;
 
         if (component.ShaderTexturePrototype != null)
         {
-            if (component.darkOverlay == null)
-                component.darkOverlay = new DarkVisionOverlay();
+            component.darkOverlay ??= new DarkVisionOverlay();
             component.darkOverlay.SetShaderProto(component.ShaderTexturePrototype);
-            _lightManager.DrawLighting = component.DrawLight;
             _overlayMan.AddOverlay(component.darkOverlay);
+
+            _lightManager.DrawLighting = component.DrawLight;
+            _lightManager.DrawHardFov = component.DrawFOV;
+
+            //if (TryComp<EyeComponent>(uid, out var eye))
+            //{
+            //    _eye.SetDrawFov(uid, component.DrawFOV, eye);
+            //    _eye.SetDrawLight((uid, eye), component.DrawLight);
+            //}
         }
     }
 
@@ -49,7 +59,7 @@ public sealed class DarkVisionSystem : EntitySystem
 
         if (_player.LocalSession == null)
             return;
-        if (_player.LocalSession.AttachedEntity != uid)
+        if (args.Entity != uid)
             return;
 
         if (component.darkOverlay != null)
@@ -58,7 +68,14 @@ public sealed class DarkVisionSystem : EntitySystem
             component.darkOverlay = null;
         }
 
+        //if (TryComp<EyeComponent>(uid, out var eye))
+        //{
+        //    _eye.SetDrawFov(uid, true, eye);
+        //    _eye.SetDrawLight((uid, eye), true);
+        //}
+
         _lightManager.DrawLighting = true;
+        _lightManager.DrawHardFov = true;
     }
 
     private void OnVisionInit(EntityUid uid, DarkVisionComponent component, ComponentInit args)
@@ -69,8 +86,15 @@ public sealed class DarkVisionSystem : EntitySystem
             return;
 
         _lightManager.DrawLighting = component.DrawLight;
-        if (component.darkOverlay == null)
-            component.darkOverlay = new DarkVisionOverlay();
+        _lightManager.DrawHardFov = component.DrawFOV;
+
+        //if (TryComp<EyeComponent>(uid, out var eye))
+        //{
+        //    _eye.SetDrawFov(uid, component.DrawFOV, eye);
+        //    _eye.SetDrawLight((uid, eye), component.DrawLight);
+        //}
+
+        component.darkOverlay ??= new DarkVisionOverlay();
         _overlayMan.AddOverlay(component.darkOverlay);
     }
 
@@ -84,9 +108,16 @@ public sealed class DarkVisionSystem : EntitySystem
         if (_player.LocalSession.AttachedEntity != uid)
             return;
 
+        //if (TryComp<EyeComponent>(uid, out var eye))
+        //{
+        //    _eye.SetDrawFov(uid, true, eye);
+        //    _eye.SetDrawLight((uid, eye), true);
+        //}
+
         _lightManager.DrawLighting = true;
+        _lightManager.DrawHardFov = true;
+
         if (component.darkOverlay != null)
             _overlayMan.RemoveOverlay(component.darkOverlay);
-        
     }
 }

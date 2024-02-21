@@ -14,6 +14,9 @@ namespace Content.Shared.Eye
         [DataField("mustDrawLight")]
         public bool DrawLight = true;
 
+        [DataField("mustDrawFOV")]
+        public bool DrawFOV = true;
+
         [DataField("toggle")]
         public bool IsEnable = false;
     }
