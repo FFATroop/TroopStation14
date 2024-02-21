@@ -409,7 +409,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // TroopStation-char-color
         name = $"[color=#acb5af]{name}[/color]";
 
-        var speech = GetSpeechVerb(source, message);        var wrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
+        var wrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
             ("entityName", name),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("fontType", speech.FontId),
