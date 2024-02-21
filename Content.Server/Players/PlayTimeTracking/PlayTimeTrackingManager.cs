@@ -210,7 +210,7 @@ public sealed class PlayTimeTrackingManager
             Trackers = roles
         };
 
-        _net.ServerSendMessage(msg, pSession.ConnectedClient);
+        _net.ServerSendMessage(msg, pSession.Channel);
     }
 
     /// <summary>
