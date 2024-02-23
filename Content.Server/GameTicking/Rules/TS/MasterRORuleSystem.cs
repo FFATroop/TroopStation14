@@ -28,8 +28,9 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ILocalizationManager _localizationManager = default!;
 
-    private static MapId _currentMissionMapId;
-    private static Vector2 _currentCenterMissionMap;
+    private MapId _currentMissionMapId;
+    private Vector2 _currentCenterMissionMap;
+    private List<EntityUid> _spawnedMissionEntities = new List<EntityUid>();
     protected override void Started(EntityUid uid, MasterRORuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         var smallestValue = 1;
@@ -217,6 +218,8 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         var senderLocale = _localizationManager.GetString("research-mission-sender");
         var messageLocale = _localizationManager.GetString("research-mission-message");
 
+
+
         _chat.DispatchGlobalAnnouncement(messageLocale, senderLocale, true, null, Color.GreenYellow);
     }
 
@@ -232,15 +235,12 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         }
 
         var tempItemPoolIndex = _random.Next(secretPool.PoolItems.Count() - 1);
-        _entMan.Spawn(
+        var spawnedItem = _entMan.Spawn(
             secretPool.PoolItems[tempItemPoolIndex],
             new MapCoordinates(_mapSystem.LocalToWorld(entityMap, mainGrid, xComp.LocalPosition),
                 _currentMissionMapId)
         );
+        _spawnedMissionEntities.Add(spawnedItem);
         return true;
     }
-
-
-
-
 }
