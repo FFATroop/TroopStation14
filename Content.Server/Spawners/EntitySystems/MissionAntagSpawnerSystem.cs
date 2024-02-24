@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Antag;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Spawners.Components;
 using Content.Server.TS;
@@ -11,6 +12,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Spawners.EntitySystems
 {
+
+    public sealed class AntagCalculatedAndSpawnedEventArgs : EventArgs { }
+
     [UsedImplicitly]
     public sealed class MissionAntagSpawnerSystem : EntitySystem
     {
@@ -90,6 +94,8 @@ namespace Content.Server.Spawners.EntitySystems
                     _playersRoundstartCount, _balancedAntagsCount, _balancedBossAntagsCount, playerGhostCount, playerWhithoutEntityCount);
 
             SpawnAllGhostedRoles(currentPool);
+
+            RaiseLocalEvent(new AntagCalculatedAndSpawnedEventArgs());
         }
 
         private void SpawnAllGhostedRoles(AntagRolesPoolPrototype antagPools)
@@ -114,17 +120,6 @@ namespace Content.Server.Spawners.EntitySystems
             {
                 var tempEntity = spawnerEntities[_random.Next(spawnerEntities.Count() - 1)];
 
-                if (tempEntity.Comp.Chance < 0.999f && !_robustRandom.Prob(tempEntity.Comp.Chance))
-                {
-                    // Every chance misses, adding 0.3f value to next chance check
-                    // it means we will get 100% chance on every component in last check
-                    // and never get infinity loop, also we save percentage chance to first loop
-                    // if we had only 2 50% chances spawners and must place only 2 entities
-                    // we must use all spawners without probability, and we guarantied to loss probability in next loops after first
-                    tempEntity.Comp.Chance += 0.3f;
-                    return;
-                }
-
                 if (Deleted(tempEntity.Owner))
                     return;
 
@@ -133,14 +128,21 @@ namespace Content.Server.Spawners.EntitySystems
                     var antagEntity = EntityManager.SpawnEntity(_robustRandom.Pick(antagPools.PoolDefaultEntities),
                         Transform(tempEntity.Owner).Coordinates);
                     if (antagEntity.IsValid())
+                    {
+                        EntityManager.AddComponent<MissionAntagComponent>(antagEntity);
                         ++tempAntags;
+                    }
                 }
                 else if (tempBoss < _balancedBossAntagsCount)
                 {
                     var bossEntity = EntityManager.SpawnEntity(_robustRandom.Pick(antagPools.BossPools),
                         Transform(tempEntity.Owner).Coordinates);
                     if (bossEntity.IsValid())
+                    {
+                        var tempComp = EntityManager.AddComponent<MissionAntagComponent>(bossEntity);
+                        tempComp.IsBoss = true;
                         ++tempBoss;
+                    }
                 }
             }
         }
