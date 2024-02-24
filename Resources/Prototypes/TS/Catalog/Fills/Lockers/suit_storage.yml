@@ -10,6 +10,6 @@
     - id: OxygenTankFilled
     - id: ClothingOuterHardsuitOBS3S
     - id: ClothingMaskGas
-    - id: ClothingShoesBootsMag
+    - id: ClothingShoesBootsMagMarine
   - type: AccessReader
     access: [["Security"]]
