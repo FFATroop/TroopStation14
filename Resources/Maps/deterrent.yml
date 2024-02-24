@@ -1437,6 +1437,7 @@ entities:
           - 0
         chunkSize: 4
     - type: GasTileOverlay
+    - type: TargetStation
     - type: BecomesStation
       id: Deterrent
     - type: RadiationGridResistance
@@ -1474,6 +1475,7 @@ entities:
     - type: Transform
       pos: 0,49.1
       parent: 1
+    - type: TargetShuttle
     - type: MapGrid
       chunks:
         0,0:
