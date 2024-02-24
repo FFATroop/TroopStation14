@@ -44,6 +44,10 @@ namespace Content.Server.Spawners.EntitySystems
 
         private void DelayedCalculationRoleBalance()
         {
+            _balancedAntagsCount = 0;
+            _balancedBossAntagsCount = 0;
+            _playersRoundstartCount = 0;
+
             var playerWhithoutEntityCount = 0;
             var playerGhostCount = 0;
             foreach (var player in _playerManager.Sessions)

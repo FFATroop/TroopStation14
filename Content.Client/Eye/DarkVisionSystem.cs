@@ -32,6 +32,8 @@ public sealed class DarkVisionSystem : EntitySystem
 
         if (_player.LocalSession == null)
             return;
+        if (_player.LocalSession.AttachedEntity != uid)
+            return;
         if (args.Entity != uid)
             return;
 
@@ -58,6 +60,8 @@ public sealed class DarkVisionSystem : EntitySystem
             return;
 
         if (_player.LocalSession == null)
+            return;
+        if (_player.LocalSession.AttachedEntity != uid)
             return;
         if (args.Entity != uid)
             return;
