@@ -20,6 +20,7 @@
   - External
   - Medical
   - Chemistry
+  - Marine
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

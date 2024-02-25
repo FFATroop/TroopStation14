@@ -20,6 +20,8 @@
   - Maintenance
   - Engineering # while no pilot access
   - External
+  - MarinePilot
+  - Marine
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
