@@ -26,9 +26,9 @@ namespace Content.Server.Spawners.EntitySystems
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-        public int _balancedAntagsCount { get; } = 0;
-        public int _balancedBossAntagsCount { get; } = 0;
-        public int _playersRoundstartCount { get; } = 0;
+        private int _balancedAntagsCount = 0;
+        private int _balancedBossAntagsCount = 0;
+        private int _playersRoundstartCount = 0;
 
         public override void Initialize()
         {
