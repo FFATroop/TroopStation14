@@ -1,8 +1,10 @@
 using Content.Client.Movement.Systems;
 using Content.Shared.Eye;
+using Content.Shared.GameTicking;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Shared.Containers;
 using Robust.Shared.Player;
 
 namespace Content.Client.Eye;
@@ -23,6 +25,7 @@ public sealed class DarkVisionSystem : EntitySystem
         SubscribeLocalEvent<DarkVisionComponent, ComponentShutdown>(OnVisionShutdown);
         SubscribeLocalEvent<DarkVisionComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<DarkVisionComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<DarkVisionComponent, RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
     private void OnPlayerAttached(EntityUid uid, DarkVisionComponent component, PlayerAttachedEvent args)
@@ -45,12 +48,6 @@ public sealed class DarkVisionSystem : EntitySystem
 
             _lightManager.DrawLighting = component.DrawLight;
             _lightManager.DrawHardFov = component.DrawFOV;
-
-            //if (TryComp<EyeComponent>(uid, out var eye))
-            //{
-            //    _eye.SetDrawFov(uid, component.DrawFOV, eye);
-            //    _eye.SetDrawLight((uid, eye), component.DrawLight);
-            //}
         }
     }
 
@@ -72,12 +69,6 @@ public sealed class DarkVisionSystem : EntitySystem
             component.darkOverlay = null;
         }
 
-        //if (TryComp<EyeComponent>(uid, out var eye))
-        //{
-        //    _eye.SetDrawFov(uid, true, eye);
-        //    _eye.SetDrawLight((uid, eye), true);
-        //}
-
         _lightManager.DrawLighting = true;
         _lightManager.DrawHardFov = true;
     }
@@ -91,12 +82,6 @@ public sealed class DarkVisionSystem : EntitySystem
 
         _lightManager.DrawLighting = component.DrawLight;
         _lightManager.DrawHardFov = component.DrawFOV;
-
-        //if (TryComp<EyeComponent>(uid, out var eye))
-        //{
-        //    _eye.SetDrawFov(uid, component.DrawFOV, eye);
-        //    _eye.SetDrawLight((uid, eye), component.DrawLight);
-        //}
 
         component.darkOverlay ??= new DarkVisionOverlay();
         _overlayMan.AddOverlay(component.darkOverlay);
@@ -112,11 +97,22 @@ public sealed class DarkVisionSystem : EntitySystem
         if (_player.LocalSession.AttachedEntity != uid)
             return;
 
-        //if (TryComp<EyeComponent>(uid, out var eye))
-        //{
-        //    _eye.SetDrawFov(uid, true, eye);
-        //    _eye.SetDrawLight((uid, eye), true);
-        //}
+        _lightManager.DrawLighting = true;
+        _lightManager.DrawHardFov = true;
+
+        if (component.darkOverlay != null)
+            _overlayMan.RemoveOverlay(component.darkOverlay);
+    }
+
+    private void OnRoundRestart(EntityUid uid, DarkVisionComponent component, RoundRestartCleanupEvent args)
+    {
+        if (!component.IsEnable)
+            return;
+
+        if (_player.LocalSession == null)
+            return;
+        if (_player.LocalSession.AttachedEntity != uid)
+            return;
 
         _lightManager.DrawLighting = true;
         _lightManager.DrawHardFov = true;
