@@ -24,6 +24,7 @@
   - Command
   - Marines
   - MarinesPilot
+  - PartCommander
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
