@@ -3571,7 +3571,7 @@ entities:
       pos: -11.5,22.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16231.673
+      secondsUntilStateChange: -16246.677
       state: Opening
   - uid: 1400
     components:
@@ -12756,6 +12756,11 @@ entities:
     components:
     - type: Transform
       pos: 22.5,40.5
+      parent: 2
+  - uid: 8944
+    components:
+    - type: Transform
+      pos: 20.5,26.5
       parent: 2
 - proto: CableHV
   entities:
