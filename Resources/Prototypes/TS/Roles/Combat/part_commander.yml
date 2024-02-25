@@ -22,8 +22,9 @@
   - External
   - Armory
   - Command
-  - Marines
-  - MarinesPilot
+  - Marine
+  - MarinePilot
+  - PartCommander
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -35,4 +36,4 @@
     shoes: ClothingShoesBootsCombat
     id: PartCommanderIDCard
     ears: ClothingHeadsetSecurity
-    neck: ClothingNeckIDMarksPartCommander
+

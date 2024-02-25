@@ -1,0 +1,20 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltMarine
+  name: trooper belt
+  description: Ideal for storing everything from ammo to weapons and combat essentials.
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Belt/military.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Belt/military.rsi
+    
+- type: entity
+  id: ClothingBeltMarineFilled
+  parent: ClothingBeltMarine
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: EmergencyMedipen
+      amount: 2

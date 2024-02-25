@@ -27,8 +27,8 @@
   - Maintenance
   - External
   - Armory
-  - Marines
-  - MarinesPilot
+  - Marine
+  - MarinePilot
   - PartCommander
   - PlatoonCommander
   special:
@@ -42,4 +42,4 @@
     shoes: ClothingShoesBootsCombat
     id: PlatoonCommanderIDCard
     ears: ClothingHeadsetSecurity
-    neck: ClothingNeckIDMarksPlatoonCommander
+

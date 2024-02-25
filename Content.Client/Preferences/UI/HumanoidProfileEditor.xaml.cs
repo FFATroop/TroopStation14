@@ -72,6 +72,7 @@ namespace Content.Client.Preferences.UI
         private Slider _skinColor => CSkin;
         private OptionButton _clothingButton => CClothingButton;
         private OptionButton _backpackButton => CBackpackButton;
+        private OptionButton _spawnPriorityButton => CSpawnPriorityButton;
         private SingleMarkingPicker _hairPicker => CHairStylePicker;
         private SingleMarkingPicker _facialHairPicker => CFacialHairPicker;
         private EyeColorPicker _eyesPicker => CEyeColorPicker;
@@ -343,6 +344,21 @@ namespace Content.Client.Preferences.UI
             };
 
             #endregion Backpack
+
+            #region SpawnPriority
+
+            foreach (var value in Enum.GetValues<SpawnPriorityPreference>())
+            {
+                _spawnPriorityButton.AddItem(Loc.GetString($"humanoid-profile-editor-preference-spawn-priority-{value.ToString().ToLower()}"), (int) value);
+            }
+
+            _spawnPriorityButton.OnItemSelected += args =>
+            {
+                _spawnPriorityButton.SelectId(args.Id);
+                SetSpawnPriority((SpawnPriorityPreference) args.Id);
+            };
+
+            #endregion SpawnPriority
 
             #region Eyes
 
@@ -803,6 +819,12 @@ namespace Content.Client.Preferences.UI
             IsDirty = true;
         }
 
+        private void SetSpawnPriority(SpawnPriorityPreference newSpawnPriority)
+        {
+            Profile = Profile?.WithSpawnPriorityPreference(newSpawnPriority);
+            IsDirty = true;
+        }
+
         public void Save()
         {
             IsDirty = false;
@@ -978,6 +1000,16 @@ namespace Content.Client.Preferences.UI
             _backpackButton.SelectId((int) Profile.Backpack);
         }
 
+        private void UpdateSpawnPriorityControls()
+        {
+            if (Profile == null)
+            {
+                return;
+            }
+
+            _spawnPriorityButton.SelectId((int) Profile.SpawnPriority);
+        }
+
         private void UpdateHairPickers()
         {
             if (Profile == null)
@@ -1117,6 +1149,7 @@ namespace Content.Client.Preferences.UI
             UpdateSpecies();
             UpdateClothingControls();
             UpdateBackpackControls();
+            UpdateSpawnPriorityControls();
             UpdateAgeEdit();
             UpdateEyePickers();
             UpdateSaveButton();

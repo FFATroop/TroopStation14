@@ -1,0 +1,25 @@
+- type: entity
+  name: marine hypospray
+  parent: BaseItem
+  description: A sterile injector for rapid administration of drugs to patients.
+  id: MarineHypospray
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Specific/hypospray.rsi
+    state: hypo
+  - type: Item
+    sprite: TS/Objects/Specific/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 9
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyMobs: false
+  - type: UseDelay
+    delay: 2
+  - type: StaticPrice
+    price: 750

@@ -10,6 +10,7 @@ public sealed class DarkVisionOverlay : Overlay
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IEntitySystemManager _sysMan = default!;
+    [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] IEntityManager _entityManager = default!;
     [Dependency] ILightManager _lightManager = default!;
 
@@ -47,12 +48,15 @@ public sealed class DarkVisionOverlay : Overlay
         if (playerEntity == null)
             return false;
 
-        var darkVision = _entityManager.GetComponent<DarkVisionComponent>(playerEntity.Value);
-        if (darkVision == null || !darkVision.IsEnable)
-            return false;
+        if (_entityManager.TryGetComponent<DarkVisionComponent>(playerEntity.Value, out var darkVision))
+        {
+            if (darkVision == null || !darkVision.IsEnable)
+                return false;
+            _darkVisionComponent = darkVision;
+            return true;
+        }
         
-        _darkVisionComponent = darkVision;
-        return true;
+        return _overlayMan.RemoveOverlay(this);
     }
 
     protected override void Draw(in OverlayDrawArgs args)

@@ -14,6 +14,7 @@
   startingInventory:
     PillCanister: 9
     Syringe: 9
+    MarineHypospray: 3
     ClothingEyesHudMedical: 3
     HandheldHealthAnalyzer: 3
     ClothingHandsGlovesLatex: 3
@@ -32,6 +33,7 @@
     ClothingUniformJumpsuitOperative: 5
     ClothingShoesBootsCombat: 5
     ClothingHandsGlovesCombat: 5
-    ClothingBeltMilitaryWebbing: 5
+    ClothingBeltMarineFilled: 5
     CombatKnife: 5
+    Crowbar: 5
     FlashlightSeclite: 5

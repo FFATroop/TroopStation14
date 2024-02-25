@@ -8,5 +8,4 @@
   - MobXenoPraetorianCombat
   bossPools:
   - MobXenoQueenCombat
-  antagPerPlayer: 6.5
-  
+  antagsPerPlayer: 5

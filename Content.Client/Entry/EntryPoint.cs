@@ -128,7 +128,6 @@ namespace Content.Client.Entry
 			_prototypeManager.RegisterIgnore("missionGrid");
             _prototypeManager.RegisterIgnore("missionMap");
             _prototypeManager.RegisterIgnore("stationGoal"); // Corvax-StationGoal
-            _prototypeManager.RegisterIgnore("loadout"); // Corvax-Loadout
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();

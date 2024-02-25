@@ -12,12 +12,21 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Dead
+      150: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       1: 1
   - type: Bloodstream
     bloodReagent: FluorosulfuricAcid
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 1000
+    damage:
+      groups:
+        Airloss: -1
+        Burn: -1
+        Brute: -2.5
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -60,7 +69,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      450: Dead
+      300: Dead
   - type: MeleeWeapon
     damage:
       groups:
@@ -133,7 +142,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      600: Dead
+      500: Dead
   - type: MeleeWeapon
     damage:
      groups:
@@ -178,7 +187,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      400: Dead
+      300: Dead
   - type: MovementSpeedModifier
     baseSprintSpeed: 4
   - type: MeleeWeapon
@@ -244,7 +253,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      250: Dead
+      170: Dead
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
