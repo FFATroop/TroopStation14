@@ -10,6 +10,6 @@
   id: PartCommander
   name: id-card-access-level-part-commander
   
- - type: accessLevel
+- type: accessLevel
   id: PlatoonCommander
   name: id-card-access-level-platoon-commander
