@@ -14,6 +14,7 @@
   startingInventory:
     PillCanister: 9
     Syringe: 9
+    MarineHypospray: 3
     ClothingEyesHudMedical: 3
     HandheldHealthAnalyzer: 3
     ClothingHandsGlovesLatex: 3
