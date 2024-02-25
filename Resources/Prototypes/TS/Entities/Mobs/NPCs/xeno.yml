@@ -18,6 +18,15 @@
       1: 1
   - type: Bloodstream
     bloodReagent: FluorosulfuricAcid
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 1000
+    damage:
+      groups:
+        Airloss: -1
+        Burn: -1
+        Brute: -2.5
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
