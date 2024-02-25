@@ -1,0 +1,181 @@
+
+
+# OBH-4
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: ClothingHelmetHardsuitOBH4Base
+  components:
+  - type: Clickable
+  - type: BreathMask
+  - type: ShowSecurityIcons
+  - type: FlashImmunity
+  - type: InteractionOutline
+  - type: TemperatureProtection
+    coefficient: 0.1
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: icon-flash
+      visible: false
+      map: [ "light" ]
+  - type: Clothing
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    quickEquip: false
+    equippedPrefix: off
+    slots: [ HEAD ]
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,3
+  - type: ToggleableLightVisuals
+  - type: Appearance
+  - type: PointLight
+    enabled: false
+    radius: 6
+    color: "#fff2cc"
+    energy: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.9
+        Cold: 0.9
+        Radiation: 0.9
+  - type: Tag
+    tags:
+    - HidesHair
+    - WhitelistChameleon
+  - type: GroupExamine
+  - type: IngestionBlocker
+  - type: HandheldLight
+    addPrefix: true
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+
+# Marine's helmets
+# Clean
+- type: entity
+  parent: ClothingHelmetHardsuitOBH4Base
+  id: ClothingHelmetHardsuitOBH4Marine
+  name: OBH-4
+  suffix: Marine
+  description: Modern armor helmet, version 4, marine edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-marine.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-marine.rsi
+
+# DarkBlue
+- type: entity
+  parent: ClothingHelmetHardsuitOBH4Base
+  id: ClothingHelmetHardsuitOBH4Pilot
+  name: OBH-4
+  suffix: Pilot
+  description: Modern armor helmet, version 4, pilot edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-pilot.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-pilot.rsi
+
+# Blue
+- type: entity
+  parent: ClothingHelmetHardsuitOBH4Base
+  id: ClothingHelmetHardsuitOBH4Medic
+  name: OBH-4
+  suffix: Medic
+  description: Modern armor helmet, version 4, medic edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-medic.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-medic.rsi
+
+# Orange
+- type: entity
+  parent: ClothingHelmetHardsuitOBH4Base
+  id: ClothingHelmetHardsuitOBH4Engineer
+  name: OBH-4
+  suffix: Engineer
+  description: Modern armor helmet, version 4, engineer edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-engineer.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-engineer.rsi
+
+# Red
+- type: entity
+  parent: ClothingHelmetHardsuitOBH4Base
+  id: ClothingHelmetHardsuitOBH4PlatoonCommander
+  name: OBH-4
+  suffix: PlatoonCommander
+  description: Modern armor helmet, version 4, platoon commander edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-platoon-commander.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-platoon-commander.rsi
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+
+# Gold
+- type: entity
+  parent: ClothingHelmetHardsuitOBH4Base
+  id: ClothingHelmetHardsuitOBH4Commander
+  name: OBH-4
+  suffix: Commander
+  description: Modern armor helmet, version 4, commander edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-commander.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-commander.rsi
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh

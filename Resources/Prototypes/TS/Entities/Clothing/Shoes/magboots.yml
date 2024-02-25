@@ -1,0 +1,34 @@
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesBootsMagMarine
+  name: marine magboots
+  description: State-of-the-art magnetic boots that do not slow down their wearer.
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Shoes/Boots/magboots-marine.rsi
+    state: icon
+  - type: Clothing
+    sprite: TS/Clothing/Shoes/Boots/magboots-marine.rsi
+  - type: Magboots
+    toggleAction: ActionToggleMagbootsMarine
+  - type: ClothingSpeedModifier
+    walkModifier: 0.92
+    sprintModifier: 0.92
+    enabled: false
+  - type: NoSlip
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: StaticPrice
+    price: 750
+
+
+- type: entity
+  id: ActionToggleMagbootsMarine
+  parent: ActionBaseToggleMagboots
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: { sprite: TS/Clothing/Shoes/Boots/magboots-marine.rsi, state: icon }
+    iconOn: TS/Clothing/Shoes/Boots/magboots-marine.rsi/icon-on.png
+
