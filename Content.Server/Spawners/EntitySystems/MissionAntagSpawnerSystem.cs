@@ -3,6 +3,7 @@ using Content.Server.Antag;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Spawners.Components;
 using Content.Server.TS;
+using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using JetBrains.Annotations;
 using Robust.Server.Player;
@@ -25,15 +26,16 @@ namespace Content.Server.Spawners.EntitySystems
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-        private int _balancedAntagsCount = 0;
-        private int _balancedBossAntagsCount = 0;
-        private int _playersRoundstartCount = 0;
+        public int _balancedAntagsCount { get; } = 0;
+        public int _balancedBossAntagsCount { get; } = 0;
+        public int _playersRoundstartCount { get; } = 0;
 
         public override void Initialize()
         {
             base.Initialize();
 
             SubscribeLocalEvent<MissionMapInitEventArgs>(OnMissionMapInit);
+            SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         }
 
         private void OnMissionMapInit(MissionMapInitEventArgs args)
@@ -44,17 +46,13 @@ namespace Content.Server.Spawners.EntitySystems
 
         private void DelayedCalculationRoleBalance()
         {
-            _balancedAntagsCount = 0;
-            _balancedBossAntagsCount = 0;
-            _playersRoundstartCount = 0;
-
-            var playerWhithoutEntityCount = 0;
+            var playerWithoutEntityCount = 0;
             var playerGhostCount = 0;
             foreach (var player in _playerManager.Sessions)
             {
                 if (player.AttachedEntity == null)
                 {
-                    ++playerWhithoutEntityCount;
+                    ++playerWithoutEntityCount;
                     continue;
                 }
                 if (TryComp<GhostComponent>(player.AttachedEntity, out _))
@@ -95,7 +93,7 @@ namespace Content.Server.Spawners.EntitySystems
 
             _logManager.GetSawmill("MissionAntagSpawner").Info(
                     "Calculating balance is over, active player count = {0}, antags count = {1}, boss count = {2}, ghost count = {3}, player without entity = {4}",
-                    _playersRoundstartCount, _balancedAntagsCount, _balancedBossAntagsCount, playerGhostCount, playerWhithoutEntityCount);
+                    _playersRoundstartCount, _balancedAntagsCount, _balancedBossAntagsCount, playerGhostCount, playerWithoutEntityCount);
 
             SpawnAllGhostedRoles(currentPool);
 
@@ -149,6 +147,13 @@ namespace Content.Server.Spawners.EntitySystems
                     }
                 }
             }
+        }
+
+        private void OnRoundRestart(RoundRestartCleanupEvent args)
+        {
+            _balancedAntagsCount = 0;
+            _balancedBossAntagsCount = 0;
+            _playersRoundstartCount = 0;
         }
     }
 }

@@ -9,6 +9,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.TS;
+using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.GameObjects;
@@ -44,6 +45,8 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         base.Initialize();
 
         SubscribeLocalEvent<AntagCalculatedAndSpawnedEventArgs>(OnAntagsSpawned);
+        // MasterRORuleComponent removed and added new after restart
+        //SubscribeLocalEvent<MasterRORuleComponent, RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
     protected override void Started(EntityUid uid, MasterRORuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -367,4 +370,5 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         component.SpawnedMissionEntities.Add(spawnedItem);
         return true;
     }
+
 }
