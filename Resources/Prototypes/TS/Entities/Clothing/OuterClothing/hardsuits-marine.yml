@@ -25,11 +25,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.55
-        Piercing: 0.5
-        Heat: 0.7
-        Cold: 0.7
+        Blunt: 0.45
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.45
+        Cold: 0.45
         Radiation: 0.75
         Caustic: 0.9
   - type: GroupExamine
@@ -56,27 +56,52 @@
 - type: entity
   parent: ClothingOuterHardsuitOBS4Base
   id: ClothingOuterHardsuitOBS4Pilot
-  name: OBS-4
+  name: OBS-4SL
   suffix: Pilot
-  description: Modern armor suit, version 4, pilot edition
+  description: Modern armor suit, version 4 super lightweight, pilot edition
   components:
   - type: Sprite
     sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-pilot.rsi
   - type: Clothing
     sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-pilot.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Cold: 0.7
+        Radiation: 0.7
 
 # Blue
 - type: entity
   parent: ClothingOuterHardsuitOBS4Base
   id: ClothingOuterHardsuitOBS4Medic
-  name: OBS-4
+  name: OBS-4L
   suffix: Medic
-  description: Modern armor suit, version 4, medic edition
+  description: Modern armor suit, version 4 lightweight, medic edition
   components:
   - type: Sprite
     sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-medic.rsi
   - type: Clothing
     sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-medic.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Cold: 0.5
+        Radiation: 0.6
+        Caustic: 0.6
 
 # Orange
 - type: entity
@@ -103,6 +128,9 @@
     sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-platoon-commander.rsi
   - type: Clothing
     sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-platoon-commander.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
 
 # Gold
 - type: entity
