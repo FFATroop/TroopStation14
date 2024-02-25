@@ -1,0 +1,16 @@
+# Airlocks
+#- type: entity
+#  parent: AirlockFreezer
+#  id: AirlockFreezerKitchenHydroLocked
+#  suffix: Kitchen/Hydroponics, Locked
+#  components:
+#  - type: AccessReader
+#    access: [["Kitchen"], ["Hydroponics"]]
+
+- type: entity
+  parent: AirlockMarine
+  id: AirlockMarineLocked
+  suffix: Marine, Locked
+  components:
+  - type: AccessReader
+    access: [[Marine]]

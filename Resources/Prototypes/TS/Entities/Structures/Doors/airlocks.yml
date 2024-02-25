@@ -1,0 +1,19 @@
+- type: entity
+  parent: Airlock
+  id: AirlockMarine
+  suffix: Marine
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Standard/marine.rsi
+  - type: PaintableAirlock
+    department: Combat
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMarineGlass
+  suffix: Marine
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Glass/marine.rsi
+  - type: PaintableAirlock
+    department: Combat
