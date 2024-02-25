@@ -26,6 +26,7 @@
     equippedPrefix: off
     slots: [ HEAD ]
   - type: Item
+    heldPrefix: off
     size: Large
     shape:
     - 0,0,3,3
