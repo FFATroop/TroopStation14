@@ -7,6 +7,7 @@
   id: ClothingHelmetHardsuitOBH4Base
   components:
   - type: Clickable
+  - type: BreathMask
   - type: ShowSecurityIcons
   - type: FlashImmunity
   - type: InteractionOutline
