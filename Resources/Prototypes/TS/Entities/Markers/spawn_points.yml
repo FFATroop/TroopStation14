@@ -26,6 +26,19 @@
       - state: marine-pilot
 
 - type: entity
+  id: SpawnPointMechPilot
+  parent: SpawnPointJobBase
+  name: mech pilot
+  components:
+  - type: SpawnPoint
+    job_id: MechPilot
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: mech-pilot
+
+- type: entity
   id: SpawnPointMarineEngineer
   parent: SpawnPointJobBase
   name: marine engineer
@@ -37,6 +50,19 @@
     layers:
       - state: bracket
       - state: marine-engineer
+
+- type: entity
+  id: SpawnPointMilitaryBorg
+  parent: SpawnPointJobBase
+  name: military borg
+  components:
+  - type: SpawnPoint
+    job_id: MilitaryBorg
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: military-borg
 
 - type: entity
   id: SpawnPointMarineMedic
@@ -54,7 +80,7 @@
 - type: entity
   id: SpawnPointPlatoonCommander
   parent: SpawnPointJobBase
-  name: plat commander
+  name: platoon commander
   components:
   - type: SpawnPoint
     job_id: PlatoonCommander
@@ -63,6 +89,32 @@
     layers:
       - state: bracket
       - state: platoon-commander
+
+- type: entity
+  id: SpawnPointRoboPlatoonCommander
+  parent: SpawnPointJobBase
+  name: robo platoon commander
+  components:
+  - type: SpawnPoint
+    job_id: RoboPlatoonCommander
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: robo-platoon-commander
+
+- type: entity
+  id: SpawnPointMechPlatoonCommander
+  parent: SpawnPointJobBase
+  name: mech platoon commander
+  components:
+  - type: SpawnPoint
+    job_id: MechPlatoonCommander
+  - type: Sprite
+    sprite: TS/Markers/jobs.rsi
+    layers:
+      - state: bracket
+      - state: mech-platoon-commander
 
 - type: entity
   id: SpawnPointCompanyCommander
