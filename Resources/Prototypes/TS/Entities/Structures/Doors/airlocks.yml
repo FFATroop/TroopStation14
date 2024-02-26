@@ -17,3 +17,163 @@
     sprite: TS/Structures/Doors/Glass/marine.rsi
   - type: PaintableAirlock
     department: Marine
+
+- type: entity
+  parent: Airlock
+  id: AirlockMarineEngineer
+  suffix: MarineEngineer
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Standard/marine-engineer.rsi
+  - type: PaintableAirlock
+    department: Marine
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMarineEngineerGlass
+  suffix: MarineEngineer
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Glass/marine-engineer.rsi
+  - type: PaintableAirlock
+    department: Marine
+    
+- type: entity
+  parent: Airlock
+  id: AirlockMarineMedic
+  suffix: MarineMedic
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Standard/marine-medic.rsi
+  - type: PaintableAirlock
+    department: Marine
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMarineMedicGlass
+  suffix: MarineMedic
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Glass/marine-medic.rsi
+  - type: PaintableAirlock
+    department: Marine
+    
+- type: entity
+  parent: Airlock
+  id: AirlockMarinePilot
+  suffix: MarinePilot
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Standard/marine-pilot.rsi
+  - type: PaintableAirlock
+    department: Marine
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMarinePilotGlass
+  suffix: MarinePilot
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Glass/marine-pilot.rsi
+  - type: PaintableAirlock
+    department: Marine
+    
+- type: entity
+  parent: Airlock
+  id: AirlockMechPilot
+  suffix: MechPilot
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Standard/marine-pilot-mech.rsi
+  - type: PaintableAirlock
+    department: Marine
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMechPilotGlass
+  suffix: MechPilot
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Glass/marine-pilot-mech.rsi
+  - type: PaintableAirlock
+    department: Marine
+    
+- type: entity
+  parent: Airlock
+  id: AirlockPlatoonCommander
+  suffix: PlatoonCommander
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Standard/marine-platoon-commander.rsi
+  - type: PaintableAirlock
+    department: Marine
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockPlatoonCommanderGlass
+  suffix: PlatoonCommander
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Glass/marine-platoon-commander.rsi
+  - type: PaintableAirlock
+    department: Marine
+    
+- type: entity
+  parent: Airlock
+  id: AirlockMechPlatoonCommander
+  suffix: MechPlatoonCommander
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Standard/marine-platoon-commander-mech.rsi
+  - type: PaintableAirlock
+    department: Marine
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMechPlatoonCommanderGlass
+  suffix: MechPlatoonCommander
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Glass/marine-platoon-commander-mech.rsi
+  - type: PaintableAirlock
+    department: Marine
+
+- type: entity
+  parent: Airlock
+  id: AirlockRoboPlatoonCommander
+  suffix: RoboPlatoonCommander
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Standard/marine-platoon-commander-robo.rsi
+  - type: PaintableAirlock
+    department: Marine
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockRoboPlatoonCommanderGlass
+  suffix: RoboPlatoonCommander
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Glass/marine-platoon-commander-robo.rsi
+  - type: PaintableAirlock
+    department: Marine
+    
+- type: entity
+  parent: Airlock
+  id: AirlockCompanyCommander
+  suffix: CompanyCommander
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Standard/marine-company-commander.rsi
+  - type: PaintableAirlock
+    department: Marine
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockCompanyCommanderGlass
+  suffix: CompanyCommander
+  components:
+  - type: Sprite
+    sprite: TS/Structures/Doors/Glass/marine-company-commander.rsi
+  - type: PaintableAirlock
+    department: Marine
