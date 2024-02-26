@@ -13,4 +13,140 @@
   suffix: Marine, Locked
   components:
   - type: AccessReader
-    access: [[Marine]]
+    access: [["Marine"]]
+
+- type: entity
+  parent: AirlockMarineGlass
+  id: AirlockMarineGlassLocked
+  suffix: Marine, Locked
+  components:
+  - type: AccessReader
+    access: [["Marine"]]
+    
+- type: entity
+  parent: AirlockMarineEngineer
+  id: AirlockMarineEngineerLocked
+  suffix: MarineEngineer, Locked
+  components:
+  - type: AccessReader
+    access: [["Marine"],["Engineering"]]
+
+- type: entity
+  parent: AirlockMarineEngineerGlass
+  id: AirlockMarineEngineerGlassLocked
+  suffix: MarineEngineer, Locked
+  components:
+  - type: AccessReader
+    access: [["Marine"],["Engineering"]]
+    
+- type: entity
+  parent: AirlockMarineMedic
+  id: AirlockMarineMedicLocked
+  suffix: MarineMedic, Locked
+  components:
+  - type: AccessReader
+    access: [["Marine"],["Medical"]]
+
+- type: entity
+  parent: AirlockMarineMedicGlass
+  id: AirlockMarineMedicGlassLocked
+  suffix: MarineMedic, Locked
+  components:
+  - type: AccessReader
+    access: [["Marine"],["Medical"]]
+    
+- type: entity
+  parent: AirlockMarinePilot
+  id: AirlockMarinePilotLocked
+  suffix: Pilot, Locked
+  components:
+  - type: AccessReader
+    access: [["MarinePilot"]]
+
+- type: entity
+  parent: AirlockMarinePilotGlass
+  id: AirlockMarinePilotGlassLocked
+  suffix: Pilot, Locked
+  components:
+  - type: AccessReader
+    access: [["MarinePilot"]]
+    
+- type: entity
+  parent: AirlockMechPilot
+  id: AirlockMechPilotLocked
+  suffix: MechPilot, Locked
+  components:
+  - type: AccessReader
+    access: [["MarineMechPilot"]]
+
+- type: entity
+  parent: AirlockMechPilotGlass
+  id: AirlockMechPilotGlassLocked
+  suffix: MechPilot, Locked
+  components:
+  - type: AccessReader
+    access: [["MarineMechPilot"]]
+    
+- type: entity
+  parent: AirlockPlatoonCommander
+  id: AirlockPlatoonCommanderLocked
+  suffix: PlatoonCommander, Locked
+  components:
+  - type: AccessReader
+    access: [["PlatoonCommander"]]
+
+- type: entity
+  parent: AirlockPlatoonCommanderGlass
+  id: AirlockPlatoonCommanderGlassLocked
+  suffix: PlatoonCommander, Locked
+  components:
+  - type: AccessReader
+    access: [["PlatoonCommander"]]
+    
+- type: entity
+  parent: AirlockMechPlatoonCommander
+  id: AirlockMechPlatoonCommanderLocked
+  suffix: MechPlatoonCommander, Locked
+  components:
+  - type: AccessReader
+    access: [["MechPlatoonCommander"]]
+
+- type: entity
+  parent: AirlockMechPlatoonCommanderGlass
+  id: AirlockMechPlatoonCommanderGlassLocked
+  suffix: MechPlatoonCommander, Locked
+  components:
+  - type: AccessReader
+    access: [["MechPlatoonCommander"]]
+    
+- type: entity
+  parent: AirlockRoboPlatoonCommander
+  id: AirlockRoboPlatoonCommanderLocked
+  suffix: RoboPlatoonCommander, Locked
+  components:
+  - type: AccessReader
+    access: [["RoboPlatoonCommander"]]
+
+- type: entity
+  parent: AirlockRoboPlatoonCommanderGlass
+  id: AirlockRoboPlatoonCommanderGlassLocked
+  suffix: RoboPlatoonCommander, Locked
+  components:
+  - type: AccessReader
+    access: [["RoboPlatoonCommander"]]
+    
+- type: entity
+  parent: AirlockCompanyCommander
+  id: AirlockCompanyCommanderLocked
+  suffix: CompanyCommander, Locked
+  components:
+  - type: AccessReader
+    access: [["CompanyCommander"]]
+
+- type: entity
+  parent: AirlockCompanyCommanderGlass
+  id: AirlockCompanyCommanderGlassLocked
+  suffix: CompanyCommander, Locked
+  components:
+  - type: AccessReader
+    access: [["CompanyCommander"]]
