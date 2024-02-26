@@ -12,7 +12,7 @@
     - id: ClothingMaskGas
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Marine"]]
 
 # New
 - type: entity
@@ -26,11 +26,10 @@
     - id: OxygenTankFilled
     - id: ClothingOuterHardsuitOBS4Marine
     - id: ClothingHelmetHardsuitOBH4Marine
-    #- id: ClothingMaskGas
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
-    access: [["Security"]]
-    
+    access: [["Marine"]]
+
 - type: entity
   id: SuitStorageMarinePilot
   suffix: OBS-4, Pilot
@@ -44,8 +43,23 @@
     - id: ClothingHelmetHardsuitOBH4Pilot
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
-    access: [["Security"]]
-       
+    access: [["MarinePilot"]]
+
+- type: entity
+  id: SuitStorageMechPilot
+  suffix: OBS-4, MechPilot
+  parent: SuitStorageBase
+  components:
+  - type: StorageFill
+    contents:
+    - id: NitrogenTankFilled
+    - id: OxygenTankFilled
+    - id: ClothingOuterHardsuitOBS4Pilot
+    - id: ClothingHelmetHardsuitOBH4Pilot
+    - id: ClothingShoesBootsMagMarine
+  - type: AccessReader
+    access: [["MarineMechPilot"]]
+
 - type: entity
   id: SuitStorageMarineMedic
   suffix: OBS-4, Medic
@@ -59,8 +73,8 @@
     - id: ClothingHelmetHardsuitOBH4Medic
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
-    access: [["Security"]]
-        
+    access: [["Marine"],["Medical"]]
+
 - type: entity
   id: SuitStorageMarineEngineer
   suffix: OBS-4, Engineer
@@ -74,8 +88,8 @@
     - id: ClothingHelmetHardsuitOBH4Engineer
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
-    access: [["Security"]]
-    
+    access: [["Marine"],["Engineering"]]
+
 - type: entity
   id: SuitStorageMarinePlatoonCommander
   suffix: OBS-4, PlatoonCommander
@@ -89,19 +103,49 @@
     - id: ClothingHelmetHardsuitOBH4PlatoonCommander
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
-    access: [["Security"]]
-    
+    access: [["PlatoonCommander"]]
+
 - type: entity
-  id: SuitStorageMarineCommander
-  suffix: OBS-4, Commander
+  id: SuitStorageMarineMechPlatoonCommander
+  suffix: OBS-4, MechPlatoonCommander
   parent: SuitStorageBase
   components:
   - type: StorageFill
     contents:
     - id: NitrogenTankFilled
     - id: OxygenTankFilled
-    - id: ClothingOuterHardsuitOBS4Commander
-    - id: ClothingHelmetHardsuitOBH4Commander
+    - id: ClothingOuterHardsuitOBS4MechPlatoonCommander
+    - id: ClothingHelmetHardsuitOBH4MechPlatoonCommander
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
-    access: [["Security"]]
+    access: [["MechPlatoonCommander"]]
+
+- type: entity
+  id: SuitStorageMarineRoboPlatoonCommander
+  suffix: OBS-4, RoboPlatoonCommander
+  parent: SuitStorageBase
+  components:
+  - type: StorageFill
+    contents:
+    - id: NitrogenTankFilled
+    - id: OxygenTankFilled
+    - id: ClothingOuterHardsuitOBS4RoboPlatoonCommander
+    - id: ClothingHelmetHardsuitOBH4RoboPlatoonCommander
+    - id: ClothingShoesBootsMagMarine
+  - type: AccessReader
+    access: [["RoboPlatoonCommander"]]
+
+- type: entity
+  id: SuitStorageMarineCommander
+  suffix: OBS-4, CompanyCommander
+  parent: SuitStorageBase
+  components:
+  - type: StorageFill
+    contents:
+    - id: NitrogenTankFilled
+    - id: OxygenTankFilled
+    - id: ClothingOuterHardsuitOBS4CompanyCommander
+    - id: ClothingHelmetHardsuitOBH4CompanyCommander
+    - id: ClothingShoesBootsMagMarine
+  - type: AccessReader
+    access: [["CompanyCommander"]]
