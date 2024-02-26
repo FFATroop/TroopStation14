@@ -6,7 +6,7 @@
   - type: Sprite
     sprite: TS/Structures/Doors/Standard/marine.rsi
   - type: PaintableAirlock
-    department: Combat
+    department: Marine
 
 - type: entity
   parent: AirlockGlass
@@ -16,4 +16,4 @@
   - type: Sprite
     sprite: TS/Structures/Doors/Glass/marine.rsi
   - type: PaintableAirlock
-    department: Combat
+    department: Marine

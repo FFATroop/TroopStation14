@@ -5,7 +5,7 @@
   playTimeTracker: JobMarinePilot
 #  requirements:            # First Playtest time
 #  - !type:DepartmentTimeRequirement
-#    department: Combat
+#    department: Marine
 #    time: 7200 #2 hrs
 #  - !type:DepartmentTimeRequirement
 #    department: Engineering

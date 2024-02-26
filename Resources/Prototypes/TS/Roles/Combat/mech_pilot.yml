@@ -1,0 +1,32 @@
+- type: job
+  id: MechPilot
+  name: job-name-mech-pilot
+  description: job-description-mech-pilot
+  playTimeTracker: JobMechPilot
+  requirements:            # First Playtest time
+  - !type:DepartmentTimeRequirement
+    department: Marine
+    time: 720000 #200 hrs
+#  - !type:DepartmentTimeRequirement
+#    department: Engineering
+#    time: 7200 #2 hrs
+  startingGear: MechPilotGear
+  icon: "JobIconMechPilot"
+  supervisors: job-supervisors-mech-platoon
+  canBeAntag: false
+  access:
+  - Maintenance
+  - External
+  - MarineMechPilot
+  - Marine
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: MechPilotGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombat
+    id: MechPilotIDCard
+    ears: ClothingHeadsetSecurity

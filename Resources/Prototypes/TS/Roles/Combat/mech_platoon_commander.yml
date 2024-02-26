@@ -1,12 +1,12 @@
 - type: job
-  id: PlatoonCommander
-  name: job-name-platoon-commander
-  description: job-description-platoon-commander
-  playTimeTracker: JobPlatoonCommander
+  id: MechPlatoonCommander
+  name: job-name-mech-platoon-commander
+  description: job-description-mech-platoon-commander
+  playTimeTracker: JobMechPlatoonCommander
   requirements:            # First Playtest time
-  - !type:DepartmentTimeRequirement
-    department: Marine
-    time: 7200 #2 hrs
+  - !type:RoleTimeRequirement
+    role: JobMechPilot
+    time: 720000 #200 hrs
 #  - !type:DepartmentTimeRequirement
 #    department: Marine
 #    time: 72000 #20 hrs
@@ -17,8 +17,8 @@
 #    department: Engineering
 #    time: 7200 #2 hrs
   weight: 5
-  startingGear: PlatoonCommanderGear
-  icon: "JobIconPlatoonCommander"
+  startingGear: MechPlatoonCommanderGear
+  icon: "JobIconMechPlatoonCommander"
   supervisors: job-supervisors-company
   canBeAntag: false
   access:
@@ -26,16 +26,18 @@
   - External
   - Armory
   - Marine
-  - PlatoonCommander
+  - Science
+  - MarineMechPilot
+  - MechPlatoonCommander
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
 
 - type: startingGear
-  id: PlatoonCommanderGear
+  id: MechPlatoonCommanderGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
-    id: PlatoonCommanderIDCard
+    id: MechPlatoonCommanderIDCard
     ears: ClothingHeadsetSecurity
 

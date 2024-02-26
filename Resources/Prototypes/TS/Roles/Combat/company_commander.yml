@@ -1,0 +1,41 @@
+- type: job
+  id: CompanyCommander
+  name: job-name-company-commander
+  description: job-description-company-commander
+  playTimeTracker: JobCompanyCommander
+  requirements:
+#  - !type:DepartmentTimeRequirement
+#    department: Marine
+#    time: 36000 #10 hrs
+  - !type:DepartmentTimeRequirement
+    department: Marine
+    time: 18000 #5 hrs
+  weight: 10
+  startingGear: CompanyCommanderGear
+  icon: "JobIconCompanyCommander"
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  access:
+  - Maintenance
+  - External
+  - Armory
+  - Command
+  - CompanyCommander
+  - PlatoonCommander
+  - MechPlatoonCommander
+  - RoboPlatoonCommander
+  - MarinePilot
+  - MarineMechPilot
+  - Marine
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: CompanyCommanderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombat
+    id: PartCommanderIDCard
+    ears: ClothingHeadsetSecurity
+

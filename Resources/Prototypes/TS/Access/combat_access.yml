@@ -1,15 +1,38 @@
 - type: accessLevel
   id: Marine
   name: id-card-access-level-marine
-  
+
+- type: accessLevel
+  id: MarineMechPilot
+  name: id-card-access-level-marine-mech-pilot
+
 - type: accessLevel
   id: MarinePilot
   name: id-card-access-level-marine-pilot
-  
-- type: accessLevel
-  id: PartCommander
-  name: id-card-access-level-part-commander
-  
+
 - type: accessLevel
   id: PlatoonCommander
   name: id-card-access-level-platoon-commander
+
+- type: accessLevel
+  id: MechPlatoonCommander
+  name: id-card-access-level-mech-platoon-commander
+
+- type: accessLevel
+  id: RoboPlatoonCommander
+  name: id-card-access-level-robo-platoon-commander
+
+- type: accessLevel
+  id: CompanyCommander
+  name: id-card-access-level-company-commander
+
+- type: accessGroup
+  id: Combat
+  tags:
+  - CompanyCommander
+  - PlatoonCommander
+  - MechPlatoonCommander
+  - RoboPlatoonCommander
+  - MarinePilot
+  - MarineMechPilot
+  - Marine

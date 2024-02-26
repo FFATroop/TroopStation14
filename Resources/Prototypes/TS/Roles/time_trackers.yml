@@ -4,6 +4,9 @@
 
 - type: playTimeTracker
   id: JobMarinePilot
+  
+- type: playTimeTracker
+  id: JobMechPilot
 
 - type: playTimeTracker
   id: JobMarineMedic
@@ -12,12 +15,21 @@
   id: JobMarineEngineer
 
 - type: playTimeTracker
-  id: JobPartCommander
+  id: JobMilitaryBorg
+
+- type: playTimeTracker
+  id: JobRoboPlatoonCommander
+
+- type: playTimeTracker
+  id: JobMechPlatoonCommander
 
 - type: playTimeTracker
   id: JobPlatoonCommander
-  
-  
+
+- type: playTimeTracker
+  id: JobCompanyCommander
+
+
 # Ghost jobs Xeno
 - type: playTimeTracker
   id: JobXenoRoleBase
