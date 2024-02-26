@@ -132,15 +132,54 @@
     walkModifier: 0.8
     sprintModifier: 0.8
 
+- type: entity
+  parent: ClothingOuterHardsuitOBS4Base
+  id: ClothingOuterHardsuitOBS4MechPlatoonCommander
+  name: OBS-4
+  suffix: MechPlatoonCommander
+  description: Modern armor suit, version 4, mech platoon commander edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-mech-platoon-commander.rsi
+  - type: Clothing
+    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-mech-platoon-commander.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Cold: 0.7
+        Radiation: 0.7
+
+- type: entity
+  parent: ClothingOuterHardsuitOBS4Base
+  id: ClothingOuterHardsuitOBS4RoboPlatoonCommander
+  name: OBS-4
+  suffix: RoboPlatoonCommander
+  description: Modern armor suit, version 4, robo platoon commander edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-robo-platoon-commander.rsi
+  - type: Clothing
+    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-robo-platoon-commander.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+
 # Gold
 - type: entity
   parent: ClothingOuterHardsuitOBS4Base
-  id: ClothingOuterHardsuitOBS4Commander
+  id: ClothingOuterHardsuitOBS4CompanyCommander
   name: OBS-4
   suffix: Commander
   description: Modern armor suit, version 4, commander edition
   components:
   - type: Sprite
-    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-commander.rsi
+    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-company-commander.rsi
   - type: Clothing
-    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-commander.rsi
+    sprite: TS/Clothing/OuterClothing/Hardsuits/obs-4-company-commander.rsi

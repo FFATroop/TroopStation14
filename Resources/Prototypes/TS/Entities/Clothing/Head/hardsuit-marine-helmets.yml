@@ -163,18 +163,52 @@
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
 
+- type: entity
+  parent: ClothingHelmetHardsuitOBH4Base
+  id: ClothingHelmetHardsuitOBH4MechPlatoonCommander
+  name: OBH-4
+  suffix: MechPlatoonCommander
+  description: Modern armor helmet, version 4, mech platoon commander edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-mech-platoon-commander.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-mech-platoon-commander.rsi
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+
+- type: entity
+  parent: ClothingHelmetHardsuitOBH4Base
+  id: ClothingHelmetHardsuitOBH4RoboPlatoonCommander
+  name: OBH-4
+  suffix: RoboPlatoonCommander
+  description: Modern armor helmet, version 4, robo platoon commander edition
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-robo-platoon-commander.rsi
+  - type: Clothing
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-robo-platoon-commander.rsi
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+
 # Gold
 - type: entity
   parent: ClothingHelmetHardsuitOBH4Base
-  id: ClothingHelmetHardsuitOBH4Commander
+  id: ClothingHelmetHardsuitOBH4CompanyCommander
   name: OBH-4
   suffix: Commander
   description: Modern armor helmet, version 4, commander edition
   components:
   - type: Sprite
-    sprite: TS/Clothing/Head/Hardsuits/obh-4-commander.rsi
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-company-commander.rsi
   - type: Clothing
-    sprite: TS/Clothing/Head/Hardsuits/obh-4-commander.rsi
+    sprite: TS/Clothing/Head/Hardsuits/obh-4-company-commander.rsi
   - type: ItemSlots
     slots:
       cell_slot:

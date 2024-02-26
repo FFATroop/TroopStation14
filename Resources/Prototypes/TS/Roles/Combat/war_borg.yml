@@ -1,0 +1,13 @@
+- type: job
+  id: MilitaryBorg
+  name: job-name-military-borg
+  description: job-description-military-borg
+  playTimeTracker: JobMilitaryBorg
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Marine
+    time: 720000 #200 hrs
+  canBeAntag: false
+  icon: JobIconMilitaryBorg
+  supervisors: job-supervisors-robo-platoon
+  jobEntity: PlayerBorgGeneric

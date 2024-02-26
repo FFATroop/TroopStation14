@@ -1,0 +1,42 @@
+- type: job
+  id: RoboPlatoonCommander
+  name: job-name-robo-platoon-commander
+  description: job-description-robo-platoon-commander
+  playTimeTracker: JobRoboPlatoonCommander
+  requirements:            # First Playtest time
+  - !type:RoleTimeRequirement
+    role: JobMilitaryBorg
+    time: 720000 #200 hrs
+#  - !type:DepartmentTimeRequirement
+#    department: Marine
+#    time: 72000 #20 hrs
+#  - !type:DepartmentTimeRequirement
+#    department: Medical
+#    time: 7200 #2 hrs
+#  - !type:DepartmentTimeRequirement
+#    department: Engineering
+#    time: 7200 #2 hrs
+  weight: 5
+  startingGear: RoboPlatoonCommanderGear
+  icon: "JobIconRoboPlatoonCommander"
+  supervisors: job-supervisors-company
+  canBeAntag: false
+  access:
+  - Maintenance
+  - External
+  - Armory
+  - Marine
+  - Research
+  - RoboPlatoonCommander
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: RoboPlatoonCommanderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombat
+    id: RoboPlatoonCommanderIDCard
+    ears: ClothingHeadsetSecurity
+

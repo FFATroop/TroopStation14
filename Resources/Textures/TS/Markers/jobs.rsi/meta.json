@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from https://github.com/vgstation-coders/vgstation13/blob/e71d6c4fba5a51f99b81c295dcaec4fc2f58fb19/icons/mob/screen1.dmi, librarian by Peptide. cburn and cluwne made by brainfood1183 (github). brigmed made by PuroSlavKing (Github)",
+  "copyright": "Created by 778b for https://github.com/FFATroop/TroopStation14",
   "size": {
     "x": 32,
     "y": 32
@@ -16,17 +16,29 @@
 	{
       "name": "marine-pilot"
     },
-    {
-      "name": "marine-eng"
+	{
+      "name": "mech-pilot"
     },
     {
-      "name": "marine-med"
+      "name": "marine-engineer"
+    },
+	{
+      "name": "military-borg"
     },
     {
-      "name": "marine-part"
+      "name": "marine-medic"
     },
     {
-      "name": "marine-plat"
+      "name": "platoon-commander"
+    },
+	{
+      "name": "mech-platoon-commander"
+    },
+	{
+      "name": "robo-platoon-commander"
+    },
+    {
+      "name": "company-commander"
     }
   ]
 }

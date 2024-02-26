@@ -5,10 +5,10 @@
   playTimeTracker: JobPlatoonCommander
   requirements:            # First Playtest time
   - !type:DepartmentTimeRequirement
-    department: Combat
+    department: Marine
     time: 7200 #2 hrs
 #  - !type:DepartmentTimeRequirement
-#    department: Combat
+#    department: Marine
 #    time: 72000 #20 hrs
 #  - !type:DepartmentTimeRequirement
 #    department: Medical
@@ -16,20 +16,16 @@
 #  - !type:DepartmentTimeRequirement
 #    department: Engineering
 #    time: 7200 #2 hrs
-  weight: 10
+  weight: 5
   startingGear: PlatoonCommanderGear
   icon: "JobIconPlatoonCommander"
-  supervisors: job-supervisors-captain
+  supervisors: job-supervisors-company
   canBeAntag: false
   access:
-  - Security
-  - Brig
   - Maintenance
   - External
   - Armory
   - Marine
-  - MarinePilot
-  - PartCommander
   - PlatoonCommander
   special:
   - !type:AddImplantSpecial

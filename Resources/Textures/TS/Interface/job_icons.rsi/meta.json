@@ -8,10 +8,16 @@
     },
     "states": [
         {
+            "name": "CompanyCommander"
+        },
+        {
             "name": "PlatoonCommander"
         },
 		{
-            "name": "PartCommander"
+            "name": "RoboPlatoonCommander"
+        },
+        {
+            "name": "MechPlatoonCommander"
         },
         {
             "name": "Marine"
@@ -24,6 +30,12 @@
         },
 		{
             "name": "MarinePilot"
+        },
+        {
+            "name": "MilitaryBorg"
+        },
+		{
+            "name": "MechPilot"
         }
     ]
 }

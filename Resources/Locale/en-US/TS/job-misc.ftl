@@ -25,7 +25,6 @@ JobMarine = Marine
 JobMarinePilot = Pilot
 JobMarineMedic = Marine Medic
 JobMarineEngineer = Marine Engineer
-JobPartCommander = Part-Commander
 JobPlatoonCommander = Platoon-Commander
 JobXenoRoleBase = Xeno
 JobXenoRolePraetorian = Praetorian
