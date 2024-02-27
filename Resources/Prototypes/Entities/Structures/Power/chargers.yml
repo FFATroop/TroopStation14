@@ -104,10 +104,12 @@
         whitelist:
           tags:
           - PowerCell
+          - PowerCellSmall
         blacklist:
           tags:
           - PotatoBattery
           - PlasmaMagazine
+
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
   id: PowerCageRecharger
