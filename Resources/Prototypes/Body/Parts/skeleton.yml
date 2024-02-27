@@ -14,7 +14,6 @@
         ents: []
   - type: StaticPrice
     price: 20
-  - type: Gibbable
   - type: Tag
     tags:
       - Trash

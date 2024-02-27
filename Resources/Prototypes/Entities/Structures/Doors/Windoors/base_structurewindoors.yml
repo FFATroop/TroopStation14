@@ -59,8 +59,6 @@
   - type: DeviceLinkSource
     ports:
     - DoorStatus
-    lastSignals:
-      DoorStatus: false
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Glass

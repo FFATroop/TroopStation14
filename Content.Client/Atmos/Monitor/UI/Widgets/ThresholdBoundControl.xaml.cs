@@ -72,6 +72,7 @@ public sealed partial class ThresholdBoundControl : BoxContainer
         CBoundLabel.Text = controlLabel;
 
         CSpinner.Value = ScaledValue;
+        CBoundEnabled.Pressed = _value != null;
 
         CSpinner.OnValueChanged += SpinnerValueChanged;
         CBoundEnabled.OnToggled += CheckboxToggled;

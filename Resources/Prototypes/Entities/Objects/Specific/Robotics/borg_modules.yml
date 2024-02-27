@@ -205,7 +205,6 @@
     - Shovel
     - OreBag
     - Crowbar
-    - RadioHandheld
 
 - type: entity
   id: BorgModuleGrapplingGun
@@ -220,7 +219,6 @@
     items:
     - WeaponGrapplingGun
     - WeaponCrusherDagger
-    - HandheldGPSBasic
 
 # engineering modules
 - type: entity
@@ -237,9 +235,22 @@
     - Omnitool
     - WelderExperimental
     - NetworkConfigurator
-    - RemoteSignaller
-    - GasAnalyzer   
-    - GeigerCounter
+
+- type: entity
+  id: BorgModuleGasAnalyzer
+  parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule ]
+  name: gas analyzer cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: engineering
+    - state: icon-gas-analyzer
+  - type: ItemBorgModule
+    items:
+    - GasAnalyzer
+    - trayScanner
+    - Crowbar
+    - Wrench
 
 - type: entity
   id: BorgModuleConstruction
@@ -315,7 +326,6 @@
     - AdvMopItem
     - HoloprojectorBorg
     - SprayBottleSpaceCleaner
-    - Dropper
 
 # medical modules
 - type: entity
@@ -407,8 +417,6 @@
     items:
     - AnomalyScanner
     - AnomalyLocatorUnpowered
-    - RemoteSignaller
-    - Multitool
 
 # service modules
 - type: entity
@@ -427,7 +435,7 @@
     - HandLabeler
     - Lighter
     - DrinkShaker
-    - BorgDropper
+    - Syringe
 
 - type: entity
   id: BorgModuleMusique

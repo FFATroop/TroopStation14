@@ -15,7 +15,6 @@ using Content.Shared.Atmos.Piping.Unary.Visuals;
 using Content.Shared.Atmos.Monitor;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.Audio;
-using Content.Shared.DeviceNetwork;
 using Content.Shared.Tools.Systems;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;

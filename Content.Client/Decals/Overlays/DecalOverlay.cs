@@ -59,14 +59,8 @@ namespace Content.Client.Decals.Overlays
             {
                 foreach (var decal in decals.Values)
                 {
-                    if (!_cachedTextures.TryGetValue(decal.Id, out var cache))
+                    if (!_cachedTextures.TryGetValue(decal.Id, out var cache) && _prototypeManager.TryIndex<DecalPrototype>(decal.Id, out var decalProto))
                     {
-                        // Nothing to cache someone messed up
-                        if (!_prototypeManager.TryIndex<DecalPrototype>(decal.Id, out var decalProto))
-                        {
-                            continue;
-                        }
-
                         cache = (_sprites.Frame0(decalProto.Sprite), decalProto.SnapCardinals);
                         _cachedTextures[decal.Id] = cache;
                     }

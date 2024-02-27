@@ -1,5 +1,4 @@
 using Content.Shared.Explosion;
-using Content.Shared.Explosion.Components;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.GameStates;

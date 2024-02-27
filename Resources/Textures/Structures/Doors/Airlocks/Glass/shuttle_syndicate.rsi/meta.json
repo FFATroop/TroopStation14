@@ -8,9 +8,6 @@
   },
   "states": [
     {
-      "name": "assembly"
-    },
-    {
       "name": "bolted_unlit"
     },
     {
@@ -18,18 +15,6 @@
     },
     {
       "name": "closed_unlit"
-    },
-    {
-      "name": "open_unlit"
-    },
-    {
-      "name": "bolted_open_unlit"
-    },
-    {
-      "name": "panel_closed"
-    },
-    {
-      "name": "emergency_open_unlit"
     },
     {
       "name": "closing",

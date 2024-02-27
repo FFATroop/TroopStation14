@@ -122,6 +122,7 @@ public sealed partial class ExplosionSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
+        UnsubscribeCvars();
         _nodeGroupSystem.PauseUpdating = false;
         _pathfindingSystem.PauseUpdating = false;
     }

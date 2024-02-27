@@ -38,7 +38,7 @@ public sealed class DebugPathfindingCommand : LocalizedCommands
         }
     }
 
-    public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
         if (args.Length > 1)
         {

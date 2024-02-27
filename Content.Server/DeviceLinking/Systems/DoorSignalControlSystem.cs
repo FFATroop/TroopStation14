@@ -1,7 +1,6 @@
 using Content.Server.DeviceLinking.Components;
 using Content.Server.DeviceNetwork;
 using Content.Server.Doors.Systems;
-using Content.Shared.DeviceNetwork;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors;
 using JetBrains.Annotations;
@@ -60,7 +59,8 @@ namespace Content.Server.DeviceLinking.Systems
             {
                 if (state == SignalState.High || state == SignalState.Momentary)
                 {
-                    _doorSystem.TryToggleDoor(uid, door);
+                    if (door.State is DoorState.Closed or DoorState.Open)
+                        _doorSystem.TryToggleDoor(uid, door);
                 }
             }
             else if (args.Port == component.InBolt)
@@ -85,18 +85,23 @@ namespace Content.Server.DeviceLinking.Systems
 
         private void OnStateChanged(EntityUid uid, DoorSignalControlComponent door, DoorStateChangedEvent args)
         {
+            var data = new NetworkPayload()
+            {
+                { DeviceNetworkConstants.LogicState, SignalState.Momentary }
+            };
+
             if (args.State == DoorState.Closed)
             {
-                // only ever say the door is closed when it is completely airtight
-                _signalSystem.SendSignal(uid, door.OutOpen, false);
+                data[DeviceNetworkConstants.LogicState] = SignalState.Low;
+                _signalSystem.InvokePort(uid, door.OutOpen, data);
             }
             else if (args.State == DoorState.Open
                   || args.State == DoorState.Opening
                   || args.State == DoorState.Closing
                   || args.State == DoorState.Emagging)
             {
-                // say the door is open whenever it would be letting air pass
-                _signalSystem.SendSignal(uid, door.OutOpen, true);
+                data[DeviceNetworkConstants.LogicState] = SignalState.High;
+                _signalSystem.InvokePort(uid, door.OutOpen, data);
             }
         }
     }

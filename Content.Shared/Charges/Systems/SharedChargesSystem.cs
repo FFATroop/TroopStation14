@@ -38,7 +38,7 @@ public abstract class SharedChargesSystem : EntitySystem
         var old = comp.Charges;
         comp.Charges = Math.Clamp(comp.Charges + change, 0, comp.MaxCharges);
         if (comp.Charges != old)
-            Dirty(uid, comp);
+            Dirty(comp);
     }
 
     /// <summary>

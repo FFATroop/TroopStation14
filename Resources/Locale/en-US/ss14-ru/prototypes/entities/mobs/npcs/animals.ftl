@@ -131,5 +131,3 @@ ent-MobHamster = hamster
     .desc = A cute, fluffy, robust hamster.
 ent-MobPig = pig
     .desc = Oink.
-ent-MobDionaNymph = diona nymph
-    .desc = It's like a cat, only.... branch-ier.

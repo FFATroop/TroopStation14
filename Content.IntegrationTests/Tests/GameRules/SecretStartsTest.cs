@@ -21,10 +21,7 @@ public sealed class SecretStartsTest
 
         await server.WaitAssertion(() =>
         {
-            // this mimics roundflow:
-            // rules added, then round starts
-            gameTicker.AddGameRule("Secret");
-            gameTicker.StartGamePresetRules();
+            gameTicker.StartGameRule("Secret");
         });
 
         // Wait three ticks for any random update loops that might happen

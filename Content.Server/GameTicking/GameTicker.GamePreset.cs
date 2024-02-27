@@ -188,7 +188,7 @@ namespace Content.Server.GameTicking
             return true;
         }
 
-        public void StartGamePresetRules()
+        private void StartGamePresetRules()
         {
             // May be touched by the preset during init.
             var rules = new List<EntityUid>(GetAddedGameRules());

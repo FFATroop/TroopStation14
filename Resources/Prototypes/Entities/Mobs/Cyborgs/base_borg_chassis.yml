@@ -74,8 +74,7 @@
   - type: SiliconLawBound
   - type: EmagSiliconLaw
     stunTime: 5
-  - type: SiliconLawProvider
-    laws: Crewsimov
+    emagLaws: SyndicateStatic
   - type: IonStormTarget
   - type: Strippable
   - type: InventorySlots

@@ -59,7 +59,7 @@ public sealed partial class ContentAudioSystem
 
     private void InitializeAmbientMusic()
     {
-        Subs.CVar(_configManager, CCVars.AmbientMusicVolume, AmbienceCVarChanged, true);
+        _configManager.OnValueChanged(CCVars.AmbientMusicVolume, AmbienceCVarChanged, true);
         _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("audio.ambience");
 
         // Reset audio
@@ -84,6 +84,7 @@ public sealed partial class ContentAudioSystem
 
     private void ShutdownAmbientMusic()
     {
+        _configManager.UnsubValueChanged(CCVars.AmbientMusicVolume, AmbienceCVarChanged);
         _state.OnStateChanged -= OnStateChange;
         _ambientMusicStream = _audio.Stop(_ambientMusicStream);
     }
@@ -228,7 +229,7 @@ public sealed partial class ContentAudioSystem
 
     private AmbientMusicPrototype? GetAmbience()
     {
-        var player = _player.LocalEntity;
+        var player = _player.LocalPlayer?.ControlledEntity;
 
         if (player == null)
             return null;

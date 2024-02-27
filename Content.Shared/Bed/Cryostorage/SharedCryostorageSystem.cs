@@ -42,7 +42,14 @@ public abstract class SharedCryostorageSystem : EntitySystem
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
-        Subs.CVar(_configuration, CCVars.GameCryoSleepRejoining, OnCvarChanged, true);
+        _configuration.OnValueChanged(CCVars.GameCryoSleepRejoining, OnCvarChanged, true);
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _configuration.UnsubValueChanged(CCVars.GameCryoSleepRejoining, OnCvarChanged);
     }
 
     private void OnCvarChanged(bool value)

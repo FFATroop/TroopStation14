@@ -67,8 +67,6 @@ public sealed partial class VoiceMaskSystem : EntitySystem
                 */
 
             args.Name = component.VoiceName;
-            if (component.SpeechVerb != null)
-                args.SpeechVerb = component.SpeechVerb;
         }
     }
 

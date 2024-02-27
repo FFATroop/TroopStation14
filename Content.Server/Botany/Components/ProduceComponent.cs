@@ -1,12 +1,11 @@
 using Content.Server.Botany.Systems;
-using Content.Shared.Botany.Components;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Botany.Components;
 
 [RegisterComponent]
 [Access(typeof(BotanySystem))]
-public sealed partial class ProduceComponent : SharedProduceComponent
+public sealed partial class ProduceComponent : Component
 {
     [DataField("targetSolution")] public string SolutionName { get; set; } = "food";
 

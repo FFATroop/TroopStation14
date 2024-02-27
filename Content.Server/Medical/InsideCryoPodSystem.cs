@@ -1,5 +1,4 @@
 ﻿using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Server.Medical.Components;
 using Content.Shared.Medical.Cryogenics;
 

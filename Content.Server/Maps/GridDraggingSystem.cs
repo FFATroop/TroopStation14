@@ -44,7 +44,7 @@ public sealed class GridDraggingSystem : SharedGridDraggingSystem
         RaiseNetworkEvent(new GridDragToggleMessage()
         {
             Enabled = _draggers.Contains(session),
-        }, session.Channel);
+        }, session.ConnectedClient);
     }
 
     private void OnRequestVelocity(GridDragVelocityRequest ev, EntitySessionEventArgs args)

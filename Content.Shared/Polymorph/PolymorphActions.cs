@@ -9,11 +9,6 @@ public sealed partial class PolymorphActionEvent : InstantActionEvent
     /// the specific polymorph.
     /// </summary>
     public PolymorphPrototype Prototype = default!;
-
-    public PolymorphActionEvent(PolymorphPrototype prototype) : this()
-    {
-        Prototype = prototype;
-    }
 }
 
 public sealed partial class RevertPolymorphActionEvent : InstantActionEvent

@@ -2,7 +2,6 @@ using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.Pointing;
 using Content.Shared.Speech;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -13,6 +12,7 @@ namespace Content.Server.Bed.Sleep
     public abstract class SharedSleepingSystem : EntitySystem
     {
         [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly INetManager _net = default!;
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
         [Dependency] private readonly BlindableSystem _blindableSystem = default!;
 
@@ -25,7 +25,6 @@ namespace Content.Server.Bed.Sleep
             SubscribeLocalEvent<SleepingComponent, ComponentShutdown>(OnShutdown);
             SubscribeLocalEvent<SleepingComponent, SpeakAttemptEvent>(OnSpeakAttempt);
             SubscribeLocalEvent<SleepingComponent, CanSeeAttemptEvent>(OnSeeAttempt);
-            SubscribeLocalEvent<SleepingComponent, PointAttemptEvent>(OnPointAttempt);
             SubscribeLocalEvent<SleepingComponent, EntityUnpausedEvent>(OnSleepUnpaused);
         }
 
@@ -70,11 +69,6 @@ namespace Content.Server.Bed.Sleep
         {
             if (component.LifeStage <= ComponentLifeStage.Running)
                 args.Cancel();
-        }
-
-        private void OnPointAttempt(EntityUid uid, SleepingComponent component, PointAttemptEvent args)
-        {
-            args.Cancel();
         }
     }
 }

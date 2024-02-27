@@ -55,7 +55,7 @@ public sealed class GuidebookSystem : EntitySystem
     /// </summary>
     public EntityUid GetGuidebookUser()
     {
-        var user = _playerManager.LocalEntity;
+        var user = _playerManager.LocalPlayer!.ControlledEntity;
         if (user != null)
             return user.Value;
 

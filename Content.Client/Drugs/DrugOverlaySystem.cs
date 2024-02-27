@@ -43,13 +43,13 @@ public sealed class DrugOverlaySystem : EntitySystem
 
     private void OnInit(EntityUid uid, SeeingRainbowsComponent component, ComponentInit args)
     {
-        if (_player.LocalEntity == uid)
+        if (_player.LocalPlayer?.ControlledEntity == uid)
             _overlayMan.AddOverlay(_overlay);
     }
 
     private void OnShutdown(EntityUid uid, SeeingRainbowsComponent component, ComponentShutdown args)
     {
-        if (_player.LocalEntity == uid)
+        if (_player.LocalPlayer?.ControlledEntity == uid)
         {
             _overlay.Intoxication = 0;
             _overlayMan.RemoveOverlay(_overlay);

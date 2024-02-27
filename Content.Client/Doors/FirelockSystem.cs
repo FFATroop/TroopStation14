@@ -5,7 +5,7 @@ namespace Content.Client.Doors;
 
 public sealed class FirelockSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] protected readonly SharedAppearanceSystem _appearanceSystem = default!;
 
     public override void Initialize()
     {

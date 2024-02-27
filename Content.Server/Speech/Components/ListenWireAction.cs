@@ -1,5 +1,8 @@
+using System.Text;
+
 using Content.Server.Speech.Components;
 using Content.Server.Chat.Systems;
+using Content.Server.Speech.EntitySystems;
 using Content.Server.VoiceMask;
 using Content.Server.Wires;
 using Content.Shared.Speech;
@@ -15,13 +18,7 @@ public sealed partial class ListenWireAction : BaseToggleWireAction
     /// <summary>
     /// Length of the gibberish string sent when pulsing the wire
     /// </summary>
-    private const int NoiseLength = 16;
-
-    /// <summary>
-    /// Identifier of the SpeechVerbPrototype to use when pulsing the wire
-    /// </summary>
-    [ValidatePrototypeId<SpeechVerbPrototype>]
-    private const string SpeechVerb = "Electricity";
+    private int _noiseLength = 16;
     public override Color Color { get; set; } = Color.Green;
     public override string Name { get; set; } = "wire-name-listen";
 
@@ -78,22 +75,19 @@ public sealed partial class ListenWireAction : BaseToggleWireAction
         // Save the user's existing voicemask if they have one
         var oldEnabled = true;
         var oldVoiceName = Loc.GetString("wire-listen-pulse-error-name");
-        string? oldSpeechVerb = null;
         if (EntityManager.TryGetComponent<VoiceMaskComponent>(user, out var oldMask))
         {
             oldEnabled = oldMask.Enabled;
             oldVoiceName = oldMask.VoiceName;
-            oldSpeechVerb = oldMask.SpeechVerb;
         }
 
         // Give the user a temporary voicemask component
         var mask = EntityManager.EnsureComponent<VoiceMaskComponent>(user);
         mask.Enabled = true;
         mask.VoiceName = Loc.GetString("wire-listen-pulse-identifier");
-        mask.SpeechVerb = SpeechVerb;
 
         var chars = Loc.GetString("wire-listen-pulse-characters").ToCharArray();
-        var noiseMsg = _chat.BuildGibberishString(chars, NoiseLength);
+        var noiseMsg = _chat.BuildGibberishString(chars, _noiseLength);
 
         var attemptEv = new ListenAttemptEvent(wire.Owner);
         EntityManager.EventBus.RaiseLocalEvent(wire.Owner, attemptEv);
@@ -110,7 +104,6 @@ public sealed partial class ListenWireAction : BaseToggleWireAction
         {
             mask.Enabled = oldEnabled;
             mask.VoiceName = oldVoiceName;
-            mask.SpeechVerb = oldSpeechVerb;
         }
 
         base.Pulse(user, wire);

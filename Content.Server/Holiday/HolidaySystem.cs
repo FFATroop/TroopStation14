@@ -23,7 +23,7 @@ namespace Content.Server.Holiday
 
         public override void Initialize()
         {
-            Subs.CVar(_configManager, CCVars.HolidaysEnabled, OnHolidaysEnableChange);
+            _configManager.OnValueChanged(CCVars.HolidaysEnabled, OnHolidaysEnableChange);
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
             SubscribeLocalEvent<HolidayVisualsComponent, ComponentInit>(OnVisualsInit);
         }

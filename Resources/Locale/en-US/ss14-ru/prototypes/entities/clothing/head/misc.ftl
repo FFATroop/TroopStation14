@@ -32,5 +32,3 @@ ent-ClothingHeadHatSquid = squiddy
     .desc = Scare your friends with this eldritch mask.
 ent-ClothingHeadHatRedRacoon = red racoon hat
     .desc = Fluffy hat of red racoon!
-ent-WaterDropletHat = water droplet
-    .desc = Makes 8-eyed friends 8 times more adorable!

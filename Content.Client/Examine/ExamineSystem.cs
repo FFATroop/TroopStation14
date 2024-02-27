@@ -33,6 +33,7 @@ namespace Content.Client.Examine
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IEyeManager _eyeManager = default!;
         [Dependency] private readonly VerbSystem _verbSystem = default!;
+        [Dependency] private readonly IBaseClient _client = default!;
 
         public const string StyleClassEntityTooltip = "entity-tooltip";
 
@@ -65,10 +66,12 @@ namespace Content.Client.Examine
         {
             if (!args.User.Valid)
                 return;
+            if (_playerManager.LocalPlayer == null)
+                return;
             if (_examineTooltipOpen == null)
                 return;
 
-            if (item == _examinedEntity && args.User == _playerManager.LocalEntity)
+            if (item == _examinedEntity && args.User == _playerManager.LocalPlayer.ControlledEntity)
                 CloseTooltip();
         }
 
@@ -115,7 +118,7 @@ namespace Content.Client.Examine
                 return false;
             }
 
-            _playerEntity = _playerManager.LocalEntity ?? default;
+            _playerEntity = _playerManager.LocalPlayer?.ControlledEntity ?? default;
 
             if (_playerEntity == default || !CanExamine(_playerEntity, entity))
             {
@@ -146,7 +149,7 @@ namespace Content.Client.Examine
 
         private void OnExamineInfoResponse(ExamineSystemMessages.ExamineInfoResponseMessage ev)
         {
-            var player = _playerManager.LocalEntity;
+            var player = _playerManager.LocalPlayer?.ControlledEntity;
             if (player == null)
                 return;
 
@@ -353,7 +356,7 @@ namespace Content.Client.Examine
 
         public void DoExamine(EntityUid entity, bool centeredOnCursor = true, EntityUid? userOverride = null)
         {
-            var playerEnt = userOverride ?? _playerManager.LocalEntity;
+            var playerEnt = userOverride ?? _playerManager.LocalPlayer?.ControlledEntity;
             if (playerEnt == null)
                 return;
 

@@ -7,7 +7,7 @@
   - hideSpawnMenu
   components:
   - type: Item
-    size: Large
+    size: Normal
   - type: Sprite
     sprite: Objects/Devices/flatpack.rsi
     layers:

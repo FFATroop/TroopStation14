@@ -17,5 +17,4 @@ public sealed partial class SpentAmmoVisualsComponent : Component
 public enum AmmoVisualLayers : byte
 {
     Base,
-    Tip,
 }

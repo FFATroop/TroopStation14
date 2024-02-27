@@ -31,7 +31,7 @@ public sealed class CrewManifestCartridgeSystem : EntitySystem
         SubscribeLocalEvent<CrewManifestCartridgeComponent, CartridgeMessageEvent>(OnUiMessage);
         SubscribeLocalEvent<CrewManifestCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
         SubscribeLocalEvent<ProgramInstallationAttempt>(OnInstallationAttempt);
-        Subs.CVar(_configManager, CCVars.CrewManifestUnsecure, OnCrewManifestUnsecureChanged, true);
+        _configManager.OnValueChanged(CCVars.CrewManifestUnsecure, OnCrewManifestUnsecureChanged, true);
     }
 
     /// <summary>
@@ -91,5 +91,11 @@ public sealed class CrewManifestCartridgeSystem : EntitySystem
             if (_cartridgeLoader.TryGetProgram<CrewManifestCartridgeComponent>(loaderUid, out var program, true, comp, cont))
                 _cartridgeLoader.UninstallProgram(loaderUid, program.Value, comp);
         }
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _configManager.UnsubValueChanged(CCVars.CrewManifestUnsecure, OnCrewManifestUnsecureChanged);
     }
 }

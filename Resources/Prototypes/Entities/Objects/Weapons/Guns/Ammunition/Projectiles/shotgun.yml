@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: PelletShotgunSlug
   name: pellet (.50 slug)
   noSpawn: true
@@ -10,7 +10,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 28
+        Piercing: 8  # Should have the same or less damage than a regular pellet
 
 - type: entity
   id: PelletShotgunBeanbag
@@ -26,7 +26,7 @@
       types:
         Blunt: 10
   - type: StaminaDamageOnCollide
-    damage: 40 # 3 hits to stun
+    damage: 55 # 2 hits to stun
 
 - type: entity
   id: PelletShotgun
@@ -132,7 +132,10 @@
           !type:PhysShapeAabb
           bounds: "-0.1,-0.1,0.1,0.1"
         mask:
-          - BulletImpassable
+        - BulletImpassable
+  - type: Tag
+    tags:
+    - PelletShotgunFlare
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     state: buckshot-flare

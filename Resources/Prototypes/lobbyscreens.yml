@@ -1,35 +1,27 @@
-- type: lobbyBackground
+﻿- type: lobbyBackground
   id: Robotics
-  background: /Textures/LobbyScreens/robotics.webp
+  background: /Textures/LobbyScreens/robotics.png
 
 - type: lobbyBackground
   id: Supermatter
-  background: /Textures/LobbyScreens/supermatter.webp
+  background: /Textures/LobbyScreens/supermatter.png
 
 - type: lobbyBackground
   id: Warden
-  background: /Textures/LobbyScreens/warden.webp
+  background: /Textures/LobbyScreens/warden.png
 
 - type: lobbyBackground
   id: Pharmacy
-  background: /Textures/LobbyScreens/pharmacy.webp
+  background: /Textures/LobbyScreens/pharmacy.png
 
 - type: lobbyBackground
   id: SSXIV
-  background: /Textures/LobbyScreens/ssxiv.webp
+  background: /Textures/LobbyScreens/ssxiv.png
 
 - type: lobbyBackground
   id: Susstation
-  background: /Textures/LobbyScreens/susstation.webp
+  background: /Textures/LobbyScreens/susstation.png
 
 - type: lobbyBackground
   id: SkellyVsTheRev
-  background: /Textures/LobbyScreens/skellyvstherev.webp
-
-- type: lobbyBackground
-  id: Doomed
-  background: /Textures/LobbyScreens/doomed.webp
-
-- type: lobbyBackground
-  id: Blueprint
-  background: /Textures/LobbyScreens/blueprint.webp
+  background: /Textures/LobbyScreens/skellyvstherev.png

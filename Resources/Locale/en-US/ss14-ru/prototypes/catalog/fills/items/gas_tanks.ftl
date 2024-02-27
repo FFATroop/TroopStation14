@@ -1,6 +1,9 @@
 ent-OxygenTankFilled = { ent-OxygenTank }
     .suffix = Filled
     .desc = { ent-OxygenTank.desc }
+ent-YellowOxygenTankFilled = { ent-YellowOxygenTank }
+    .suffix = Filled
+    .desc = { ent-YellowOxygenTank.desc }
 ent-EmergencyOxygenTankFilled = { ent-EmergencyOxygenTank }
     .suffix = Filled
     .desc = { ent-EmergencyOxygenTank.desc }

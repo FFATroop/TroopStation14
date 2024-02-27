@@ -14,7 +14,7 @@ public abstract class SharedDestructibleSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Force entity to break.
+    ///     Force entity to broke.
     /// </summary>
     public void BreakEntity(EntityUid owner)
     {

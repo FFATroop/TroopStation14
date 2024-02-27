@@ -1,4 +1,4 @@
-using Content.Shared.Clothing.EntitySystems;
+﻿using Content.Shared.Clothing.EntitySystems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -19,7 +19,4 @@ public sealed partial class MaskComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool IsToggled;
-
-    [DataField, AutoNetworkedField]
-    public string EquippedPrefix = "toggled";
 }

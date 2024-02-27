@@ -7,46 +7,46 @@ namespace Content.Shared.StationRecords;
 ///     General station record. Indicates the crewmember's name and job.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed record GeneralStationRecord
+public sealed class GeneralStationRecord
 {
     /// <summary>
     ///     Name tied to this station record.
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public string Name = string.Empty;
 
     /// <summary>
     ///     Age of the person that this station record represents.
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public int Age;
 
     /// <summary>
     ///     Job title tied to this station record.
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public string JobTitle = string.Empty;
 
     /// <summary>
     ///     Job icon tied to this station record.
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public string JobIcon = string.Empty;
 
-    [DataField]
+    [ViewVariables]
     public string JobPrototype = string.Empty;
 
     /// <summary>
     ///     Species tied to this station record.
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public string Species = string.Empty;
 
     /// <summary>
     ///     Gender identity tied to this station record.
     /// </summary>
     /// <remarks>Sex should be placed in a medical record, not a general record.</remarks>
-    [DataField]
+    [ViewVariables]
     public Gender Gender = Gender.Epicene;
 
     /// <summary>
@@ -54,18 +54,18 @@ public sealed record GeneralStationRecord
     ///     This is taken from the 'weight' of a job prototype,
     ///     usually.
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public int DisplayPriority;
 
     /// <summary>
     ///     Fingerprint of the person.
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public string? Fingerprint;
 
     /// <summary>
     ///     DNA of the person.
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public string? DNA;
 }

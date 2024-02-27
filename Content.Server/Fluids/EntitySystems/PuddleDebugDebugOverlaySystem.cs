@@ -39,7 +39,7 @@ public sealed class PuddleDebugDebugOverlaySystem : SharedPuddleDebugOverlaySyst
         }
 
         var message = new PuddleOverlayDisableMessage();
-        RaiseNetworkEvent(message, observer.Channel);
+        RaiseNetworkEvent(message, observer.ConnectedClient);
     }
 
     public override void Update(float frameTime)

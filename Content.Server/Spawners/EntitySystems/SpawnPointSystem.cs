@@ -15,10 +15,10 @@ public sealed class SpawnPointSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning);
+        SubscribeLocalEvent<PlayerSpawningEvent>(OnSpawnPlayer);
     }
 
-    private void OnPlayerSpawning(PlayerSpawningEvent args)
+    private void OnSpawnPlayer(PlayerSpawningEvent args)
     {
         if (args.SpawnResult != null)
             return;

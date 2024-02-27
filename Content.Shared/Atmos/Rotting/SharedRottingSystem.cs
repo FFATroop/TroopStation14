@@ -1,6 +1,5 @@
 ﻿using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Mobs.Components;
 
 namespace Content.Shared.Atmos.Rotting;
 
@@ -35,10 +34,6 @@ public abstract class SharedRottingSystem : EntitySystem
             >= 1 => "rotting-bloated",
             _ => "rotting-rotting"
         };
-
-        if (!HasComp<MobStateComponent>(uid))
-            description += "-nonmob";
-
         args.PushMarkup(Loc.GetString(description, ("target", Identity.Entity(uid, EntityManager))));
     }
 }

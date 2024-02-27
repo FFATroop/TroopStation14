@@ -1,2 +1,2 @@
-ent-ActionVehicleHorn = Бип
-    .desc = Бип бип!
+ent-ActionVehicleHorn = Хонк
+    .desc = Хонк!

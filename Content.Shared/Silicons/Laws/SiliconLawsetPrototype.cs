@@ -18,12 +18,6 @@ public sealed partial class SiliconLawset
     public List<SiliconLaw> Laws = new();
 
     /// <summary>
-    /// What entity the lawset considers as a figure of authority.
-    /// </summary>
-    [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
-    public string ObeysTo = string.Empty;
-
-    /// <summary>
     /// A single line used in logging laws.
     /// </summary>
     public string LoggingString()
@@ -51,8 +45,7 @@ public sealed partial class SiliconLawset
 
         return new SiliconLawset()
         {
-            Laws = laws,
-            ObeysTo = ObeysTo
+            Laws = laws
         };
     }
 }
@@ -73,10 +66,4 @@ public sealed partial class SiliconLawsetPrototype : IPrototype
     /// </summary>
     [DataField(required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<SiliconLawPrototype>))]
     public List<string> Laws = new();
-
-    /// <summary>
-    /// What entity the lawset considers as a figure of authority.
-    /// </summary>
-    [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
-    public string ObeysTo = string.Empty;
 }

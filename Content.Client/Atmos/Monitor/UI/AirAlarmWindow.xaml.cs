@@ -22,6 +22,7 @@ public sealed partial class AirAlarmWindow : FancyWindow
     public event Action<string, AtmosMonitorThresholdType, AtmosAlarmThreshold, Gas?>? AtmosAlarmThresholdChanged;
     public event Action<AirAlarmMode>? AirAlarmModeChanged;
     public event Action<bool>? AutoModeChanged;
+    public event Action<string>? ResyncDeviceRequested;
     public event Action? ResyncAllRequested;
     public event Action<AirAlarmTab>? AirAlarmTabChange;
 

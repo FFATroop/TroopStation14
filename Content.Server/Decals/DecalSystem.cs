@@ -70,7 +70,7 @@ namespace Content.Server.Decals
             SubscribeNetworkEvent<RequestDecalRemovalEvent>(OnDecalRemovalRequest);
             SubscribeLocalEvent<PostGridSplitEvent>(OnGridSplit);
 
-            Subs.CVar(_conf, CVars.NetPVS, OnPvsToggle, true);
+            _conf.OnValueChanged(CVars.NetPVS, OnPvsToggle, true);
         }
 
         private void OnPvsToggle(bool value)
@@ -153,6 +153,7 @@ namespace Content.Server.Decals
             base.Shutdown();
 
             _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
+            _conf.UnsubValueChanged(CVars.NetPVS, OnPvsToggle);
         }
 
         private void OnTileChanged(ref TileChangedEvent args)

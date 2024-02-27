@@ -47,8 +47,3 @@
     - Toxin
   supportedTypes:
     - Shock
-
-- type: damageContainer
-  id: ShadowHaze
-  supportedTypes:
-    - Heat

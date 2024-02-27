@@ -1,4 +1,4 @@
-using Content.Shared.Eui;
+﻿using Content.Shared.Eui;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 
@@ -86,7 +86,7 @@ namespace Content.Server.EUI
             msg.Id = Id;
             msg.Message = message;
 
-            netMgr.ServerSendMessage(msg, Player.Channel);
+            netMgr.ServerSendMessage(msg, Player.ConnectedClient);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Content.Server.EUI
             msg.Id = Id;
             msg.State = state;
 
-            netMgr.ServerSendMessage(msg, Player.Channel);
+            netMgr.ServerSendMessage(msg, Player.ConnectedClient);
         }
 
         internal void Initialize(EuiManager manager, ICommonSession player, uint id)

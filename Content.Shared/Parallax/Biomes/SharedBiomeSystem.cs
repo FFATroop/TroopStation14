@@ -16,7 +16,6 @@ public abstract class SharedBiomeSystem : EntitySystem
     [Dependency] protected readonly IPrototypeManager ProtoManager = default!;
     [Dependency] private readonly ISerializationManager _serManager = default!;
     [Dependency] protected readonly ITileDefinitionManager TileDefManager = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
 
     protected const byte ChunkSize = 8;
 
@@ -159,8 +158,13 @@ public abstract class SharedBiomeSystem : EntitySystem
         // Pick a variant tile if they're available as well
         if (variantCount > 1)
         {
-            var variantValue = (noise.GetNoise(indices.X * 8, indices.Y * 8, variantCount) + 1f) * 100;
-            variant = _tile.PickVariant(tileDef, (int) variantValue);
+            var variantValue = (noise.GetNoise(indices.X * 8, indices.Y * 8, variantCount) + 1f) / 2f;
+            variant = (byte) Pick(variantCount, variantValue);
+
+            if (variants != null)
+            {
+                variant = variants[variant];
+            }
         }
 
         tile = new Tile(tileDef.TileId, 0, variant);

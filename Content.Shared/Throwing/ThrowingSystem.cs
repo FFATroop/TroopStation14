@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Camera;
 using Content.Shared.Database;
 using Content.Shared.Gravity;
 using Content.Shared.Hands.Components;
@@ -33,7 +32,6 @@ public sealed class ThrowingSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ThrownItemSystem _thrownSystem = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
 
     public void TryThrow(
@@ -116,7 +114,7 @@ public sealed class ThrowingSystem : EntitySystem
         if (projectileQuery.TryGetComponent(uid, out var proj) && !proj.OnlyCollideWhenShot)
             return;
 
-        var comp = new ThrownItemComponent();
+        var comp = EnsureComp<ThrownItemComponent>(uid);
         comp.Thrower = user;
 
         // Estimate time to arrival so we can apply OnGround status and slow it much faster.
@@ -128,7 +126,6 @@ public sealed class ThrowingSystem : EntitySystem
         else
             comp.LandTime = time < FlyTime ? default : comp.ThrownTime + TimeSpan.FromSeconds(time - FlyTime);
         comp.PlayLandSound = playSound;
-        AddComp(uid, comp, true);
 
         ThrowingAngleComponent? throwingAngle = null;
 
@@ -163,13 +160,9 @@ public sealed class ThrowingSystem : EntitySystem
             _physics.SetBodyStatus(physics, BodyStatus.InAir);
         }
 
-        if (user == null)
-            return;
-
-        _recoil.KickCamera(user.Value, -direction * 0.04f);
-
         // Give thrower an impulse in the other direction
-        if (pushbackRatio != 0.0f &&
+        if (user != null &&
+            pushbackRatio != 0.0f &&
             physics.Mass > 0f &&
             TryComp(user.Value, out PhysicsComponent? userPhysics) &&
             _gravity.IsWeightless(user.Value, userPhysics))

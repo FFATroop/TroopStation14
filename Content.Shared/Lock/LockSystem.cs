@@ -1,15 +1,16 @@
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.DoAfter;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
 using JetBrains.Annotations;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 
@@ -25,7 +26,6 @@ public sealed class LockSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
 
     /// <inheritdoc />
     public override void Initialize()
@@ -38,13 +38,12 @@ public sealed class LockSystem : EntitySystem
         SubscribeLocalEvent<LockComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<LockComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleLockVerb);
         SubscribeLocalEvent<LockComponent, GotEmaggedEvent>(OnEmagged);
-        SubscribeLocalEvent<LockComponent, LockDoAfter>(OnDoAfterLock);
-        SubscribeLocalEvent<LockComponent, UnlockDoAfter>(OnDoAfterUnlock);
     }
 
     private void OnStartup(EntityUid uid, LockComponent lockComp, ComponentStartup args)
     {
-        _appearanceSystem.SetData(uid, LockVisuals.Locked, lockComp.Locked);
+        _appearanceSystem.SetData(uid, StorageVisuals.CanLock, true);
+        _appearanceSystem.SetData(uid, StorageVisuals.Locked, lockComp.Locked);
     }
 
     private void OnActivated(EntityUid uid, LockComponent lockComp, ActivateInWorldEvent args)
@@ -87,15 +86,11 @@ public sealed class LockSystem : EntitySystem
     /// <summary>
     /// Attmempts to lock a given entity
     /// </summary>
-    /// <remarks>
-    /// If the lock is set to require a do-after, a true return value only indicates that the do-after started.
-    /// </remarks>
     /// <param name="uid">The entity with the lock</param>
     /// <param name="user">The person trying to lock it</param>
     /// <param name="lockComp"></param>
-    /// <param name="skipDoAfter">If true, skip the required do-after if one is configured.</param>
     /// <returns>If locking was successful</returns>
-    public bool TryLock(EntityUid uid, EntityUid user, LockComponent? lockComp = null, bool skipDoAfter = false)
+    public bool TryLock(EntityUid uid, EntityUid user, LockComponent? lockComp = null)
     {
         if (!Resolve(uid, ref lockComp))
             return false;
@@ -106,22 +101,12 @@ public sealed class LockSystem : EntitySystem
         if (!HasUserAccess(uid, user, quiet: false))
             return false;
 
-        if (!skipDoAfter && lockComp.LockTime != TimeSpan.Zero)
-        {
-            return _doAfter.TryStartDoAfter(
-                new DoAfterArgs(EntityManager, user, lockComp.LockTime, new LockDoAfter(), uid, uid)
-                {
-                    BreakOnDamage = true, BreakOnTargetMove = true, BreakOnUserMove = true, RequireCanInteract = true,
-                    NeedHand = true
-                });
-        }
-
         _sharedPopupSystem.PopupClient(Loc.GetString("lock-comp-do-lock-success",
                 ("entityName", Identity.Name(uid, EntityManager))), uid, user);
         _audio.PlayPredicted(lockComp.LockSound, uid, user);
 
         lockComp.Locked = true;
-        _appearanceSystem.SetData(uid, LockVisuals.Locked, true);
+        _appearanceSystem.SetData(uid, StorageVisuals.Locked, true);
         Dirty(uid, lockComp);
 
         var ev = new LockToggledEvent(true);
@@ -132,9 +117,6 @@ public sealed class LockSystem : EntitySystem
     /// <summary>
     /// Forces a given entity to be unlocked
     /// </summary>
-    /// <remarks>
-    /// This does not process do-after times.
-    /// </remarks>
     /// <param name="uid">The entity with the lock</param>
     /// <param name="user">The person unlocking it. Can be null</param>
     /// <param name="lockComp"></param>
@@ -152,7 +134,7 @@ public sealed class LockSystem : EntitySystem
         _audio.PlayPredicted(lockComp.UnlockSound, uid, user);
 
         lockComp.Locked = false;
-        _appearanceSystem.SetData(uid, LockVisuals.Locked, false);
+        _appearanceSystem.SetData(uid, StorageVisuals.Locked, false);
         Dirty(uid, lockComp);
 
         var ev = new LockToggledEvent(false);
@@ -163,15 +145,11 @@ public sealed class LockSystem : EntitySystem
     /// <summary>
     /// Attmempts to unlock a given entity
     /// </summary>
-    /// <remarks>
-    /// If the lock is set to require a do-after, a true return value only indicates that the do-after started.
-    /// </remarks>
     /// <param name="uid">The entity with the lock</param>
     /// <param name="user">The person trying to unlock it</param>
     /// <param name="lockComp"></param>
-    /// <param name="skipDoAfter">If true, skip the required do-after if one is configured.</param>
     /// <returns>If locking was successful</returns>
-    public bool TryUnlock(EntityUid uid, EntityUid user, LockComponent? lockComp = null, bool skipDoAfter = false)
+    public bool TryUnlock(EntityUid uid, EntityUid user, LockComponent? lockComp = null)
     {
         if (!Resolve(uid, ref lockComp))
             return false;
@@ -181,16 +159,6 @@ public sealed class LockSystem : EntitySystem
 
         if (!HasUserAccess(uid, user, quiet: false))
             return false;
-
-        if (!skipDoAfter && lockComp.UnlockTime != TimeSpan.Zero)
-        {
-            return _doAfter.TryStartDoAfter(
-                new DoAfterArgs(EntityManager, user, lockComp.LockTime, new UnlockDoAfter(), uid, uid)
-                {
-                    BreakOnDamage = true, BreakOnTargetMove = true, BreakOnUserMove = true, RequireCanInteract = true,
-                    NeedHand = true
-                });
-        }
 
         Unlock(uid, user, lockComp);
         return true;
@@ -247,25 +215,9 @@ public sealed class LockSystem : EntitySystem
         if (!component.Locked || !component.BreakOnEmag)
             return;
         _audio.PlayPredicted(component.UnlockSound, uid, null);
-        _appearanceSystem.SetData(uid, LockVisuals.Locked, false);
+        _appearanceSystem.SetData(uid, StorageVisuals.Locked, false);
         RemComp<LockComponent>(uid); //Literally destroys the lock as a tell it was emagged
         args.Handled = true;
-    }
-
-    private void OnDoAfterLock(EntityUid uid, LockComponent component, LockDoAfter args)
-    {
-        if (args.Cancelled)
-            return;
-
-        TryLock(uid, args.User, skipDoAfter: true);
-    }
-
-    private void OnDoAfterUnlock(EntityUid uid, LockComponent component, UnlockDoAfter args)
-    {
-        if (args.Cancelled)
-            return;
-
-        TryUnlock(uid, args.User, skipDoAfter: true);
     }
 }
 

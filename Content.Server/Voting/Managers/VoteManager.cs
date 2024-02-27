@@ -273,7 +273,7 @@ namespace Content.Server.Voting.Managers
                 msg.Options[i] = ((ushort) entry.Votes, entry.Text);
             }
 
-            player.Channel.SendMessage(msg);
+            player.ConnectedClient.SendMessage(msg);
         }
 
         private void DirtyCanCallVoteAll()
@@ -303,7 +303,7 @@ namespace Content.Server.Voting.Managers
                 msg.VotesUnavailable = votesUnavailable.ToArray();
             }
 
-            _netManager.ServerSendMessage(msg, player.Channel);
+            _netManager.ServerSendMessage(msg, player.ConnectedClient);
         }
 
         private bool CanCallVote(

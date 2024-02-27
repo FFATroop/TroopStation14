@@ -1,4 +1,4 @@
-using Content.Shared.Eui;
+﻿using Content.Shared.Eui;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
@@ -71,7 +71,7 @@ namespace Content.Server.EUI
             msg.Type = MsgEuiCtl.CtlType.Open;
             msg.OpenType = eui.GetType().Name;
 
-            _net.ServerSendMessage(msg, player.Channel);
+            _net.ServerSendMessage(msg, player.ConnectedClient);
         }
 
         public void CloseEui(BaseEui eui)
@@ -82,7 +82,7 @@ namespace Content.Server.EUI
             var msg = new MsgEuiCtl();
             msg.Id = eui.Id;
             msg.Type = MsgEuiCtl.CtlType.Close;
-            _net.ServerSendMessage(msg, eui.Player.Channel);
+            _net.ServerSendMessage(msg, eui.Player.ConnectedClient);
         }
 
         private void RxMsgMessage(MsgEuiMessage message)

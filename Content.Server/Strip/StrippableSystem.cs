@@ -238,8 +238,7 @@ namespace Content.Server.Strip
                 _popup.PopupEntity(message, target, target, PopupType.Large);
             }
 
-            var prefix = ev.Stealth ? "stealthily " : "";
-            _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}place the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s {slot} slot");
+            _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):user} is trying to place the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s {slot} slot");
 
             var result = await _doAfter.WaitDoAfter(doAfterArgs);
             if (result != DoAfterStatus.Finished)
@@ -251,7 +250,7 @@ namespace Content.Server.Strip
             {
                 _inventorySystem.TryEquip(user, target, held, slot);
 
-                _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has placed the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s {slot} slot");
+                _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):user} has placed the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s {slot} slot");
             }
         }
 
@@ -306,15 +305,14 @@ namespace Content.Server.Strip
                 DuplicateCondition = DuplicateConditions.SameTool
             };
 
-            var prefix = ev.Stealth ? "stealthily " : "";
-                _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}place the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s hands");
+            _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):user} is trying to place the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s hands");
 
             var result = await _doAfter.WaitDoAfter(doAfterArgs);
             if (result != DoAfterStatus.Finished) return;
 
             _handsSystem.TryDrop(user, checkActionBlocker: false, handsComp: userHands);
             _handsSystem.TryPickup(target, held, handName, checkActionBlocker: false, animateUser: !ev.Stealth, animate: !ev.Stealth, handsComp: hands);
-            _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has placed the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s hands");
+            _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):user} has placed the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s hands");
             // hand update will trigger strippable update
         }
 
@@ -383,8 +381,7 @@ namespace Content.Server.Strip
                 }
             }
 
-            var prefix = ev.Stealth ? "stealthily " : "";
-            _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):actor} is trying to {prefix}strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s {slot} slot");
+            _adminLogger.Add(LogType.Stripping, LogImpact.Low, $"{ToPrettyString(user):user} is trying to strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}");
 
             var result = await _doAfter.WaitDoAfter(doAfterArgs);
             if (result != DoAfterStatus.Finished)
@@ -397,7 +394,7 @@ namespace Content.Server.Strip
             RaiseLocalEvent(item, new DroppedEvent(user), true);
 
             _handsSystem.PickupOrDrop(user, item, animateUser: !ev.Stealth, animate: !ev.Stealth);
-            _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s {slot} slot");
+            _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):user} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}");
 
         }
 
@@ -456,9 +453,8 @@ namespace Content.Server.Strip
                     strippable.Owner);
             }
 
-            var prefix = ev.Stealth ? "stealthily " : "";
             _adminLogger.Add(LogType.Stripping, LogImpact.Low,
-                $"{ToPrettyString(user):actor} is trying to {prefix}strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s hands");
+                $"{ToPrettyString(user):user} is trying to strip the item {ToPrettyString(item):item} from {ToPrettyString(target):target}");
 
             var result = await _doAfter.WaitDoAfter(doAfterArgs);
             if (result != DoAfterStatus.Finished)
@@ -468,7 +464,7 @@ namespace Content.Server.Strip
             _handsSystem.PickupOrDrop(user, item, animateUser: !ev.Stealth, animate: !ev.Stealth, handsComp: userHands);
             // hand update will trigger strippable update
             _adminLogger.Add(LogType.Stripping, LogImpact.Medium,
-                $"{ToPrettyString(user):actor} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s hands");
+                $"{ToPrettyString(user):user} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}");
         }
     }
 }

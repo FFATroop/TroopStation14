@@ -1,8 +1,9 @@
 using System.Linq;
+using Content.Server.Construction;
 using Content.Server.Paper;
 using Content.Server.Power.Components;
 using Content.Server.Research.Systems;
-using Content.Shared.UserInterface;
+using Content.Server.UserInterface;
 using Content.Server.Xenoarchaeology.Equipment.Components;
 using Content.Server.Xenoarchaeology.XenoArtifacts;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Events;

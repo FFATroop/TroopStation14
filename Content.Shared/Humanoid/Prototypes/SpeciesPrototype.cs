@@ -137,7 +137,6 @@ public sealed partial class SpeciesPrototype : IPrototype
 
 public enum SpeciesNaming : byte
 {
-    First,
     FirstLast,
     FirstDashFirst,
     TheFirstofLast,

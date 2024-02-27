@@ -8,15 +8,14 @@ using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Salvage;
-using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Spawners.Components;
+using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
-using Content.Shared.DeviceNetwork;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Parallax.Biomes;
@@ -82,6 +81,7 @@ public sealed class ArrivalsSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawn, before: new[] { typeof(SpawnPointSystem) });
         SubscribeLocalEvent<StationArrivalsComponent, ComponentStartup>(OnArrivalsStartup);
 
         SubscribeLocalEvent<ArrivalsShuttleComponent, ComponentStartup>(OnShuttleStartup);
@@ -98,7 +98,7 @@ public sealed class ArrivalsSystem : EntitySystem
 
         // Don't invoke immediately as it will get set in the natural course of things.
         Enabled = _cfgManager.GetCVar(CCVars.ArrivalsShuttles);
-        Subs.CVar(_cfgManager, CCVars.ArrivalsShuttles, SetArrivals);
+        _cfgManager.OnValueChanged(CCVars.ArrivalsShuttles, SetArrivals);
 
         // Command so admins can set these for funsies
         _console.RegisterCommand("arrivals", ArrivalsCommand, ArrivalsCompletion);
@@ -180,6 +180,12 @@ public sealed class ArrivalsSystem : EntitySystem
                 shell.WriteError(Loc.GetString($"cmd-arrivals-invalid"));
                 break;
         }
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _cfgManager.UnsubValueChanged(CCVars.ArrivalsShuttles, SetArrivals);
     }
 
     /// <summary>
@@ -307,7 +313,7 @@ public sealed class ArrivalsSystem : EntitySystem
         }
     }
 
-    public void HandlePlayerSpawning(PlayerSpawningEvent ev)
+    private void OnPlayerSpawn(PlayerSpawningEvent ev)
     {
         if (ev.SpawnResult != null)
             return;

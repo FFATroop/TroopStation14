@@ -4,7 +4,6 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Medical.SuitSensors;
 using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
-using Content.Shared.DeviceNetwork;
 using Content.Shared.Medical.SuitSensor;
 using Robust.Shared.Timing;
 

@@ -1,47 +1,5 @@
 - type: entity
-  parent: [ClothingHeadBaseButcherable, BaseFoldable]
-  id: ClothingHeadHeadHatBaseFlippable
-  abstract: true
-  components:
-  - type: Appearance
-  - type: Foldable
-    canFoldInsideContainer: true
-    unfoldVerbText: fold-flip-verb
-    foldVerbText: fold-flip-verb
-  - type: FoldableClothing
-    foldedEquippedPrefix: flipped
-    foldedHeldPrefix: flipped
-  - type: Sprite
-    layers:
-    - state: icon
-      map: [ "unfoldedLayer" ]
-    - state: icon_flipped
-      map: ["foldedLayer"]
-      visible: false
-      
-- type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
-  id: ClothingHeadHeadHatBaseFlipped
-  suffix: flipped
-  abstract: true
-  components:
-  - type: Foldable
-    folded: true
-  - type: Clothing
-    equippedPrefix: flipped
-  - type: Item
-    heldPrefix: flipped
-  - type: Sprite
-    layers:
-    - state: icon
-      map: [ "unfoldedLayer" ]
-      visible: false
-    - state: icon_flipped
-      map: ["foldedLayer"]
-      visible: true
-
-- type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatBluesoft
   name: blue cap
   description: "It's a baseball hat in a tasteless blue colour."
@@ -52,12 +10,18 @@
     sprite: Clothing/Head/Soft/bluesoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBluesoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatBluesoftFlipped
-  name: blue cap
+  name: blue cap flipped
+  description: "It's a baseball hat in a tasteless blue colour. Flipped."
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/bluesoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/bluesoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatCargosoft
   name: cargo cap
   description: "It's a baseball hat painted in Cargo colours."
@@ -73,18 +37,18 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCargosoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatCargosoftFlipped
-  name: cargo cap
+  name: cargo cap flipped
+  description: "It's a baseball hat painted in Cargo colours. Flipped."
   components:
-  - type: Tag
-    tags:
-    - ClothMade
-    - HamsterWearable
-    - WhitelistChameleon
+  - type: Sprite
+    sprite: Clothing/Head/Soft/cargosoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/cargosoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatQMsoft
   name: quartermaster's cap
   description: "It's a baseball hat painted in the Quartermaster's colors."
@@ -95,12 +59,18 @@
     sprite: Clothing/Head/Soft/qmsoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatQMsoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatQMsoftFlipped
-  name: quartermaster's cap
+  name: quartermaster's cap flipped
+  description: "It's a baseball hat painted in the Quartermaster's colors. Flipped."
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/qmsoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/qmsoft_flipped.rsi
     
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatCorpsoft
   name: corporate cap
   description: A baseball bat in corporation colors.
@@ -111,12 +81,18 @@
     sprite: Clothing/Head/Soft/corpsoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCorpsoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatCorpsoftFlipped
-  name: corporate cap
+  name: corporate cap flipped
+  description: A baseball bat in corporation colors. Flipped.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/corpsoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/corpsoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatGreensoft
   name: green cap
   description: "It's a baseball hat in a tasteless green colour."
@@ -127,12 +103,18 @@
     sprite: Clothing/Head/Soft/greensoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatGreensoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatGreensoftFlipped
-  name: green cap
+  name: green cap flipped
+  description: "It's a baseball hat in a tasteless green colour. Flipped."
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/greensoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/greensoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatBlacksoft
   name: black cap
   description: "It's a baseball hat in a tasteless black colour."
@@ -143,12 +125,18 @@
     sprite: Clothing/Head/Soft/blacksoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBlacksoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatBlacksoftFlipped
-  name: black cap
+  name: black cap flipped
+  description: "It's a baseball hat in a tasteless black colour. Flipped."
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/blacksoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/blacksoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatGreysoft
   name: grey cap
   description: "It's a baseball hat in a tasteless grey colour."
@@ -159,12 +147,18 @@
     sprite: Clothing/Head/Soft/greysoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatGreysoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatGreysoftFlipped
-  name: grey cap
+  name: grey cap flipped
+  description: "It's a baseball hat in a tasteless grey colour. Flipped."
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/greysoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/greysoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatMimesoft
   name: mime cap
   description: "It's a baseball hat in a tasteless white colour."
@@ -175,12 +169,18 @@
     sprite: Clothing/Head/Soft/mimesoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatMimesoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatMimesoftFlipped
-  name: mime cap
+  name: mime cap flipped
+  description: It's a baseball hat in a tasteless white colour. Flipped.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/mimesoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/mimesoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatOrangesoft
   name: orange cap
   description: It's a baseball hat in a good-looking orange colour.
@@ -191,12 +191,18 @@
     sprite: Clothing/Head/Soft/orangesoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatOrangesoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatOrangesoftFlipped
-  name: orange cap
+  name: orange cap flipped
+  description: It's a baseball hat in a good-looking orange colour. Flipped.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/orangesoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/orangesoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatPurplesoft
   name: purple cap
   description: It's a baseball hat in a tasteless purple colour.
@@ -212,18 +218,18 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatPurplesoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatPurplesoftFlipped
-  name: purple cap
+  name: purple cap flipped
+  description: It's a baseball hat in a tasteless purple colour. Flipped.
   components:
-  - type: Tag
-    tags:
-    - ClothMade
-    - HamsterWearable
-    - WhitelistChameleon
+  - type: Sprite
+    sprite: Clothing/Head/Soft/purplesoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/purplesoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatRedsoft
   name: red cap
   description: It's a baseball hat in a tasteless red colour.
@@ -234,12 +240,18 @@
     sprite: Clothing/Head/Soft/redsoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatRedsoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatRedsoftFlipped
-  name: red cap
+  name: red cap flipped
+  description: It's a baseball hat in a tasteless purple colour. Flipped.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/redsoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/redsoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatSecsoft
   name: security cap
   description: It's a robust baseball hat in tasteful red colour.
@@ -250,12 +262,18 @@
     sprite: Clothing/Head/Soft/secsoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatSecsoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatSecsoftFlipped
-  name: security cap
+  name: security cap flipped
+  description: It's a robust baseball hat in tasteful red colour. Flipped.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/secsoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/secsoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatYellowsoft
   name: yellow cap
   description: A yellow baseball hat.
@@ -266,14 +284,20 @@
     sprite: Clothing/Head/Soft/yellowsoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatYellowsoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatYellowsoftFlipped
-  name: yellow cap
+  name: yellow cap flipped
+  description: A yellow flipped baseball hat.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/yellowsoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/yellowsoft_flipped.rsi
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatBizarreSoft
-  name: troublemaker's cap
+  name: troublemaker's soft
   description: A truly.. bizarre accessory.
   components:
   - type: Sprite
@@ -282,12 +306,18 @@
     sprite: Clothing/Head/Soft/bizarresoft.rsi
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBizarreSoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatBizarreSoftFlipped
-  name: troublemaker's cap
+  name: troublemaker's soft flipped
+  description: A truly.. bizarre accessory, flipped.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/bizarresoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/bizarresoft_flipped.rsi
     
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatParamedicsoft
   name: paramedic cap
   description: "It's a paramedic's baseball hat with a medical logo."
@@ -303,12 +333,12 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatParamedicsoft]
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatParamedicsoftFlipped
-  name: paramedic cap
+  name: paramedic cap flipped
+  description: "It's a paramedic's baseball hat with a medical logo. Flipped."
   components:
-  - type: Tag
-    tags:
-    - ClothMade
-    - HamsterWearable
-    - WhitelistChameleon
+  - type: Sprite
+    sprite: Clothing/Head/Soft/paramedicsoft_flipped.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/paramedicsoft_flipped.rsi

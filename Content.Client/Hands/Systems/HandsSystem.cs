@@ -22,6 +22,7 @@ namespace Content.Client.Hands.Systems
     [UsedImplicitly]
     public sealed class HandsSystem : SharedHandsSystem
     {
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IUserInterfaceManager _ui = default!;
 
@@ -146,7 +147,7 @@ namespace Content.Client.Hands.Systems
         /// </summary>
         public bool TryGetPlayerHands([NotNullWhen(true)] out HandsComponent? hands)
         {
-            var player = _playerManager.LocalEntity;
+            var player = _playerManager.LocalPlayer?.ControlledEntity;
             hands = null;
             return player != null && TryComp(player.Value, out hands);
         }
@@ -247,7 +248,7 @@ namespace Content.Client.Hands.Systems
             UpdateHandVisuals(uid, args.Entity, hand);
             _stripSys.UpdateUi(uid);
 
-            if (uid != _playerManager.LocalEntity)
+            if (uid != _playerManager.LocalPlayer?.ControlledEntity)
                 return;
 
             OnPlayerItemAdded?.Invoke(hand.Name, args.Entity);
@@ -265,7 +266,7 @@ namespace Content.Client.Hands.Systems
             UpdateHandVisuals(uid, args.Entity, hand);
             _stripSys.UpdateUi(uid);
 
-            if (uid != _playerManager.LocalEntity)
+            if (uid != _playerManager.LocalPlayer?.ControlledEntity)
                 return;
 
             OnPlayerItemRemoved?.Invoke(hand.Name, args.Entity);
@@ -283,7 +284,7 @@ namespace Content.Client.Hands.Systems
                 return;
 
             // visual update might involve changes to the entity's effective sprite -> need to update hands GUI.
-            if (uid == _playerManager.LocalEntity)
+            if (uid == _playerManager.LocalPlayer?.ControlledEntity)
                 OnPlayerItemAdded?.Invoke(hand.Name, held);
 
             if (!handComp.ShowInHands)
@@ -374,13 +375,13 @@ namespace Content.Client.Hands.Systems
 
         private void OnHandsStartup(EntityUid uid, HandsComponent component, ComponentStartup args)
         {
-            if (_playerManager.LocalEntity == uid)
+            if (_playerManager.LocalPlayer?.ControlledEntity == uid)
                 OnPlayerHandsAdded?.Invoke(component);
         }
 
         private void OnHandsShutdown(EntityUid uid, HandsComponent component, ComponentShutdown args)
         {
-            if (_playerManager.LocalEntity == uid)
+            if (_playerManager.LocalPlayer?.ControlledEntity == uid)
                 OnPlayerHandsRemoved?.Invoke();
         }
         #endregion
@@ -394,7 +395,7 @@ namespace Content.Client.Hands.Systems
         {
             base.AddHand(uid, handName, handLocation, handsComp);
 
-            if (uid == _playerManager.LocalEntity)
+            if (uid == _playerManager.LocalPlayer?.ControlledEntity)
                 OnPlayerAddHand?.Invoke(handName, handLocation);
 
             if (handsComp == null)
@@ -405,9 +406,9 @@ namespace Content.Client.Hands.Systems
         }
         public override void RemoveHand(EntityUid uid, string handName, HandsComponent? handsComp = null)
         {
-            if (uid == _playerManager.LocalEntity && handsComp != null &&
+            if (uid == _playerManager.LocalPlayer?.ControlledEntity && handsComp != null &&
                 handsComp.Hands.ContainsKey(handName) && uid ==
-                _playerManager.LocalEntity)
+                _playerManager.LocalPlayer?.ControlledEntity)
             {
                 OnPlayerRemoveHand?.Invoke(handName);
             }
@@ -420,7 +421,7 @@ namespace Content.Client.Hands.Systems
             if (ent is not { } hand)
                 return;
 
-            if (_playerManager.LocalEntity != hand.Owner)
+            if (_playerManager.LocalPlayer?.ControlledEntity != hand.Owner)
                 return;
 
             if (hand.Comp.ActiveHand == null)

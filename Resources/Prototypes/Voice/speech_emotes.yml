@@ -63,15 +63,6 @@
     - giggles!
     - giggling
     - giggled
-    - chortle
-    - chortle.
-    - chortle!
-    - chortles
-    - chortles.
-    - chortles!
-    - chortling
-    - chortling.
-    - chortling!
     # Corvax-Localization-Start
     - смеется
     - смеется.
@@ -152,14 +143,6 @@
     - cries
     - cries.
     - cries!
-    - sob
-    - sob.
-    - sobs
-    - sobs.
-    - sobs!
-    - sobbing
-    - sobbing.
-    - sobbing!
     # Corvax-Localization-Start
     - плачет
     - плачет.
@@ -232,7 +215,7 @@
 - type: emote
   id: Click
   category: Vocal
-  chatMessages: [клацает.] # Corvax-Localization
+  chatMessages: [click.]
   chatTriggers:
    - click
    - click.
@@ -240,14 +223,6 @@
    - clicks
    - clicks.
    - clicks!
-   # Corvax-Localization-Start
-   - клац
-   - клац.
-   - клац!
-   - клацает
-   - клацает.
-   - клацает!
-   # Corvax-Localization-End
 
 # hand emotes
 - type: emote
@@ -349,32 +324,3 @@
   chatMessages: ["emote-deathgasp"]
   chatTriggers:
   - deathgasp
-
-- type: emote
-  id: Buzz
-  category: Vocal
-  chatMessages: [buzz!]
-  chatTriggers:
-    - buzzing
-    - buzzing!
-    - buzzing.
-    - buzz
-    - buzz.
-    - buzz!
-    - buzzed
-    - buzzed.
-    - buzzed!
-    - buzzes
-    - buzzes.
-    - buzzes!
-    # Corvax-Localization-Start
-    - жужжит!
-    - жужжит.
-    - жужжит
-    - зажужжал
-    - зажужжал.
-    - зажужжал!
-    - зажужжала
-    - зажужжала.
-    - зажужжала!
-    # Corvax-Localization-End

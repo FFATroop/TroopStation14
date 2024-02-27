@@ -1,7 +1,6 @@
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.Atmos.Monitor.Components;
-using Content.Shared.DeviceNetwork;
 
 namespace Content.Server.Atmos.Monitor.Systems;
 

@@ -11,6 +11,7 @@ public abstract class SharedCartridgeLoaderSystem : EntitySystem
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly INetManager _netMan = default!;
 
     public override void Initialize()
     {

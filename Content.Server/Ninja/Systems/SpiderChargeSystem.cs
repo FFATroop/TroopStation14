@@ -1,5 +1,4 @@
 using Content.Server.Explosion.EntitySystems;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Objectives.Components;
 using Content.Server.Popups;
@@ -39,7 +38,7 @@ public sealed class SpiderChargeSystem : EntitySystem
 
         var user = args.User;
 
-        if (!_mind.TryGetRole<NinjaRoleComponent>(user, out var _))
+        if (!_mind.TryGetRole<NinjaRoleComponent>(user, out var role))
         {
             _popup.PopupEntity(Loc.GetString("spider-charge-not-ninja"), user, user);
             args.Cancelled = true;
@@ -47,11 +46,11 @@ public sealed class SpiderChargeSystem : EntitySystem
         }
 
         // allow planting anywhere if there is no target, which should never happen
-        if (!_mind.TryGetObjectiveComp<SpiderChargeConditionComponent>(user, out var obj) || obj.Target == null)
+        if (role.SpiderChargeTarget == null)
             return;
 
         // assumes warp point still exists
-        var targetXform = Transform(obj.Target.Value);
+        var targetXform = Transform(role.SpiderChargeTarget.Value);
         var locXform = Transform(args.Target);
         if (locXform.MapID != targetXform.MapID ||
             (_transform.GetWorldPosition(locXform) - _transform.GetWorldPosition(targetXform)).LengthSquared() > comp.Range * comp.Range)
@@ -80,6 +79,6 @@ public sealed class SpiderChargeSystem : EntitySystem
             return;
 
         // assumes the target was destroyed, that the charge wasn't moved somehow
-        obj.Detonated = true;
+        obj.SpiderChargeDetonated = true;
     }
 }

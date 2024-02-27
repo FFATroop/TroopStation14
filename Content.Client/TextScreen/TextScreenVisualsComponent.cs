@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.TextScreen;
 using Robust.Client.Graphics;
 
 namespace Content.Client.TextScreen;
@@ -36,7 +37,7 @@ public sealed partial class TextScreenVisualsComponent : Component
     ///     Number of rows of text this screen can render.
     /// </summary>
     [DataField("rows")]
-    public int Rows = 2;
+    public int Rows = 1;
 
     /// <summary>
     ///     Spacing between each text row

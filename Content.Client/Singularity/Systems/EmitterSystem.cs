@@ -1,5 +1,7 @@
-﻿using Content.Shared.Singularity.Components;
+﻿using Content.Client.Storage.Visualizers;
+using Content.Shared.Singularity.Components;
 using Content.Shared.Singularity.EntitySystems;
+using Content.Shared.Storage;
 using Robust.Client.GameObjects;
 
 namespace Content.Client.Singularity.Systems;
@@ -18,6 +20,14 @@ public sealed class EmitterSystem : SharedEmitterSystem
     {
         if (args.Sprite == null)
             return;
+
+        if (args.Sprite.LayerMapTryGet(StorageVisualLayers.Lock, out var lockLayer))
+        {
+            if (!_appearance.TryGetData<bool>(uid, StorageVisuals.Locked, out var locked, args.Component))
+                locked = false;
+
+            args.Sprite.LayerSetVisible(lockLayer, locked);
+        }
 
         if (!_appearance.TryGetData<EmitterVisualState>(uid, EmitterVisuals.VisualState, out var state, args.Component))
             state = EmitterVisualState.Off;

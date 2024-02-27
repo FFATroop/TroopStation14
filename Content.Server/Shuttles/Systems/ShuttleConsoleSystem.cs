@@ -20,7 +20,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.UserInterface;
 
 namespace Content.Server.Shuttles.Systems;
 

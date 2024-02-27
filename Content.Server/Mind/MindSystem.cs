@@ -122,6 +122,12 @@ public sealed class MindSystem : SharedMindSystem
         return false;
     }
 
+    public bool TryGetSession(EntityUid? mindId, [NotNullWhen(true)] out ICommonSession? session)
+    {
+        session = null;
+        return TryComp(mindId, out MindComponent? mind) && (session = mind.Session) != null;
+    }
+
     public ICommonSession? GetSession(MindComponent mind)
     {
         return mind.Session;
@@ -245,7 +251,7 @@ public sealed class MindSystem : SharedMindSystem
 
             var position = Deleted(mind.OwnedEntity)
                 ? _gameTicker.GetObserverSpawnPoint().ToMap(EntityManager, _transform)
-                : _transform.GetMapCoordinates(mind.OwnedEntity.Value);
+                : Transform(mind.OwnedEntity.Value).MapPosition;
 
             entity = Spawn(GameTicker.ObserverPrototypeName, position);
             component = EnsureComp<MindContainerComponent>(entity.Value);

@@ -30,7 +30,6 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
     [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly IInputManager _input = default!;
     [Dependency] private readonly ILightManager _light = default!;
-    [Dependency] private readonly IClientAdminManager _admin = default!;
 
     [UISystemDependency] private readonly DebugPhysicsSystem _debugPhysics = default!;
     [UISystemDependency] private readonly MarkerSystem _marker = default!;
@@ -54,28 +53,13 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
         CheckSandboxVisibility();
 
         _input.SetInputCommand(ContentKeyFunctions.OpenEntitySpawnWindow,
-            InputCmdHandler.FromDelegate(_ =>
-            {
-                if (!_admin.CanAdminPlace())
-                    return;
-                EntitySpawningController.ToggleWindow();
-            }));
+            InputCmdHandler.FromDelegate(_ => EntitySpawningController.ToggleWindow()));
         _input.SetInputCommand(ContentKeyFunctions.OpenSandboxWindow,
             InputCmdHandler.FromDelegate(_ => ToggleWindow()));
         _input.SetInputCommand(ContentKeyFunctions.OpenTileSpawnWindow,
-            InputCmdHandler.FromDelegate(_ =>
-            {
-                if (!_admin.CanAdminPlace())
-                    return;
-                TileSpawningController.ToggleWindow();
-            }));
+            InputCmdHandler.FromDelegate(_ => TileSpawningController.ToggleWindow()));
         _input.SetInputCommand(ContentKeyFunctions.OpenDecalSpawnWindow,
-            InputCmdHandler.FromDelegate(_ =>
-            {
-                if (!_admin.CanAdminPlace())
-                    return;
-                DecalPlacerController.ToggleWindow();
-            }));
+            InputCmdHandler.FromDelegate(_ => DecalPlacerController.ToggleWindow()));
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.EditorCopyObject, new PointerInputCmdHandler(Copy))

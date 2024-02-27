@@ -102,12 +102,13 @@
         ejectOnInteract: true
         name: power-cell-slot-component-slot-name-default
         whitelist:
-          tags:
+          components:
           - PowerCell
         blacklist:
           tags:
           - PotatoBattery
           - PlasmaMagazine
+
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
   id: PowerCageRecharger

@@ -6,5 +6,3 @@ ent-PortalBlue = { ent-BasePortal }
     .desc = { ent-BasePortal.desc }
 ent-PortalArtifact = { ent-BasePortal }
     .desc = { ent-BasePortal.desc }
-ent-ShadowPortal = shadow rift
-    .desc = Looks unstable.

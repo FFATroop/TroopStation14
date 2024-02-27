@@ -1,6 +1,4 @@
 using Content.Server.Nutrition.Components;
-using Content.Shared.Nutrition.Components;
-using Content.Shared.Nutrition.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Interaction;
 using Robust.Shared.Audio;
@@ -13,7 +11,7 @@ namespace Content.Server.Nutrition.EntitySystems
     /// <summary>
     /// Handles usage of the utensils on the food items
     /// </summary>
-    internal sealed class UtensilSystem : SharedUtensilSystem
+    internal sealed class UtensilSystem : EntitySystem
     {
         [Dependency] private readonly IRobustRandom _robustRandom = default!;
         [Dependency] private readonly FoodSystem _foodSystem = default!;

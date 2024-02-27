@@ -52,7 +52,8 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
     /// </summary>
     public void ToggleVisualization(EntityUid uid, bool toggle, NetworkConfiguratorComponent? component = null)
     {
-        if (_playerManager.LocalEntity == null
+        if (_playerManager.LocalPlayer == null
+            || _playerManager.LocalPlayer.ControlledEntity == null
             || !Resolve(uid, ref component)
             || component.ActiveDeviceList == null)
             return;
@@ -76,7 +77,7 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         {
             var overlay = new NetworkConfiguratorLinkOverlay();
             _overlay.AddOverlay(overlay);
-            var player = _playerManager.LocalEntity.Value;
+            var player = _playerManager.LocalPlayer.ControlledEntity.Value;
             overlay.Action = Spawn(Action);
             _actions.AddActionDirect(player, overlay.Action.Value);
         }

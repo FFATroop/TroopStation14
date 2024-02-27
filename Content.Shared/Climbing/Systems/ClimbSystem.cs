@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -12,6 +13,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
@@ -351,8 +353,7 @@ public sealed partial class ClimbSystem : VirtualController
     {
         if (args.OurFixtureId != ClimbingFixtureName
             || !component.IsClimbing
-            || component.NextTransition != null
-            || args.OurFixture.Contacts.Count > 1)
+            || component.NextTransition != null)
         {
             return;
         }

@@ -1,4 +1,3 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Singularity.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Singularity.EntitySystems;
@@ -192,9 +191,6 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
             {
                 continue;
             }
-
-            if (TryComp<MovedByPressureComponent>(entity, out var movedPressure) && !movedPressure.Enabled) //Ignore magboots users
-                continue;
 
             if(!CanGravPulseAffect(entity))
                 continue;

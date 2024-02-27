@@ -40,8 +40,10 @@
   components:
     - type: StorageFill
       contents:
-        - id: ClothingEyesGlassesHiddenSecurity
+        - id: SyndiCrewMonitorEmpty
           amount: 1
-        - id: SurveillanceCameraMonitorCircuitboard
+        - id: PowerCellHigh
+          amount: 1
+        - id: ClothingEyesGlassesHiddenSecurity
           amount: 1
 

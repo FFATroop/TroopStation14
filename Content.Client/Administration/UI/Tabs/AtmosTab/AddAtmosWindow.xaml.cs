@@ -28,7 +28,7 @@ namespace Content.Client.Administration.UI.Tabs.AtmosTab
         {
             _data.Clear();
 
-            var player = _players.LocalEntity;
+            var player = _players.LocalPlayer?.ControlledEntity;
             var playerGrid = _entities.GetComponentOrNull<TransformComponent>(player)?.GridUid;
             var query = IoCManager.Resolve<IEntityManager>().AllEntityQueryEnumerator<MapGridComponent>();
 

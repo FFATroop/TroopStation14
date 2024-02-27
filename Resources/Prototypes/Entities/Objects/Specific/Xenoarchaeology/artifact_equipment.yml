@@ -9,7 +9,6 @@
     - type: AccessReader
       access: [["Research"], ["Salvage"]]
     - type: Lock
-    - type: ResistLocker
     - type: Sprite
       drawdepth: Objects
       sprite: Structures/Storage/Crates/artifact.rsi
@@ -22,7 +21,7 @@
         visible: false
         map: ["enum.WeldableLayers.BaseWelded"]
       - state: locked
-        map: ["enum.LockVisualLayers.Lock"]
+        map: ["enum.StorageVisualLayers.Lock"]
         shader: unshaded
     - type: InteractionOutline
     - type: Physics
@@ -73,7 +72,6 @@
     - type: EntityStorageVisuals
       stateDoorOpen: artifact_container_open
       stateDoorClosed: artifact_container_door
-    - type: LockVisuals
     - type: ItemSlots
     - type: ContainerContainer
       containers:

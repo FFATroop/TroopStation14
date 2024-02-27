@@ -55,36 +55,33 @@ namespace Content.IntegrationTests.Tests.Construction
             var valid = true;
             var message = new StringBuilder();
 
-            await server.WaitPost(() =>
+            foreach (var graph in protoMan.EnumeratePrototypes<ConstructionGraphPrototype>())
             {
-                foreach (var graph in protoMan.EnumeratePrototypes<ConstructionGraphPrototype>())
+                foreach (var node in graph.Nodes.Values)
                 {
-                    foreach (var node in graph.Nodes.Values)
+                    foreach (var action in node.Actions)
                     {
-                        foreach (var action in node.Actions)
+                        if (IsValid(action, protoMan, out var prototype)) continue;
+
+                        valid = false;
+                        message.Append($"Invalid entity prototype \"{prototype}\" on graph action in node \"{node.Name}\" of graph \"{graph.ID}\"\n");
+                    }
+
+                    foreach (var edge in node.Edges)
+                    {
+                        foreach (var action in edge.Completed)
                         {
                             if (IsValid(action, protoMan, out var prototype)) continue;
 
                             valid = false;
-                            message.Append($"Invalid entity prototype \"{prototype}\" on graph action in node \"{node.Name}\" of graph \"{graph.ID}\"\n");
-                        }
-
-                        foreach (var edge in node.Edges)
-                        {
-                            foreach (var action in edge.Completed)
-                            {
-                                if (IsValid(action, protoMan, out var prototype)) continue;
-
-                                valid = false;
-                                message.Append($"Invalid entity prototype \"{prototype}\" on graph action in edge \"{edge.Target}\" of node \"{node.Name}\" of graph \"{graph.ID}\"\n");
-                            }
+                            message.Append($"Invalid entity prototype \"{prototype}\" on graph action in edge \"{edge.Target}\" of node \"{node.Name}\" of graph \"{graph.ID}\"\n");
                         }
                     }
                 }
-            });
+            }
+            await pair.CleanReturnAsync();
 
             Assert.That(valid, Is.True, $"One or more SpawnPrototype actions specified invalid entity prototypes!\n{message}");
-            await pair.CleanReturnAsync();
         }
 
         [Test]
@@ -98,24 +95,19 @@ namespace Content.IntegrationTests.Tests.Construction
             var valid = true;
             var message = new StringBuilder();
 
-            await server.WaitPost(() =>
+            foreach (var graph in protoMan.EnumeratePrototypes<ConstructionGraphPrototype>())
             {
-                foreach (var graph in protoMan.EnumeratePrototypes<ConstructionGraphPrototype>())
+                foreach (var node in graph.Nodes.Values)
                 {
-                    foreach (var node in graph.Nodes.Values)
+                    foreach (var edge in node.Edges)
                     {
-                        foreach (var edge in node.Edges)
-                        {
-                            if (graph.Nodes.ContainsKey(edge.Target))
-                                continue;
+                        if (graph.Nodes.ContainsKey(edge.Target)) continue;
 
-                            valid = false;
-                            message.Append(
-                                $"Invalid target \"{edge.Target}\" in edge on node \"{node.Name}\" of graph \"{graph.ID}\"\n");
-                        }
+                        valid = false;
+                        message.Append($"Invalid target \"{edge.Target}\" in edge on node \"{node.Name}\" of graph \"{graph.ID}\"\n");
                     }
                 }
-            });
+            }
 
             Assert.That(valid, Is.True, $"One or more edges specified invalid node targets!\n{message}");
             await pair.CleanReturnAsync();

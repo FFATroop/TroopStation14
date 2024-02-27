@@ -7,7 +7,6 @@
     specialDigestible:
       tags:
       - ClothMade
-      - Paper
   - type: SolutionContainerManager
     solutions:
       stomach:

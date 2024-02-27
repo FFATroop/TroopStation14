@@ -1,4 +1,5 @@
 ﻿using Content.Server.Actions;
+using Content.Server.Chat.Systems;
 using Content.Server.Humanoid;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -15,6 +16,7 @@ namespace Content.Server.Wagging;
 public sealed class WaggingSystem : EntitySystem
 {
     [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
@@ -48,6 +50,9 @@ public sealed class WaggingSystem : EntitySystem
 
     private void OnMobStateChanged(EntityUid uid, WaggingComponent component, MobStateChangedEvent args)
     {
+        if (args.NewMobState != MobState.Dead)
+            return;
+
         if (component.Wagging)
             TryToggleWagging(uid, wagging: component);
     }
@@ -96,6 +101,9 @@ public sealed class WaggingSystem : EntitySystem
             _humanoidAppearance.SetMarkingId(uid, MarkingCategories.Tail, idx, newMarkingId,
                 humanoid: humanoid);
         }
+
+        var emoteText = Loc.GetString(wagging.Wagging ? "wagging-emote-start" : "wagging-emote-stop", ("ent", uid));
+        _chat.TrySendInGameICMessage(uid, emoteText, InGameICChatType.Emote, ChatTransmitRange.Normal); // Ok while emotes dont have radial menu
 
         return true;
     }

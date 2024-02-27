@@ -64,7 +64,6 @@
       - ForceNoFixRotations
   - type: PaintableAirlock
     group: Shuttle
-    department: null
   - type: Construction
     graph: AirlockShuttle
     node: airlock

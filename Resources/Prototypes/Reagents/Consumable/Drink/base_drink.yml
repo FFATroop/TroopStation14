@@ -36,10 +36,6 @@
     amount: 0.1
   - !type:PlantAdjustHealth
     amount: -0.1
-  footstepSound:
-    collection: FootstepSticky
-    params:
-      volume: 6
 
 - type: reagent
   id: BaseAlcohol
@@ -66,13 +62,3 @@
     amount: 0.25
   - !type:PlantAdjustWater
     amount: 0.7
-
-- type: reagent
-  id: BaseJuice
-  parent: BaseDrink
-  abstract: true
-  flavor: sweet
-  footstepSound:
-    collection: FootstepSticky
-    params:
-      volume: 6

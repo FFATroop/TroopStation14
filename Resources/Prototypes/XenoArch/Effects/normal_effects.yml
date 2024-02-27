@@ -515,14 +515,14 @@
   targetDepth: 2
   effectHint: artifact-effect-hint-polymorph
   components:
-  - type: PolyOthersArtifact
+  - type: PolyArtifact
 
 - type: artifactEffect
   id: EffectPolyLizard
   targetDepth: 2
   effectHint: artifact-effect-hint-polymorph
   components:
-  - type: PolyOthersArtifact
+  - type: PolyArtifact
     polymorphPrototypeName: ArtifactLizard
 
 - type: artifactEffect
@@ -530,7 +530,7 @@
   targetDepth: 3
   effectHint: artifact-effect-hint-polymorph
   components:
-  - type: PolyOthersArtifact
+  - type: PolyArtifact
     polymorphPrototypeName: ArtifactLuminous
 
 - type: artifactEffect

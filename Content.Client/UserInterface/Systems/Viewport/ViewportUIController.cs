@@ -80,7 +80,7 @@ public sealed class ViewportUIController : UIController
 
         // verify that the current eye is not "null". Fuck IEyeManager.
 
-        var ent = _playerMan.LocalEntity;
+        var ent = _playerMan.LocalPlayer?.ControlledEntity;
         if (_eyeManager.CurrentEye.Position != default || ent == null)
             return;
 

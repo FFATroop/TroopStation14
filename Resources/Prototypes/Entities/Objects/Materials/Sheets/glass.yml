@@ -197,7 +197,6 @@
         - ReagentId: Carbon
           Quantity: 0.5
         canReact: false
-        
 - type: entity
   parent: SheetGlassBase
   id: SheetPGlass

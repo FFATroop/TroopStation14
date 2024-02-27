@@ -1,14 +1,10 @@
 namespace Content.Shared.StationRecords;
 
-/// <summary>
-/// Station record keys. These should be stored somewhere,
-/// preferably within an ID card.
-/// This refers to both the id and station. This is suitable for an access reader field etc,
-/// but when you already know the station just store the id itself.
-/// </summary>
+// Station record keys. These should be stored somewhere,
+// preferably within an ID card.
 public readonly struct StationRecordKey : IEquatable<StationRecordKey>
 {
-    [DataField]
+    [DataField("id")]
     public readonly uint Id;
 
     [DataField("station")]

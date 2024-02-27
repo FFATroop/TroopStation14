@@ -5,13 +5,8 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.DragDrop;
-using Content.Shared.Gibbing.Components;
-using Content.Shared.Gibbing.Events;
-using Content.Shared.Gibbing.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
@@ -28,10 +23,7 @@ public partial class SharedBodySystem
      */
 
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    private const float GibletLaunchImpulse = 8;
-    private const float GibletLaunchImpulseVariance = 3;
+
     private void InitializeBody()
     {
         // Body here to handle root body parts.
@@ -271,44 +263,29 @@ public partial class SharedBodySystem
         }
     }
 
-    public virtual HashSet<EntityUid> GibBody(
-        EntityUid bodyId,
-        bool gibOrgans = false,
-        BodyComponent? body = null,
-        bool launchGibs = true,
-        Vector2? splatDirection = null,
-        float splatModifier = 1,
-        Angle splatCone = default,
-        SoundSpecifier? gibSoundOverride = null
-        )
+    public virtual HashSet<EntityUid> GibBody(EntityUid bodyId, bool gibOrgans = false,
+        BodyComponent? body = null, bool deleteItems = false, bool deleteBrain = false)
     {
         var gibs = new HashSet<EntityUid>();
 
         if (!Resolve(bodyId, ref body, false))
             return gibs;
 
-        var root = GetRootPartOrNull(bodyId, body);
-        if (root != null && TryComp(root.Value.Entity, out GibbableComponent? gibbable))
-        {
-            gibSoundOverride ??= gibbable.GibSound;
-        }
         var parts = GetBodyChildren(bodyId, body).ToArray();
         gibs.EnsureCapacity(parts.Length);
+
         foreach (var part in parts)
         {
-
-            _gibbingSystem.TryGibEntityWithRef(bodyId, part.Id, GibType.Gib, GibContentsOption.Skip, ref gibs,
-                playAudio: false, launchGibs:true, launchDirection:splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
-                launchImpulseVariance:GibletLaunchImpulseVariance, launchCone: splatCone);
+            SharedTransform.AttachToGridOrMap(part.Id);
+            gibs.Add(part.Id);
 
             if (!gibOrgans)
                 continue;
 
             foreach (var organ in GetPartOrgans(part.Id, part.Component))
             {
-                _gibbingSystem.TryGibEntityWithRef(bodyId, organ.Id, GibType.Drop, GibContentsOption.Skip,
-                    ref gibs, playAudio: false, launchImpulse: GibletLaunchImpulse * splatModifier,
-                    launchImpulseVariance:GibletLaunchImpulseVariance, launchCone: splatCone);
+                SharedTransform.AttachToGridOrMap(organ.Id);
+                gibs.Add(organ.Id);
             }
         }
         if(TryComp<InventoryComponent>(bodyId, out var inventory))
@@ -319,7 +296,6 @@ public partial class SharedBodySystem
                 gibs.Add(item);
             }
         }
-        _audioSystem.PlayPredicted(gibSoundOverride, Transform(bodyId).Coordinates, null);
         return gibs;
     }
 }

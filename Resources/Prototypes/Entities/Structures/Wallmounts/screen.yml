@@ -2,17 +2,12 @@
   id: Screen
   name: screen
   description: Displays text or time.
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Wallmount
   components:
   - type: Transform
     anchored: true
   - type: WallMount
     arc: 360
   - type: InteractionOutline
-  - type: Clickable
   - type: Appearance
   - type: Rotatable
   - type: TextScreenVisuals
@@ -33,7 +28,7 @@
     enabled: false
     usesApcPower: true
   - type: ExtensionCableReceiver
-  - type: Screen
+  - type: ShuttleTimer
   - type: DeviceNetwork
     receiveFrequencyId: ShuttleTimer
 

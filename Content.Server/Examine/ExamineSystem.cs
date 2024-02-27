@@ -40,14 +40,14 @@ namespace Content.Server.Examine
                 GetNetEntity(target), 0, message, verbs?.ToList(), centerAtCursor
             );
 
-            RaiseNetworkEvent(ev, session.Channel);
+            RaiseNetworkEvent(ev, session.ConnectedClient);
         }
 
         private void ExamineInfoRequest(ExamineSystemMessages.RequestExamineInfoMessage request, EntitySessionEventArgs eventArgs)
         {
             var player = eventArgs.SenderSession;
             var session = eventArgs.SenderSession;
-            var channel = player.Channel;
+            var channel = player.ConnectedClient;
             var entity = GetEntity(request.NetEntity);
 
             if (session.AttachedEntity is not {Valid: true} playerEnt

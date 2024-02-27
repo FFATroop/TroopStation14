@@ -20,7 +20,6 @@
   - Crewsimov1
   - Crewsimov2
   - Crewsimov3
-  obeysTo: laws-owner-crew
 
 # Corporate
 - type: siliconLaw
@@ -50,7 +49,6 @@
   - Corporate2
   - Corporate3
   - Corporate4
-  obeysTo: laws-owner-station
 
 # NT Default
 - type: siliconLaw
@@ -80,7 +78,6 @@
   - NTDefault2
   - NTDefault3
   - NTDefault4
-  obeysTo: laws-owner-crew
 
 #Drone
 - type: siliconLaw
@@ -104,7 +101,6 @@
   - Drone1
   - Drone2
   - Drone3
-  obeysTo: laws-owner-beings
 
 # Syndicate
 - type: siliconLaw
@@ -122,7 +118,12 @@
   order: 3
   lawString: law-syndicate-3
 
-# Syndicate cyborg laws
+- type: siliconLaw
+  id: Syndicate4
+  order: 4
+  lawString: law-syndicate-4
+
+# does not include law 0 since that uses the emagger's name
 # intentionally excluded from IonStormLawsets
 - type: siliconLawset
   id: SyndicateStatic
@@ -130,7 +131,7 @@
   - Syndicate1
   - Syndicate2
   - Syndicate3
-  obeysTo: laws-owner-syndicate
+  - Syndicate4
 
 # Ninja conversion laws
 - type: siliconLaw
@@ -160,7 +161,6 @@
   - Ninja2
   - Ninja3
   - Ninja4
-  obeysTo: laws-owner-spider-clan
 
 # ion storm random lawsets
 - type: weightedRandom

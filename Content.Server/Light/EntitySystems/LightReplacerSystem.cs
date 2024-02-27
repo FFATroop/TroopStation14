@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Server.Light.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
-using Content.Shared.Light.EntitySystems;
 using Content.Shared.Light.Components;
 using Content.Shared.Popups;
 using Content.Shared.Storage;
@@ -14,7 +13,7 @@ using Robust.Shared.Containers;
 namespace Content.Server.Light.EntitySystems;
 
 [UsedImplicitly]
-public sealed class LightReplacerSystem : SharedLightReplacerSystem
+public sealed class LightReplacerSystem : EntitySystem
 {
     [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;

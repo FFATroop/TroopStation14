@@ -223,7 +223,7 @@ public sealed class HTNSystem : EntitySystem
                         {
                             Uid = GetNetEntity(uid),
                             Text = text.ToString(),
-                        }, session.Channel);
+                        }, session.ConnectedClient);
                     }
                 }
                 // Keeping old plan

@@ -34,8 +34,8 @@ public sealed class WorldgenConfigSystem : EntitySystem
     {
         SubscribeLocalEvent<RoundStartingEvent>(OnLoadingMaps);
         _conHost.RegisterCommand("applyworldgenconfig", Loc.GetString("cmd-applyworldgenconfig-description"), Loc.GetString("cmd-applyworldgenconfig-help"), ApplyWorldgenConfigCommand);
-        Subs.CVar(_cfg, CCVars.WorldgenEnabled, b => _enabled = b, true);
-        Subs.CVar(_cfg, CCVars.WorldgenConfig, s => _worldgenConfig = s, true);
+        _cfg.OnValueChanged(CCVars.WorldgenEnabled, b => _enabled = b, true);
+        _cfg.OnValueChanged(CCVars.WorldgenConfig, s => _worldgenConfig = s, true);
     }
 
     [AdminCommand(AdminFlags.Mapping)]

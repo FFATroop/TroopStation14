@@ -16,11 +16,4 @@ namespace Content.Shared.Nutrition.Components
         Opened,
         Layer
     }
-
-    [Serializable, NetSerializable]
-    public enum SealableVisuals : byte
-    {
-        Sealed,
-        Layer,
-    }
 }

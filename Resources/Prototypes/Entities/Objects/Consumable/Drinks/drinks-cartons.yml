@@ -6,10 +6,6 @@
   - type: Openable
     sound:
       collection: bottleOpenSounds #Could use a new sound someday ¯\_(ツ)_/¯
-    closeable: true
-    closeSound:
-      collection: bottleCloseSounds
-  - type: Sealable
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -40,23 +36,7 @@
     solution: drink
 
 - type: entity
-  id: DrinkCartonVisualsOpenable
-  abstract: true
-  components:
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.OpenableVisuals.Opened:
-        enum.OpenableVisuals.Layer:
-          True: {state: "icon_open"}
-          False: {state: "icon"}
-  - type: Sprite
-    layers:
-      - state: icon
-        map: ["enum.OpenableVisuals.Layer"]
-
-- type: entity
-  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
+  parent: DrinkCartonBaseFull
   id: DrinkJuiceLimeCarton
   name: lime juice
   description: Sweet-sour goodness.
@@ -71,7 +51,7 @@
     sprite: Objects/Consumable/Drinks/limejuice.rsi
 
 - type: entity
-  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
+  parent: DrinkCartonBaseFull
   id: DrinkJuiceOrangeCarton
   name: orange juice
   description: Full of vitamins and deliciousness!
@@ -86,7 +66,7 @@
     sprite: Objects/Consumable/Drinks/orangejuice.rsi
 
 - type: entity
-  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
+  parent: DrinkCartonBaseFull
   id: DrinkJuiceTomatoCarton
   name: tomato juice
   description: Well, at least it LOOKS like tomato juice. You can't tell with all that redness.
@@ -101,7 +81,7 @@
     sprite: Objects/Consumable/Drinks/tomatojuice.rsi
 
 - type: entity
-  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
+  parent: DrinkCartonBaseFull
   id: DrinkCreamCarton
   name: milk cream
   description: It's cream. Made from milk. What else did you think you'd find in there?
@@ -116,7 +96,7 @@
     sprite: Objects/Consumable/Drinks/cream.rsi
 
 - type: entity
-  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
+  parent: DrinkCartonBaseFull
   id: DrinkMilkCarton
   name: milk
   description: An opaque white liquid produced by the mammary glands of mammals.
@@ -132,7 +112,7 @@
     sprite: Objects/Consumable/Drinks/milk.rsi
 
 - type: entity
-  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
+  parent: DrinkCartonBaseFull
   id: DrinkSoyMilkCarton
   name: soy milk
   description: White and nutritious soy goodness!
@@ -148,7 +128,7 @@
     sprite: Objects/Consumable/Drinks/soymilk.rsi
 
 - type: entity
-  parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
+  parent: DrinkCartonBaseFull
   id: DrinkOatMilkCarton
   name: oat milk
   description: It's oat milk. Tan and nutritious goodness!

@@ -70,6 +70,15 @@
     # Fill layer
     - !type:BiomeTileLayer
       threshold: -1
+      variants:
+        - 0
+      tile: FloorAsteroidSand
+    - !type:BiomeTileLayer
+      threshold: 0.80
+      noise:
+        seed: 1
+        noiseType: OpenSimplex2
+        frequency: 2
       tile: FloorAsteroidSand
 
 # Grass
@@ -298,6 +307,8 @@
     # Fill basalt
     - !type:BiomeTileLayer
       threshold: -1
+      variants:
+        - 0
       tile: FloorBasalt
 
 # Snow
@@ -519,6 +530,15 @@
     # Fill chromite
     - !type:BiomeTileLayer
       threshold: -1
+      variants:
+        - 0
+      tile: FloorChromite
+    - !type:BiomeTileLayer
+      threshold: 0.25
+      noise:
+        seed: 1
+        noiseType: OpenSimplex2
+        frequency: 2
       tile: FloorChromite
 
 # Caves
@@ -573,6 +593,15 @@
     - !type:BiomeTileLayer
       threshold: -1.0
       tile: FloorAsteroidSand
+      variants:
+      - 0
+    - !type:BiomeTileLayer
+      threshold: 0.5
+      noise:
+        seed: 1
+        noiseType: OpenSimplex2
+        frequency: 2
+      tile: FloorAsteroidSand
 
 # Asteroid
 - type: biomeTemplate
@@ -623,4 +652,13 @@
         - AsteroidRock
     - !type:BiomeTileLayer
       threshold: -1.0
+      tile: FloorAsteroidSand
+      variants:
+        - 0
+    - !type:BiomeTileLayer
+      threshold: 0.5
+      noise:
+        seed: 1
+        noiseType: OpenSimplex2
+        frequency: 2
       tile: FloorAsteroidSand

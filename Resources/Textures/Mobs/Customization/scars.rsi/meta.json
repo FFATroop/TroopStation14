@@ -22,10 +22,6 @@
     {
         "name": "scar_top_surgery_long",
         "directions": 4
-    },
-    {
-        "name": "scar_chest",
-        "directions": 4
     }
   ]
 }

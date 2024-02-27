@@ -52,7 +52,7 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         if (e.NewStatus != SessionStatus.Connected || _cachedRoleBans.ContainsKey(e.Session.UserId))
             return;
 
-        var netChannel = e.Session.Channel;
+        var netChannel = e.Session.ConnectedClient;
         ImmutableArray<byte>? hwId = netChannel.UserData.HWId.Length == 0 ? null : netChannel.UserData.HWId;
         await CacheDbRoleBans(e.Session.UserId, netChannel.RemoteEndPoint.Address, hwId);
 
@@ -175,7 +175,7 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             return;
         // If they are, kick them
         var message = banDef.FormatBanMessage(_cfg, _localizationManager);
-        targetPlayer.Channel.Disconnect(message);
+        targetPlayer.ConnectedClient.Disconnect(message);
     }
     #endregion
 
@@ -293,7 +293,7 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         };
 
         _sawmill.Debug($"Sent rolebans to {pSession.Name}");
-        _netManager.ServerSendMessage(bans, pSession.Channel);
+        _netManager.ServerSendMessage(bans, pSession.ConnectedClient);
     }
 
     public void PostInject()

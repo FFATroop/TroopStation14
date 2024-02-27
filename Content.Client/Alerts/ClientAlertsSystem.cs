@@ -40,7 +40,7 @@ public sealed class ClientAlertsSystem : AlertsSystem
     {
         get
         {
-            var ent = _playerManager.LocalEntity;
+            var ent = _playerManager.LocalPlayer?.ControlledEntity;
             return ent is not null
                 ? GetActiveAlerts(ent.Value)
                 : null;
@@ -49,7 +49,7 @@ public sealed class ClientAlertsSystem : AlertsSystem
 
     protected override void AfterShowAlert(Entity<AlertsComponent> alerts)
     {
-        if (_playerManager.LocalEntity != alerts.Owner)
+        if (_playerManager.LocalPlayer?.ControlledEntity != alerts.Owner)
             return;
 
         SyncAlerts?.Invoke(this, alerts.Comp.Alerts);
@@ -57,7 +57,7 @@ public sealed class ClientAlertsSystem : AlertsSystem
 
     protected override void AfterClearAlert(Entity<AlertsComponent> alertsComponent)
     {
-        if (_playerManager.LocalEntity != alertsComponent.Owner)
+        if (_playerManager.LocalPlayer?.ControlledEntity != alertsComponent.Owner)
             return;
 
         SyncAlerts?.Invoke(this, alertsComponent.Comp.Alerts);
@@ -65,13 +65,13 @@ public sealed class ClientAlertsSystem : AlertsSystem
 
     private void ClientAlertsHandleState(EntityUid uid, AlertsComponent component, ref AfterAutoHandleStateEvent args)
     {
-        if (_playerManager.LocalEntity == uid)
+        if (_playerManager.LocalPlayer?.ControlledEntity == uid)
             SyncAlerts?.Invoke(this, component.Alerts);
     }
 
     private void OnPlayerAttached(EntityUid uid, AlertsComponent component, LocalPlayerAttachedEvent args)
     {
-        if (_playerManager.LocalEntity != uid)
+        if (_playerManager.LocalPlayer?.ControlledEntity != uid)
             return;
 
         SyncAlerts?.Invoke(this, component.Alerts);
@@ -81,7 +81,7 @@ public sealed class ClientAlertsSystem : AlertsSystem
     {
         base.HandleComponentShutdown(uid, component, args);
 
-        if (_playerManager.LocalEntity != uid)
+        if (_playerManager.LocalPlayer?.ControlledEntity != uid)
             return;
 
         ClearAlerts?.Invoke(this, EventArgs.Empty);

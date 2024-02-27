@@ -50,7 +50,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (!Timing.IsFirstTimePredicted)
             return;
 
-        var entityNull = _player.LocalEntity;
+        var entityNull = _player.LocalPlayer?.ControlledEntity;
 
         if (entityNull == null)
             return;

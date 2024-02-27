@@ -9,8 +9,6 @@
     sprite: Clothing/Head/Hoods/Bio/general.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/general.rsi
-  - type: BreathMask
-  - type: IngestionBlocker
   - type: Tag
     tags:
     - HidesHair
@@ -23,7 +21,6 @@
   suffix: CMO
   description: An advanced hood for chief medical officers that protects the head and face from biological contaminants.
   components:
-  - type: IdentityBlocker
   - type: Sprite
     sprite: Clothing/Head/Hoods/Bio/cmo.rsi
   - type: Clothing
@@ -36,7 +33,6 @@
   suffix: Janitor
   description: A hood that protects the head and face from biological contaminants.
   components:
-  - type: IdentityBlocker
   - type: Sprite
     sprite: Clothing/Head/Hoods/Bio/janitor.rsi
   - type: Clothing
@@ -49,7 +45,6 @@
   suffix: Science
   description: A hood that protects the head and face from biological contaminants.
   components:
-  - type: IdentityBlocker
   - type: Sprite
     sprite: Clothing/Head/Hoods/Bio/scientist.rsi
   - type: Clothing
@@ -62,7 +57,6 @@
   suffix: Security
   description: A hood that protects the head and face from biological contaminants.
   components:
-  - type: IdentityBlocker
   - type: Sprite
     sprite: Clothing/Head/Hoods/Bio/security.rsi
   - type: Clothing
@@ -75,7 +69,6 @@
   suffix: Virology
   description: A hood that protects the head and face from biological contaminants.
   components:
-  - type: IdentityBlocker
   - type: Sprite
     sprite: Clothing/Head/Hoods/Bio/virology.rsi
   - type: Clothing
@@ -94,7 +87,6 @@
     sprite: Clothing/Head/Hoods/chaplain.rsi
   - type: Tag
     tags:
-    - HidesHair
     - HamsterWearable
     - WhitelistChameleon
 
@@ -108,10 +100,6 @@
     sprite: Clothing/Head/Hoods/cult.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/cult.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase
@@ -125,7 +113,6 @@
     sprite: Clothing/Head/Hoods/nun.rsi
   - type: Tag
     tags:
-    - HidesHair
     - HamsterWearable
     - WhitelistChameleon
 
@@ -159,10 +146,6 @@
     sprite: Clothing/Head/Hoods/goliathcloak.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/goliathcloak.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase

@@ -11,7 +11,6 @@ using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable.Components;
 using Robust.Shared.Audio.Systems;
@@ -28,7 +27,6 @@ public sealed class WieldableSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UseDelaySystem _delay = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
 
     public override void Initialize()
     {
@@ -44,7 +42,6 @@ public sealed class WieldableSystem : EntitySystem
         SubscribeLocalEvent<GunRequiresWieldComponent, AttemptShootEvent>(OnShootAttempt);
         SubscribeLocalEvent<GunWieldBonusComponent, ItemWieldedEvent>(OnGunWielded);
         SubscribeLocalEvent<GunWieldBonusComponent, ItemUnwieldedEvent>(OnGunUnwielded);
-        SubscribeLocalEvent<GunWieldBonusComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
 
         SubscribeLocalEvent<IncreaseDamageOnWieldComponent, GetMeleeDamageEvent>(OnGetMeleeDamage);
     }
@@ -75,22 +72,22 @@ public sealed class WieldableSystem : EntitySystem
 
     private void OnGunUnwielded(EntityUid uid, GunWieldBonusComponent component, ItemUnwieldedEvent args)
     {
-        _gun.RefreshModifiers(uid);
+        if (!TryComp<GunComponent>(uid, out var gun))
+            return;
+
+        gun.MinAngle -= component.MinAngle;
+        gun.MaxAngle -= component.MaxAngle;
+        Dirty(uid, gun);
     }
 
     private void OnGunWielded(EntityUid uid, GunWieldBonusComponent component, ref ItemWieldedEvent args)
     {
-        _gun.RefreshModifiers(uid);
-    }
+        if (!TryComp<GunComponent>(uid, out var gun))
+            return;
 
-    private void OnGunRefreshModifiers(Entity<GunWieldBonusComponent> bonus, ref GunRefreshModifiersEvent args)
-    {
-        if (TryComp(bonus, out WieldableComponent? wield) &&
-            wield.Wielded)
-        {
-            args.MinAngle += bonus.Comp.MinAngle;
-            args.MaxAngle += bonus.Comp.MaxAngle;
-        }
+        gun.MinAngle += component.MinAngle;
+        gun.MaxAngle += component.MaxAngle;
+        Dirty(uid, gun);
     }
 
     private void AddToggleWieldVerb(EntityUid uid, WieldableComponent component, GetVerbsEvent<InteractionVerb> args)
@@ -217,7 +214,6 @@ public sealed class WieldableSystem : EntitySystem
         if (ev.Cancelled)
             return false;
 
-        component.Wielded = false;
         var targEv = new ItemUnwieldedEvent(user);
 
         RaiseLocalEvent(used, targEv);
@@ -229,10 +225,15 @@ public sealed class WieldableSystem : EntitySystem
         if (args.User == null)
             return;
 
+        if (!component.Wielded)
+            return;
+
         if (TryComp<ItemComponent>(uid, out var item))
         {
             _itemSystem.SetHeldPrefix(uid, component.OldInhandPrefix, component: item);
         }
+
+        component.Wielded = false;
 
         if (!args.Force) // don't play sound/popup if this was a forced unwield
         {

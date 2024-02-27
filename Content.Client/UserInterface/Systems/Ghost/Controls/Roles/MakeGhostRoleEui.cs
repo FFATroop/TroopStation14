@@ -43,8 +43,8 @@ public sealed class MakeGhostRoleEui : BaseEui
 
     private void OnMake(NetEntity entity, string name, string description, string rules, bool makeSentient)
     {
-        var session = _playerManager.LocalSession;
-        if (session == null)
+        var player = _playerManager.LocalPlayer;
+        if (player == null)
         {
             return;
         }
@@ -56,12 +56,12 @@ public sealed class MakeGhostRoleEui : BaseEui
             $"\"{CommandParsing.Escape(description)}\" " +
             $"\"{CommandParsing.Escape(rules)}\"";
 
-        _consoleHost.ExecuteCommand(session, makeGhostRoleCommand);
+        _consoleHost.ExecuteCommand(player.Session, makeGhostRoleCommand);
 
         if (makeSentient)
         {
             var makeSentientCommand = $"makesentient \"{CommandParsing.Escape(entity.ToString())}\"";
-            _consoleHost.ExecuteCommand(session, makeSentientCommand);
+            _consoleHost.ExecuteCommand(player.Session, makeSentientCommand);
         }
 
         _window.Close();

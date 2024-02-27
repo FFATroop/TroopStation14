@@ -1,14 +1,12 @@
 using Content.Server.Access.Components;
 using Content.Server.Popups;
-using Content.Shared.UserInterface;
+using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.StatusIcon;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
-using Content.Shared.Roles;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.Access.Systems
 {
@@ -48,7 +46,7 @@ namespace Content.Server.Access.Systems
                 return;
             }
 
-            Dirty(uid, access);
+            Dirty(access);
 
             if (addedLength == 1)
             {
@@ -100,24 +98,6 @@ namespace Content.Server.Access.Systems
             }
 
             _cardSystem.TryChangeJobIcon(uid, jobIcon, idCard);
-
-            if (TryFindJobProtoFromIcon(jobIcon, out var job))
-                _cardSystem.TryChangeJobDepartment(uid, job, idCard);
-        }
-
-        private bool TryFindJobProtoFromIcon(StatusIconPrototype jobIcon, [NotNullWhen(true)] out JobPrototype? job)
-        {
-            foreach (var jobPrototype in _prototypeManager.EnumeratePrototypes<JobPrototype>())
-            {
-                if(jobPrototype.Icon == jobIcon.ID)
-                {
-                    job = jobPrototype;
-                    return true;
-                }
-            }
-
-            job = null;
-            return false;
         }
     }
 }

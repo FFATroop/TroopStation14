@@ -26,7 +26,7 @@ public sealed class QuickDialogOpenEvent : EntityEventArgs
     /// <summary>
     /// The buttons presented for the user.
     /// </summary>
-    public QuickDialogButtonFlag Buttons = QuickDialogButtonFlag.OkButton | QuickDialogButtonFlag.CancelButton;
+    public QuickDialogButtonFlag Buttons = QuickDialogButtonFlag.OkButton;
 
     public QuickDialogOpenEvent(string title, List<QuickDialogEntry> prompts, int dialogId, QuickDialogButtonFlag buttons)
     {
@@ -87,17 +87,11 @@ public sealed class QuickDialogEntry
     /// </summary>
     public string Prompt;
 
-    /// <summary>
-    /// String to replace the type-specific placeholder with.
-    /// </summary>
-    public string? Placeholder;
-
-    public QuickDialogEntry(string fieldId, QuickDialogEntryType type, string prompt, string? placeholder = null)
+    public QuickDialogEntry(string fieldId, QuickDialogEntryType type, string prompt)
     {
         FieldId = fieldId;
         Type = type;
         Prompt = prompt;
-        Placeholder = placeholder;
     }
 }
 

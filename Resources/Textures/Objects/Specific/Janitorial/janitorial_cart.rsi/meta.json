@@ -56,9 +56,6 @@
             "directions": 4
         },
         {
-            "name": "icon-cart"
-        },
-        {
             "name": "cart_water-1",
             "directions": 4,
             "delays": [

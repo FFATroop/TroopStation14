@@ -24,5 +24,3 @@ ent-BasicStationEventScheduler = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-RampingStationEventScheduler = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
-ent-BasicRoundstartVariation = { ent-BaseGameRule }
-    .desc = { ent-BaseGameRule.desc }

@@ -18,7 +18,12 @@ public sealed partial class ShuttleSystem
 
         SubscribeLocalEvent<GridFillComponent, MapInitEvent>(OnGridFillMapInit);
 
-        Subs.CVar(_cfg, CCVars.GridFill, OnGridFillChange);
+        _cfg.OnValueChanged(CCVars.GridFill, OnGridFillChange);
+    }
+
+    private void ShutdownGridFills()
+    {
+        _cfg.UnsubValueChanged(CCVars.GridFill, OnGridFillChange);
     }
 
     private void OnGridFillChange(bool obj)

@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Popups;
-using Content.Shared.UserInterface;
+using Content.Server.UserInterface;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -160,8 +160,6 @@ namespace Content.Server.Paper
                 if (args.Session.AttachedEntity != null)
                     _adminLogger.Add(LogType.Chat, LogImpact.Low,
                         $"{ToPrettyString(args.Session.AttachedEntity.Value):player} has written on {ToPrettyString(uid):entity} the following text: {args.Text}");
-
-                _audio.PlayPvs(paperComp.Sound, uid);
             }
 
             paperComp.Mode = PaperAction.Read;

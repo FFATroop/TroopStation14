@@ -38,10 +38,6 @@
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
-  footstepSound:
-    collection: FootstepBlood
-    params:
-      volume: 6
 
 - type: reagent
   parent: Blood
@@ -74,10 +70,6 @@
       effects:
       - !type:SatiateHunger
         factor: 1.5
-  footstepSound:
-    collection: FootstepBlood
-    params:
-      volume: 6
 
 - type: reagent
   parent: Blood
@@ -88,19 +80,7 @@
   flavor: metallic
   color: "#162581"
   recognizable: true
-  physicalDesc: reagent-physical-desc-metallic
-  slippery: false
-
-- type: reagent
-  parent: Blood
-  id: AmmoniaBlood
-  name: reagent-name-ammonia-blood
-  group: Biological
-  desc: reagent-desc-ammonia-blood
-  flavor: bitter
-  color: "#7a8bf2"
-  recognizable: true
-  physicalDesc: reagent-physical-desc-pungent
+  physicalDesc: reagent-physical-desc-ferrous
   slippery: false
 
 - type: reagent
@@ -156,10 +136,6 @@
   plantMetabolism:
   - !type:PlantAdjustWater
     amount: 0.5
-  footstepSound:
-    collection: FootstepBlood
-    params:
-      volume: 6
 
 - type: reagent
   id: Fat
@@ -170,10 +146,6 @@
   color: "#d8d8b0"
   physicalDesc: reagent-physical-desc-exotic-smelling
   slippery: false
-  footstepSound:
-    collection: FootstepBlood
-    params:
-      volume: 6
 
 - type: reagent
   id: Vomit
@@ -192,7 +164,3 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
-  footstepSound:
-    collection: FootstepBlood
-    params:
-      volume: 6

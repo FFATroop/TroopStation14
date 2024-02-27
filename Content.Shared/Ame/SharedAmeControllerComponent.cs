@@ -69,7 +69,6 @@ public enum AmeControllerVisuals
 public enum AmeControllerState
 {
     On,
-    Warning,
     Critical,
     Fuck,
     Off,

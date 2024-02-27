@@ -1,8 +1,7 @@
 using Content.Server.Lock.Components;
 using Content.Server.Popups;
-using Content.Shared.UserInterface;
-using Content.Shared.Lock;
 using Content.Server.UserInterface;
+using Content.Shared.Lock;
 
 namespace Content.Server.Lock.EntitySystems;
 public sealed class ActivatableUIRequiresLockSystem : EntitySystem

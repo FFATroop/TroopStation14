@@ -5,8 +5,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
-using Robust.Server.GameObjects;
-using Robust.Shared.Map.Components;
+using Robust.Shared.Map;
 using Robust.Shared.Random;
 
 namespace Content.Server.Ame;
@@ -19,6 +18,7 @@ public sealed class AmeNodeGroup : BaseNodeGroup
 {
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     /// <summary>
@@ -46,7 +46,6 @@ public sealed class AmeNodeGroup : BaseNodeGroup
 
         var ameControllerSystem = _entMan.System<AmeControllerSystem>();
         var ameShieldingSystem = _entMan.System<AmeShieldingSystem>();
-        var mapSystem = _entMan.System<MapSystem>();
 
         var shieldQuery = _entMan.GetEntityQuery<AmeShieldComponent>();
         var controllerQuery = _entMan.GetEntityQuery<AmeControllerComponent>();
@@ -58,7 +57,7 @@ public sealed class AmeNodeGroup : BaseNodeGroup
                 continue;
             if (!xformQuery.TryGetComponent(nodeOwner, out var xform))
                 continue;
-            if (!_entMan.TryGetComponent(xform.GridUid, out MapGridComponent? grid))
+            if (!_mapManager.TryGetGrid(xform.GridUid, out var grid))
                 continue;
 
             if (gridEnt == null)
@@ -66,7 +65,7 @@ public sealed class AmeNodeGroup : BaseNodeGroup
             else if (gridEnt != xform.GridUid)
                 continue;
 
-            var nodeNeighbors = mapSystem.GetCellsInSquareArea(xform.GridUid.Value, grid, xform.Coordinates, 1)
+            var nodeNeighbors = grid.GetCellsInSquareArea(xform.Coordinates, 1)
                 .Where(entity => entity != nodeOwner && shieldQuery.HasComponent(entity));
 
             if (nodeNeighbors.Count() >= 8)
@@ -182,7 +181,7 @@ public sealed class AmeNodeGroup : BaseNodeGroup
         // Fuel is squared so more fuel vastly increases power and efficiency
         // We divide by the number of cores so a larger AME is less efficient at the same fuel settings
         // this results in all AMEs having the same efficiency at the same fuel-per-core setting
-        return 2000000f * fuel * fuel / cores;
+        return 20000f * fuel * fuel / cores;
     }
 
     public int GetTotalStability()

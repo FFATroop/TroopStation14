@@ -28,7 +28,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
 
         SubscribeLocalEvent<CombatModeComponent, AfterAutoHandleStateEvent>(OnHandleState);
 
-        Subs.CVar(_cfg, CCVars.CombatModeIndicatorsPointShow, OnShowCombatIndicatorsChanged, true);
+        _cfg.OnValueChanged(CCVars.CombatModeIndicatorsPointShow, OnShowCombatIndicatorsChanged, true);
     }
 
     private void OnHandleState(EntityUid uid, CombatModeComponent component, ref AfterAutoHandleStateEvent args)
@@ -38,6 +38,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
 
     public override void Shutdown()
     {
+        _cfg.UnsubValueChanged(CCVars.CombatModeIndicatorsPointShow, OnShowCombatIndicatorsChanged);
         _overlayManager.RemoveOverlay<CombatModeIndicatorsOverlay>();
 
         base.Shutdown();
@@ -45,7 +46,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
 
     public bool IsInCombatMode()
     {
-        var entity = _playerManager.LocalEntity;
+        var entity = _playerManager.LocalPlayer?.ControlledEntity;
 
         if (entity == null)
             return false;
@@ -66,7 +67,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
 
     private void UpdateHud(EntityUid entity)
     {
-        if (entity != _playerManager.LocalEntity || !Timing.IsFirstTimePredicted)
+        if (entity != _playerManager.LocalPlayer?.ControlledEntity || !Timing.IsFirstTimePredicted)
         {
             return;
         }

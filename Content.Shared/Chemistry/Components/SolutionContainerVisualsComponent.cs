@@ -1,4 +1,3 @@
-using Content.Shared.Hands.Components;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Chemistry.Components
@@ -41,17 +40,5 @@ namespace Content.Shared.Chemistry.Components
 
         [DataField]
         public string InitialDescription = string.Empty;
-
-        /// <summary>
-        /// Optional in-hand visuals to to show someone is holding a filled beaker/jug/etc.
-        /// </summary>
-        [DataField]
-        public string? InHandsFillBaseName = null;
-
-        /// <summary>
-        /// A separate max fill levels for in-hands (to reduce number of sprites needed)
-        /// </summary>
-        [DataField]
-        public int InHandsMaxFillLevels = 0;
     }
 }

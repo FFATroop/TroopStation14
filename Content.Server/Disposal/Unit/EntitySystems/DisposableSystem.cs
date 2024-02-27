@@ -36,6 +36,8 @@ namespace Content.Server.Disposal.Unit.EntitySystems
         private EntityQuery<PhysicsComponent> _physicsQuery;
         private EntityQuery<TransformComponent> _xformQuery;
 
+        private List<EntityUid> _entList = new();
+
         public override void Initialize()
         {
             base.Initialize();
@@ -117,17 +119,15 @@ namespace Content.Server.Disposal.Unit.EntitySystems
                 }
             }
 
-            // We're purposely iterating over all the holder's children
-            // because the holder might have something teleported into it,
-            // outside the usual container insertion logic.
-            var children = holderTransform.ChildEnumerator;
-            while (children.MoveNext(out var entity))
+            _entList.Clear();
+            _entList.AddRange(holder.Container.ContainedEntities);
+
+            foreach (var entity in _entList)
             {
                 RemComp<BeingDisposedComponent>(entity);
 
                 var meta = _metaQuery.GetComponent(entity);
-                if (holder.Container.Contains(entity))
-                    _containerSystem.Remove((entity, null, meta), holder.Container, reparent: false, force: true);
+                _containerSystem.Remove((entity, null, meta), holder.Container, reparent: false, force: true);
 
                 var xform = _xformQuery.GetComponent(entity);
                 if (xform.ParentUid != uid)

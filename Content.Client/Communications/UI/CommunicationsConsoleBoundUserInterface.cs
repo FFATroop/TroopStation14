@@ -16,8 +16,6 @@ namespace Content.Client.Communications.UI
 
         [ViewVariables]
         public bool CanAnnounce { get; private set; }
-        [ViewVariables]
-        public bool CanBroadcast { get; private set; }
 
         [ViewVariables]
         public bool CanCall { get; private set; }
@@ -73,11 +71,6 @@ namespace Content.Client.Communications.UI
             SendMessage(new CommunicationsConsoleAnnounceMessage(msg));
         }
 
-        public void BroadcastButtonPressed(string message)
-        {
-            SendMessage(new CommunicationsConsoleBroadcastMessage(message));
-        }
-
         public void CallShuttle()
         {
             SendMessage(new CommunicationsConsoleCallEmergencyShuttleMessage());
@@ -96,7 +89,6 @@ namespace Content.Client.Communications.UI
                 return;
 
             CanAnnounce = commsState.CanAnnounce;
-            CanBroadcast = commsState.CanBroadcast;
             CanCall = commsState.CanCall;
             _expectedCountdownTime = commsState.ExpectedCountdownEnd;
             CountdownStarted = commsState.CountdownStarted;
@@ -110,7 +102,6 @@ namespace Content.Client.Communications.UI
                 _menu.AlertLevelButton.Disabled = !AlertLevelSelectable;
                 _menu.EmergencyShuttleButton.Disabled = !CanCall;
                 _menu.AnnounceButton.Disabled = !CanAnnounce;
-                _menu.BroadcastButton.Disabled = !CanBroadcast;
             }
         }
 

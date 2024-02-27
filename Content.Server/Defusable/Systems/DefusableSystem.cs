@@ -8,8 +8,6 @@ using Content.Shared.Construction.Components;
 using Content.Shared.Database;
 using Content.Shared.Defusable;
 using Content.Shared.Examine;
-using Content.Shared.Explosion.Components;
-using Content.Shared.Explosion.Components.OnTrigger;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Shared.Wires;

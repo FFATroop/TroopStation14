@@ -58,35 +58,43 @@
 			"name": "syringe2"
 		},
 		{
-		  "name": "inhand-left",
-		  "directions": 4
-		},
+      "name": "0-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "0-inhand-right",
+      "directions": 4
+    },
 		{
-		  "name": "inhand-right",
-		  "directions": 4
-		},
-		{
-			"name": "inhand-left-fill-1",
+			"name": "1-inhand-left",
 			"directions": 4
 		},
 		{
-			"name": "inhand-right-fill-1",
+			"name": "1-inhand-right",
 			"directions": 4
 		},
 		{
-			"name": "inhand-left-fill-2",
+			"name": "2-inhand-left",
 			"directions": 4
 		},
 		{
-			"name": "inhand-right-fill-2",
+			"name": "2-inhand-right",
 			"directions": 4
 		},
 		{
-			"name": "inhand-left-fill-3",
+			"name": "3-inhand-left",
 			"directions": 4
 		},
 		{
-			"name": "inhand-right-fill-3",
+			"name": "3-inhand-right",
+			"directions": 4
+		},
+		{
+			"name": "4-inhand-left",
+			"directions": 4
+		},
+		{
+			"name": "4-inhand-right",
 			"directions": 4
 		}
 	]

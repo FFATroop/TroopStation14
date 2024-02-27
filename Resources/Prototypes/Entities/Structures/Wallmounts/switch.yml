@@ -34,8 +34,6 @@
     - On
     - Off
     - Status
-    lastSignals:
-      Status: false
 
 - type: entity
   id: SignalButton

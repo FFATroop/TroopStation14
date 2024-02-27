@@ -41,7 +41,3 @@ nuke-codes-fax-paper-name = nuclear authentication codes
 
 # Nuke disk slot
 nuke-slot-component-slot-name-disk = Disk
-
-## Examine
-nuke-examine-armed = Hey uh, why's that [color=red]red light[/color] blinking?
-nuke-examine-exploding = Yeah... I think it's too late buddy.

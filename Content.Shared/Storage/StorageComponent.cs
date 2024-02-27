@@ -207,6 +207,8 @@ namespace Content.Shared.Storage
     {
         Open,
         HasContents,
+        CanLock,
+        Locked,
         StorageUsed,
         Capacity
     }

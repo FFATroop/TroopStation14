@@ -1,6 +1,5 @@
-using Content.Shared.Antag;
 using Content.Shared.Revolutionary.Components;
-using Content.Shared.Ghost;
+using Content.Client.Antag;
 using Content.Shared.StatusIcon.Components;
 
 namespace Content.Client.Revolutionary;
@@ -8,37 +7,29 @@ namespace Content.Client.Revolutionary;
 /// <summary>
 /// Used for the client to get status icons from other revs.
 /// </summary>
-public sealed class RevolutionarySystem : EntitySystem
+public sealed class RevolutionarySystem : AntagStatusIconSystem<RevolutionaryComponent>
 {
-
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RevolutionaryComponent, CanDisplayStatusIconsEvent>(OnCanShowRevIcon);
-        SubscribeLocalEvent<HeadRevolutionaryComponent, CanDisplayStatusIconsEvent>(OnCanShowRevIcon);
+        SubscribeLocalEvent<RevolutionaryComponent, GetStatusIconsEvent>(GetRevIcon);
+        SubscribeLocalEvent<HeadRevolutionaryComponent, GetStatusIconsEvent>(GetHeadRevIcon);
     }
 
     /// <summary>
-    /// Determine whether a client should display the rev icon.
+    /// Checks if the person who triggers the GetStatusIcon event is also a Rev or a HeadRev.
     /// </summary>
-    private void OnCanShowRevIcon<T>(EntityUid uid, T comp, ref CanDisplayStatusIconsEvent args) where T : IAntagStatusIconComponent
+    private void GetRevIcon(EntityUid uid, RevolutionaryComponent comp, ref GetStatusIconsEvent args)
     {
-        args.Cancelled = !CanDisplayIcon(args.User, comp.IconVisibleToGhost);
+        if (!HasComp<HeadRevolutionaryComponent>(uid))
+        {
+            GetStatusIcon(comp.RevStatusIcon, ref args);
+        }
     }
 
-    /// <summary>
-    /// The criteria that determine whether a client should see Rev/Head rev icons.
-    /// </summary>
-    private bool CanDisplayIcon(EntityUid? uid, bool visibleToGhost)
+    private void GetHeadRevIcon(EntityUid uid, HeadRevolutionaryComponent comp, ref GetStatusIconsEvent args)
     {
-        if (HasComp<HeadRevolutionaryComponent>(uid) || HasComp<RevolutionaryComponent>(uid))
-            return true;
-
-        if (visibleToGhost && HasComp<GhostComponent>(uid))
-            return true;
-
-        return HasComp<ShowRevIconsComponent>(uid);
+        GetStatusIcon(comp.HeadRevStatusIcon, ref args);
     }
-
 }

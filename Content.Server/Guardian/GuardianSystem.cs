@@ -262,11 +262,7 @@ namespace Content.Server.Guardian
             if (args.DamageDelta == null || component.Host == null || component.DamageShare > 0)
                 return;
 
-            _damageSystem.TryChangeDamage(
-                component.Host,
-                args.DamageDelta * component.DamageShare,
-                origin: args.Origin,
-                interruptsDoAfters: false);
+            _damageSystem.TryChangeDamage(component.Host, args.DamageDelta * component.DamageShare, origin: args.Origin);
             _popupSystem.PopupEntity(Loc.GetString("guardian-entity-taking-damage"), component.Host.Value, component.Host.Value);
 
         }

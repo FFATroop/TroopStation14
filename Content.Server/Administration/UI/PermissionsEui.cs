@@ -18,9 +18,7 @@ namespace Content.Server.Administration.UI
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IServerDbManager _db = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
 
-        private readonly ISawmill _sawmill;
         private bool _isLoading;
 
         private readonly List<(Admin a, string? lastUserName)> _admins = new List<(Admin, string? lastUserName)>();
@@ -29,7 +27,6 @@ namespace Content.Server.Administration.UI
         public PermissionsEui()
         {
             IoCManager.InjectDependencies(this);
-            _sawmill = _logManager.GetSawmill("admin.perms");
         }
 
         public override void Opened()
@@ -146,7 +143,7 @@ namespace Content.Server.Administration.UI
 
             if (!CanTouchRank(rank))
             {
-                _sawmill.Warning($"{Player} tried to remove higher-ranked admin rank {rank.Name}");
+                Logger.WarningS("admin.perms", $"{Player} tried to remove higher-ranked admin rank {rank.Name}");
                 return;
             }
 
@@ -165,13 +162,13 @@ namespace Content.Server.Administration.UI
 
             if (!CanTouchRank(rank))
             {
-                _sawmill.Warning($"{Player} tried to update higher-ranked admin rank {rank.Name}");
+                Logger.WarningS("admin.perms", $"{Player} tried to update higher-ranked admin rank {rank.Name}");
                 return;
             }
 
             if (!UserAdminFlagCheck(ur.Flags))
             {
-                _sawmill.Warning($"{Player} tried to give a rank permissions above their authorization.");
+                Logger.WarningS("admin.perms", $"{Player} tried to give a rank permissions above their authorization.");
                 return;
             }
 
@@ -181,7 +178,7 @@ namespace Content.Server.Administration.UI
             await _db.UpdateAdminRankAsync(rank);
 
             var flagText = string.Join(' ', AdminFlagsHelper.FlagsToNames(ur.Flags).Select(f => $"+{f}"));
-            _sawmill.Info($"{Player} updated admin rank {rank.Name}/{flagText}.");
+            Logger.InfoS("admin.perms", $"{Player} updated admin rank {rank.Name}/{flagText}.");
 
             _adminManager.ReloadAdminsWithRank(ur.Id);
         }
@@ -190,7 +187,7 @@ namespace Content.Server.Administration.UI
         {
             if (!UserAdminFlagCheck(ar.Flags))
             {
-                _sawmill.Warning($"{Player} tried to give a rank permissions above their authorization.");
+                Logger.WarningS("admin.perms", $"{Player} tried to give a rank permissions above their authorization.");
                 return;
             }
 
@@ -203,7 +200,7 @@ namespace Content.Server.Administration.UI
             await _db.AddAdminRankAsync(rank);
 
             var flagText = string.Join(' ', AdminFlagsHelper.FlagsToNames(ar.Flags).Select(f => $"+{f}"));
-            _sawmill.Info($"{Player} added admin rank {rank.Name}/{flagText}.");
+            Logger.InfoS("admin.perms", $"{Player} added admin rank {rank.Name}/{flagText}.");
         }
 
         private async Task HandleRemoveAdmin(RemoveAdmin ra)
@@ -217,14 +214,14 @@ namespace Content.Server.Administration.UI
 
             if (!CanTouchAdmin(admin))
             {
-                _sawmill.Warning($"{Player} tried to remove higher-ranked admin {ra.UserId.ToString()}");
+                Logger.WarningS("admin.perms", $"{Player} tried to remove higher-ranked admin {ra.UserId.ToString()}");
                 return;
             }
 
             await _db.RemoveAdminAsync(ra.UserId);
 
             var record = await _db.GetPlayerRecordByUserId(ra.UserId);
-            _sawmill.Info($"{Player} removed admin {record?.LastSeenUserName ?? ra.UserId.ToString()}");
+            Logger.InfoS("admin.perms", $"{Player} removed admin {record?.LastSeenUserName ?? ra.UserId.ToString()}");
 
             if (_playerManager.TryGetSessionById(ra.UserId, out var player))
             {
@@ -248,7 +245,7 @@ namespace Content.Server.Administration.UI
 
             if (!CanTouchAdmin(admin))
             {
-                _sawmill.Warning($"{Player} tried to modify higher-ranked admin {ua.UserId.ToString()}");
+                Logger.WarningS("admin.perms", $"{Player} tried to modify higher-ranked admin {ua.UserId.ToString()}");
                 return;
             }
 
@@ -269,7 +266,7 @@ namespace Content.Server.Administration.UI
             var title = ua.Title ?? "<no title>";
             var flags = AdminFlagsHelper.PosNegFlagsText(ua.PosFlags, ua.NegFlags);
 
-            _sawmill.Info($"{Player} updated admin {name} to {title}/{rankName}/{flags}");
+            Logger.InfoS("admin.perms", $"{Player} updated admin {name} to {title}/{rankName}/{flags}");
 
             if (_playerManager.TryGetSessionById(ua.UserId, out var player))
             {
@@ -307,7 +304,8 @@ namespace Content.Server.Administration.UI
                 {
                     // username not in DB.
                     // TODO: Notify user.
-                    _sawmill.Warning($"{Player} tried to add admin with unknown username {ca.UserNameOrId}.");
+                    Logger.WarningS("admin.perms",
+                        $"{Player} tried to add admin with unknown username {ca.UserNameOrId}.");
                     return;
                 }
 
@@ -343,7 +341,7 @@ namespace Content.Server.Administration.UI
             var title = ca.Title ?? "<no title>";
             var flags = AdminFlagsHelper.PosNegFlagsText(ca.PosFlags, ca.NegFlags);
 
-            _sawmill.Info($"{Player} added admin {name} as {title}/{rankName}/{flags}");
+            Logger.InfoS("admin.perms", $"{Player} added admin {name} as {title}/{rankName}/{flags}");
 
             if (_playerManager.TryGetSessionById(userId, out var player))
             {
@@ -364,7 +362,7 @@ namespace Content.Server.Administration.UI
             if (!UserAdminFlagCheck(posFlags))
             {
                 // Can't create an admin with higher perms than yourself, obviously.
-                _sawmill.Warning($"{Player} tried to grant admin powers above their authorization.");
+                Logger.WarningS("admin.perms", $"{Player} tried to grant admin powers above their authorization.");
                 return false;
             }
 
@@ -380,7 +378,7 @@ namespace Content.Server.Administration.UI
                 if (rank == null)
                 {
                     // Tried to set to nonexistent rank.
-                    _sawmill.Warning($"{Player} tried to assign nonexistent admin rank.");
+                    Logger.WarningS("admin.perms", $"{Player} tried to assign nonexistent admin rank.");
                     return (true, null);
                 }
 
@@ -390,7 +388,7 @@ namespace Content.Server.Administration.UI
                 if (!UserAdminFlagCheck(rankFlags))
                 {
                     // Can't assign a rank with flags you don't have yourself.
-                    _sawmill.Warning($"{Player} tried to assign admin rank above their authorization.");
+                    Logger.WarningS("admin.perms", $"{Player} tried to assign admin rank above their authorization.");
                     return (true, null);
                 }
             }

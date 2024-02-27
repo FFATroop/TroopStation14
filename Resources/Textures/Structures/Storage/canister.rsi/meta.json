@@ -23,10 +23,10 @@
       "name": "can-connector"
     },
     {
-      "name": "locked"
+      "name": "can-locked"
     },
     {
-      "name": "unlocked"
+      "name": "can-unlocked"
     },
     {
       "name": "can-o0",

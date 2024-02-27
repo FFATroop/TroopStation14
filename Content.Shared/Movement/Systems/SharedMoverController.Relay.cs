@@ -57,8 +57,8 @@ public abstract partial class SharedMoverController
         Physics.UpdateIsPredicted(relayEntity);
         component.RelayEntity = relayEntity;
         targetComp.Source = uid;
-        Dirty(uid, component);
-        Dirty(relayEntity, targetComp);
+        Dirty(component);
+        Dirty(targetComp);
     }
 
     private void OnRelayShutdown(EntityUid uid, RelayInputMoverComponent component, ComponentShutdown args)

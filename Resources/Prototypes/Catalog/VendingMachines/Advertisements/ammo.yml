@@ -1,4 +1,4 @@
-- type: advertisementsPack
+﻿- type: advertisementsPack
   id: AmmoVendAds
   advertisements:
   - advertisement-ammo-1
@@ -9,7 +9,5 @@
   - advertisement-ammo-6
   - advertisement-ammo-7
   - advertisement-ammo-8
-  - advertisement-ammo-9
-  - advertisement-ammo-10
   thankyous:
   - vending-machine-thanks

@@ -37,7 +37,7 @@ namespace Content.Client.RoundEnd
 
             Contents.AddChild(roundEndTabs);
 
-            OpenCenteredRight();
+            OpenCentered();
             MoveToFront();
         }
 

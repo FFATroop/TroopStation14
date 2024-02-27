@@ -134,7 +134,10 @@ public abstract class SharedItemToggleSystem : EntitySystem
             _light.SetEnabled(uid, true, light);
         }
 
-        var soundToPlay = itemToggle.SoundActivate;
+        SoundSpecifier? soundToPlay = itemToggle.SoundActivate;
+
+        if (soundToPlay == null)
+            return;
 
         if (predicted)
             _audio.PlayPredicted(soundToPlay, uid, user);

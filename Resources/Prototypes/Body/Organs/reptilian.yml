@@ -10,7 +10,6 @@
       - Meat
       - Pill
       - Crayon
-      - Paper
   - type: SolutionContainerManager
     solutions:
       stomach:

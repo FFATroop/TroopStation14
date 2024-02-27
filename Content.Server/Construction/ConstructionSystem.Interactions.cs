@@ -147,7 +147,7 @@ namespace Content.Server.Construction
 
             if (step == null)
             {
-                Log.Warning($"Called {nameof(HandleEdge)} on entity {ToPrettyString(uid)} but the current state is not valid for that!");
+                _sawmill.Warning($"Called {nameof(HandleEdge)} on entity {ToPrettyString(uid)} but the current state is not valid for that!");
                 return HandleResult.False;
             }
 
@@ -513,10 +513,10 @@ namespace Content.Server.Construction
                 {
                     if (construction.Deleted)
                     {
-                        Log.Error($"Construction component was deleted while still processing interactions." +
-                                  $"Entity {ToPrettyString(uid)}, graph: {construction.Graph}, " +
-                                  $"Next: {interaction.GetType().Name}, " +
-                                  $"Remaining Queue: {string.Join(", ", construction.InteractionQueue.Select(x => x.GetType().Name))}");
+                        _sawmill.Error($"Construction component was deleted while still processing interactions." +
+                            $"Entity {ToPrettyString(uid)}, graph: {construction.Graph}, " +
+                            $"Next: {interaction.GetType().Name}, " +
+                            $"Remaining Queue: {string.Join(", ", construction.InteractionQueue.Select(x => x.GetType().Name))}");
                         break;
                     }
 
@@ -527,7 +527,7 @@ namespace Content.Server.Construction
                 }
                 catch (Exception e)
                 {
-                    Log.Error($"Caught exception while processing construction queue. Entity {ToPrettyString(uid)}, graph: {construction.Graph}");
+                    _sawmill.Error($"Caught exception while processing construction queue. Entity {ToPrettyString(uid)}, graph: {construction.Graph}");
                     _runtimeLog.LogException(e, $"{nameof(ConstructionSystem)}.{nameof(UpdateInteractions)}");
                     Del(uid);
                 }

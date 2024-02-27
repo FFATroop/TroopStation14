@@ -70,7 +70,7 @@ namespace Content.Server.Tools
             _solutionContainer.RemoveReagent(entity.Comp.FuelSolution.Value, entity.Comp.FuelReagent, entity.Comp.FuelLitCost);
 
             // Logging
-            AdminLogger.Add(LogType.InteractActivate, LogImpact.Low, $"{ToPrettyString(args.User):user} toggled {ToPrettyString(entity.Owner):welder} on");
+            _adminLogger.Add(LogType.InteractActivate, LogImpact.Low, $"{ToPrettyString(args.User):user} toggled {ToPrettyString(entity.Owner):welder} on");
 
             _ignitionSource.SetIgnited(entity.Owner);
 
@@ -88,7 +88,7 @@ namespace Content.Server.Tools
         public void TurnOff(Entity<WelderComponent> entity, ref ItemToggleDeactivateAttemptEvent args)
         {
             // Logging
-            AdminLogger.Add(LogType.InteractActivate, LogImpact.Low, $"{ToPrettyString(args.User):user} toggled {ToPrettyString(entity.Owner):welder} off");
+            _adminLogger.Add(LogType.InteractActivate, LogImpact.Low, $"{ToPrettyString(args.User):user} toggled {ToPrettyString(entity.Owner):welder} off");
 
             _ignitionSource.SetIgnited(entity.Owner, false);
 
