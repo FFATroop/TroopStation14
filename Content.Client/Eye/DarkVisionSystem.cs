@@ -40,15 +40,7 @@ public sealed class DarkVisionSystem : EntitySystem
         if (args.Entity != uid)
             return;
 
-        if (component.ShaderTexturePrototype != null)
-        {
-            component.darkOverlay ??= new DarkVisionOverlay();
-            component.darkOverlay.SetShaderProto(component.ShaderTexturePrototype);
-            _overlayMan.AddOverlay(component.darkOverlay);
-
-            _lightManager.DrawLighting = component.DrawLight;
-            _lightManager.DrawHardFov = component.DrawFOV;
-        }
+        ToggleDarkVision(component, true);
     }
 
     private void OnPlayerDetached(EntityUid uid, DarkVisionComponent component, PlayerDetachedEvent args)
@@ -56,21 +48,12 @@ public sealed class DarkVisionSystem : EntitySystem
         if (!component.IsEnable)
             return;
 
-        if (_player.LocalSession == null)
-            return;
-        if (_player.LocalSession.AttachedEntity != uid)
+        if (_player.LocalSession?.AttachedEntity != null)   // ghosted people
             return;
         if (args.Entity != uid)
             return;
 
-        if (component.darkOverlay != null)
-        {
-            _overlayMan.RemoveOverlay(component.darkOverlay);
-            component.darkOverlay = null;
-        }
-
-        _lightManager.DrawLighting = true;
-        _lightManager.DrawHardFov = true;
+        ToggleDarkVision(component, false);
     }
 
     private void OnVisionInit(EntityUid uid, DarkVisionComponent component, ComponentInit args)
@@ -80,11 +63,7 @@ public sealed class DarkVisionSystem : EntitySystem
         if (_player.LocalSession.AttachedEntity != uid)
             return;
 
-        _lightManager.DrawLighting = component.DrawLight;
-        _lightManager.DrawHardFov = component.DrawFOV;
-
-        component.darkOverlay ??= new DarkVisionOverlay();
-        _overlayMan.AddOverlay(component.darkOverlay);
+        ToggleDarkVision(component, true);
     }
 
     private void OnVisionShutdown(EntityUid uid, DarkVisionComponent component, ComponentShutdown args)
@@ -97,15 +76,12 @@ public sealed class DarkVisionSystem : EntitySystem
         if (_player.LocalSession.AttachedEntity != uid)
             return;
 
-        _lightManager.DrawLighting = true;
-        _lightManager.DrawHardFov = true;
-
-        if (component.darkOverlay != null)
-            _overlayMan.RemoveOverlay(component.darkOverlay);
+        ToggleDarkVision(component, false);
     }
 
     private void OnRoundRestart(EntityUid uid, DarkVisionComponent component, RoundRestartCleanupEvent args)
     {
+        // hack for evade some bugs
         if (!component.IsEnable)
             return;
 
@@ -114,10 +90,26 @@ public sealed class DarkVisionSystem : EntitySystem
         if (_player.LocalSession.AttachedEntity != uid)
             return;
 
-        _lightManager.DrawLighting = true;
-        _lightManager.DrawHardFov = true;
+        ToggleDarkVision(component, false);
+    }
 
-        if (component.darkOverlay != null)
-            _overlayMan.RemoveOverlay(component.darkOverlay);
+    private void ToggleDarkVision(DarkVisionComponent component, bool newState)
+    {
+        if (newState)
+        {
+            _lightManager.DrawLighting = component.DrawLight;
+            _lightManager.DrawHardFov = component.DrawFOV;
+
+            component.darkOverlay ??= new DarkVisionOverlay();
+            _overlayMan.AddOverlay(component.darkOverlay);
+        }
+        else
+        {
+            _lightManager.DrawLighting = true;
+            _lightManager.DrawHardFov = true;
+
+            if (component.darkOverlay != null)
+                _overlayMan.RemoveOverlay(component.darkOverlay);
+        }
     }
 }
