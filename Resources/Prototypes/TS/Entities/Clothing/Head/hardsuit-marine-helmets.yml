@@ -144,6 +144,7 @@
     sprite: TS/Clothing/Head/Hardsuits/obh-4-engineer.rsi
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/obh-4-engineer.rsi
+  - type: EyeProtection
 
 # Red
 - type: entity
@@ -157,6 +158,7 @@
     sprite: TS/Clothing/Head/Hardsuits/obh-4-platoon-commander.rsi
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/obh-4-platoon-commander.rsi
+  - type: EyeProtection
   - type: ItemSlots
     slots:
       cell_slot:
@@ -164,7 +166,7 @@
         startingItem: PowerCellHigh
 
 - type: entity
-  parent: ClothingHelmetHardsuitOBH4Base
+  parent: ClothingHelmetHardsuitOBH4PlatoonCommander
   id: ClothingHelmetHardsuitOBH4MechPlatoonCommander
   name: OBH-4
   suffix: MechPlatoonCommander
@@ -174,14 +176,9 @@
     sprite: TS/Clothing/Head/Hardsuits/obh-4-mech-platoon-commander.rsi
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/obh-4-mech-platoon-commander.rsi
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
 
 - type: entity
-  parent: ClothingHelmetHardsuitOBH4Base
+  parent: ClothingHelmetHardsuitOBH4PlatoonCommander
   id: ClothingHelmetHardsuitOBH4RoboPlatoonCommander
   name: OBH-4
   suffix: RoboPlatoonCommander
@@ -191,15 +188,10 @@
     sprite: TS/Clothing/Head/Hardsuits/obh-4-robo-platoon-commander.rsi
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/obh-4-robo-platoon-commander.rsi
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh
 
 # Gold
 - type: entity
-  parent: ClothingHelmetHardsuitOBH4Base
+  parent: ClothingHelmetHardsuitOBH4PlatoonCommander
   id: ClothingHelmetHardsuitOBH4CompanyCommander
   name: OBH-4
   suffix: Commander
@@ -209,8 +201,3 @@
     sprite: TS/Clothing/Head/Hardsuits/obh-4-company-commander.rsi
   - type: Clothing
     sprite: TS/Clothing/Head/Hardsuits/obh-4-company-commander.rsi
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHigh

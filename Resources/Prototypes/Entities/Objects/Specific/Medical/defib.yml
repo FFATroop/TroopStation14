@@ -31,10 +31,10 @@
       size: Large
     - type: Speech
       speechVerb: Robotic
-    - type: Defibrillator
-      zapHeal:
-        types:
-          Asphyxiation: -40
+#    - type: Defibrillator  bye bye Non Role Play item, say hello to Cloning Pod
+#      zapHeal:
+#        types:
+#          Asphyxiation: -40
     - type: DoAfter
     - type: UseDelay
     - type: StaticPrice

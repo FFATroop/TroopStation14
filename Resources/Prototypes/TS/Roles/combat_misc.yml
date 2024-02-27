@@ -4,6 +4,7 @@
   description: department-command-marine-description
   color: "#C3C3BD"
   weight: 80
+  primary: false
   roles:
   - CompanyCommander
   - PlatoonCommander
@@ -12,13 +13,15 @@
   - MarinePilot
 
 - type: department
-  id: MechMarine
-  description: department-mech-marine-description
+  id: Marine
+  description: department-marine-description
   color: "#C3C3BD"
   weight: 70
   roles:
-  - MechPlatoonCommander
-  - MechPilot
+  - PlatoonCommander
+  - Marine
+  - MarineMedic
+  - MarinePilot
 
 - type: department
   id: RoboMarine
@@ -31,12 +34,12 @@
   - MarineEngineer
 
 - type: department
-  id: Marine
-  description: department-marine-description
+  id: MechMarine
+  description: department-mech-marine-description
   color: "#C3C3BD"
   weight: 50
   roles:
-  - PlatoonCommander
-  - Marine
-  - MarineMedic
+  - MechPlatoonCommander
+  - MechPilot
+
 
