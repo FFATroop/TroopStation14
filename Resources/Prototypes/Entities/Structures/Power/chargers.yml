@@ -102,8 +102,9 @@
         ejectOnInteract: true
         name: power-cell-slot-component-slot-name-default
         whitelist:
-          components:
+          tags:
           - PowerCell
+          - PowerCellSmall
         blacklist:
           tags:
           - PotatoBattery
