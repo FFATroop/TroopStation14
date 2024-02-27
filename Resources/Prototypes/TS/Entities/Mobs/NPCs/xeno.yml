@@ -41,6 +41,9 @@
     shaderTexture: "GreyscaleFullscreen"
     mustDrawLight: false
     toggle: true
+  - type: Tag
+    tags:
+    - CannotSuicide
   - type: GhostRole
     jobProto: JobXenoBase
     allowMovement: true
@@ -49,9 +52,6 @@
     name: job-name-xeno-base
     description: job-description-xeno-base
     rules: ghost-role-information-xeno-rules-base
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 1800 #30 min
 
 - type: entity
   name: Praetorian
@@ -125,6 +125,9 @@
         - MobMask
         layer:
         - MobLayer
+  - type: GhostRole
+    name: job-name-xeno-drone
+    description: job-description-xeno-drone
 
 - type: entity
   name: Queen
@@ -167,9 +170,6 @@
     - !type:RoleTimeRequirement
       role: JobXenoRoleBase
       time: 3600 #1 hrs
-  - type: Tag
-    tags:
-    - CannotSuicide
 
 - type: entity
   name: Ravager
@@ -205,6 +205,9 @@
         - MobMask
         layer:
         - MobLayer
+  - type: GhostRole
+    name: job-name-xeno-ravager
+    description: job-description-xeno-ravager
 
 - type: entity
   name: Runner
@@ -236,6 +239,9 @@
         - MobMask
         layer:
         - MobLayer
+  - type: GhostRole
+    name: job-name-xeno-runner
+    description: job-description-xeno-runner
 
 - type: entity
   name: Spitter
@@ -281,4 +287,6 @@
         - MobMask
         layer:
         - MobLayer
-
+  - type: GhostRole
+    name: job-name-xeno-spitter
+    description: job-description-xeno-spitter
