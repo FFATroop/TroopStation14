@@ -17,7 +17,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 200
+        damage: 400
       behaviors: #excess damage, don't spawn entities.
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -26,7 +26,7 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 200
       behaviors:
       - !type:PlaySoundBehavior
         sound:
