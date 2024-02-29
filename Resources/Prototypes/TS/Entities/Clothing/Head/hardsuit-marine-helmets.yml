@@ -1,5 +1,3 @@
-
-
 # OBH-4
 - type: entity
   abstract: true
@@ -88,9 +86,21 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
+  - type: EncryptionKeyHolder
+    keysExtractionMethod: Prying
+    keySlots: 1
+  - type: TelecomServer
+  - type: Headset
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyMarine
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
+      key_slots: !type:Container
 
 # Marine's helmets
 # Clean
