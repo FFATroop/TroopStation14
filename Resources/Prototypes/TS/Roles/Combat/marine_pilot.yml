@@ -32,4 +32,4 @@
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
     id: MarinePilotIDCard
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetMarine

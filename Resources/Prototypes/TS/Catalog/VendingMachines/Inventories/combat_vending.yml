@@ -2,7 +2,6 @@
   id: MarineEngineerInventory
   startingInventory:
     GeigerCounter: 3
-    ClothingEyesGlassesMeson: 3
     ClothingHandsGlovesColorYellow: 3
     ClothingBeltChiefEngineerFilled: 3
     CableApcStack: 3
@@ -36,4 +35,6 @@
     ClothingBeltMarineFilled: 5
     CombatKnife: 5
     Crowbar: 5
-    FlashlightSeclite: 5
+    PowerCellMedium: 5
+    ClothingHeadsetMarine: 5
+    

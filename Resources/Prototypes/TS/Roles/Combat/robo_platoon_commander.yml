@@ -38,5 +38,5 @@
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
     id: RoboPlatoonCommanderIDCard
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetMarineCommand
 

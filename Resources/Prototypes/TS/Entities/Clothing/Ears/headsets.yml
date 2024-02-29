@@ -1,0 +1,34 @@
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetMarine
+  name: marine headset
+  description: This is used by your elite security force.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyMarine
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/security.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetMarineCommand
+  name: marine command headset
+  description: This is used by your elite security force.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommand
+      - EncryptionKeyMarine
+      - EncryptionKeyCommon
+  - type: Sprite
+    state: icon_alt
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Clothing
+    equippedPrefix: alt
+    sprite: Clothing/Ears/Headsets/security.rsi
