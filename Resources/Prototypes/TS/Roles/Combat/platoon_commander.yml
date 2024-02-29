@@ -37,5 +37,5 @@
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
     id: PlatoonCommanderIDCard
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetMarineCommand
 

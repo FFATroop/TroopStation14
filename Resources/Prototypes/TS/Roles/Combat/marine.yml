@@ -26,4 +26,4 @@
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
     id: MarineIDCard
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetMarine

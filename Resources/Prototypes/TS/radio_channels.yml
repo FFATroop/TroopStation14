@@ -1,9 +1,9 @@
 - type: radioChannel
   id: LocalMarine
   name: chat-radio-local-marine
-  keycode: 'l'
+  keycode: 't'
   frequency: 322
-  color: "#586e52"
+  color: "#799c2a"
 
 
 - type: entity
