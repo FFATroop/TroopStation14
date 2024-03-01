@@ -30,6 +30,9 @@
   - MarineMechPilot
   - MechPlatoonCommander
   special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MarineSpecial
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
 

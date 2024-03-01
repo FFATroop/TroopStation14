@@ -28,6 +28,9 @@
   - MarineMechPilot
   - Marine
   special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MarineSpecial
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
 
