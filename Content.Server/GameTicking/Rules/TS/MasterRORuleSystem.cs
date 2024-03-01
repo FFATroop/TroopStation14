@@ -10,7 +10,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.TS;
-using Content.Shared.Mobs.Components
+using Content.Shared.Mobs.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
@@ -316,7 +316,7 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
             _roundEndSystem.EndRound();
         }
 
-        if (marinePercentage < 10f)
+        if (marinePercentage < 0.1f)
         {
             component.WinType = WinMissionType.GarrisonMajorLose;
             _roundEndSystem.EndRound();
