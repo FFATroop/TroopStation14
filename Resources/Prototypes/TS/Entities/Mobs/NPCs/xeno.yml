@@ -5,6 +5,13 @@
   suffix: Combat
   description: They mostly come at night. Mostly.
   components:
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Antag
+  - type: ActiveRadio
+    channels:
+    - Antag
   - type: FlashImmunity
   - type: MovementIgnoreGravity
   - type: MovedByPressure

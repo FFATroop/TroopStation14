@@ -1,10 +1,17 @@
 - type: radioChannel
   id: LocalMarine
   name: chat-radio-local-marine
-  keycode: 't'
+  keycode: 'д'
   frequency: 322
   color: "#799c2a"
 
+- type: radioChannel
+  id: Antag
+  name: chat-radio-antag
+  keycode: 'л'
+  frequency: 2142
+  color: "#8f4a4b"
+  longRange: true
 
 - type: entity
   parent: EncryptionKey
