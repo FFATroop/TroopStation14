@@ -270,7 +270,7 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         {
             if (_mobStateSystem.IsAlive(eq_uid))
             {
-                if (eq_xform.MapID == mainMapId && mainMapId != null)
+                if (eq_xform.GridUid == component.MainStationUid && component.MainStationUid != null)
                 {
                     isSomeAntagOnMainMap = true;
                 }
@@ -293,10 +293,10 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         int marinesCount = 0;
         int aliveMarinesCount = 0;
         var queryMarine = EntityQueryEnumerator<MarineSpecialComponent>();
-        while (queryMarine.MoveNext(out var eq_uid, out var marine_component))
+        while (queryMarine.MoveNext(out var eq_uid, out _))
         {
             ++marinesCount;
-            if (_mobStateSystem.IsAlive(eq_uid))
+            if (_mobStateSystem.IsAlive(eq_uid) && TryComp<MindComponent>(eq_uid, out var mind) && mind.Session != null)
             {
                 ++aliveMarinesCount;
             }
@@ -319,6 +319,14 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         if (marinePercentage < 0.1f)
         {
             component.WinType = WinMissionType.GarrisonMajorLose;
+            if (isSomeItems)
+            {
+                if (!isSomeAntagOnMainMap)
+                    component.WinType = WinMissionType.GarrisonMinorWin;
+                else
+                    component.WinType = WinMissionType.GarrisonMinorLose;
+            }
+
             _roundEndSystem.EndRound();
         }
     }
