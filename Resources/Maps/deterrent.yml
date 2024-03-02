@@ -3370,24 +3370,6 @@ entities:
       parent: 8978
 - proto: AirlockEngineeringGlassLocked
   entities:
-  - uid: 839
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-4.5
-      parent: 832
-  - uid: 840
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 4.5,-4.5
-      parent: 832
-  - uid: 841
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,6.5
-      parent: 832
   - uid: 2582
     components:
     - type: Transform
@@ -3455,11 +3437,6 @@ entities:
     - type: Transform
       pos: 21.5,48.5
       parent: 2
-  - uid: 8729
-    components:
-    - type: Transform
-      pos: -1.5,9.5
-      parent: 832
   - uid: 8991
     components:
     - type: Transform
@@ -4127,6 +4104,11 @@ entities:
     - type: Transform
       pos: 21.5,18.5
       parent: 2
+  - uid: 8729
+    components:
+    - type: Transform
+      pos: 0.5,-3.5
+      parent: 832
 - proto: AirlockMarineMedicGlassLocked
   entities:
   - uid: 1094
@@ -4134,6 +4116,33 @@ entities:
     - type: Transform
       pos: 21.5,33.5
       parent: 2
+- proto: AirlockMarinePilotGlass
+  entities:
+  - uid: 839
+    components:
+    - type: Transform
+      pos: 4.5,-4.5
+      parent: 832
+  - uid: 840
+    components:
+    - type: Transform
+      pos: -3.5,-4.5
+      parent: 832
+  - uid: 841
+    components:
+    - type: Transform
+      pos: -0.5,6.5
+      parent: 832
+  - uid: 847
+    components:
+    - type: Transform
+      pos: -1.5,9.5
+      parent: 832
+  - uid: 849
+    components:
+    - type: Transform
+      pos: -1.5,3.5
+      parent: 832
 - proto: AirlockMarinePilotGlassLocked
   entities:
   - uid: 355
@@ -4156,7 +4165,7 @@ entities:
       pos: -11.5,22.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -22531.07
+      secondsUntilStateChange: -22626.158
       state: Opening
   - uid: 1400
     components:
@@ -4324,20 +4333,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 21.5,-12.5
       parent: 2
-- proto: AirlockSecurityGlassLocked
-  entities:
-  - uid: 847
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,3.5
-      parent: 832
-  - uid: 849
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-3.5
-      parent: 832
 - proto: AirlockShuttleAssembly
   entities:
   - uid: 9000
@@ -44671,6 +44666,13 @@ entities:
     - type: Transform
       pos: 2.477779,20.570663
       parent: 2
+- proto: PinpointerStation
+  entities:
+  - uid: 9577
+    components:
+    - type: Transform
+      pos: -1.5141056,11.628246
+      parent: 832
 - proto: PlasmaCanister
   entities:
   - uid: 3278
