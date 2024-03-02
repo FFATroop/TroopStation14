@@ -33,8 +33,6 @@
   - !type:AddComponentSpecial
     components:
     - type: MarineSpecial
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: MechPlatoonCommanderGear
