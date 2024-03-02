@@ -13,6 +13,7 @@ using Content.Server.TS;
 using Content.Shared.Mobs.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
@@ -41,6 +42,9 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
     [Dependency] private readonly ILocalizationManager _localizationManager = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
+
+    private const float _tickDelay = 2;
+    private float _currentDelay = _tickDelay;
 
     public override void Initialize()
     {
@@ -233,6 +237,12 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
     {
         base.ActiveTick(uid, component, gameRule, frameTime);
 
+        _currentDelay -= frameTime;
+        if (_currentDelay > 0)
+            return;
+        else
+            _currentDelay = _tickDelay;
+
         // fastest implementation without some functionality
         // @todo refactor this
 
@@ -263,7 +273,6 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         }
 
         bool isAllAntagDead = true;
-        bool isSomeAntagDead = false;
         bool isSomeAntagOnMainMap = false;
         var query = EntityQueryEnumerator<MissionAntagComponent, TransformComponent>();
         while (query.MoveNext(out var eq_uid, out var eq_component, out var eq_xform))
@@ -283,10 +292,6 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
 
                 isAllAntagDead = false;
             }
-            else
-            {
-                isSomeAntagDead = true;
-            }
         }
 
 
@@ -296,9 +301,12 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         while (queryMarine.MoveNext(out var eq_uid, out _))
         {
             ++marinesCount;
-            if (_mobStateSystem.IsAlive(eq_uid) && TryComp<MindComponent>(eq_uid, out var mind) && mind.Session != null)
+            if (TryComp<MindContainerComponent>(eq_uid, out var mind))
             {
-                ++aliveMarinesCount;
+                if (_mobStateSystem.IsAlive(eq_uid) && mind.HasMind)
+                {
+                    ++aliveMarinesCount;
+                }
             }
         }
         bool zeroMarines = aliveMarinesCount == 0;
@@ -314,6 +322,9 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
             //component.WinConditions.Add(WinMissionCondition.AllObjectivesComplete);
             component.WinType = WinMissionType.GarrisonMajorWin;
             _roundEndSystem.EndRound();
+            _logManager.GetSawmill("RORule").Info(
+                "Round end by isAllAntagDead = {0}, isSomeAntagOnMainMap = {1}, marinesCount = {2}, aliveMarinesCount = {3}, marinePercentage = {4}",
+                isAllAntagDead, isSomeAntagOnMainMap, marinesCount, aliveMarinesCount, marinePercentage);
         }
 
         if (marinePercentage < 0.1f)
@@ -326,8 +337,10 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
                 else
                     component.WinType = WinMissionType.GarrisonMinorLose;
             }
-
             _roundEndSystem.EndRound();
+            _logManager.GetSawmill("RORule").Info(
+                "Round end by isAllAntagDead = {0}, isSomeAntagOnMainMap = {1}, marinesCount = {2}, aliveMarinesCount = {3}, marinePercentage = {4}",
+                isAllAntagDead, isSomeAntagOnMainMap, marinesCount, aliveMarinesCount, marinePercentage);
         }
     }
 
