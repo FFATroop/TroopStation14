@@ -3,68 +3,68 @@
   parent: JobIcon
   id: JobIconMarine
   icon:
-    sprite: TS/Interface/job_icons.rsi
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Marine
 
 - type: statusIcon
   parent: JobIcon
   id: JobIconJobMarineMedic
   icon:
-    sprite: TS/Interface/job_icons.rsi
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: MarineMedic
 
 - type: statusIcon
   parent: JobIcon
   id: JobIconMarineEngineer
   icon:
-    sprite: TS/Interface/job_icons.rsi
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: MarineEngineer
 
 - type: statusIcon
   parent: JobIcon
   id: JobIconMarinePilot
   icon:
-    sprite: TS/Interface/job_icons.rsi
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: MarinePilot
 
 - type: statusIcon
   parent: JobIcon
   id: JobIconMechPilot
   icon:
-    sprite: TS/Interface/job_icons.rsi
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: MechPilot
 
 - type: statusIcon
   parent: JobIcon
   id: JobIconMilitaryBorg
   icon:
-    sprite: TS/Interface/job_icons.rsi
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: MilitaryBorg
 
 - type: statusIcon
   parent: JobIcon
   id: JobIconRoboPlatoonCommander
   icon:
-    sprite: TS/Interface/job_icons.rsi
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: RoboPlatoonCommander
 
 - type: statusIcon
   parent: JobIcon
   id: JobIconMechPlatoonCommander
   icon:
-    sprite: TS/Interface/job_icons.rsi
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: MechPlatoonCommander
 
 - type: statusIcon
   parent: JobIcon
   id: JobIconPlatoonCommander
   icon:
-    sprite: TS/Interface/job_icons.rsi
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: PlatoonCommander
 
 - type: statusIcon
   parent: JobIcon
   id: JobIconCompanyCommander
   icon:
-    sprite: TS/Interface/job_icons.rsi
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: CompanyCommander

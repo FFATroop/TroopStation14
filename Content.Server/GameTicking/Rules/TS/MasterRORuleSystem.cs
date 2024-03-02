@@ -3,12 +3,14 @@ using System.Numerics;
 using Content.Server.Antag;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.Jobs;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Server.RoundEnd;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.TS;
+using Content.Shared.Mobs.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
@@ -45,6 +47,7 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         base.Initialize();
 
         SubscribeLocalEvent<AntagCalculatedAndSpawnedEventArgs>(OnAntagsSpawned);
+        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
         // MasterRORuleComponent removed and added new after restart
         //SubscribeLocalEvent<MasterRORuleComponent, RoundRestartCleanupEvent>(OnRoundRestart);
     }
@@ -248,7 +251,7 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         {
             if (TryComp<TransformComponent>(missionItem, out var xform))
             {
-                if (xform.MapID == mainMapId && mainMapId != null)
+                if (xform.GridUid == component.MainStationUid && component.MainStationUid != null)
                 {
                     isSomeItems = true;
                 }
@@ -267,7 +270,7 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         {
             if (_mobStateSystem.IsAlive(eq_uid))
             {
-                if (eq_xform.MapID == mainMapId && mainMapId != null)
+                if (eq_xform.GridUid == component.MainStationUid && component.MainStationUid != null)
                 {
                     isSomeAntagOnMainMap = true;
                 }
@@ -286,11 +289,44 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
             }
         }
 
+
+        int marinesCount = 0;
+        int aliveMarinesCount = 0;
+        var queryMarine = EntityQueryEnumerator<MarineSpecialComponent>();
+        while (queryMarine.MoveNext(out var eq_uid, out _))
+        {
+            ++marinesCount;
+            if (_mobStateSystem.IsAlive(eq_uid) && TryComp<MindComponent>(eq_uid, out var mind) && mind.Session != null)
+            {
+                ++aliveMarinesCount;
+            }
+        }
+        bool zeroMarines = aliveMarinesCount == 0;
+        float marinePercentage = 0f;
+        if (!zeroMarines)
+        {
+            marinePercentage = (float) aliveMarinesCount / (float) marinesCount;
+        }
+
         if (isAllAntagDead && isAllItems)
         {
-            component.WinConditions.Add(WinMissionCondition.AllAntagsDead);
-            component.WinConditions.Add(WinMissionCondition.AllObjectivesComplete);
+            //component.WinConditions.Add(WinMissionCondition.AllAntagsDead);
+            //component.WinConditions.Add(WinMissionCondition.AllObjectivesComplete);
             component.WinType = WinMissionType.GarrisonMajorWin;
+            _roundEndSystem.EndRound();
+        }
+
+        if (marinePercentage < 0.1f)
+        {
+            component.WinType = WinMissionType.GarrisonMajorLose;
+            if (isSomeItems)
+            {
+                if (!isSomeAntagOnMainMap)
+                    component.WinType = WinMissionType.GarrisonMinorWin;
+                else
+                    component.WinType = WinMissionType.GarrisonMinorLose;
+            }
+
             _roundEndSystem.EndRound();
         }
     }
@@ -371,4 +407,13 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         return true;
     }
 
+    private void OnRoundEndText(RoundEndTextAppendEvent ev)
+    {
+        var query = EntityQueryEnumerator<MasterRORuleComponent>();
+        while (query.MoveNext(out var uid, out var component))
+        {
+            var winText = Loc.GetString($"master-{component.WinType.ToString().ToLower()}");
+            ev.AddLine(winText);
+        }
+    }
 }

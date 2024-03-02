@@ -185,6 +185,37 @@
         },
         {
             "name": "Visitor"
+        },
+		
+		{
+            "name": "CompanyCommander"
+        },
+        {
+            "name": "PlatoonCommander"
+        },
+		{
+            "name": "RoboPlatoonCommander"
+        },
+        {
+            "name": "MechPlatoonCommander"
+        },
+        {
+            "name": "Marine"
+        },
+		{
+            "name": "MarineMedic"
+        },
+		{
+            "name": "MarineEngineer"
+        },
+		{
+            "name": "MarinePilot"
+        },
+        {
+            "name": "MilitaryBorg"
+        },
+		{
+            "name": "MechPilot"
         }
     ]
 }

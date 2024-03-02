@@ -23,8 +23,9 @@
   - MarinePilot
   - Marine
   special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: MarineSpecial
 
 - type: startingGear
   id: MarinePilotGear
