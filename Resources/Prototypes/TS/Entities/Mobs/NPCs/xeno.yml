@@ -5,6 +5,11 @@
   suffix: Combat
   description: They mostly come at night. Mostly.
   components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: FoodMeatXeno
+      amount: 5
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
