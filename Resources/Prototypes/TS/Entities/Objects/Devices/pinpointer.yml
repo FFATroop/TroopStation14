@@ -1,0 +1,15 @@
+- type: entity
+  parent: PinpointerBase
+  name: unknown magnite pinpointer
+  description: A handheld tracking device that leads to the direction of any nearby unknown magnite anomaly.
+  id: PinpointerAntag
+  suffix: Antag
+  components:
+  - type: Sprite
+    layers:
+    - state: pinpointer-station
+  - type: Icon
+    state: pinpointer-station
+  - type: Pinpointer
+    component: MissionAntag
+    targetName: Unknown magnite signature

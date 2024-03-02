@@ -28,6 +28,7 @@
 - type: vendingMachineInventory
   id: MarineDrobeInventory
   startingInventory:
+    PinpointerAntag: 5
     ClothingBackpackMarine: 5
     ClothingUniformJumpsuitOperative: 5
     ClothingShoesBootsCombat: 5
