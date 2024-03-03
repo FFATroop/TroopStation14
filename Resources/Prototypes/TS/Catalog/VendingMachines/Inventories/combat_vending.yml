@@ -29,6 +29,7 @@
   id: MarineDrobeInventory
   startingInventory:
     PinpointerAntag: 5
+    BoxFlare: 3
     ClothingBackpackMarine: 5
     ClothingUniformJumpsuitOperative: 5
     ClothingShoesBootsCombat: 5
