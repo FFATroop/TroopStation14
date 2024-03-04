@@ -15,7 +15,7 @@
     sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/light_plasma_mag.rsi
     state: base
   - type: ProjectileBatteryAmmoProvider
-    proto: LargePlasmaBullet
+    proto: LargeRedPlasmaBullet
     fireCost: 1
   - type: Battery
     maxCharge: 30
