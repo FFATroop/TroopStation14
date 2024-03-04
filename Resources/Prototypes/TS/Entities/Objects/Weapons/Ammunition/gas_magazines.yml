@@ -1,5 +1,5 @@
 - type: entity
-  id: MagazinePlasmaRed
+  id: LightMagazinePlasmaRed
   parent: BaseItem
   name: light plasma mag
   suffix: Red
@@ -15,39 +15,73 @@
     sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/light_plasma_mag.rsi
     state: base
   - type: ProjectileBatteryAmmoProvider
-    proto: RedPlasmaBullet
+    proto: LargePlasmaBullet
     fireCost: 1
   - type: Battery
-    maxCharge: 100
-    startingCharge: 100
+    maxCharge: 30
+    startingCharge: 30
   - type: Appearance
 
 - type: entity
-  id: MagazinePlasmaBlue
-  parent: MagazinePlasmaRed
+  id: LightMagazinePlasmaBlue
+  parent: LightMagazinePlasmaRed
   name: light plasma mag
   suffix: Blue
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BluePlasmaBullet
-    fireCost: 1
-  - type: Battery
-    maxCharge: 75
-    startingCharge: 75
-  
+    proto: LargeBluePlasmaBullet
+
 - type: entity
-  id: MagazinePlasmaGreen
-  parent: MagazinePlasmaRed
+  id: LightMagazinePlasmaGreen
+  parent: LightMagazinePlasmaRed
   name: light plasma mag
   suffix: Green
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: GreenPlasmaBullet
+    proto: LargeGreenPlasmaBullet
+
+- type: entity
+  id: MediumMagazinePlasmaRed
+  parent: BaseItem
+  name: medium plasma mag
+  suffix: Red
+  components:
+  - type: Tag
+    tags:
+    - PlasmaMagazine
+    - MediumPlasmaMagazine
+  - type: Item
+    size: Large
+    sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/medium_plasma_mag.rsi
+  - type: Sprite
+    sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/medium_plasma_mag.rsi
+    state: base
+  - type: ProjectileBatteryAmmoProvider
+    proto: MediumRedPlasmaBullet
     fireCost: 1
   - type: Battery
-    maxCharge: 50
-    startingCharge: 50
-  
+    maxCharge: 70
+    startingCharge: 70
+  - type: Appearance
+
+- type: entity
+  id: MediumMagazinePlasmaBlue
+  parent: MediumMagazinePlasmaRed
+  name: medium plasma mag
+  suffix: Blue
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: MediumBluePlasmaBullet
+
+- type: entity
+  id: MediumMagazinePlasmaGreen
+  parent: MediumMagazinePlasmaRed
+  name: medium plasma mag
+  suffix: Green
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: MediumGreenPlasmaBullet
+
 - type: entity
   id: HeavyMagazinePlasmaRed
   parent: BaseItem
@@ -65,7 +99,7 @@
     sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/heavy_plasma_mag.rsi
     state: base
   - type: ProjectileBatteryAmmoProvider
-    proto: RedPlasmaBullet
+    proto: LightRedPlasmaBullet
     fireCost: 1
   - type: Battery
     maxCharge: 350
@@ -79,12 +113,8 @@
   suffix: Blue
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: BluePlasmaBullet
-    fireCost: 1
-  - type: Battery
-    maxCharge: 240
-    startingCharge: 240
-    
+    proto: LightBluePlasmaBullet
+
 - type: entity
   id: HeavyMagazinePlasmaGreen
   parent: HeavyMagazinePlasmaRed
@@ -92,8 +122,4 @@
   suffix: Green
   components:
   - type: ProjectileBatteryAmmoProvider
-    proto: GreenPlasmaBullet
-    fireCost: 1
-  - type: Battery
-    maxCharge: 160
-    startingCharge: 160
+    proto: LightGreenPlasmaBullet

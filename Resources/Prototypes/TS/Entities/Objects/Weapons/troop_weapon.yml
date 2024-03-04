@@ -1,11 +1,11 @@
 - type: entity
-  name: APR-01
+  name: GR-12
   parent: BaseWeaponPowerCell
   id: WeaponPlasmaRifle
   description: Combat automatic plasma rifle, version 1.
   components:
   - type: Sprite
-    sprite: TS/Objects/Weapons/Guns/Rifles/apr_01.rsi
+    sprite: TS/Objects/Weapons/Guns/Rifles/gr_12.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -18,20 +18,19 @@
     minAngle: -20
     maxAngle: -35
   - type: Clothing
-    sprite: TS/Objects/Weapons/Guns/Rifles/apr_01.rsi
+    sprite: TS/Objects/Weapons/Guns/Rifles/gr_12.rsi
     quickEquip: false
     slots:
     - Back
     - suitStorage
   - type: Gun
     availableModes:
-    - SemiAuto
     - FullAuto
     selectedMode: FullAuto
     angleDecay: 10
     minAngle: 20
     maxAngle: 35
-    fireRate: 3
+    fireRate: 1.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/warfare-plasma.ogg
   - type: ContainerContainer
@@ -63,6 +62,72 @@
   - type: StaticPrice
     price: 1500
 
+
+- type: entity
+  name: AC-5
+  parent: BaseWeaponPowerCell
+  id: WeaponPlasmaCarabin
+  description: Combat automatic plasma rifle, version 1.
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Weapons/Guns/Rifles/ac_5.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Wieldable
+  - type: AmmoCounter
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -35
+  - type: Clothing
+    sprite: TS/Objects/Weapons/Guns/Rifles/ac_5.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    availableModes:
+    - FullAuto
+    selectedMode: FullAuto
+    angleDecay: 10
+    minAngle: 20
+    maxAngle: 35
+    fireRate: 4.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/warfare-plasma.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      power_magazine: !type:ContainerSlot
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - MediumPlasmaMagazine
+      power_magazine:
+        name: Power
+        startingItem: PowerCellSmall
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          components:
+          - PowerCell
+  - type: StaticPrice
+    price: 1500
+
+
 - type: entity
   name: PMGP
   parent: BaseWeaponPowerCell
@@ -80,7 +145,7 @@
   - type: Wieldable
   - type: GunWieldBonus
     minAngle: -20
-    maxAngle: -20
+    maxAngle: -40
   - type: Clothing
     sprite: TS/Objects/Weapons/Guns/Rifles/pmgp.rsi
     quickEquip: false
@@ -92,8 +157,8 @@
     steps: 3
     zeroVisible: false
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.7
+    walkModifier: 0.8
+    sprintModifier: 0.75
   - type: HeldSpeedModifier
   - type: AmmoCounter
   - type: Gun
@@ -120,7 +185,6 @@
         whitelist:
           tags:
             - HeavyPlasmaMagazine
-            - LightPlasmaMagazine
       power_magazine:
         name: Power
         startingItem: PowerCellSmall
