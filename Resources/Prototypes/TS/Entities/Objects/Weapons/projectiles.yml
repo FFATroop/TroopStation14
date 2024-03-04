@@ -1,10 +1,27 @@
 - type: entity
-  id: BluePlasmaBullet
+  id: LightBluePlasmaBullet
   parent: BaseBullet
   noSpawn: true
   components:
   - type: Sprite
     sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
+    scale: 0.7,0.7
+    layers:
+    - state: blue
+  - type: Projectile
+    damage:
+      types:
+        Heat: 9
+        Brute: 6
+
+- type: entity
+  id: MediumBluePlasmaBullet
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
+    scale: 1.0,1.0
     layers:
     - state: blue
   - type: Projectile
@@ -14,31 +31,77 @@
         Brute: 9
 
 - type: entity
-  id: GreenPlasmaBullet
+  id: LargeBluePlasmaBullet
   parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
+    scale: 1.6,1.6
+    layers:
+    - state: blue
+  - type: Projectile
+    damage:
+      types:
+        Heat: 24
+        Brute: 12
+
+- type: entity
+  id: LightGreenPlasmaBullet
+  parent: LightBluePlasmaBullet
   noSpawn: true
   components:
   - type: Sprite
     sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
     layers:
     - state: green
-  - type: Projectile
-    damage:
-      types:
-        Heat: 24
-        Brute: 12
-        
+
 - type: entity
-  id: RedPlasmaBullet
-  parent: BaseBullet
+  id: MediumGreenPlasmaBullet
+  parent: MediumBluePlasmaBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
+    layers:
+    - state: green
+
+- type: entity
+  id: LargeGreenPlasmaBullet
+  parent: LargeBluePlasmaBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
+    layers:
+    - state: green
+
+- type: entity
+  id: LightRedPlasmaBullet
+  parent: LightBluePlasmaBullet
   noSpawn: true
   components:
   - type: Sprite
     sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
     layers:
     - state: red
-  - type: Projectile
-    damage:
-      types:
-        Heat: 9
-        Brute: 6
+
+- type: entity
+  id: MediumRedPlasmaBullet
+  parent: MediumBluePlasmaBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
+    layers:
+    - state: red
+
+- type: entity
+  id: LargeRedPlasmaBullet
+  parent: LargeBluePlasmaBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: TS/Objects/Weapons/Guns/Projectiles/plasma.rsi
+    layers:
+    - state: red
