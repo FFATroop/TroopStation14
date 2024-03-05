@@ -1,0 +1,43 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckUpArCompanyCommander
+  name: Shoulders and Kama
+  description: Company commander's Kama and shoulders
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Neck/UpperArmor/company-commander.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.9
+        Piercing: 0.85
+        Heat: 0.85
+        Cold: 0.85
+
+- type: entity
+  parent: ClothingNeckUpArCompanyCommander
+  id: ClothingNeckUpArPlatoonCommander
+  name: Shoulders and Kama
+  description: Platoon commander's Kama and shoulders
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Neck/UpperArmor/platoon-commander.rsi
+
+- type: entity
+  parent: ClothingNeckUpArCompanyCommander
+  id: ClothingNeckUpArMechPlatoonCommander
+  name: Shoulders and Kama
+  description: Platoon commander's Kama and shoulders
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Neck/UpperArmor/platoon-commander.rsi
+
+- type: entity
+  parent: ClothingNeckUpArCompanyCommander
+  id: ClothingNeckUpArRoboPlatoonCommander
+  name: Shoulders and Kama
+  description: Platoon commander's Kama and shoulders
+  components:
+  - type: Sprite
+    sprite: TS/Clothing/Neck/UpperArmor/platoon-commander.rsi

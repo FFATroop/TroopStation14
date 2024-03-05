@@ -101,6 +101,7 @@
     - id: OxygenTankFilled
     - id: ClothingOuterHardsuitOBS4PlatoonCommander
     - id: ClothingHelmetHardsuitOBH4PlatoonCommander
+    - id: ClothingNeckUpArPlatoonCommander
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
     access: [["PlatoonCommander"]]
@@ -116,6 +117,7 @@
     - id: OxygenTankFilled
     - id: ClothingOuterHardsuitOBS4MechPlatoonCommander
     - id: ClothingHelmetHardsuitOBH4MechPlatoonCommander
+    - id: ClothingNeckUpArMechPlatoonCommander
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
     access: [["MechPlatoonCommander"]]
@@ -131,6 +133,7 @@
     - id: OxygenTankFilled
     - id: ClothingOuterHardsuitOBS4RoboPlatoonCommander
     - id: ClothingHelmetHardsuitOBH4RoboPlatoonCommander
+    - id: ClothingNeckUpArRoboPlatoonCommander
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
     access: [["RoboPlatoonCommander"]]
@@ -146,6 +149,7 @@
     - id: OxygenTankFilled
     - id: ClothingOuterHardsuitOBS4CompanyCommander
     - id: ClothingHelmetHardsuitOBH4CompanyCommander
+    - id: ClothingNeckUpArCompanyCommander
     - id: ClothingShoesBootsMagMarine
   - type: AccessReader
     access: [["CompanyCommander"]]
