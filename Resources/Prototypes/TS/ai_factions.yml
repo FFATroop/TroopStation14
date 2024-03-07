@@ -1,0 +1,12 @@
+- type: npcFaction
+  id: AncientDroid
+  hostile:
+  - Zombie
+  - Xeno
+  - NanoTrasen
+  - SimpleNeutral
+  - SimpleHostile
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Revolutionary
