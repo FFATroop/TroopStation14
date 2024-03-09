@@ -4,19 +4,20 @@
   root: torso
   slots:
     torso:
-      part: TorsoBorg
+      part: DroidTorso
       connections:
+      - head
       - right_arm
       - left_arm
+      - right_leg
+      - left_leg
+    head:
+      part: DroidHead
     right_arm:
-      part: RightArmHuman
-      connections:
-      - right_hand
+      part: DroidArmRight
     left_arm:
-      part: LeftArmHuman
-      connections:
-      - left_hand
-    right_hand:
-      part: RightHandHuman
-    left_hand:
-      part: LeftHandHuman
+      part: DroidArmLeft
+    left_leg:
+      part: DroidLegLeft
+    right_leg:
+      part: DroidLegRight

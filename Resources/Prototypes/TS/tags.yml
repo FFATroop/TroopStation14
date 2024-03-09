@@ -9,3 +9,12 @@
 
 - type: Tag
   id: PlasmaMagazine
+
+- type: Tag
+  id: DroidArm
+  
+- type: Tag
+  id: DroidLeg
+  
+- type: Tag
+  id: DroidHead

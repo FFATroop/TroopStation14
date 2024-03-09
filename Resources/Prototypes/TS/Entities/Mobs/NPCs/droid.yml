@@ -47,7 +47,7 @@
       - Prying
   - type: Prying
     pryPowered: !type:Bool
-        true
+      true
     force: !type:Bool
       true
     useSound:
@@ -72,9 +72,6 @@
   - type: NpcFactionMember
     factions:
     - AncientDroid
-  - type: HTN
-    rootTask:
-      task:  SimpleHumanoidHostileCompound
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
@@ -115,6 +112,9 @@
   description: They mostly come at night. Mostly.
   parent: MobDroidBase
   components:
+  #- type: HTN
+  #  rootTask:
+  #    task:  SimpleHumanoidHostileCompound
   - type: MobThresholds
     thresholds:
       0: Alive
