@@ -56,7 +56,7 @@
     soundGroups:
       Brute:
         collection:
-          MeatBulletImpact
+          MetalBulletImpact
   - type: CombatMode
     canDisarm: true
   - type: MeleeWeapon
@@ -89,22 +89,24 @@
     shaderTexture: "GreyscaleFullscreen"
     mustDrawLight: false
     toggle: true
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3.5
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Footsteps/droid-footstep-small.ogg
+      params:
+        volume: 3
   - type: Tag
     tags:
       - CannotSuicide
       - DoorBumpOpener
       - FootstepSound
   - type: NoSlip
+  - type: StandingState
   - type: Speech
     speechVerb: Robotic
-  - type: GhostRole
-    jobProto: JobXenoBase
-    allowMovement: true
-    allowSpeech: true
-    makeSentient: true
-    name: job-name-xeno-base
-    description: job-description-xeno-base
-    rules: ghost-role-information-xeno-rules-base
+
 
 - type: entity
   name: ancient battle droid
@@ -128,3 +130,11 @@
         Airloss: -1
         Burn: -1
         Brute: -2.5
+  - type: GhostRole
+    jobProto: JobXenoBase
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: job-name-xeno-base
+    description: job-description-xeno-base
+    rules: ghost-role-information-xeno-rules-base
