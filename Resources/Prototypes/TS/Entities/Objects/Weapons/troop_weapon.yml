@@ -36,7 +36,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-      power_magazine: !type:ContainerSlot
   - type: MagazineAmmoProvider
   - type: MagazineVisuals
     magState: mag
@@ -51,14 +50,6 @@
         whitelist:
           tags:
             - LightPlasmaMagazine
-      power_magazine:
-        name: Power
-        startingItem: PowerCellSmall
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          components:
-          - PowerCell
   - type: StaticPrice
     price: 1500
 
@@ -101,7 +92,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-      power_magazine: !type:ContainerSlot
   - type: MagazineAmmoProvider
   - type: MagazineVisuals
     magState: mag
@@ -116,14 +106,6 @@
         whitelist:
           tags:
             - MediumPlasmaMagazine
-      power_magazine:
-        name: Power
-        startingItem: PowerCellSmall
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          components:
-          - PowerCell
   - type: StaticPrice
     price: 1500
 
@@ -174,7 +156,6 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-      power_magazine: !type:ContainerSlot
   - type: MagazineAmmoProvider
   - type: ItemSlots
     slots:
@@ -185,13 +166,5 @@
         whitelist:
           tags:
             - HeavyPlasmaMagazine
-      power_magazine:
-        name: Power
-        startingItem: PowerCellSmall
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          components:
-          - PowerCell
   - type: StaticPrice
     price: 2500
