@@ -1,6 +1,18 @@
 - type: entity
-  id: LightBluePlasmaBullet
+  id: BasePlasmaBullet
   parent: BaseBullet
+  noSpawn: true
+  abstract: true
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: Ammo
+
+
+- type: entity
+  id: LightBluePlasmaBullet
+  parent: BasePlasmaBullet
   noSpawn: true
   components:
   - type: Sprite
@@ -16,7 +28,7 @@
 
 - type: entity
   id: MediumBluePlasmaBullet
-  parent: BaseBullet
+  parent: BasePlasmaBullet
   noSpawn: true
   components:
   - type: Sprite
@@ -32,7 +44,7 @@
 
 - type: entity
   id: LargeBluePlasmaBullet
-  parent: BaseBullet
+  parent: BasePlasmaBullet
   noSpawn: true
   components:
   - type: Sprite
