@@ -1,0 +1,23 @@
+- type: body
+  id: droid
+  name: "droid"
+  root: torso
+  slots:
+    torso:
+      part: DroidTorso
+      connections:
+      - head
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+    head:
+      part: DroidHead
+    right_arm:
+      part: DroidArmRight
+    left_arm:
+      part: DroidArmLeft
+    left_leg:
+      part: DroidLegLeft
+    right_leg:
+      part: DroidLegRight

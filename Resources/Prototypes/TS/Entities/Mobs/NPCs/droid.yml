@@ -1,0 +1,140 @@
+- type: entity
+  name: Droid
+  id: MobDroidBase
+  abstract: true
+  save: false
+  parent:
+  - BaseMob
+  - MobCombat
+  components:
+  - type: Body
+    prototype: droid
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: TS/Mobs/droid.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: droid
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: droid
+      Dead:
+        Base: dead
+  - type: Damageable
+    damageContainer: Silicon
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: Puller
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: Tool
+    speed: 1.5
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+      true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+  - type: CombatMode
+    canDisarm: true
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 15
+  - type: Hands
+  - type: NpcFactionMember
+    factions:
+    - AncientDroid
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Antag
+  - type: ActiveRadio
+    channels:
+    - Antag
+  - type: FlashImmunity
+  - type: MovementIgnoreGravity
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: DarkVision
+    shaderTexture: "GreyscaleFullscreen"
+    mustDrawLight: false
+    toggle: true
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3.5
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Footsteps/droid-footstep-small.ogg
+      params:
+        volume: 3
+  - type: Tag
+    tags:
+      - CannotSuicide
+      - DoorBumpOpener
+      - FootstepSound
+  - type: NoSlip
+  - type: StandingState
+  - type: Speech
+    speechVerb: Robotic
+
+
+- type: entity
+  name: ancient battle droid
+  id: MobDroidAncient
+  description: They mostly come at night. Mostly.
+  parent: MobDroidBase
+  components:
+  #- type: HTN
+  #  rootTask:
+  #    task:  SimpleHumanoidHostileCompound
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 1000
+    damage:
+      groups:
+        Airloss: -1
+        Burn: -1
+        Brute: -2.5
+  - type: GhostRole
+    jobProto: JobXenoBase
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: job-name-xeno-base
+    description: job-description-xeno-base
+    rules: ghost-role-information-xeno-rules-base
