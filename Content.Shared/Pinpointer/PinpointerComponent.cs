@@ -48,6 +48,10 @@ public sealed partial class PinpointerComponent : Component
     [DataField("canRetarget"), ViewVariables(VVAccess.ReadWrite)]
     public bool CanRetarget;
 
+
+    [DataField]
+    public bool MustBeAlive = false;
+
     [ViewVariables]
     public EntityUid? Target = null;
 

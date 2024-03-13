@@ -5,6 +5,7 @@ using System.Numerics;
 using Robust.Shared.Utility;
 using Content.Server.Shuttles.Events;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Mobs.Systems;
 
 namespace Content.Server.Pinpointer;
 
@@ -12,6 +13,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 {
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -80,7 +82,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
                 return;
             }
 
-            var target = FindTargetFromComponent(uid, reg.Type);
+            var target = FindTargetFromComponent(uid, reg.Type, component);
             SetTarget(uid, target, component);
         }
     }
@@ -102,7 +104,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
     ///     Try to find the closest entity from whitelist on a current map
     ///     Will return null if can't find anything
     /// </summary>
-    private EntityUid? FindTargetFromComponent(EntityUid uid, Type whitelist, TransformComponent? transform = null)
+    private EntityUid? FindTargetFromComponent(EntityUid uid, Type whitelist, PinpointerComponent? pinpointer = null, TransformComponent? transform = null)
     {
         _xformQuery.Resolve(uid, ref transform, false);
 
@@ -119,6 +121,11 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
             if (!_xformQuery.TryGetComponent(otherUid, out var compXform) || compXform.MapID != mapId)
                 continue;
 
+            if (pinpointer != null)
+            {
+                if (pinpointer.MustBeAlive && !_mobStateSystem.IsAlive(otherUid))
+                    continue;
+            }
             var dist = (_transform.GetWorldPosition(compXform) - worldPos).LengthSquared();
             l.TryAdd(dist, otherUid);
         }
