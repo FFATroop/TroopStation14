@@ -11,5 +11,6 @@
   - type: Icon
     state: pinpointer-station
   - type: Pinpointer
+    mustBeAlive: true
     component: MissionAntag
     targetName: Unknown magnite signature
