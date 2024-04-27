@@ -5,6 +5,12 @@
     - type: StationData
 
 - type: entity
+  id: BaseRandomStation
+  abstract: true
+  components:
+    - type: StationRandomTransform
+
+- type: entity
   id: BaseStationCargo
   abstract: true
   components:
@@ -68,6 +74,7 @@
           - /Maps/Ruins/djstation.yml
           - /Maps/Ruins/old_ai_sat.yml
           - /Maps/Ruins/relaystation.yml
+          - /Maps/Ruins/syndicate_dropship.yml
           - /Maps/Ruins/whiteship_ancient.yml
           - /Maps/Ruins/whiteship_bluespacejumper.yml
 
@@ -76,7 +83,7 @@
   abstract: true
   components:
     - type: StationCentcomm
-      map: "/Maps/corvax_centcomm.yml" # Corvax-Mapping
+#      map: "/Maps/corvax_centcomm.yml" # Corvax-Mapping
 
 - type: entity
   id: BaseStationEvacuation
@@ -109,6 +116,12 @@
   components:
   - type: SiliconLawProvider
     laws: Crewsimov
+
+- type: entity
+  id: BaseStationNews
+  abstract: true
+  components:
+    - type: StationNews
 
 - type: entity
   id: BaseStationAllEventsEligible

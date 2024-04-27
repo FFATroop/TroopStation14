@@ -31,7 +31,7 @@ public sealed partial class GunSystem
     private void OnMagazineControl(EntityUid uid, MagazineAmmoProviderComponent component, AmmoCounterControlEvent args)
     {
         var ent = GetMagazineEntity(uid);
-        if (ent == null) return;
+        if (ent == null)
+            return;
         RaiseLocalEvent(ent.Value, args, false);
-    }
-}
+    }}

@@ -51,7 +51,7 @@ public sealed class FaxSystem : EntitySystem
     /// </summary>
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultPaperPrototypeId = "Paper";
-    
+
     [ValidatePrototypeId<EntityPrototype>]
     private const string OfficePaperPrototypeId = "PaperOffice";
 
@@ -313,12 +313,12 @@ public sealed class FaxSystem : EntitySystem
 
     private void OnCopyButtonPressed(EntityUid uid, FaxMachineComponent component, FaxCopyMessage args)
     {
-        Copy(uid, component);
+        Copy(uid, component, args);
     }
 
     private void OnSendButtonPressed(EntityUid uid, FaxMachineComponent component, FaxSendMessage args)
     {
-        Send(uid, component, args.Session.AttachedEntity);
+        Send(uid, component, args.Actor);
     }
 
     private void OnRefreshButtonPressed(EntityUid uid, FaxMachineComponent component, FaxRefreshMessage args)
@@ -358,7 +358,7 @@ public sealed class FaxSystem : EntitySystem
                       component.SendTimeoutRemaining <= 0 &&
                       component.InsertingTimeRemaining <= 0;
         var state = new FaxUiState(component.FaxName, component.KnownFaxes, canSend, canCopy, isPaperInserted, component.DestinationFaxAddress);
-        _userInterface.TrySetUiState(uid, FaxUiKey.Key, state);
+        _userInterface.SetUiState(uid, FaxUiKey.Key, state);
     }
 
     /// <summary>
@@ -410,19 +410,22 @@ public sealed class FaxSystem : EntitySystem
             prototype = DefaultPaperPrototypeId;
 
         var name  = Loc.GetString("fax-machine-printed-paper-name");
-        
+
         var printout = new FaxPrintout(args.Content, name, prototype);
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
 
         UpdateUserInterface(uid, component);
+
+        _adminLogger.Add(LogType.Action, LogImpact.Low,
+            $"{ToPrettyString(args.Actor):actor} added print job to {ToPrettyString(uid):tool} with text: {args.Content}");
     }
 
     /// <summary>
     ///     Copies the paper in the fax. A timeout is set after copying,
     ///     which is shared by the send button.
     /// </summary>
-    public void Copy(EntityUid uid, FaxMachineComponent? component = null)
+    public void Copy(EntityUid uid, FaxMachineComponent? component, FaxCopyMessage args)
     {
         if (!Resolve(uid, ref component))
             return;
@@ -449,6 +452,9 @@ public sealed class FaxSystem : EntitySystem
         // will start immediately.
 
         UpdateUserInterface(uid, component);
+
+        _adminLogger.Add(LogType.Action, LogImpact.Low,
+            $"{ToPrettyString(args.Actor):actor} added copy job to {ToPrettyString(uid):tool} with text: {ToPrettyString(component.PaperSlot.Item):subject}");
     }
 
     /// <summary>
