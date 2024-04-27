@@ -189,7 +189,6 @@
         {
             "name": "Visitor"
         },
-		
 		{
             "name": "CompanyCommander"
         },
@@ -218,7 +217,10 @@
             "name": "MilitaryBorg"
         },
 		{
-            "name": "MechPilot"        {
-            "name": "InitialInfected"        }
+            "name": "MechPilot"
+		},
+		{
+            "name": "InitialInfected"
+		}
     ]
 }

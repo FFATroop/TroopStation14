@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Client.Corvax.TTS;
 using Content.Client.Lobby;
 using Content.Shared.Corvax.TTS;
@@ -11,7 +11,4 @@ public sealed partial class HumanoidProfileEditor
 {
     private IClientSponsorsManager? _sponsorsMgr;
     private List<TTSVoicePrototype> _voiceList = default!;
-
-
-    }
 }

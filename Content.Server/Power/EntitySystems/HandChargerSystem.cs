@@ -13,6 +13,7 @@ internal sealed class HandChargerSystem : EntitySystem
 {
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
 
     public override void Update(float frameTime)
@@ -77,18 +78,19 @@ internal sealed class HandChargerSystem : EntitySystem
         if (batteryToDischarge.CurrentCharge < deltaChargeRate)
         {
             chargeRate = batteryToDischarge.CurrentCharge / batteryToCharge.Count * frameTime;
-            batteryToDischarge.CurrentCharge = 0;
+            _battery.SetCharge(uid, 0, batteryToDischarge);
         }
         else
-            batteryToDischarge.CurrentCharge -= deltaChargeRate;
+            _battery.SetCharge(uid, batteryToDischarge.CurrentCharge - deltaChargeRate, batteryToDischarge);
 
         foreach (var tempBattery in batteryToCharge)
         {
-            tempBattery.CurrentCharge += chargeRate;
+            _battery.SetCharge(uid, tempBattery.CurrentCharge + chargeRate, batteryToDischarge);
+
             // Just so the sprite won't be set to 99.99999% visibility
             if (tempBattery.MaxCharge - tempBattery.CurrentCharge < 0.01 || tempBattery.CurrentCharge > tempBattery.MaxCharge)
             {
-                tempBattery.CurrentCharge = tempBattery.MaxCharge;
+                _battery.SetCharge(uid, tempBattery.MaxCharge, batteryToDischarge);
             }
         }
     }

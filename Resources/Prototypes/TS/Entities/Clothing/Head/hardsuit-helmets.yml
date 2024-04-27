@@ -59,7 +59,7 @@
 # OBH-3
 - type: entity
   noSpawn: true
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ClothingHeadHardsuitWithLightBase, ShowSecurityIcons]
   id: ClothingHeadHelmetHardsuitOBH3S
   name: OBH-3S
   description: Modern armor helmet, version 3, space edition
@@ -85,7 +85,6 @@
         Heat: 0.9
         Cold: 0.9
         Radiation: 0.9
-  - type: ShowSecurityIcons
   - type: FlashImmunity
 
 

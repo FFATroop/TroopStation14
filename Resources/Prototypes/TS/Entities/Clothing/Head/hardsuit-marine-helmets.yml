@@ -1,12 +1,11 @@
 # OBH-4
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, ShowSecurityIcons]
   id: ClothingHelmetHardsuitOBH4Base
   components:
   - type: Clickable
   - type: BreathMask
-  - type: ShowSecurityIcons
   - type: FlashImmunity
   - type: InteractionOutline
   - type: TemperatureProtection
