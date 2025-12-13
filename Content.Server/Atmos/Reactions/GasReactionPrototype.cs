@@ -1,23 +1,11 @@
 ﻿using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Reactions;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Atmos.Reactions
 {
-    [Flags]
-    public enum ReactionResult : byte
-    {
-        NoReaction = 0,
-        Reacting = 1,
-        StopReactions = 2,
-    }
-
-    public enum GasReaction : byte
-    {
-        Fire = 0,
-    }
-
-    [Prototype("gasReaction")]
+    [Prototype]
     public sealed partial class GasReactionPrototype : IPrototype
     {
         [ViewVariables]
@@ -27,7 +15,7 @@ namespace Content.Server.Atmos.Reactions
         /// <summary>
         ///     Minimum gas amount requirements.
         /// </summary>
-        [DataField("minimumRequirements")]
+        [DataField("minimumRequirements", customTypeSerializer: typeof(GasArraySerializer))]
         public float[] MinimumRequirements { get; private set; } = new float[Atmospherics.TotalNumberOfGases];
 
         /// <summary>

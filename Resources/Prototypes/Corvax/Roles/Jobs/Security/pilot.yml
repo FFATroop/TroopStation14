@@ -1,11 +1,16 @@
 - type: job
   id: Pilot
   name: job-name-pilot
+  description: job-description-pilot
   playTimeTracker: JobPilot
   requirements:
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 72000 #20 hrs
+    time: 20h
+  - !type:TraitsRequirement
+    inverted: true
+    traits:
+    - Muted
   startingGear: PilotGear
   icon: "JobIconPilot"
   supervisors: job-supervisors-hos
@@ -24,12 +29,22 @@
 - type: startingGear
   id: PilotGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitSeniorOfficer
-    shoes: ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSecurity
-    head: ClothingHeadHatBeretSecurity
-    outerClothing: ClothingOuterVestArmorSec
     id: PilotPDA
     ears: ClothingHeadsetSecurity
-    neck: ClothingNeckTieRed
     pocket1: WeaponPistolMk58
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+
+- type: chameleonOutfit
+  id: PilotChameleonOutfit
+  job: Pilot
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBeretSecurity
+    eyes: ClothingEyesGlassesSecurity
+    mask: ClothingMaskGasSecurity
+    neck: Dinkystar
+    gloves: ClothingHandsGlovesColorBlack

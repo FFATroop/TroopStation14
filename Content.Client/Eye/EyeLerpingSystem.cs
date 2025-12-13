@@ -34,7 +34,7 @@ public sealed class EyeLerpingSystem : EntitySystem
         SubscribeLocalEvent<LerpingEyeComponent, LocalPlayerDetachedEvent>(OnDetached);
 
         UpdatesAfter.Add(typeof(TransformSystem));
-        UpdatesAfter.Add(typeof(PhysicsSystem));
+        UpdatesAfter.Add(typeof(Robust.Client.Physics.PhysicsSystem));
         UpdatesBefore.Add(typeof(SharedEyeSystem));
         UpdatesOutsidePrediction = true;
     }
@@ -86,7 +86,7 @@ public sealed class EyeLerpingSystem : EntitySystem
     private void HandleMapChange(EntityUid uid, LerpingEyeComponent component, ref EntParentChangedMessage args)
     {
         // Is this actually a map change? If yes, stop any lerps
-        if (args.OldMapId != args.Transform.MapID)
+        if (args.OldMapId != args.Transform.MapUid)
             component.LastRotation = GetRotation(uid, args.Transform);
     }
 

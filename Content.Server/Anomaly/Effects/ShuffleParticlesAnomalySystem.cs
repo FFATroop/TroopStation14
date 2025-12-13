@@ -1,9 +1,9 @@
 using Content.Server.Anomaly.Components;
 using Content.Shared.Anomaly.Components;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
 
 namespace Content.Server.Anomaly.Effects;
+
 public sealed class ShuffleParticlesAnomalySystem : EntitySystem
 {
     [Dependency] private readonly AnomalySystem _anomaly = default!;
@@ -12,29 +12,26 @@ public sealed class ShuffleParticlesAnomalySystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ShuffleParticlesAnomalyComponent, AnomalyPulseEvent>(OnPulse);
-        SubscribeLocalEvent<ShuffleParticlesAnomalyComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<ShuffleParticlesAnomalyComponent, AnomalyAffectedByParticleEvent>(OnAffectedByParticle);
     }
 
-    private void OnStartCollide(EntityUid uid, ShuffleParticlesAnomalyComponent shuffle, StartCollideEvent args)
+    private void OnAffectedByParticle(Entity<ShuffleParticlesAnomalyComponent> ent, ref AnomalyAffectedByParticleEvent args)
     {
-        if (!TryComp<AnomalyComponent>(uid, out var anomaly))
+        if (!TryComp<AnomalyComponent>(ent, out var anomalyComp))
             return;
 
-        if (shuffle.ShuffleOnParticleHit && _random.Prob(shuffle.Prob))
-            _anomaly.ShuffleParticlesEffect(anomaly);
-
-        if (!TryComp<AnomalousParticleComponent>(args.OtherEntity, out var particle))
-            return;
+        if (ent.Comp.ShuffleOnParticleHit && _random.Prob(ent.Comp.Prob))
+            _anomaly.ShuffleParticlesEffect((args.Anomaly, anomalyComp));
     }
 
-    private void OnPulse(EntityUid uid, ShuffleParticlesAnomalyComponent shuffle, AnomalyPulseEvent args)
+    private void OnPulse(Entity<ShuffleParticlesAnomalyComponent> ent, ref AnomalyPulseEvent args)
     {
-        if (!TryComp<AnomalyComponent>(uid, out var anomaly))
+        if (!TryComp<AnomalyComponent>(ent, out var anomaly))
             return;
 
-        if (shuffle.ShuffleOnPulse && _random.Prob(shuffle.Prob))
+        if (ent.Comp.ShuffleOnPulse && _random.Prob(ent.Comp.Prob))
         {
-            _anomaly.ShuffleParticlesEffect(anomaly);
+            _anomaly.ShuffleParticlesEffect((ent, anomaly));
         }
     }
 }

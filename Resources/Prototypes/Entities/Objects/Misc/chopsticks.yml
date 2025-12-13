@@ -13,19 +13,24 @@
   - type: Utensil
     types:
     - Fork
+  - type: Tag
+    tags:
+    - Trash
 
 - type: entity
   parent: BaseItem
   name: paired chopsticks
   id: PairedChopsticks
-  description: You should probably seperate them.
+  description: You should probably separate them.
   components:
   - type: SpawnItemsOnUse
     items:
       - id: ChopSticks
+    sound:
+      path: /Audio/Effects/chopstickbreak.ogg
   - type: Sprite
     sprite: Objects/Misc/chopstick.rsi
     state: paired
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/Effects/chopstickbreak.ogg
+  - type: Tag
+    tags:
+    - Trash

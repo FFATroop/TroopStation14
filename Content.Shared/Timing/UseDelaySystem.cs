@@ -9,7 +9,7 @@ public sealed class UseDelaySystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
 
-    private const string DefaultId = "default";
+    public const string DefaultId = "default";
 
     public override void Initialize()
     {
@@ -47,7 +47,7 @@ public sealed class UseDelaySystem : EntitySystem
     {
         // Set default delay length from the prototype
         // This makes it easier for simple use cases that only need a single delay
-        SetLength(ent, ent.Comp.Delay, DefaultId);
+        SetLength((ent, ent.Comp), ent.Comp.Delay, DefaultId);
     }
 
     private void OnUnpaused(Entity<UseDelayComponent> ent, ref EntityUnpausedEvent args)
@@ -62,9 +62,14 @@ public sealed class UseDelaySystem : EntitySystem
     /// <summary>
     /// Sets the length of the delay with the specified ID.
     /// </summary>
-    public bool SetLength(Entity<UseDelayComponent> ent, TimeSpan length, string id = DefaultId)
+    /// <remarks>
+    /// This will add a UseDelay component to the entity if it doesn't have one.
+    /// </remarks>
+    public bool SetLength(Entity<UseDelayComponent?> ent, TimeSpan length, string id = DefaultId)
     {
-        if (ent.Comp.Delays.TryGetValue(id, out var entry))
+        EnsureComp<UseDelayComponent>(ent.Owner, out var comp);
+
+        if (comp.Delays.TryGetValue(id, out var entry))
         {
             if (entry.Length == length)
                 return true;
@@ -73,7 +78,7 @@ public sealed class UseDelaySystem : EntitySystem
         }
         else
         {
-            ent.Comp.Delays.Add(id, new UseDelayInfo(length));
+            comp.Delays.Add(id, new UseDelayInfo(length));
         }
 
         Dirty(ent);
@@ -83,8 +88,11 @@ public sealed class UseDelaySystem : EntitySystem
     /// <summary>
     /// Returns true if the entity has a currently active UseDelay with the specified ID.
     /// </summary>
-    public bool IsDelayed(Entity<UseDelayComponent> ent, string id = DefaultId)
+    public bool IsDelayed(Entity<UseDelayComponent?> ent, string id = DefaultId)
     {
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
+            return false;
+
         if (!ent.Comp.Delays.TryGetValue(id, out var entry))
             return false;
 
@@ -110,8 +118,14 @@ public sealed class UseDelaySystem : EntitySystem
     /// <param name="info"></param>
     /// <param name="id"></param>
     /// <returns></returns>
-    public bool TryGetDelayInfo(Entity<UseDelayComponent> ent, [NotNullWhen(true)] out UseDelayInfo? info, string id = DefaultId)
+    public bool TryGetDelayInfo(Entity<UseDelayComponent?> ent, [NotNullWhen(true)] out UseDelayInfo? info, string id = DefaultId)
     {
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
+        {
+            info = null;
+            return false;
+        }
+
         return ent.Comp.Delays.TryGetValue(id, out info);
     }
 
@@ -120,7 +134,9 @@ public sealed class UseDelaySystem : EntitySystem
     /// </summary>
     public UseDelayInfo GetLastEndingDelay(Entity<UseDelayComponent> ent)
     {
-        var last = ent.Comp.Delays[DefaultId];
+        if (!ent.Comp.Delays.TryGetValue(DefaultId, out var last))
+            return new UseDelayInfo(TimeSpan.Zero);
+
         foreach (var entry in ent.Comp.Delays)
         {
             if (entry.Value.EndTime > last.EndTime)
@@ -137,7 +153,7 @@ public sealed class UseDelaySystem : EntitySystem
     /// Otherwise reset it and return true.</param>
     public bool TryResetDelay(Entity<UseDelayComponent> ent, bool checkDelayed = false, string id = DefaultId)
     {
-        if (checkDelayed && IsDelayed(ent, id))
+        if (checkDelayed && IsDelayed((ent.Owner, ent.Comp), id))
             return false;
 
         if (!ent.Comp.Delays.TryGetValue(id, out var entry))

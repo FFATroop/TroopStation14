@@ -22,8 +22,20 @@ reagent-desc-razorium = A strange, non-newtonian chemical. It is produced when t
 reagent-name-fresium = Fresium
 reagent-desc-fresium = A mysterious compound that slows the vibration of atoms and molecules... somehow. In layman's terms, it makes things cold... REALLY cold. Can cause long-lasting movement issues if ingested.
 
-reagent-name-laughter = Laughter
+reagent-name-laughter = laughter
 reagent-desc-laughter = Some say that this is the best medicine, but recent studies have proven that to be untrue.
 
 reagent-name-weh = juice that makes you Weh
 reagent-desc-weh = Pure essence of lizard plush. Makes you Weh!
+
+reagent-name-hew = juice that makes you Hew
+reagent-desc-hew = Pure essence of inversed lizard plush. Makes you Hew!
+
+reagent-name-corgiessence = corgium
+reagent-desc-corgiessence = Tastes like dog food. Clearly an acquired taste.
+
+reagent-name-catessence = felinase
+reagent-desc-catessence = A type of carcinogenic enzyme known to break down proteins found within the vocal cords of most animals. Mixing is NOT recommended.
+
+reagent-name-canidessence = caninase
+reagent-desc-canidessence = A type of carcinogenic enzyme known to break down proteins found within the vocal cords of most animals. Mixing is NOT recommended.

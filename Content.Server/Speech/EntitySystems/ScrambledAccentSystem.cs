@@ -1,17 +1,22 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
+using Content.Shared.Speech;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems
 {
     public sealed class ScrambledAccentSystem : EntitySystem
     {
+        private static readonly Regex RegexLoneI = new(@"(?<=\ )i(?=[\ \.\?]|$)");
+
         [Dependency] private readonly IRobustRandom _random = default!;
 
         public override void Initialize()
         {
             SubscribeLocalEvent<ScrambledAccentComponent, AccentGetEvent>(OnAccent);
+            SubscribeLocalEvent<ScrambledAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
         }
 
         public string Accentuate(string message)
@@ -34,13 +39,18 @@ namespace Content.Server.Speech.EntitySystems
             msg = msg[0].ToString().ToUpper() + msg.Remove(0, 1);
 
             // Capitalize lone i's
-            msg = Regex.Replace(msg, @"(?<=\ )i(?=[\ \.\?]|$)", "I");
+            msg = RegexLoneI.Replace(msg, "I");
             return msg;
         }
 
-        private void OnAccent(EntityUid uid, ScrambledAccentComponent component, AccentGetEvent args)
+        private void OnAccent(Entity<ScrambledAccentComponent> entity, ref AccentGetEvent args)
         {
             args.Message = Accentuate(args.Message);
+        }
+
+        private void OnAccentRelayed(Entity<ScrambledAccentComponent> entity, ref StatusEffectRelayedEvent<AccentGetEvent> args)
+        {
+            args.Args.Message = Accentuate(args.Args.Message);
         }
     }
 }

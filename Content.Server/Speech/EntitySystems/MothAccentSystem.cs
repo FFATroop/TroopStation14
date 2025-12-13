@@ -1,12 +1,16 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Robust.Shared.Random;
+using Content.Shared.Speech;
 
 namespace Content.Server.Speech.EntitySystems;
 
 public sealed class MothAccentSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
+
+    private static readonly Regex RegexLowerBuzz = new Regex("z{1,3}");
+    private static readonly Regex RegexUpperBuzz = new Regex("Z{1,3}");
 
     public override void Initialize()
     {
@@ -19,9 +23,9 @@ public sealed class MothAccentSystem : EntitySystem
         var message = args.Message;
 
         // buzzz
-        message = Regex.Replace(message, "z{1,3}", "zzz");
+        message = RegexLowerBuzz.Replace(message, "zzz");
         // buZZZ
-        message = Regex.Replace(message, "Z{1,3}", "ZZZ");
+        message = RegexUpperBuzz.Replace(message, "ZZZ");
 
         // Corvax-Localization-Start
         // ж => жжж

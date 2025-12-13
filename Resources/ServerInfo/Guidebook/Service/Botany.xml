@@ -62,7 +62,7 @@
 Чем больше нестабильного мутагена вы используете, тем больше мутаций вы получите. Поскольку многие гены важны для выживания, большинство мутаций приведут к гибели растения.
 
 <Box>
-<GuideEntityEmbed Entity="UnstableMutagenChemistryBottle"/>
+<GuideEntityEmbed Entity="ChemistryBottleUnstableMutagen"/>
 </Box>
 
 ## Перекрёстное опыление
@@ -75,6 +75,8 @@
 
 ## Chemicals
 Some chemicals have special effects on plants.
+
+[textlink="Click here to see all botanical chemicals." link="Botanical"]
 
 <GuideReagentEmbed Reagent="Dylovene"/>
 <GuideReagentEmbed Reagent="Cryoxadone"/>

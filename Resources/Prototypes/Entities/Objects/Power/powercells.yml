@@ -5,7 +5,7 @@
   components:
   - type: Item
     storedRotation: -90
-  - type: Battery
+  - type: PredictedBattery
     pricePerJoule: 0.15
   - type: PowerCell
   - type: Explosive
@@ -30,12 +30,16 @@
   - type: Tag
     tags:
       - PowerCell
-  - type: Appearance
-  - type: PowerCellVisuals
   - type: Riggable
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLightLaser
-    fireCost: 50
+  - type: Appearance
+  - type: PredictedBatteryVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerCellVisualLayers.Unshaded:
+          Full: {visible: true, state: o2}
+          Neither: {visible: true, state: o1}
+          Empty: {visible: false}
 
 - type: entity
   name: potato battery
@@ -46,7 +50,7 @@
   - type: Sprite
     layers:
     - state: potato
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 70
     startingCharge: 70
   - type: Tag
@@ -70,12 +74,9 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 360
     startingCharge: 360
-  - type: MachinePart
-    part: PowerCell
-    rating: 1
   - type: Tag
     tags:
       - PowerCellSmall
@@ -93,9 +94,19 @@
         state: o2
         shader: unshaded
         visible: false
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 360
     startingCharge: 0
+
+- type: entity
+  parent: PowerCellSmall
+  id: PowerCellSmallNuclear
+  name: small-capacity nuclear power cell
+  description: A self rechargeable power cell, designed for fast recharge rate at the expense of capacity.
+  components:
+  - type: PredictedBatterySelfRecharger
+    autoRechargeRate: 36 # 10 seconds to recharge
+    autoRechargePauseTime: 30
 
 - type: entity
   name: medium-capacity power cell
@@ -111,12 +122,9 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 720
     startingCharge: 720
-  - type: MachinePart
-    part: PowerCell
-    rating: 2
 
 - type: entity
   id: PowerCellMediumPrinted
@@ -131,7 +139,7 @@
         state: o2
         shader: unshaded
         visible: false
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 720
     startingCharge: 0
 
@@ -149,12 +157,9 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1080
     startingCharge: 1080
-  - type: MachinePart
-    part: PowerCell
-    rating: 3
 
 - type: entity
   id: PowerCellHighPrinted
@@ -169,13 +174,13 @@
         state: o2
         shader: unshaded
         visible: false
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1080
     startingCharge: 0
 
 - type: entity
   name: hyper-capacity power cell
-  description: A rechargeable standardized power cell. This one looks like a rare and powerful prototype.
+  description: A rechargeable standardized power cell. This iteration pushes the upper limits of portable power storage, boasting 66% more capacity than its predecessor.
   id: PowerCellHyper
   suffix: Full
   parent: BasePowerCell
@@ -187,12 +192,9 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1800
     startingCharge: 1800
-  - type: MachinePart
-    part: PowerCell
-    rating: 4
 
 - type: entity
   id: PowerCellHyperPrinted
@@ -207,7 +209,7 @@
         state: o2
         shader: unshaded
         visible: false
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1800
     startingCharge: 0
 
@@ -225,11 +227,10 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 720
     startingCharge: 720
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 12 # takes 1 minute to charge itself back to full
 
 - type: entity
@@ -245,7 +246,7 @@
       state: o2
       shader: unshaded
       visible: false
-  - type: Battery
+  - type: PredictedBattery
     startingCharge: 0
 
 - type: entity
@@ -261,11 +262,10 @@
       - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
         state: o2
         shader: unshaded
-    - type: Battery
+    - type: PredictedBattery
       maxCharge: 1200
       startingCharge: 1200
-    - type: BatterySelfRecharger
-      autoRecharge: true
+    - type: PredictedBatterySelfRecharger
       autoRechargeRate: 40
 
 # Power cage (big heavy power cell for big devices)
@@ -290,9 +290,6 @@
   - type: Tag
     tags:
       - PowerCage
-  - type: HitscanBatteryAmmoProvider
-    proto: RedShuttleLaser
-    fireCost: 150
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -312,7 +309,7 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1400
     startingCharge: 1400
 
@@ -330,7 +327,7 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 2700
     startingCharge: 2700
 
@@ -348,7 +345,7 @@
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 6200
     startingCharge: 6200
 
@@ -366,7 +363,7 @@
       state: o2
       shader: unshaded
       visible: false
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1400
     startingCharge: 0
 
@@ -384,7 +381,7 @@
       state: o2
       shader: unshaded
       visible: false
-  - type: Battery
+  - type: PredictedBattery
     startingCharge: 0
 
 - type: entity
@@ -401,5 +398,5 @@
       state: o2
       shader: unshaded
       visible: false
-  - type: Battery
+  - type: PredictedBattery
     startingCharge: 0

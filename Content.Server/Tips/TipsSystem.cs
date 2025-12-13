@@ -1,8 +1,9 @@
-﻿using Content.Server.Chat.Managers;
+using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Dataset;
+using Content.Shared.Tips;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -11,10 +12,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Tips;
 
-/// <summary>
-///     Handles periodically displaying gameplay tips to all players ingame.
-/// </summary>
-public sealed class TipsSystem : EntitySystem
+public sealed class TipsSystem : SharedTipsSystem
 {
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -27,6 +25,7 @@ public sealed class TipsSystem : EntitySystem
     private float _tipTimeOutOfRound;
     private float _tipTimeInRound;
     private string _tipsDataset = "";
+    private float _tipTippyChance;
 
     [ViewVariables(VVAccess.ReadWrite)]
     private TimeSpan _nextTipTime = TimeSpan.Zero;
@@ -36,12 +35,43 @@ public sealed class TipsSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameRunLevelChanged);
-        Subs.CVar(_cfg, CCVars.TipFrequencyOutOfRound, SetOutOfRound, true);
-        Subs.CVar(_cfg, CCVars.TipFrequencyInRound, SetInRound, true);
         Subs.CVar(_cfg, CCVars.TipsEnabled, SetEnabled, true);
-        Subs.CVar(_cfg, CCVars.TipsDataset, SetDataset, true);
+        Subs.CVar(_cfg, CCVars.TipFrequencyOutOfRound, value => _tipTimeOutOfRound = value, true);
+        Subs.CVar(_cfg, CCVars.TipFrequencyInRound, value => _tipTimeInRound = value, true);
+        Subs.CVar(_cfg, CCVars.TipsDataset, value => _tipsDataset = value, true);
+        Subs.CVar(_cfg, CCVars.TipsTippyChance, value => _tipTippyChance = value, true);
 
         RecalculateNextTipTime();
+    }
+
+    private void OnGameRunLevelChanged(GameRunLevelChangedEvent ev)
+    {
+        // reset for lobby -> inround
+        // reset for inround -> post but not post -> lobby
+        if (ev.New == GameRunLevel.InRound || ev.Old == GameRunLevel.InRound)
+        {
+            RecalculateNextTipTime();
+        }
+    }
+
+    private void SetEnabled(bool value)
+    {
+        _tipsEnabled = value;
+
+        if (_nextTipTime != TimeSpan.Zero)
+            RecalculateNextTipTime();
+    }
+
+    public override void RecalculateNextTipTime()
+    {
+        if (_ticker.RunLevel == GameRunLevel.InRound)
+        {
+            _nextTipTime = _timing.CurTime + TimeSpan.FromSeconds(_tipTimeInRound);
+        }
+        else
+        {
+            _nextTipTime = _timing.CurTime + TimeSpan.FromSeconds(_tipTimeOutOfRound);
+        }
     }
 
     public override void Update(float frameTime)
@@ -58,60 +88,53 @@ public sealed class TipsSystem : EntitySystem
         }
     }
 
-    private void SetOutOfRound(float value)
+    public override void SendTippy(
+        string message,
+        EntProtoId? prototype = null,
+        float speakTime = 5f,
+        float slideTime = 3f,
+        float waddleInterval = 0.5f)
     {
-        _tipTimeOutOfRound = value;
+        var ev = new TippyEvent(message, prototype, speakTime, slideTime, waddleInterval);
+        RaiseNetworkEvent(ev);
     }
 
-    private void SetInRound(float value)
+    public override void SendTippy(
+        ICommonSession session,
+        string message,
+        EntProtoId? prototype = null,
+        float speakTime = 5f,
+        float slideTime = 3f,
+        float waddleInterval = 0.5f)
     {
-        _tipTimeInRound = value;
+        var ev = new TippyEvent(message, prototype, speakTime, slideTime, waddleInterval);
+        RaiseNetworkEvent(ev, session);
     }
 
-    private void SetEnabled(bool value)
+    public override void AnnounceRandomTip()
     {
-        _tipsEnabled = value;
-
-        if (_nextTipTime != TimeSpan.Zero)
-            RecalculateNextTipTime();
-    }
-
-    private void SetDataset(string value)
-    {
-        _tipsDataset = value;
-    }
-
-    private void AnnounceRandomTip()
-    {
-        if (!_prototype.TryIndex<DatasetPrototype>(_tipsDataset, out var tips))
+        if (!_prototype.TryIndex<LocalizedDatasetPrototype>(_tipsDataset, out var tips))
             return;
 
         var tip = _random.Pick(tips.Values);
-        var msg = Loc.GetString("tips-system-chat-message-wrap", ("tip", tip));
+        var msg = Loc.GetString("tips-system-chat-message-wrap", ("tip", Loc.GetString(tip)));
 
-        _chat.ChatMessageToManyFiltered(Filter.Broadcast(), ChatChannel.OOC, tip, msg,
-            EntityUid.Invalid, false, false, Color.MediumPurple);
-    }
-
-    private void RecalculateNextTipTime()
-    {
-        if (_ticker.RunLevel == GameRunLevel.InRound)
+        if (_random.Prob(_tipTippyChance))
         {
-            _nextTipTime = _timing.CurTime + TimeSpan.FromSeconds(_tipTimeInRound);
+            var speakTime = GetSpeechTime(msg);
+            SendTippy(msg, speakTime: speakTime);
         }
         else
         {
-            _nextTipTime = _timing.CurTime + TimeSpan.FromSeconds(_tipTimeOutOfRound);
-        }
-    }
-
-    private void OnGameRunLevelChanged(GameRunLevelChangedEvent ev)
-    {
-        // reset for lobby -> inround
-        // reset for inround -> post but not post -> lobby
-        if (ev.New == GameRunLevel.InRound || ev.Old == GameRunLevel.InRound)
-        {
-            RecalculateNextTipTime();
+            _chat.ChatMessageToManyFiltered(
+                Filter.Broadcast(),
+                ChatChannel.OOC,
+                tip,
+                msg,
+                EntityUid.Invalid,
+                false,
+                false,
+                Color.MediumPurple);
         }
     }
 }

@@ -7,9 +7,10 @@
     - type: FlavorProfile
       flavors:
         - meaty
-    - type: Food
-      trash: FoodBowlBig
-      utensil: 
+    - type: Edible
+      trash:
+        - FoodBowlBig
+      utensil:
         - Spoon
         - Fork
     - type: Sprite
@@ -26,3 +27,6 @@
               Quantity: 10
             - ReagentId: Protein
               Quantity: 20
+    - type: Tag
+      tags:
+      - Meat
