@@ -6,7 +6,17 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Janitorial/mop.rsi
-    state: mop
+    layers:
+      - state: mop
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: fill-3
+        visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: fill-
+    inHandsFillBaseName: -fill-
+    inHandsMaxFillLevels: 2
   - type: MeleeWeapon
     damage:
       types:
@@ -14,6 +24,10 @@
     soundHit:
       collection: MetalThud
   - type: Spillable
+    solution: absorbed
+    spillWhenThrown: false
+    preventMelee: false
+  - type: DrainableSolution
     solution: absorbed
   - type: Wieldable
   - type: IncreaseDamageOnWield
@@ -23,13 +37,18 @@
   - type: Item
     size: Large
     sprite: Objects/Specific/Janitorial/mop.rsi
+    storedRotation: 45
   - type: Absorbent
+    useAbsorberSolution: true
   - type: SolutionContainerManager
     solutions:
       absorbed:
         maxVol: 100
   - type: UseDelay
     delay: 1
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
   - type: Tag
     tags:
       - Mop
@@ -37,36 +56,27 @@
   - type: GuideHelp
     guides:
     - Janitorial
+  - type: DnaSubstanceTrace
 
 - type: entity
-  parent: BaseItem
+  parent: MopItem
   name: advanced mop
   id: AdvMopItem
   description: Motorized mop that has a bigger reservoir and quickly replaces reagents inside with water. Automatic Clown Countermeasure not included.
   components:
     - type: Sprite
       sprite: Objects/Specific/Janitorial/advmop.rsi
-      state: advmop
-    - type: MeleeWeapon
-      damage:
-        types:
-          Blunt: 10
-      soundHit:
-         collection: MetalThud
-    - type: Spillable
-      solution: absorbed
-    - type: Wieldable
-    - type: IncreaseDamageOnWield
-      damage:
-        types:
-          Blunt: 5
+      layers:
+      - state: advmop
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: fill-2
+        visible: false
+    - type: SolutionContainerVisuals
+      maxFillLevels: 2
     - type: Item
-      size: Large
       sprite: Objects/Specific/Janitorial/advmop.rsi
     - type: Absorbent
       pickupAmount: 100
-    - type: UseDelay
-      delay: 1.0
     - type: SolutionRegeneration
       solution: absorbed
       generated:
@@ -78,10 +88,6 @@
       preserve:
       - Water
       quantity: 10
-    - type: SolutionContainerManager
-      solutions:
-        absorbed:
-          maxVol: 100
     - type: Tag
       tags:
         - Mop
@@ -103,6 +109,9 @@
       coefficients:
         Blunt: 0.95
         Slash: 0.95
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
   - type: Tag
     tags:
       - WetFloorSign
@@ -143,40 +152,32 @@
       path: /Audio/Effects/beep_landmine.ogg
       params:
         maxDistance: 10
-  - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBomb  # normally Default and max 5 total 60
     maxIntensity: 10 # about a ~67.5 total damage
     totalIntensity: 30 # about a ~3 tile radius
     canCreateVacuum: false
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+    - trigger # directly explode from the landmine
   - type: DeleteOnTrigger
-  - type: OnUseTimerTrigger
-    useVerbInstead: true
+    keysIn:
+    - timer
+    - trigger
+  - type: TimerTrigger
     beepInterval: .25
     beepSound:
       path: /Audio/Items/Janitor/floor_sign_beep.ogg
       params:
         volume: 1
     examinable: false
+  - type: TriggerOnVerb
+    text: trigger-on-verb-detonation
   - type: Tag
     tags: # ignore "WhitelistChameleon" tag
-      - WetFloorSign
-# Corvax-HiddenDesc-Start
-  - type: HiddenDescription
-    entries:
-    - label: corvax-hidden-desc-WetFloorSignMineExplosive-syndicate
-      whitelistMind:
-        components:
-          - TraitorRole
-          - NukeOperative
-    - label: corvax-hidden-desc-WetFloorSignMineExplosive-research
-      jobRequired:
-        - ResearchAssistant
-        - ResearchDirector
-        - Scientist
-        - Borg
-# Corvax-HiddenDesc-End
-        
+    - WetFloorSign
+
 - type: entity
   name: plunger
   id: Plunger
@@ -217,7 +218,7 @@
       projectile:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.1,-0.1,0.1,0.1"
+          bounds: "-0.2,-0.4,0.2,-0.1"
         hard: false
         mask:
         - Impassable
@@ -225,8 +226,10 @@
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/pop.ogg
     embedOnThrow: True
+    offset: "0,-0.1"
   - type: ThrowingAngle
     angle: 0
+  - type: LandAtCursor
   - type: Ammo
     muzzleFlash: null
   - type: Projectile
@@ -236,6 +239,44 @@
       types:
         Blunt: 3
   - type: Plunger
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 100
+
+- type: entity
+  name: golden plunger
+  id: GoldenPlunger
+  parent: Plunger
+  description: A plunger with a plastic suction cup coated in a thin layer of gold given as a token of appreciation for years of service. Still used to unclog drains.
+  components:
+  - type: Tag # TODO change Plunger into a tool so we dont got to layer Tags like below.
+    tags:
+    - GoldenPlunger
+    - Plunger
+    - WhitelistChameleon
+  - type: Sprite
+    sprite: Objects/Specific/Janitorial/golden_plunger.rsi
+    state: plunger
+  - type: Item
+    sprite: Objects/Specific/Janitorial/golden_plunger.rsi
+    heldPrefix: plunger
+  - type: Clothing
+    sprite: Objects/Specific/Janitorial/golden_plunger.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+          offset: "0, 0.15625"
+  - type: PointLight
+    radius: 1.5
+    energy: 0.75
+    color: "#ffc20e"
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+      Gold: 10
+      Wood: 25
 
 - type: weightedRandomEntity
   id: PlungerLoot
@@ -244,6 +285,7 @@
     SpacemenFigureSpawner: 28
     SpawnMobCockroach: 5
     MaintenanceToolSpawner: 5
+    SpawnMobMoproach: 2
 
 - type: entity
   parent: BaseItem
@@ -253,8 +295,19 @@
   components:
     - type: Sprite
       sprite: Objects/Specific/Janitorial/rag.rsi
-      state: rag
+      layers:
+      - state: rag
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: fill-3
+        visible: false
+    - type: Appearance
+    - type: SolutionContainerVisuals
+      maxFillLevels: 3
+      fillBaseName: fill-
     - type: Spillable
+      solution: absorbed
+      spillWhenThrown: false
+    - type: DrainableSolution
       solution: absorbed
     - type: MeleeWeapon
       soundNoDamage:
@@ -267,6 +320,7 @@
       sprite: Objects/Specific/Janitorial/rag.rsi
     - type: Absorbent
       pickupAmount: 15
+      useAbsorberSolution: true
     - type: Construction
       graph: Rag
       node: rag
@@ -279,6 +333,42 @@
     - type: Tag
       tags:
         - Mop
-    - type: CleansForensics
     - type: Fiber
       fiberColor: fibers-white
+    - type: DnaSubstanceTrace
+
+- type: entity
+  parent: BaseItem
+  id: WireBrush
+  name: wire brush
+  description: A bristly steel wire brush, perfect for scraping away even the toughest patches of rust.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Janitorial/wirebrush.rsi
+    state: icon
+  - type: Item
+    storedSprite:
+      sprite: Objects/Specific/Janitorial/wirebrush.rsi
+      state: storage
+    size: Small
+  - type: Tag
+    tags:
+    - WireBrush
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+      Plastic: 50
+  - type: Tool
+    qualities:
+    - Brushing
+    useSound:
+      path: /Audio/Items/wirebrushing.ogg
+  - type: StaticPrice
+    price: 22
+  - type: MeleeWeapon
+    wideAnimationRotation: 45
+    damage:
+      types:
+        Piercing: 3
+    soundHit:
+      path: "/Audio/Weapons/bladeslice.ogg"

@@ -1,4 +1,4 @@
-﻿- type: microwaveMealRecipe
+- type: microwaveMealRecipe
   id: RecipePelmeni
   name: pelmeni recipe
   result: FoodPelmeniBowl
@@ -9,3 +9,17 @@
     FoodBowlBig: 1
     FoodMeatMeatball: 1
     FoodDoughSlice: 3
+
+- type: microwaveMealRecipe
+  id: RecipeBakedCorvaxVulpkanin
+  name: baked vulpkanin recipe
+  result: FoodBakedVulpkaninPlate
+  time: 15
+  reagents:
+    TableSalt: 2
+    Blackpepper: 2
+  solids:
+    FoodPlate: 1
+    FoodMeat: 1
+    FoodApple: 1
+    HeadCorvaxVulpkanin: 1 # не дай хрен оно сломается...

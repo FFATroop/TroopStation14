@@ -47,10 +47,15 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 
     private void OnActivate(EntityUid uid, PinpointerComponent component, ActivateInWorldEvent args)
     {
+        if (args.Handled || !args.Complex)
+            return;
+
         TogglePinpointer(uid, component);
 
         if (!component.CanRetarget)
             LocateTarget(uid, component);
+
+        args.Handled = true;
     }
 
     private void OnLocateTarget(ref FTLCompletedEvent ev)
@@ -146,7 +151,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
             return;
 
         var target = pinpointer.Target;
-        if (target == null || !EntityManager.EntityExists(target.Value))
+        if (target == null || !Exists(target.Value))
         {
             SetDistance(uid, Distance.Unknown, pinpointer);
             return;

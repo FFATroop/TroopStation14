@@ -12,9 +12,19 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 2
+        type: Remove
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.05
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/coffeeglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
 
 - type: reagent
   id: HotCocoa
@@ -86,10 +96,19 @@
   color: "#664300"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/cafe_latte.rsi
-    state: icon_empty
+    state: icon
   metamorphicMaxFillLevels: 1
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 2
+        type: Remove
 
 - type: reagent
   id: GreenTea
@@ -100,9 +119,9 @@
   flavor: tea
   color: "#7EB626"
   metamorphicSprite:
-    sprite: Objects/Consumable/Drinks/glass_green.rsi
+    sprite: Objects/Consumable/Drinks/greenteaglass.rsi
     state: icon_empty
-  metamorphicMaxFillLevels: 5
+  metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
 
@@ -121,9 +140,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   footstepSound:
-    collection: FootstepSticky
-    params:
-      volume: 6
+    collection: FootstepSlime
 
 - type: reagent
   id: IcedCoffee
@@ -139,6 +156,18 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 2
+        type: Remove
 
 - type: reagent
   id: IcedGreenTea
@@ -149,7 +178,7 @@
   flavor: icedtea
   color: "#5B821B"
   metamorphicSprite:
-    sprite: Objects/Consumable/Drinks/glass_green.rsi
+    sprite: Objects/Consumable/Drinks/icedgreenteaglass.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
@@ -316,6 +345,10 @@
       effects:
       - !type:SatiateThirst
         factor: 6
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 3
+        type: Remove
     Poison:
       effects:
       - !type:HealthChange
@@ -348,6 +381,15 @@
   metamorphicMaxFillLevels: 1
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 2
+        type: Remove
 
 - type: reagent
   id: Tea
@@ -366,6 +408,12 @@
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.05
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/teaglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
 
 - type: reagent
   id: TonicWater
@@ -376,38 +424,71 @@
   flavor: tonicwater
   color: "#0064C8"
   fizziness: 0.4
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/tonicglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
 
 - type: reagent
   id: Water
   name: reagent-name-water
   parent: BaseDrink
   desc: reagent-desc-water
-  slippery: true
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-translucent
   flavor: water
   color: "#75b1f0"
   recognizable: true
   boilingPoint: 100.0
   meltingPoint: 0.0
+  friction: 0.4
   metabolisms:
     Drink:
       effects:
       - !type:SatiateThirst
         factor: 4
+    Gas:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: true
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+        damage:
+          types:
+            Heat: 3
 
 - type: reagent
   id: Ice
   name: reagent-name-ice
   desc: reagent-desc-ice
+  slipData:
+    requiredSlipSpeed: 3.5
+  evaporationSpeed: 0.15 # TODO: Ideally Ice should just turn into Water if the room is warm enough (and vis versa), rather than Ice directly evaporating
   physicalDesc: reagent-physical-desc-frosty
   flavor: cold
   color: "#bed8e6"
   recognizable: true
   meltingPoint: 0.0
   boilingPoint: 100.0
+  friction: 0.05 # Copied from Ice Crust
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3 # Slightly worse for quenching thirst than just straight water
   plantMetabolism:
   - !type:PlantAdjustWater
-    amount: 1
+    amount: 1 # The internet tells me I should avoid watering plants with ice, but mostly because of temperature, so this value being the same as water should probably be fine?
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/iceglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 3
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
 
 - type: reagent
   id: DryRamen
@@ -447,7 +528,10 @@
   color: "#d8cc5d"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/arnoldpalmer.rsi
-    state: icon
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
@@ -482,15 +566,15 @@
   color: "#B3B599"
 
 - type: reagent
-  id: KiraSpecial
-  name: reagent-name-kira-special
+  id: OrangeLimeSoda
+  name: reagent-name-orange-lime-soda
   parent: BaseDrink
-  desc: reagent-desc-kira-special
+  desc: reagent-desc-orange-lime-soda
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: sweet
   color: "#CCCC99"
   metamorphicSprite:
-    sprite: Objects/Consumable/Drinks/kiraspecial.rsi
+    sprite: Objects/Consumable/Drinks/orangelime_soda.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
@@ -506,7 +590,7 @@
   flavor: sweet
   color: "#485000"
   metamorphicSprite:
-    sprite: Objects/Consumable/Drinks/beerstein.rsi
+    sprite: Objects/Consumable/Drinks/rewriter.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
@@ -526,3 +610,18 @@
       effects:
       - !type:SatiateThirst
         factor: 0.6
+
+- type: reagent
+  id: Tortuga
+  name: reagent-name-tortuga
+  parent: BaseDrink
+  desc: reagent-desc-tortuga
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: tortuga
+  color: "#1c8c40"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/tortuga.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false

@@ -1,33 +1,35 @@
 using Content.Shared.Access;
+using Content.Shared.Guidebook;
 using Content.Shared.Players.PlayTimeTracking;
-using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Roles
 {
     /// <summary>
     ///     Describes information for a single job on the station.
     /// </summary>
-    [Prototype("job")]
+    [Prototype]
     public sealed partial class JobPrototype : IPrototype
     {
         [ViewVariables]
         [IdDataField]
         public string ID { get; private set; } = default!;
 
-        [DataField("playTimeTracker", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<PlayTimeTrackerPrototype>))]
+        [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<PlayTimeTrackerPrototype>))]
         public string PlayTimeTracker { get; private set; } = string.Empty;
 
-        [DataField("supervisors")]
-        public string Supervisors { get; private set; } = "nobody";
+        /// <summary>
+        ///     Who is the supervisor for this job.
+        /// </summary>
+        [DataField]
+        public LocId Supervisors = "job-supervisors-nobody";
 
         /// <summary>
         ///     The name of this job as displayed to players.
         /// </summary>
-        [DataField("name")]
+        [DataField]
         public string Name { get; private set; } = string.Empty;
 
         [ViewVariables(VVAccess.ReadOnly)]
@@ -36,23 +38,41 @@ namespace Content.Shared.Roles
         /// <summary>
         ///     The name of this job as displayed to players.
         /// </summary>
-        [DataField("description")]
+        [DataField]
         public string? Description { get; private set; }
 
         [ViewVariables(VVAccess.ReadOnly)]
         public string? LocalizedDescription => Description is null ? null : Loc.GetString(Description);
 
-        [DataField("requirements")]
+        /// <summary>
+        ///     Requirements for the job.
+        /// </summary>
+        [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
         public HashSet<JobRequirement>? Requirements;
 
-        [DataField("joinNotifyCrew")]
+        /// <summary>
+        ///     When true - the station will have anouncement about arrival of this player.
+        /// </summary>
+        [DataField]
         public bool JoinNotifyCrew { get; private set; } = false;
 
-        [DataField("requireAdminNotify")]
+        /// <summary>
+        ///     When true - the player will recieve a message about importancy of their job.
+        /// </summary>
+        [DataField]
         public bool RequireAdminNotify { get; private set; } = false;
 
-        [DataField("setPreference")]
+        /// <summary>
+        ///     Should this job appear in preferences menu?
+        /// </summary>
+        [DataField]
         public bool SetPreference { get; private set; } = true;
+
+        /// <summary>
+        ///     Should the selected traits be applied for this job?
+        /// </summary>
+        [DataField]
+        public bool ApplyTraits { get; private set; } = true;
 
         /// <summary>
         ///     Whether this job should show in the ID Card Console.
@@ -61,14 +81,14 @@ namespace Content.Shared.Roles
         [DataField]
         public bool? OverrideConsoleVisibility { get; private set; } = null;
 
-        [DataField("canBeAntag")]
+        [DataField]
         public bool CanBeAntag { get; private set; } = true;
 
         /// <summary>
-        ///     Whether this job is a head.
-        ///     The job system will try to pick heads before other jobs on the same priority level.
+        ///     The "weight" or importance of this job. If this number is large, the job system will assign this job
+        ///     before assigning other jobs.
         /// </summary>
-        [DataField("weight")]
+        [DataField]
         public int Weight { get; private set; }
 
         /// <summary>
@@ -85,37 +105,54 @@ namespace Content.Shared.Roles
         ///     A numerical score for how much easier this job is for antagonists.
         ///     For traitors, reduces starting TC by this amount. Other gamemodes can use it for whatever they find fitting.
         /// </summary>
-        [DataField("antagAdvantage")]
+        [DataField]
         public int AntagAdvantage = 0;
 
-        [DataField("startingGear", customTypeSerializer: typeof(PrototypeIdSerializer<StartingGearPrototype>))]
-        public string? StartingGear { get; private set; }
+        [DataField]
+        public ProtoId<StartingGearPrototype>? StartingGear { get; private set; }
 
         /// <summary>
         /// Use this to spawn in as a non-humanoid (borg, test subject, etc.)
         /// Starting gear will be ignored.
         /// If you want to just add special attributes to a humanoid, use AddComponentSpecial instead.
         /// </summary>
-        [DataField("jobEntity", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string? JobEntity = null;
 
-        [DataField("icon", customTypeSerializer: typeof(PrototypeIdSerializer<StatusIconPrototype>))]
-        public string Icon { get; private set; } = "JobIconUnknown";
+        /// <summary>
+        /// Entity to use as a preview in the lobby/character editor.
+        /// Same restrictions as <see cref="JobEntity"/> apply.
+        /// </summary>
+        [DataField]
+        public EntProtoId? JobPreviewEntity = null;
 
-        [DataField("special", serverOnly: true)]
+        [DataField]
+        public ProtoId<JobIconPrototype> Icon { get; private set; } = "JobIconUnknown";
+
+        [DataField(serverOnly: true)]
         public JobSpecial[] Special { get; private set; } = Array.Empty<JobSpecial>();
 
-        [DataField("access")]
+        [DataField]
         public IReadOnlyCollection<ProtoId<AccessLevelPrototype>> Access { get; private set; } = Array.Empty<ProtoId<AccessLevelPrototype>>();
 
-        [DataField("accessGroups")]
+        [DataField]
         public IReadOnlyCollection<ProtoId<AccessGroupPrototype>> AccessGroups { get; private set; } = Array.Empty<ProtoId<AccessGroupPrototype>>();
 
-        [DataField("extendedAccess")]
+        [DataField]
         public IReadOnlyCollection<ProtoId<AccessLevelPrototype>> ExtendedAccess { get; private set; } = Array.Empty<ProtoId<AccessLevelPrototype>>();
 
-        [DataField("extendedAccessGroups")]
+        [DataField]
         public IReadOnlyCollection<ProtoId<AccessGroupPrototype>> ExtendedAccessGroups { get; private set; } = Array.Empty<ProtoId<AccessGroupPrototype>>();
+
+        [DataField]
+        public bool Whitelisted;
+
+        /// <summary>
+        /// Optional list of guides associated with this role. If the guides are opened, the first entry in this list
+        /// will be used to select the currently selected guidebook.
+        /// </summary>
+        [DataField]
+        public List<ProtoId<GuideEntryPrototype>>? Guides;
     }
 
     /// <summary>

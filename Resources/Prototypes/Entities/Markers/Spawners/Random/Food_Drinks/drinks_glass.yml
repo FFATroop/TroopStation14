@@ -16,6 +16,7 @@
     prototypes:
       - DrinkAbsintheGlass
       - DrinkAleGlass
+      - DrinkAlienBrainHemorrhage
       - DrinkAloe
       - DrinkAndalusia
       - DrinkAntifreeze
@@ -32,16 +33,21 @@
       - DrinkBloodyMaryGlass
       - DrinkBooger
       - DrinkBraveBullGlass
+      - DrinkBronxGlass
+      - BudgetInsulsDrinkGlass
       - DrinkCarrotJuice
       - DrinkCoconutRum
       - DrinkChocolateGlass
       - DrinkCognacGlass
       - DrinkCosmopolitan
+      - DrinkCrushDepthGlass
       - DrinkCubaLibreGlass
+      - DrinkDarkandStormyGlass
       - DrinkDeadRumGlass
       - DrinkDevilsKiss
       - DrinkDriestMartiniGlass
       - DrinkDrGibbGlass
+      - DrinkElectricSharkGlass
       - DrinkErikaSurprise
       - DrinkFourteenLokoGlass
       - DrinkGargleBlasterGlass
@@ -57,10 +63,14 @@
       - DrinkIcedGreenTeaGlass
       - DrinkIcedBeerGlass
       - DrinkIceCreamGlass
-      - DrinkIrishCarBomb
+      - IrishBoolGlass
+      - DrinkIrishSlammer
       - DrinkIrishCoffeeGlass
       - DrinkLemonadeGlass
-      - DrinkKiraSpecial
+      - DrinkJackRoseGlass
+      - DrinkJungleBirdGlass
+      - DrinkKalimotxoGlass
+      - DrinkOrangeLimeSodaGlass
       - DrinkLongIslandIcedTeaGlass
       - DrinkManhattanGlass
       - DrinkManlyDorfGlass
@@ -69,15 +79,18 @@
       - DrinkMeadGlass
       - DrinkMilkshake
       - DrinkMojito
+      - DrinkMonkeyBusinessGlass
       - DrinkNTCahors
       - DrinkPainkillerGlass
       - DrinkPatronGlass
       - DrinkPinaColadaGlass
       - DrinkPoscaGlass
+      - DrinkRadlerGlass
       - DrinkRedMeadGlass
       - DrinkRewriter
       - DrinkRoyRogersGlass
       - DrinkRootBeerFloatGlass
+      - RubberneckGlass
       - DrinkRumGlass
       - DrinkSakeGlass
       - DrinkSbitenGlass
@@ -89,14 +102,19 @@
       - DrinkSyndicatebomb
       - DrinkTequilaSunriseGlass
       - DrinkThreeMileIslandGlass
+      - DrinkTortugaGlass
       - DrinkToxinsSpecialGlass
+      - DrinkVampiroGlass
       - DrinkVodkaMartiniGlass
+      - DrinkVodkaRedBool
       - DrinkVodkaTonicGlass
       - DrinkWatermelonJuice
+      - DrinkWatermelonWakeup
       - DrinkWhiskeyColaGlass
       - DrinkWhiskeySodaGlass
       - DrinkWhiteRussianGlass
       - DrinkWineGlass
+      - XenoBasherGlass
       - DrinkShakeBlue
       - DrinkShakeWhite
       - DrinkTheMartinez
@@ -118,4 +136,5 @@
       - DrinkShakeRobo
       - DrinkHoochGlass
       - DrinkBeepskySmashGlass
+      - DrinkBacchusBlessing
     rareChance: 0.05

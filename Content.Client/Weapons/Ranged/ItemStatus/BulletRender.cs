@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Client.Resources;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -53,7 +53,7 @@ public abstract class BaseBulletRenderer : Control
     {
         // Scale rendering in this control by UIScale.
         var currentTransform = handle.GetTransform();
-        handle.SetTransform(Matrix3.CreateScale(new Vector2(UIScale)) * currentTransform);
+        handle.SetTransform(Matrix3Helpers.CreateScale(new Vector2(UIScale)) * currentTransform);
 
         var countPerRow = CountPerRow(Size.X);
 
@@ -149,6 +149,15 @@ public sealed class BulletRender : BaseBulletRenderer
     public const int BulletHeight = 12;
     public const int VerticalSeparation = 2;
 
+    private static readonly LayoutParameters LayoutLarge = new LayoutParameters
+    {
+        ItemHeight = BulletHeight,
+        ItemSeparation = 6,
+        ItemWidth = 5,
+        VerticalSeparation = VerticalSeparation,
+        MinCountPerRow = MinCountPerRow
+    };
+
     private static readonly LayoutParameters LayoutNormal = new LayoutParameters
     {
         ItemHeight = BulletHeight,
@@ -185,8 +194,9 @@ public sealed class BulletRender : BaseBulletRenderer
             if (_type == value)
                 return;
 
-            Parameters = _type switch
+            Parameters = value switch
             {
+                BulletType.Large => LayoutLarge,
                 BulletType.Normal => LayoutNormal,
                 BulletType.Tiny => LayoutTiny,
                 _ => throw new ArgumentOutOfRangeException()
@@ -218,6 +228,7 @@ public sealed class BulletRender : BaseBulletRenderer
 
     public enum BulletType
     {
+        Large,
         Normal,
         Tiny
     }

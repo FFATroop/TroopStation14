@@ -1,49 +1,49 @@
 ﻿- type: body
   name: "vulpkanin"
-  id: Vulpkanin
+  id: CorvaxVulpkanin
   root: torso
   slots:
     head:
-      part: HeadVulpkanin
+      part: HeadCorvaxVulpkanin
       connections:
       - torso
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
     torso:
-      part: TorsoVulpkanin
+      part: TorsoCorvaxVulpkanin
       organs:
         heart: OrganAnimalHeart
         lungs: OrganHumanLungs
-        stomach: OrganVulpkaninStomach
+        stomach: OrganCorvaxVulpkaninStomach
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
       connections:
-      - left arm
-      - right arm
-      - left leg
-      - right leg
-    right arm:
-      part: RightArmVulpkanin
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+    right_arm:
+      part: RightArmCorvaxVulpkanin
       connections:
-      - right hand
-    left arm:
-      part: LeftArmVulpkanin
+      - right_hand
+    left_arm:
+      part: LeftArmCorvaxVulpkanin
       connections:
-      - left hand
-    right hand:
-      part: RightHandVulpkanin
-    left hand:
-      part: LeftHandVulpkanin
-    right leg:
-      part: RightLegVulpkanin
+      - left_hand
+    right_hand:
+      part: RightHandCorvaxVulpkanin
+    left_hand:
+      part: LeftHandCorvaxVulpkanin
+    right_leg:
+      part: RightLegCorvaxVulpkanin
       connections:
-      - right foot
-    left leg:
-      part: LeftLegVulpkanin
+      - right_foot
+    left_leg:
+      part: LeftLegCorvaxVulpkanin
       connections:
-      - left foot
-    right foot:
-      part: RightFootVulpkanin
-    left foot:
-      part: LeftFootVulpkanin
+      - left_foot
+    right_foot:
+      part: RightFootCorvaxVulpkanin
+    left_foot:
+      part: LeftFootCorvaxVulpkanin

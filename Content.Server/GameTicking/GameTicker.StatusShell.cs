@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text.Json.Nodes;
 using Content.Corvax.Interfaces.Server;
 using Content.Shared.CCVar;
@@ -45,6 +46,10 @@ namespace Content.Server.GameTicking
                 var players = IoCManager.Instance?.TryResolveType<IServerJoinQueueManager>(out var joinQueueManager) ?? false
                     ? joinQueueManager.ActualPlayersCount
                     : _playerManager.PlayerCount;
+
+                players = _cfg.GetCVar(CCVars.AdminsCountInReportedPlayerCount)
+                    ? players
+                    : players - _adminManager.ActiveAdmins.Count();
                 // Corvax-Queue-End
 
                 jObject["name"] = _baseServer.ServerName;
@@ -55,7 +60,7 @@ namespace Content.Server.GameTicking
                 jObject["panic_bunker"] = _cfg.GetCVar(CCVars.PanicBunkerEnabled);
                 jObject["run_level"] = (int) _runLevel;
                 if (preset != null)
-                    jObject["preset"] = Loc.GetString(preset.ModeTitle);
+                    jObject["preset"] = (Decoy == null) ? Loc.GetString(preset.ModeTitle) : Loc.GetString(Decoy.ModeTitle);
                 if (_runLevel >= GameRunLevel.InRound)
                 {
                     jObject["round_start_time"] = _roundStartDateTime.ToString("o");

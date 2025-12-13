@@ -24,7 +24,7 @@ public sealed class InjectorStatusControl : Control
     {
         _parent = parent;
         _solutionContainers = solutionContainers;
-        _label = new RichTextLabel { StyleClasses = { StyleNano.StyleClassItemStatus } };
+        _label = new RichTextLabel { StyleClasses = { StyleClass.ItemStatus } };
         AddChild(_label);
     }
 
@@ -32,19 +32,19 @@ public sealed class InjectorStatusControl : Control
     {
         base.FrameUpdate(args);
 
-        if (!_solutionContainers.TryGetSolution(_parent.Owner, InjectorComponent.SolutionName, out _, out var solution))
+        if (!_solutionContainers.TryGetSolution(_parent.Owner, _parent.Comp.SolutionName, out _, out var solution))
             return;
 
         // only updates the UI if any of the details are different than they previously were
         if (PrevVolume == solution.Volume
             && PrevMaxVolume == solution.MaxVolume
-            && PrevTransferAmount == _parent.Comp.TransferAmount
+            && PrevTransferAmount == _parent.Comp.CurrentTransferAmount
             && PrevToggleState == _parent.Comp.ToggleState)
             return;
 
         PrevVolume = solution.Volume;
         PrevMaxVolume = solution.MaxVolume;
-        PrevTransferAmount = _parent.Comp.TransferAmount;
+        PrevTransferAmount = _parent.Comp.CurrentTransferAmount;
         PrevToggleState = _parent.Comp.ToggleState;
 
         // Update current volume and injector state
@@ -59,6 +59,6 @@ public sealed class InjectorStatusControl : Control
             ("currentVolume", solution.Volume),
             ("totalVolume", solution.MaxVolume),
             ("modeString", modeStringLocalized),
-            ("transferVolume", _parent.Comp.TransferAmount)));
+            ("transferVolume", _parent.Comp.CurrentTransferAmount)));
     }
 }

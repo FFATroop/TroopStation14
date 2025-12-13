@@ -1,9 +1,10 @@
 using Content.Server.Objectives.Components;
-using Content.Server.Warps;
 using Content.Shared.Objectives.Components;
-using Content.Shared.Ninja.Components;
+using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
+using Content.Shared.Warps;
+using Content.Shared.Whitelist;
 using Robust.Shared.Random;
-using Content.Server.Roles;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -13,9 +14,11 @@ namespace Content.Server.Objectives.Systems;
 /// </summary>
 public sealed class NinjaConditionsSystem : EntitySystem
 {
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly NumberObjectiveSystem _number = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     public override void Initialize()
     {
@@ -23,11 +26,8 @@ public sealed class NinjaConditionsSystem : EntitySystem
 
         SubscribeLocalEvent<SpiderChargeConditionComponent, RequirementCheckEvent>(OnSpiderChargeRequirementCheck);
         SubscribeLocalEvent<SpiderChargeConditionComponent, ObjectiveAfterAssignEvent>(OnSpiderChargeAfterAssign);
-        SubscribeLocalEvent<SpiderChargeConditionComponent, ObjectiveGetProgressEvent>(OnSpiderChargeGetProgress);
 
         SubscribeLocalEvent<StealResearchConditionComponent, ObjectiveGetProgressEvent>(OnStealResearchGetProgress);
-
-        SubscribeLocalEvent<TerrorConditionComponent, ObjectiveGetProgressEvent>(OnTerrorGetProgress);
     }
 
     // doorjack
@@ -49,17 +49,18 @@ public sealed class NinjaConditionsSystem : EntitySystem
     // spider charge
     private void OnSpiderChargeRequirementCheck(EntityUid uid, SpiderChargeConditionComponent comp, ref RequirementCheckEvent args)
     {
-        if (args.Cancelled || !HasComp<NinjaRoleComponent>(args.MindId))
-        {
+        if (args.Cancelled || !_roles.MindHasRole<NinjaRoleComponent>(args.MindId))
             return;
-        }
 
         // choose spider charge detonation point
         var warps = new List<EntityUid>();
-        var query = EntityQueryEnumerator<BombingTargetComponent, WarpPointComponent>();
-        while (query.MoveNext(out var warpUid, out _, out var warp))
+        var allEnts = EntityQueryEnumerator<WarpPointComponent>();
+        var bombingBlacklist = comp.Blacklist;
+
+        while (allEnts.MoveNext(out var warpUid, out var warp))
         {
-            if (warp.Location != null)
+            if (_whitelist.IsWhitelistFail(bombingBlacklist, warpUid)
+                && !string.IsNullOrWhiteSpace(warp.Location))
             {
                 warps.Add(warpUid);
             }
@@ -88,11 +89,6 @@ public sealed class NinjaConditionsSystem : EntitySystem
         _metaData.SetEntityName(uid, title, args.Meta);
     }
 
-    private void OnSpiderChargeGetProgress(EntityUid uid, SpiderChargeConditionComponent comp, ref ObjectiveGetProgressEvent args)
-    {
-        args.Progress = comp.Detonated ? 1f : 0f;
-    }
-
     // steal research
 
     private void OnStealResearchGetProgress(EntityUid uid, StealResearchConditionComponent comp, ref ObjectiveGetProgressEvent args)
@@ -107,10 +103,5 @@ public sealed class NinjaConditionsSystem : EntitySystem
             return 1f;
 
         return MathF.Min(comp.DownloadedNodes.Count / (float) target, 1f);
-    }
-
-    private void OnTerrorGetProgress(EntityUid uid, TerrorConditionComponent comp, ref ObjectiveGetProgressEvent args)
-    {
-        args.Progress = comp.CalledInThreat ? 1f : 0f;
     }
 }

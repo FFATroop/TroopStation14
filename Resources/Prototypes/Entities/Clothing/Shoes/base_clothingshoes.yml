@@ -10,7 +10,7 @@
     state: icon
   - type: Item
     size: Normal
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -22,7 +22,9 @@
   - type: Tag
     tags:
     - ClothMade
+    - Recyclable
     - WhitelistChameleon
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   abstract: true
@@ -34,6 +36,9 @@
     spawned:
     - id: MaterialCloth1
       amount: 1
+  - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
+    materialComposition:
+      Cloth: 50
 
 # stuff common to all military boots
 - type: entity
@@ -46,10 +51,21 @@
     slots:
       item:
         name: clothing-boots-sidearm
+        priority: 4
         whitelist:
           tags:
           - Knife
           - Sidearm
+
+- type: entity
+  abstract: true
+  id: ClothingShoesBootsSecFilled
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife
 
 - type: entity
   abstract: true
@@ -58,4 +74,5 @@
   description: Fluffy boots to help survive even the coldest of winters.
   components:
   - type: TemperatureProtection
-    coefficient: 0.2
+    heatingCoefficient: 1.025
+    coolingCoefficient: 0.5

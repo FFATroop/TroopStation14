@@ -1,14 +1,19 @@
 - type: job
   id: IAA
   name: job-name-iaa
+  description: job-description-iaa
   playTimeTracker: JobIAA
   requirements:
   - !type:DepartmentTimeRequirement
     department: Command
-    time: 72000
+    time: 20h
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 36000
+    time: 10h
+  - !type:TraitsRequirement
+    inverted: true
+    traits:
+    - Muted
   startingGear: IAAGear
   icon: "JobIconIAA"
   supervisors: job-supervisors-centcom
@@ -27,11 +32,22 @@
 - type: startingGear
   id: IAAGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitLawyerBlack  # TODO change jumpsuit to randomiser of the 4 variants
     shoes: ClothingShoesColorBlack
     id: IAAPDA
     eyes: ClothingEyesGlassesSunglasses
     ears: ClothingHeadsetIAA
-    neck: ClothingNeckLawyerbadge
+    pocket2: BookSpaceLaw
   inhand:
     - BriefcaseIAAFilled
+
+- type: chameleonOutfit
+  id: IAAChameleonOutfit
+  job: IAA
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBowlerHat
+    eyes: ClothingEyesGlassesSunglasses
+    outerClothing: ClothingUniformJumpsuitLawyerBlack
+    neck: ClothingNeckScarfStripedBlue
+    gloves: ClothingHandsGlovesColorWhite
+    mask: ClothingMaskBreath

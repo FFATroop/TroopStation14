@@ -1,7 +1,8 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Created by discord:SOL(Артур)#8162",
+  "copyright": "Taken from paradisestation at commit https://github.com/ParadiseSS13/Paradise/commit/f09526480788c2e18fff8c16c4318fd6b4272c10. Vox states by Flareguy for Space Station 14. Vulpkanin and Reptilian states by TiniestShark (Github)",
+  "copyright": "Created by discord:SOL(Артур)#8162. Vox states by Flareguy for Space Station 14",
   "size": {
     "x": 32,
     "y": 32
@@ -18,11 +19,11 @@
       "directions": 4
     },
     {
-      "name": "off-inhand-left",
+      "name": "off-equipped-HELMET-vox",
       "directions": 4
     },
     {
-      "name": "off-inhand-right",
+      "name": "off-equipped-HELMET-reptilian",
       "directions": 4
     },
     {
@@ -30,11 +31,19 @@
       "directions": 4
     },
     {
-      "name": "on-inhand-left",
+      "name": "on-equipped-HELMET-vox",
       "directions": 4
     },
     {
-      "name": "on-inhand-right",
+      "name": "on-equipped-HELMET-reptilian",
+      "directions": 4
+    },
+    {
+      "name": "off-equipped-HELMET-vulpkanin",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-HELMET-vulpkanin",
       "directions": 4
     }
   ]

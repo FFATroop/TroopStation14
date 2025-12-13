@@ -6,8 +6,8 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
+using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.CombatMode.Pacification;
@@ -55,13 +55,21 @@ public sealed class PacificationSystem : EntitySystem
             && !(_timing.CurTime > user.Comp.NextPopupTime))
             return;
 
-        _popup.PopupClient(Loc.GetString(reason, ("entity", target)), user, user);
+        var targetName = Identity.Entity(target, EntityManager);
+        _popup.PopupClient(Loc.GetString(reason, ("entity", targetName)), user, user);
         user.Comp.NextPopupTime = _timing.CurTime + user.Comp.PopupCooldown;
         user.Comp.LastAttackedEntity = target;
     }
 
     private void OnShootAttempt(Entity<PacifiedComponent> ent, ref ShotAttemptedEvent args)
     {
+        if (HasComp<PacifismAllowedGunComponent>(args.Used))
+            return;
+
+        if (TryComp<BatteryWeaponFireModesComponent>(args.Used, out var component))
+            if (component.FireModes[component.CurrentFireMode].PacifismAllowedMode)
+                return;
+
         // Disallow firing guns in all cases.
         ShowPopup(ent, args.Used, "pacified-cannot-fire-gun");
         args.Cancel();
@@ -109,7 +117,7 @@ public sealed class PacificationSystem : EntitySystem
             _actionsSystem.SetEnabled(combatMode.CombatToggleActionEntity, false);
         }
 
-        _alertsSystem.ShowAlert(uid, AlertType.Pacified);
+        _alertsSystem.ShowAlert(uid, component.PacifiedAlert);
     }
 
     private void OnShutdown(EntityUid uid, PacifiedComponent component, ComponentShutdown args)
@@ -121,7 +129,7 @@ public sealed class PacificationSystem : EntitySystem
             _combatSystem.SetCanDisarm(uid, true, combatMode);
 
         _actionsSystem.SetEnabled(combatMode.CombatToggleActionEntity, true);
-        _alertsSystem.ClearAlert(uid, AlertType.Pacified);
+        _alertsSystem.ClearAlert(uid, component.PacifiedAlert);
     }
 
     private void OnBeforeThrow(Entity<PacifiedComponent> ent, ref BeforeThrowEvent args)

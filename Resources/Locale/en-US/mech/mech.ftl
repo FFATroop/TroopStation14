@@ -13,6 +13,11 @@ mech-menu-title = mech control panel
 
 mech-integrity-display = Integrity: {$amount}%
 mech-energy-display = Energy: {$amount}%
+mech-energy-missing = Energy: MISSING
 mech-slot-display = Open Slots: {$amount}
 
 mech-no-enter = You cannot pilot this.
+
+mech-eject-pilot-alert = {$user} is pulling the pilot out of the {$item}!
+
+mech-construction-guide-string = All mech parts must be attached to the harness.

@@ -4,8 +4,9 @@
   description: job-description-scientist
   playTimeTracker: JobScientist
   requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 3600 #1 hrs
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 5h # Corvax-RoleTime
   startingGear: ScientistGear
   icon: "JobIconScientist"
   supervisors: job-supervisors-rd
@@ -17,4 +18,17 @@
   id: ScientistGear
   equipment:
     ears: ClothingHeadsetScience
+  #storage:
+    #back:
+    #- Stuff
 
+- type: chameleonOutfit
+  id: ScientistChameleonOutfit
+  job: Scientist
+  equipment:
+    head: ClothingHeadBandSkull
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckTieSci
+    outerClothing: ClothingOuterCoatRnd
+    gloves: ClothingHandsGlovesLatex
