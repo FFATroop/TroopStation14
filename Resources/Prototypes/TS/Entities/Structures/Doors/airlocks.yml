@@ -5,8 +5,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Standard/marine.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: AirlockGlass
@@ -15,8 +13,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Glass/marine.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: Airlock
@@ -25,8 +21,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Standard/marine-engineer.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: AirlockGlass
@@ -35,9 +29,7 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Glass/marine-engineer.rsi
-  - type: PaintableAirlock
-    department: Marine
-    
+
 - type: entity
   parent: Airlock
   id: AirlockMarineMedic
@@ -45,8 +37,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Standard/marine-medic.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: AirlockGlass
@@ -55,9 +45,7 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Glass/marine-medic.rsi
-  - type: PaintableAirlock
-    department: Marine
-    
+
 - type: entity
   parent: Airlock
   id: AirlockMarinePilot
@@ -65,8 +53,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Standard/marine-pilot.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: AirlockGlass
@@ -75,9 +61,7 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Glass/marine-pilot.rsi
-  - type: PaintableAirlock
-    department: Marine
-    
+
 - type: entity
   parent: Airlock
   id: AirlockMechPilot
@@ -85,8 +69,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Standard/marine-pilot-mech.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: AirlockGlass
@@ -95,9 +77,7 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Glass/marine-pilot-mech.rsi
-  - type: PaintableAirlock
-    department: Marine
-    
+
 - type: entity
   parent: Airlock
   id: AirlockPlatoonCommander
@@ -105,8 +85,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Standard/marine-platoon-commander.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: AirlockGlass
@@ -115,9 +93,7 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Glass/marine-platoon-commander.rsi
-  - type: PaintableAirlock
-    department: Marine
-    
+
 - type: entity
   parent: Airlock
   id: AirlockMechPlatoonCommander
@@ -125,8 +101,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Standard/marine-platoon-commander-mech.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: AirlockGlass
@@ -135,8 +109,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Glass/marine-platoon-commander-mech.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: Airlock
@@ -145,8 +117,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Standard/marine-platoon-commander-robo.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: AirlockGlass
@@ -155,9 +125,7 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Glass/marine-platoon-commander-robo.rsi
-  - type: PaintableAirlock
-    department: Marine
-    
+
 - type: entity
   parent: Airlock
   id: AirlockCompanyCommander
@@ -165,8 +133,6 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Standard/marine-company-commander.rsi
-  - type: PaintableAirlock
-    department: Marine
 
 - type: entity
   parent: AirlockGlass
@@ -175,5 +141,3 @@
   components:
   - type: Sprite
     sprite: TS/Structures/Doors/Glass/marine-company-commander.rsi
-  - type: PaintableAirlock
-    department: Marine

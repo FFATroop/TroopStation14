@@ -86,7 +86,7 @@
         {
             "name": "Geneticist"
         },
-		{
+        {
             "name": "HeadOfPersonnel"
         },
         {
@@ -239,13 +239,13 @@
         {
             "name": "Nanotrasen"
         },
-		{
+        {
             "name": "CompanyCommander"
         },
         {
             "name": "PlatoonCommander"
         },
-		{
+        {
             "name": "RoboPlatoonCommander"
         },
         {
@@ -254,21 +254,22 @@
         {
             "name": "Marine"
         },
-		{
+        {
             "name": "MarineMedic"
         },
-		{
+        {
             "name": "MarineEngineer"
         },
-		{
+        {
             "name": "MarinePilot"
         },
         {
             "name": "MilitaryBorg"
         },
-		{
+        {
             "name": "MechPilot"
-		},
+        },
+        {
             "name": "SecurityCadet"
         }
     ]

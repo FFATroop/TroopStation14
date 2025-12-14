@@ -1,6 +1,7 @@
 # Department
 - type: department
   id: CommandMarine
+  name: department-CommandMarine
   description: department-command-marine-description
   color: "#C3C3BD"
   weight: 80
@@ -14,6 +15,7 @@
 
 - type: department
   id: Marine
+  name: department-CommandMarine
   description: department-marine-description
   color: "#C3C3BD"
   weight: 70
@@ -25,6 +27,7 @@
 
 - type: department
   id: RoboMarine
+  name: department-RoboMarine
   description: department-robo-marine-description
   color: "#C3C3BD"
   weight: 60
@@ -35,6 +38,7 @@
 
 - type: department
   id: MechMarine
+  name: department-RoboMarine
   description: department-mech-marine-description
   color: "#C3C3BD"
   weight: 50
