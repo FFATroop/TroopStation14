@@ -2,7 +2,6 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Antag;
 using Content.Server.Chat.Systems;
-using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Jobs;
 using Content.Server.NPC.Components;
@@ -13,12 +12,14 @@ using Content.Server.Station.Components;
 using Content.Server.TS;
 using Content.Shared.Mobs.Components;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
+using Robust.Shared.EntitySerialization;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
@@ -53,7 +54,6 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         base.Initialize();
 
         SubscribeLocalEvent<AntagCalculatedAndSpawnedEventArgs>(OnAntagsSpawned);
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
         // MasterRORuleComponent removed and added new after restart
         //SubscribeLocalEvent<MasterRORuleComponent, RoundRestartCleanupEvent>(OnRoundRestart);
     }
@@ -88,7 +88,7 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         var allFoundGrids = _prototypeManager.EnumeratePrototypes<MissionGridPrototype>().ToList();
         var indexMap = _random.Next(allFoundMaps.Count() - 1);
 
-        if (!_mapLoader.TryLoad(component.MissionMapId.Value, allFoundMaps[indexMap].MapPath.ToString(), out var entityList))
+        if (!_mapLoader.TryLoadMap(allFoundMaps[indexMap].MapPath, out var OutMap, out var grides))
         {
             return;
         }
@@ -115,14 +115,13 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         {
             var indexGrid = _random.Next(allFoundGrids.Count() - 1);
             float currentAngle = angleDelta * i;
-            var tempOptions = new MapLoadOptions();
-            tempOptions.Offset = new Vector2(
+            var Offset = new Vector2(
                 (startVector.X * Single.Cos(currentAngle) - startVector.Y * Single.Sin(currentAngle)),
                 (startVector.X * Single.Sin(currentAngle) + startVector.Y * Single.Cos(currentAngle))
                 ) * _random.NextFloat(140f, 220f) + component.CurrentCenterMissionMap;
-            tempOptions.Rotation = _random.NextAngle(0, 360);
+            var Rotation = _random.NextAngle(0, 360);
 
-            _mapLoader.TryLoad(component.MissionMapId.Value, allFoundGrids[indexGrid].GridPath.ToString(), out _, tempOptions);
+            _mapLoader.TryLoadMap(allFoundMaps[indexMap].MapPath, out var _, out var _, null, Offset, Rotation);
         }
         _mapManager.DoMapInitialize(component.MissionMapId.Value);
 
@@ -422,13 +421,9 @@ public sealed class MasterRORuleSystem : GameRuleSystem<MasterRORuleComponent>
         return true;
     }
 
-    private void OnRoundEndText(RoundEndTextAppendEvent ev)
+    protected override void AppendRoundEndText(EntityUid uid, MasterRORuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)  
     {
-        var query = EntityQueryEnumerator<MasterRORuleComponent>();
-        while (query.MoveNext(out var uid, out var component))
-        {
-            var winText = Loc.GetString($"master-{component.WinType.ToString().ToLower()}");
-            ev.AddLine(winText);
-        }
+        var winText = Loc.GetString($"master-{component.WinType.ToString().ToLower()}");
+        args.AddLine(winText);
     }
 }

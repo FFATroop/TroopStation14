@@ -1,7 +1,7 @@
 # OBH-1
 - type: entity
   noSpawn: true
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitOBH1F
   name: OBH-1F
   description: Modern armor helmet, version 1, forest edition
@@ -29,7 +29,7 @@
 # OBH-2
 - type: entity
   noSpawn: true
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitOBH2F
   name: OBH-2F
   description: Modern armor helmet, version 2, forest edition
@@ -43,8 +43,13 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
   - type: ExplosionResistance
     damageCoefficient: 0.4
+  - type: FireProtection
+    reduction: 0.4
   - type: Armor
     modifiers:
       coefficients:
@@ -59,7 +64,7 @@
 # OBH-3
 - type: entity
   noSpawn: true
-  parent: [ClothingHeadHardsuitWithLightBase, ShowSecurityIcons]
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase , ShowSecurityIcons]
   id: ClothingHeadHelmetHardsuitOBH3S
   name: OBH-3S
   description: Modern armor helmet, version 3, space edition
@@ -74,8 +79,13 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
   - type: ExplosionResistance
     damageCoefficient: 0.4
+  - type: FireProtection
+    reduction: 0.4
   - type: Armor
     modifiers:
       coefficients:
@@ -91,7 +101,7 @@
 # LEH
 - type: entity
   noSpawn: true
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetLightsuitExpedition
   name: expedition lightsuit helmet
   components:

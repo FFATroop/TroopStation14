@@ -1,9 +1,11 @@
+using Content.Server.Hands.Systems;
 using Content.Server.Power.Components;
-using Content.Server.PowerCell;
 using JetBrains.Annotations;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Power.Components;
+using Content.Shared.PowerCell;
 using Robust.Server.Containers;
 
 namespace Content.Server.Power.EntitySystems;
@@ -15,6 +17,7 @@ internal sealed class HandChargerSystem : EntitySystem
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly HandsSystem _handsSystem = default!;
 
     public override void Update(float frameTime)
     {
@@ -31,14 +34,17 @@ internal sealed class HandChargerSystem : EntitySystem
 
             var batteryToCharge = new List<BatteryComponent>();
 
-            foreach (var tempHand in hands.Hands.Values)
+            var entityHands = new Entity<HandsComponent?>(containerComp.Owner, hands);
+            foreach (var tempHand in hands.Hands.Keys)
             {
-                if (tempHand.HeldEntity == null) continue;
-
-                if (!TryComp(tempHand.HeldEntity.Value, out BatteryComponent? heldBattery))
+                if (!_handsSystem.TryGetHeldItem(entityHands, tempHand, out var heldItem))
                     continue;
 
-                if (heldBattery.CurrentCharge == heldBattery.MaxCharge) continue;
+                if (!TryComp(heldItem, out BatteryComponent? heldBattery))
+                    continue;
+
+                if (heldBattery.CurrentCharge >= heldBattery.MaxCharge)
+                    continue;
 
                 batteryToCharge.Add(heldBattery);
             }
@@ -60,8 +66,12 @@ internal sealed class HandChargerSystem : EntitySystem
             if (tempEntity == null) continue;
 
             if (!TryComp(tempEntity, out BatteryComponent? batteryComponent)) {
-                if (!_powerCell.TryGetBatteryFromSlot(tempEntity.Value, out batteryComponent)) return null;
+                if (!_powerCell.TryGetBatteryFromSlot(tempEntity.Value, out var predictBatteryComponent)) return null;
+
             }
+
+            if (batteryComponent == null)
+                return null;
 
             return batteryComponent.CurrentCharge > 0 ? batteryComponent : null;
         }
@@ -75,22 +85,25 @@ internal sealed class HandChargerSystem : EntitySystem
 
         float chargeRate = deltaChargeRate / batteryToCharge.Count;
 
+        var entityBatteryDis = new Entity<BatteryComponent?>(uid, batteryToDischarge);
+       // var entityBatteryDis = new Entity<BatteryComponent?>(uid, batteryToDischarge);
+
         if (batteryToDischarge.CurrentCharge < deltaChargeRate)
         {
             chargeRate = batteryToDischarge.CurrentCharge / batteryToCharge.Count * frameTime;
-            _battery.SetCharge(uid, 0, batteryToDischarge);
+            _battery.SetCharge(entityBatteryDis, 0);
         }
         else
-            _battery.SetCharge(uid, batteryToDischarge.CurrentCharge - deltaChargeRate, batteryToDischarge);
+            _battery.SetCharge(entityBatteryDis, batteryToDischarge.CurrentCharge - deltaChargeRate);
 
         foreach (var tempBattery in batteryToCharge)
         {
-            _battery.SetCharge(uid, tempBattery.CurrentCharge + chargeRate, batteryToDischarge);
+            _battery.SetCharge(entityBatteryDis, tempBattery.CurrentCharge + chargeRate);
 
             // Just so the sprite won't be set to 99.99999% visibility
             if (tempBattery.MaxCharge - tempBattery.CurrentCharge < 0.01 || tempBattery.CurrentCharge > tempBattery.MaxCharge)
             {
-                _battery.SetCharge(uid, tempBattery.MaxCharge, batteryToDischarge);
+                _battery.SetCharge(entityBatteryDis, tempBattery.MaxCharge);
             }
         }
     }

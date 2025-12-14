@@ -15,7 +15,7 @@
     sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/light_plasma_mag.rsi
     state: base
   - type: AmmoCounter
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: LargeRedPlasmaBullet
     fireCost: 1
   - type: Battery
@@ -29,7 +29,7 @@
   name: light plasma mag
   suffix: Blue
   components:
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: LargeBluePlasmaBullet
 
 - type: entity
@@ -38,7 +38,7 @@
   name: light plasma mag
   suffix: Green
   components:
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: LargeGreenPlasmaBullet
 
 - type: entity
@@ -58,7 +58,7 @@
     sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/medium_plasma_mag.rsi
     state: base
   - type: AmmoCounter
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MediumRedPlasmaBullet
     fireCost: 1
   - type: Battery
@@ -72,7 +72,7 @@
   name: medium plasma mag
   suffix: Blue
   components:
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MediumBluePlasmaBullet
 
 - type: entity
@@ -81,7 +81,7 @@
   name: medium plasma mag
   suffix: Green
   components:
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: MediumGreenPlasmaBullet
 
 - type: entity
@@ -101,7 +101,7 @@
     sprite: TS/Objects/Weapons/Ammunition/Magazine/Plasma/heavy_plasma_mag.rsi
     state: base
   - type: AmmoCounter
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: LightRedPlasmaBullet
     fireCost: 1
   - type: Battery
@@ -115,7 +115,7 @@
   name: heavy plasma mag
   suffix: Blue
   components:
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: LightBluePlasmaBullet
 
 - type: entity
@@ -124,5 +124,5 @@
   name: heavy plasma mag
   suffix: Green
   components:
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: LightGreenPlasmaBullet
